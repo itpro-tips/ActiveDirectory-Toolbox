@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<policyDefinitionResources revision="1.0" schemaVersion="1.0">
+  <displayName>
+  </displayName>
+  <description>
+  </description>
+  <resources>
+    <stringTable>
+      <string id="KeepLastChromeTab_Policy">Badilisha Kichupo cha Mwisho cha Chrome</string>
+      <string id="ShowTransitionScreen_Policy">Onyesha Skrini ya Mpito katika Chrome Kwa Muda</string>
+      <string id="ChromeArguments_Explain">Hukuruhusu kubainisha hoja za kupelekwa kwenye Chrome wakati inapotekelezwa.
+
+Kama sera imewashwa vigezo vilivyotolewa vitatumika wakati Chrome inapotekelezwa.
+
+Unaweza pia kutumia kishika nafasi maalum ${url} kubainisha url inapopaswa kutokea katika mstari wa amri. Mf. "--url=${url} --kiosk".
+Sio lazima ubainishe kishika nafasi ikiwa kinapaswa kuambatishwa mpaka 
+mwisho au iwapo kinapaswa kuwa hoja pekee unaweza kuacha sera hiyo tupu.
+
+Kama sera imezimwa au imeachwa tupu url pekee ndiyo itakayopitishwa kama kigezo cha kivinjari.</string>
+      <string id="AlternativeBrowserArguments">Hoja Mbadala za Kivinjari</string>
+      <string id="ChromeArguments">Hoja za Chrome</string>
+      <string id="AlternativeBrowserPath_Part">Njia Mbadala ya Kivinjari</string>
+      <string id="URLList_Part">Seva pangishi Zitafungukia Katika Kivinjari Mbadala</string>
+      <string id="KeepLastChromeTab_Explain">Hukuruhusu kubainisha kinachotendeka kichupo cha mwisho kilicho wazi katika Chrome kinapoelekezwa kwenye kivinjari mbadala.
+
+Sera hii inapowashwa au kutowekwa, kichupo cha mwisho kitaachwa wazi na kuelekezwa kwenye ukurasa mpya wa kichupo baada ya mabadiliko. Ikizimwa basi kichupo cha mwisho kitafungwa na kusababisha kufunga Chrome ikiwa hakuna madirisha mengine kwenye Chrome yaliyo wazi.</string>
+      <string id="UseIeSiteList_Part">Tumia Sera ya IE Enterprise Mode Site List</string>
+      <string id="SUPPORTED_WINXPSP2">Microsoft Windows XP SP2 au matoleo ya baadaye</string>
+      <string id="AlternativeBrowserPath">Njia Mbadala ya Kivinjari</string>
+      <string id="UseIeSiteList_Explain">Ikiwa imewashwa, utaratibu wa kubadilisha vivinjari pia utaanzishwa na tovuti zilizoongezwa kwenye sera ya SiteList ya kivinjari cha Internet Explorer kwa mujibu wa (https://technet.microsoft.com/itpro/internet-explorer/ie11-deploy-guide/turn-on-enterprise-mode-and-use-a-site-list).
+
+Ikiwa mipangilio haijawekwa au haijazimwa urls kwenye sera ya viendelezi tu ndiyo itakayotumika.</string>
+      <string id="AlternativeBrowserPath_Explain">Bainisha utekelezaji wa kivinjari mbadala.
+Hukuruhusu kubainisha programu itakayotumika kama kivinjari mbadala.
+
+Kama imewashwa unaweza kubainisha njia kamili katika sera au utumie moja ya vipengele vifuatavyo:
+
+${ie} - Eneo chaguo-msingi la kusanikisha Internet Explorer
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\IEXPLORE.EXE inatumika kuchagua eneo la kivinjari katika hali hii.
+${firefox} - Eneo chaguo-msingi la kusanikisha Firefox
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\FIREFOX.EXE inatumika kuchagua eneo la kivinjari katika hali hii.
+${safari} - Eneo chaguo-msingi la kusanikisha Safari
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\SAFARI.EXE inatumika kuchagua eneo la kivinjari katika hali hii.
+
+Kama sera imezimwa au kuachwa tupu chaguo-msingi la kivinjari mbadala litatumika ambalo ni Internet Explorer iliyobainishwa kana kwamba thamani ya ${ie } imetumika.</string>
+      <string id="ShowTransitionScreen_Part">Onyesha Skrini ya Mpito katika Chrome Kwa Muda</string>
+      <string id="URLList_Explain">Hukuruhusu kubainisha orodha ya majina ya kikoa ya wapangishi ya kufunguliwa katika kivinjari Mbadala.
+
+Kama sera imewashwa lazima utoe orodha ya vichujio vitakavyoanzisha utaratibu wa kubadilisha kwenda kwenye kivinjari mbadala. Kila jina linalobainishwa linapaswa kuwa na mojawapo ya aina nne zinazofuata:
+
+Sehemu ya jina la mpangishi: Majina kamili ya kikoa kama "www.example.com" yanapaswa kubainishwa au sehemu yazo kama "example.com" au hata "example". Herufi wakilishi bado hazitumiki.
+Kiambishi cha URL: Viambishi vya URL sahihi pekee ndivyo vinavyolinganishwa kikamilifu pamoja na itifaki na tundu ikihitajika. Mf. "http://login.example.com" au "https://www.example.com:8080/login/". Uingizaji hasi: Huanza kwa "!" na kuendelea kama sehemu ya jina la mpangishi au kiambishi cha URL kama ilivyoelezwa hapo juu. Uingizaji hasi hufunguliwa katika Chrome wakati wote. Mf. "!example.com" au "!file:///c:/localapp/".
+Uingizaji wa herufi wakilishi: Huwa na herufi moja ya "*". Hulingana na URL yoyote. Inakusudiwa kutumiwa pamoja na uingizaji hasi, ikiwa URL nyingi zinapaswa kufunguliwa katika kivinjari mbadala na URL chache pekee zinapaswa kufunguliwa katika Chrome.
+
+Uingizaji hasi una vipaumbele vya juu zaidi kuliko uingizaji chanya unaoruhusu kutoa idhini mafungu makubwa ya kikoa huku ukihifadhi sehemu ndogo zaidi za kufunguliwa katika Chrome.
+Uingizaji wa herufi wakilishi kama upo unatumika baada ya sheria nyingine zote kuangaliwa.
+
+Itifaki zinazofuata zinafuatiliwa kwa kuelekeza kwingine: http:, https:.
+
+Kama hazijabainishwa au hazijaongezwa - utaratibu wa kubadilisha kwenda kwenye kivinjari mbadala hautaanzishwa.</string>
+      <string id="ChromePath_Explain">Hukuruhusu kubainisha kitekelezaji cha Chrome kitakachozinduliwa inaporejea kutoka kwenye kivinjari mbadala(*).
+
+Wakati sera inapowashwa unaweza kubainisha njia kamili katika sera au utumie kipengele kifuatacho:
+
+${chrome} - Eneo chaguo-msingi la kusanikisha Chrome
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\Chrome.EXE inatumika kuchagua eneo la kivinjari katika hali hii.
+
+Kama sera imezimwa au kuachwa tupu usanikishaji chaguo-msingi wa Chrome utatumika kana kwamba ${chrome} imetumika.
+
+*: Kwa sasa ni Internet Explorer pekee inayoweza kutumiwa kurudi kwenye Chrome kiotomatiki.</string>
+      <string id="Cat_LegacyBrowserSupport">Uwezo wa Kutumia Kivinjari Kilichopitwa na Wakati</string>
+      <string id="AlternativeBrowserArguments_Part">Hoja Mbadala za Kivinjari</string>
+      <string id="URLGreyList_Part">Seva pangishi Zisizopaswa Kuanzisha Mabadiliko katika Kivinjari Chochote</string>
+      <string id="UseIeSiteList_Policy">Tumia Sera ya IE Enterprise Mode Site List</string>
+      <string id="URLGreyList_Policy">Seva pangishi Zisizopaswa Kuanzisha Mabadiliko katika Kivinjari Chochote</string>
+      <string id="ShowTransitionScreen_Explain">Hukuruhusu kubainisha muda ambao ujumbe wa mabadiliko utaonekana kwenye kichupo cha Chrome kabla ya kubadilika na kuingia kwenye kivinjari kingine. Kipengele hiki kinakuwezesha kuona mabadiliko. Sera hii inabainishwa kwa sekunde chache.
+
+Ikiwa mipangilio haijawekwa kichupo kitafungwa mara moja mabadiliko yatakapokamilika.</string>
+      <string id="URLList_Policy">Seva pangishi Zitafungukia Katika Kivinjari Mbadala</string>
+      <string id="ChromePath">Njia ya Chrome</string>
+      <string id="ChromeArguments_Part">Hoja za Chrome</string>
+      <string id="KeepLastChromeTab_Part">Badilisha Kichupo cha Mwisho cha Chrome</string>
+      <string id="AlternativeBrowserArguments_Explain">Hukuruhusu kubainisha hoja zitakazopelekwa kwenye kitekelezi cha kivinjari mbadala.
+
+Kama sera imewashwa vigezo vilivyotolewa vitatumika wakati wa utekelezaji wa kivinjari mbadala.
+
+Unaweza pia kutumia kishika nafasi maalum ${url} kubainisha url inapopaswa kutokea katika mstari wa amri. K.m. "--url=${url} --kiosk".
+Siyo lazima ubainishe kishika nafasi ikiwa kinapaswa kuambatishwa mpaka mwisho au iwapo kinapaswa kuwa hoja pekee unaweza kuacha sera hiyo tupu.
+
+Kama sera imezimwa au haijaongezwa, url pekee ndiyo itakayopitishwa kama kigezo cha kivinjari.</string>
+      <string id="URLGreyList_Explain">Hukuruhusu kubainisha orodha ya majina ya kikoa yatakayofunguliwa katika kivinjari mojawapo.
+
+Sera hii inapowashwa, vikoa katika orodha hii vitapatikana katika vivinjari vyote viwili na havitaanzisha mabadiliko kwa njia yoyote.
+
+Hali inayowezekana ya matumizi ni vikoa vyovyote vya uthibitishaji ambavyo vinashirikiwa kati ya programu mpya na zilizopitwa na wakati katika orodha hii.
+
+Sehemu za Majina ya Mpangishi: Ama majina ya kikoa kamili kama "www.example.com" yanapaswa kubainishwa au sehemu zake kama "example.com: au hata "example". Herufi wakilishi bado hazitumiwi. Viambishi vya URL: Viambishi vya URL sahihi pekee ndivyo vinalinganishwa kikamilifu na itifaki na mlango ikihitajika. Kwa mfano "http://login.example.com" au "https://www.example.com:8080/login/".
+
+
+Kama haijabainishwa ama imeachwa tupu - kikoa chochote ambacho hakipo kwenye orodha ya "Wapangishi Wafungulie Katika Kivinjari Mbadala" kitaanzisha mabadiliko ya kurudi kwenye Chrome(*).
+
+*: Kwa sasa ni Internet Explorer pekee inayoweza kuanzisha utaratibu wa kurudi kwenye Chrome kiotomatiki.</string>
+      <string id="ChromePath_Part">Njia ya Chrome</string>
+</stringTable>
+  <presentationTable>
+    <presentation id="AlternativeBrowserPath">
+      <textBox refId="AlternativeBrowserPath_Part">
+        <label>Njia Mbadala ya Kivinjari</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="AlternativeBrowserArguments">
+      <textBox refId="AlternativeBrowserArguments_Part">
+        <label>Hoja Mbadala za Kivinjari</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="ChromePath">
+      <textBox refId="ChromePath_Part">
+        <label>Njia ya Chrome</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="ChromeArguments">
+      <textBox refId="ChromeArguments_Part">
+        <label>Hoja za Chrome</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="URLList_Policy">
+      <listBox refId="URLList_Part">Seva pangishi Zitafungukia Katika Kivinjari Mbadala</listBox>
+    </presentation>
+    <presentation id="URLGreyList_Policy">
+      <listBox refId="URLGreyList_Part">Seva pangishi Zisizopaswa Kuanzisha Mabadiliko katika Kivinjari Chochote</listBox>
+    </presentation>
+    <presentation id="KeepLastChromeTab_Policy"/>
+    <presentation id="ShowTransitionScreen_Policy">
+      <decimalTextBox refId="ShowTransitionScreen_Part">Onyesha Skrini ya Mpito katika Chrome Kwa Muda</decimalTextBox>
+    </presentation>
+    <presentation id="UseIeSiteList_Policy"/>
+  </presentationTable>
+</resources>
+</policyDefinitionResources>

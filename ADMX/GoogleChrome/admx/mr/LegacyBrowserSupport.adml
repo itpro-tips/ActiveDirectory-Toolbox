@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<policyDefinitionResources revision="1.0" schemaVersion="1.0">
+  <displayName>
+  </displayName>
+  <description>
+  </description>
+  <resources>
+    <stringTable>
+      <string id="KeepLastChromeTab_Policy">अंतिम Chrome टॅब चालू ठेवा संक्रमण</string>
+      <string id="ShowTransitionScreen_Policy">Chrome मध्ये काही वेळासाठी संक्रमण स्क्रीन दाखवा</string>
+      <string id="ChromeArguments_Explain">तुम्हाला अंमलात आणल्यानंतर Chrome वर पारित केले जाण्याचे वितर्क निर्दिष्ट करू देतो.
+
+धोरण चालू केलेले असल्यास जेव्हा Chrome सुरू केला जाईल तेव्हा प्रदान केलेले मापदंड वापरले जातील.
+
+तुम्ही कमांड लाइनमध्ये url कुठे दिसावी हे निर्दिष्ट करण्‍यासाठी विशेष प्लेसहोल्डर ${url} देखील वापरू शकता. उदा. "--url=${url} --कियोस्क".
+तुम्ही प्लेसहोल्डर शेवटी जोडला जाण्यासाठी किंवा त्या धोरणास रिक्त सोडण्यासाठी तो एकमेव वितर्क असल्यास त्यास निर्दिष्ट करू नये.
+
+धोरण बंद केलेले असल्यास किंवा रिक्त सोडल्यास ब्राउझरचा मापदंड म्हणून केवळ url पारित केली जाईल.</string>
+      <string id="AlternativeBrowserArguments">वैकल्पिक ब्राउझर वितर्क</string>
+      <string id="ChromeArguments">Chrome वितर्क</string>
+      <string id="AlternativeBrowserPath_Part">वैकल्पिक ब्राउझर पथ</string>
+      <string id="URLList_Part">वैकल्पिक ब्राउझरमध्ये उघडण्यासाठी होस्ट</string>
+      <string id="KeepLastChromeTab_Explain">वैकल्पिक ब्राउझरवर Chrome मधील अंतिम उघडा टॅब पुन्हा र्निर्देशित केला जात असल्यास काय होते हे निर्दिष्ट करू देते.
+
+हे धोरण चालू केले असल्यास किंवा सेट केलेले नसल्यास अंतिम टॅब उघडा ठेवला जाईल आणि संक्रमणानंतर नवीन टॅब पेजवर निर्देशित करतो. हे बंद वर सेट केलेले असल्यास अंतिम टॅब बंद केला जाईल जे कोणत्याही इतर Chrome विंडो उघड्या नसल्यास बंद होणार्‍या Chrome कडे नेईल.</string>
+      <string id="UseIeSiteList_Part">IE एंटरप्राइझ मोड साइट सूची धोरण वापरा</string>
+      <string id="SUPPORTED_WINXPSP2">Microsoft Windows XP SP2 किंवा त्यानंतरचे</string>
+      <string id="AlternativeBrowserPath">वैकल्पिक ब्राउझर पथ</string>
+      <string id="UseIeSiteList_Explain">चालू असताना, (https://technet.microsoft.com/itpro/internet-explorer/ie11-deploy-guide/turn-on-enterprise-mode-and-use-a-site-list) मध्ये स्पष्ट केल्यानुसार Internet Explorerसाठी साइट सूची धोरणामधील प्रविष्ट्यांंच्या मदतीने ब्राउझर दरम्यानची संक्रमणे देखील ट्रिगर केली जातील.
+
+हे सेट केले नसल्यास किंवा बंद असल्यास केवळ विस्तार धोरणातील url वापरल्या जातील.</string>
+      <string id="AlternativeBrowserPath_Explain">वैकल्पिक ब्राउझरच्या कार्यवाही करण्यायोग्य गोष्टी निर्दिष्ट करा.
+तुम्हाला वैकल्किप ब्राउझर म्हणून वापरला जाणारा प्रोग्राम निर्दिष्ट करू देते.
+
+चालू केल्यास तुम्ही धोरणात एकतर अचूक पथ निर्दिष्ट करू शकता किंवा खालीलपैकी एक चल वापरू शकता:
+
+${ie} - Internet Explorer साठी डीफॉल्ट इंस्टॉल करण्याचे स्थान
+या प्रकरणात ब्राउझरचे स्थान निवडण्यासाठी HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\IEXPLORE.EXE वापरले जाते.
+${firefox} - Firefox साठी डीफॉल्ट इंस्टॉल करण्याचे स्थान 
+या प्रकरणात ब्राउझरचे स्थान निवडण्यासाठी HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\FIREFOX.EXE वापरले जाते.
+${safari} - Safari साठी डीफॉल्ट इंस्टॉल करण्याचे स्थान
+या प्रकरणात ब्राउझरचे स्थान निवडण्यासाठी HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\SAFARI.EXE वापरले जाते.
+
+धोरण चालू केले नसल्यास किंवा रिक्त सोडल्यास डीफॉल्ट वैकल्पिक ब्राउझर वापरला जाईल जो वापरलेल्या ${ie} मूल्याप्रमाणे निर्धारित केलेला Internet Explorer असेल.</string>
+      <string id="ShowTransitionScreen_Part">Chrome मध्ये काही वेळासाठी संक्रमण स्क्रीन दाखवा</string>
+      <string id="URLList_Explain">तुम्हाला वैकल्पिक ब्राउझरमध्ये उघडण्यासाठी होस्ट डोमेन नावांची सूची निर्दिष्ट करू देते.
+
+धोरण चालू केलेले असल्यास तुम्हाला फिल्टरची एक सूची प्रदान करावी लागेल जी वैकल्पिक ब्राउझरमध्ये संक्रमण ट्रिगर करेल.
+ प्रत्येक प्रविष्टी खालील चार प्रकारांपैकी एका प्रकारातील असावी:
+
+होस्ट-नाव भाग: एकतर "www.example.com" सारखी पूर्ण डोमेन नावे किंवा "example.com" वा "example" सारखे त्यांचे भाग देखील निर्दिष्ट केले जावेत. वाइल्डकार्ड अद्याप सपोर्टेड नाहीत.
+URL पूर्वप्रत्यय: आवश्यक असल्यास केवळ योग्य URL पूर्वप्रत्यय प्रोटोकॉलशी आणि पोर्टशी पूर्णपणे जुळतात. उदा. "http://login.example.com" किंवा "https://www.example.com:8080/login/".
+नकारात्मक प्रविष्टी: "!"ने सुरू होते आणि वर वर्णन केल्यानुसार होस्ट-नाव भाग म्हणून किंवा URL पूर्वप्रत्यय म्हणून सुरू राहते. नकारात्मक प्रविष्ट्या नेहमी Chrome मध्ये उघडलेल्या असतात. उदा. "!example.com" किंवा "!file:///c:/localapp/".
+वाइल्डकार्ड प्रविष्टी: यामध्ये केवळ एक एकल वर्ण "*" असतो. कोणत्याही URLशी जुळते. अनेक URL वैकल्पिक ब्राउझरमध्ये उघड्या असल्यास आणि URLची केवळ एक लहान निवड Chrome मध्ये उघडी असल्यास नकारात्मक प्रविष्ट्यांसह एकत्रितपणे वापरली जावी.
+
+सकारात्मक प्रविष्ट्यांपेक्षा नकारात्मक प्रविष्ट्यांमध्ये उच्च गुणधर्म असतात जे Chrome मध्ये उघडण्यासाठी अधिक लहान विभाग सेव्ह करताना डोमेनच्या मोठ्या भागांना श्वेतसूचीसाठी अनुमती देतात.
+सर्व इतर नियम चेक केल्यानंतर वाइल्डकार्ड प्रविष्टी असल्यास ती लागू केली जाते.
+
+याना पुनर्निर्देशित करण्यासाठी खालील प्रोटोकॉलचे परीक्षण केले जाते: http:, https:.
+
+निर्दिष्ट केले नसल्यास किंवा रिक्त सोडल्यास - वैकल्पिक ब्राउझरमधील कोणतेही संक्रमण ट्रिगर केले जाणार नाही.</string>
+      <string id="ChromePath_Explain">तुम्हाला वैकल्पिक ब्राउझर(*) वरून परत येत असताना लाँच करण्याचे Chrome चे कार्यवाहीयोग्य निर्दिष्ट करू देते.
+
+जेव्हा धोरण चालू केलेले असते तेव्हा तुम्ही धोरणात एकतर अचूक पथ निर्दिष्ट करू शकता किंवा खालील चल वापरू शकता:
+
+${chrome} - Chrome साठी डीफॉल्ट इंस्टॉल करण्याचे स्थान
+या प्रकरणात ब्राउझरचे स्थान ‍निवडण्याकरिता HKEY_LOCAL_MACHINESOFTWAREMicrosoftWindowsCurrentVersionApp PathsChrome.EXE वापरले गेले आहे.
+
+धोरण बंद केलेले असल्यास किंवा रिक्त सोडल्यास ${chrome} मूल्य वापरले गेल्यास Chrome चे डीफॉल्ट इंस्टॉलेशन वापरले जाईल.
+
+*: सध्या Chrome वर आपोआप परत येण्यास केवळ Internet Explorer सपोर्ट करतो.</string>
+      <string id="Cat_LegacyBrowserSupport">परंपरागत ब्राउझर सपोर्ट</string>
+      <string id="AlternativeBrowserArguments_Part">वैकल्पिक ब्राउझर वितर्क</string>
+      <string id="URLGreyList_Part">कोणत्याही ब्राउझरमध्ये संक्रमण ट्रिगर न करणारे होस्ट</string>
+      <string id="UseIeSiteList_Policy">IE एंटरप्राइझ मोड साइट सूची धोरण वापरा</string>
+      <string id="URLGreyList_Policy">कोणत्याही ब्राउझरमध्ये संक्रमण ट्रिगर न करणारे होस्ट</string>
+      <string id="ShowTransitionScreen_Explain">तुम्हाला इतर ब्राउझरमध्ये संक्रमण करण्यापूर्वी Chromeमध्ये संक्रमण संदेश किती वेळ दिसेल हे निर्दिष्ट करू देते. यामुळे संक्रमणाची कल्पना येते. सेकंदांमध्ये धोरण निर्दिष्ट केले जाते.
+
+हे सेट केलेले नसल्यास संक्रमण समाप्त होत असताना टॅब त्वरित बंद होईल.</string>
+      <string id="URLList_Policy">वैकल्पिक ब्राउझरमध्ये उघडण्यासाठी होस्ट</string>
+      <string id="ChromePath">Chrome पथ</string>
+      <string id="ChromeArguments_Part">Chrome वितर्क</string>
+      <string id="KeepLastChromeTab_Part">अंतिम Chrome टॅब चालू ठेवा संक्रमण</string>
+      <string id="AlternativeBrowserArguments_Explain">तुम्हाला वैकल्पिक ब्राउझरच्या कार्यवाही योग्यतेमध्ये पारित केले जाण्याचे वितर्क निर्दिष्ट करू देते.
+
+धोरण चालू केले असल्यास जेव्हा वैकल्पिक ब्राउझरला आवाहन केले जाईल तेव्हा प्रदान केलेले मापदंड वापरले जातील.
+
+आज्ञा रेखेत url कुठे दिसावी हे निर्दिष्ट करण्‍यासाठी तुम्ही विशेष प्लेसहोल्डर ${url} देखील वापरू शकता. उदा. "--url=${url} --कियोस्क".
+प्लेसहोल्डर शेवटी जोडला जाण्यासाठी किंवा ते धोरण रिक्त सोडण्यासाठी तो एकमेव वितर्क असल्यास तुम्ही त्यास निर्दिष्ट करण्याची आवश्यकता नाही.
+
+धोरण बंद केले असल्यास किंवा रिक्त सोडल्यास ब्राउझरवर मापदंड म्हणून केवळ url पारित केली जाईल.</string>
+      <string id="URLGreyList_Explain">तुम्हाला कोणत्याही ब्राउझरमध्ये उघडली जाणारी होस्ट डोमेन नावांची सूची निर्दिष्ट करू देते.
+
+हे धोरण चालू केले असताना, या सूचीमधील डोमेन दोन्ही ब्राउझरमध्ये उपलब्ध असतील आणि कोणत्याही मार्गाने संक्रमण ट्रिगर करणार नाहीत.
+
+संभाव्य वापर प्रकरण म्हणजे या सूचीमधील नवीन आणि पारंपारिक अ‍ॅपमध्ये शेअर केलेली कोणतीही प्रमाणीकरण डोमेन असतात.
+
+होस्ट-नाव भाग: एकतर "www.example.com" सारखी पूर्ण डोमेन नावे किंवा "example.com: वा "example" सारखे त्यांचे भाग देखील निर्दिष्ट केले जावेत. वाइल्डकार्ड अद्याप सपोर्टेड नाहीत.
+URL पूर्वप्रत्यय: आवश्यक असल्यास केवळ योग्य URL प्रत्यय प्रोटोकॉल किवा पोर्टशी पूर्णपणे जुळतात. उदा. "http://login.example.com" किंवा "https://www.example.com:8080/login/".
+
+निर्दिष्ट केलेले नसल्यास किंवा रिक्त सोडल्यास  - "वैकल्पिक ब्राउझरमध्ये उघडण्यासाठी होस्ट" सूचीमध्ये नसलेले कोणतेही डोमेन Chrome(*) वर परत संक्रमण ट्रिगर करेल.
+
+*: सध्या Chrome वर आपोआप परत येण्यासाठी केवळ Internet Explorer सपोर्ट करतो.</string>
+      <string id="ChromePath_Part">Chrome पथ</string>
+</stringTable>
+  <presentationTable>
+    <presentation id="AlternativeBrowserPath">
+      <textBox refId="AlternativeBrowserPath_Part">
+        <label>वैकल्पिक ब्राउझर पथ</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="AlternativeBrowserArguments">
+      <textBox refId="AlternativeBrowserArguments_Part">
+        <label>वैकल्पिक ब्राउझर वितर्क</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="ChromePath">
+      <textBox refId="ChromePath_Part">
+        <label>Chrome पथ</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="ChromeArguments">
+      <textBox refId="ChromeArguments_Part">
+        <label>Chrome वितर्क</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="URLList_Policy">
+      <listBox refId="URLList_Part">वैकल्पिक ब्राउझरमध्ये उघडण्यासाठी होस्ट</listBox>
+    </presentation>
+    <presentation id="URLGreyList_Policy">
+      <listBox refId="URLGreyList_Part">कोणत्याही ब्राउझरमध्ये संक्रमण ट्रिगर न करणारे होस्ट</listBox>
+    </presentation>
+    <presentation id="KeepLastChromeTab_Policy"/>
+    <presentation id="ShowTransitionScreen_Policy">
+      <decimalTextBox refId="ShowTransitionScreen_Part">Chrome मध्ये काही वेळासाठी संक्रमण स्क्रीन दाखवा</decimalTextBox>
+    </presentation>
+    <presentation id="UseIeSiteList_Policy"/>
+  </presentationTable>
+</resources>
+</policyDefinitionResources>

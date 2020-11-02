@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<policyDefinitionResources revision="1.0" schemaVersion="1.0">
+  <displayName>
+  </displayName>
+  <description>
+  </description>
+  <resources>
+    <stringTable>
+      <string id="KeepLastChromeTab_Policy">Задржавање последње Chrome картице при преласку</string>
+      <string id="ShowTransitionScreen_Policy">Приказивање прелазног екрана у Chrome-у још неко време</string>
+      <string id="ChromeArguments_Explain">Омогућавају вам да наведете аргументе који ће бити прослеђени Chrome-у када буде покренут.
+
+Ако се смернице омогуће, наведени параметри ће се користити при покретању Chrome-а.
+
+Можете да користите и посебни чувар места ${url} да бисте навели где URL треба да се појави у командној линији. Нпр. „--url=${url} --kiosk“.
+Не морате да наводите чувар места ако га треба додати на крај, а ако он треба да буде једини аргумент, можете да оставите те смернице празне.
+
+Ако се смернице онемогуће или остану празне, прегледачу ће бити прослеђен само URL као параметар.</string>
+      <string id="AlternativeBrowserArguments">Аргументи алтернативног прегледача</string>
+      <string id="ChromeArguments">Аргументи за Chrome</string>
+      <string id="AlternativeBrowserPath_Part">Путања алтернативног прегледача</string>
+      <string id="URLList_Part">Хостови за отварање у алтернативном прегледачу</string>
+      <string id="KeepLastChromeTab_Explain">Омогућавају вам да одредите шта ће да се деси када се последња отворена картица у Chrome-у преусмерава у алтернативни прегледач.
+
+Када су ове смернице омогућене или нису подешене, последња картица ће остати отворена и усмераваће ка страници нове картице после преласка. Ако су онемогућене, последња картица ће се затворити, што ће довести и до затварања Chrome-а ако није отворен ниједан Chrome прозор.</string>
+      <string id="UseIeSiteList_Part">Коришћење IE смерница за листу сајтова у пословном режиму</string>
+      <string id="SUPPORTED_WINXPSP2">Microsoft Windows XP SP2 или новији</string>
+      <string id="AlternativeBrowserPath">Путања алтернативног прегледача</string>
+      <string id="UseIeSiteList_Explain">Када су омогућене, прелази између прегледача ће бити активирани и од стране уноса у смерницама за листе сајтова за Internet Explorer по дефиницији која се налази овде (https://technet.microsoft.com/itpro/internet-explorer/ie11-deploy-guide/turn-on-enterprise-mode-and-use-a-site-list).
+
+Ако нису подешене или су онемогућене, онда ће једино URL-ови из смерница за додатке бити коришћени.</string>
+      <string id="AlternativeBrowserPath_Explain">Навођење извршне датотеке алтернативног прегледача.
+Омогућавају вам да наведете програм који ће се користити као алтернативни прегледач.
+
+Ако су омогућене, можете да наведете апсолутну путању у смерницама или да користите једну од следећих променљивих:
+
+${ie} – Подразумевана локација за инсталацију за Internet Explorer
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\IEXPLORE.EXE користи се за избор локације прегледача у овом случају.
+${firefox} – Подразумевана локација за инсталацију за Firefox
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\FIREFOX.EXE користи се за избор локације прегледача у овом случају.
+${safari} – Подразумевана локација за инсталацију за Safari
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\SAFARI.EXE користи се за избор локације прегледача у овом случају.
+
+Ако се смернице не омогуће или остану празне, користиће се подразумевани алтернативни прегледач Internet Explorer, као када би се користила вредност ${ie}.</string>
+      <string id="ShowTransitionScreen_Part">Приказивање прелазног екрана у Chrome-у још неко време</string>
+      <string id="URLList_Explain">Омогућавају вам да наведете листу назива домена хостова за отварање у алтернативном прегледачу.
+
+Ако су смернице омогућене, треба да наведете листу филтера који ће покренути прелазак на алтернативни прегледач. Сваки унос треба да буде један од следећа четири типа:
+
+Део назива хоста: Потребно је навести целе називе домена, као што је „www.example.com“, или њихове делове, као што је „example.com“ или чак „example“. Џокерски знакови још увек нису подржани.
+Префикс URL-а: Подударање се заснива на тачним префиксима URL-ова заједно са протоколом или портом ако је то потребно. Нпр. „http://login.example.com“ или „https://www.example.com:8080/login/“.
+Негативни унос: Почиње знаком „!“ и наставља се као део назива хоста или префикс URL-а као што је претходно наведено. Негативни уноси се увек отварају у Chrome-у. Нпр. „!example.com“ или „!file:///c:/localapp/“.
+Унос џокерског знака: Садржи само један знак „*“. Подудара се са било којим URL-ом. Намењен је да се користи заједно са негативним уносима ако већина URL-ова треба да се отвара у алтернативном прегледачу, а само мали део URL-ова треба да се отвара у Chrome-у.
+
+Негативни уноси имају већи приоритет у односу на позитивне уносе, чиме се омогућава да се већи делови домена ставе на белу листу, док се мањи делови чувају да би се отварали у Chrome-у.
+Ако унос џокерског знака постоји, примењује се само када се сва друга правила провере.
+
+Следећи протоколи се надгледају за преусмеравање: http:, https:.
+
+Ако се смернице не наведу или остану празне, неће се покренути прелазак на алтернативни прегледач.</string>
+      <string id="ChromePath_Explain">Омогућавају вам да наведете извршну датотеку за Chrome коју треба покренути при повратку из алтернативног прегледача(*).
+
+Када су ове смернице омогућене, можете да наведете апсолутну путању у смерницама или да користите следећу променљиву:
+
+${chrome} – Подразумевана локација за инсталацију за Chrome
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\Chrome.EXE користи се за избор локације прегледача у овом случају.
+
+Ако се смернице онемогуће или остану празне, користиће се подразумевана инсталација Chrome-а како када би се користила вредност ${chrome}.
+
+*: Тренутно само Internet Explorer подржава аутоматски повратак на Chrome.</string>
+      <string id="Cat_LegacyBrowserSupport">Подршка за застареле прегледаче</string>
+      <string id="AlternativeBrowserArguments_Part">Аргументи алтернативног прегледача</string>
+      <string id="URLGreyList_Part">Хостови који не би требало да активирају прелазак у било ком прегледачу</string>
+      <string id="UseIeSiteList_Policy">Коришћење IE смерница за листу сајтова у пословном режиму</string>
+      <string id="URLGreyList_Policy">Хостови који не би требало да активирају прелазак у било ком прегледачу</string>
+      <string id="ShowTransitionScreen_Explain">Омогућавају вам да наведете колико ће дуго прелазна порука на картици да буде видљива у Chrome-у пре прелаза на други прегледач. Ово вам помаже да визуелно представите прелаз. Смернице су наведене у секундама.
+
+Ако нису подешене, картица ће се одмах затворити када прелаз буде могао да се заврши.</string>
+      <string id="URLList_Policy">Хостови за отварање у алтернативном прегледачу</string>
+      <string id="ChromePath">Путања за Chrome</string>
+      <string id="ChromeArguments_Part">Аргументи за Chrome</string>
+      <string id="KeepLastChromeTab_Part">Задржавање последње Chrome картице при преласку</string>
+      <string id="AlternativeBrowserArguments_Explain">Омогућавају вам да наведете аргументе који ће бити прослеђени до извршне датотеке алтернативног прегледача.
+
+Ако се смернице омогуће, наведени параметри ће се користити при покретању алтернативног прегледача.
+
+Можете да користите и посебни чувар места ${url} да бисте навели где URL треба да се појави у командној линији. Нпр. „--url=${url} --kiosk“.
+Не морате да наводите чувар места ако га треба додати на крај, а ако он треба да буде једини аргумент, можете да оставите те смернице празне.
+
+Ако се смернице онемогуће или остану празне, прегледачу ће бити прослеђен само URL као параметар.</string>
+      <string id="URLGreyList_Explain">Омогућавају вам да наведете листу назива домена хостова за отварање у оба прегледача.
+
+Када су ове смернице омогућене, домени из ове листе ће бити доступни у оба прегледача и неће активирати прелазак у било ком случају.
+
+Могући случај када се користе је за домене за потврду аутентичности које деле нове и застареле апликације из ове листе.
+
+Делови назива хостова: Потребно је навести целе називе домена, као што је „www.example.com“, или њихове делове, као што је „example.com“ или чак „example“. Џокерски знакови још увек нису подржани.
+Префикси URL-ова: Подударање се заснива на тачним префиксима URL-ова заједно са протоколом или портом ако је то потребно. Нпр. „http://login.example.com“ или „https://www.example.com:8080/login/“.
+
+Ако се смернице не наведу или остану празне, сваки домен који није у листи „Хостови за отварање у алтернативном прегледачу“ ће активирати повратак на Chrome(*).
+
+*: Тренутно само Internet Explorer подржава аутоматски повратак на Chrome.</string>
+      <string id="ChromePath_Part">Путања за Chrome</string>
+</stringTable>
+  <presentationTable>
+    <presentation id="AlternativeBrowserPath">
+      <textBox refId="AlternativeBrowserPath_Part">
+        <label>Путања алтернативног прегледача</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="AlternativeBrowserArguments">
+      <textBox refId="AlternativeBrowserArguments_Part">
+        <label>Аргументи алтернативног прегледача</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="ChromePath">
+      <textBox refId="ChromePath_Part">
+        <label>Путања за Chrome</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="ChromeArguments">
+      <textBox refId="ChromeArguments_Part">
+        <label>Аргументи за Chrome</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="URLList_Policy">
+      <listBox refId="URLList_Part">Хостови за отварање у алтернативном прегледачу</listBox>
+    </presentation>
+    <presentation id="URLGreyList_Policy">
+      <listBox refId="URLGreyList_Part">Хостови који не би требало да активирају прелазак у било ком прегледачу</listBox>
+    </presentation>
+    <presentation id="KeepLastChromeTab_Policy"/>
+    <presentation id="ShowTransitionScreen_Policy">
+      <decimalTextBox refId="ShowTransitionScreen_Part">Приказивање прелазног екрана у Chrome-у још неко време</decimalTextBox>
+    </presentation>
+    <presentation id="UseIeSiteList_Policy"/>
+  </presentationTable>
+</resources>
+</policyDefinitionResources>

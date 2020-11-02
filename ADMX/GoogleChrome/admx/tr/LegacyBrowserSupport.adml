@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<policyDefinitionResources revision="1.0" schemaVersion="1.0">
+  <displayName>
+  </displayName>
+  <description>
+  </description>
+  <resources>
+    <stringTable>
+      <string id="KeepLastChromeTab_Policy">Son Chrome Sekmesini Geçişte Sakla</string>
+      <string id="ShowTransitionScreen_Policy">Geçiş Ekranını Chrome'da Bir Süre Göster</string>
+      <string id="ChromeArguments_Explain">Chrome yürütüldüğünde ona geçirilecek bağımsız değişkenleri belirtmemize olanak verir.
+
+Politika etkinleştirilirse, Chrome çağrıldığında, sağlanan parametreler kullanılır.
+
+URL'nin, komut satırının neresinde görüneceğini belirtmek için özel yer tutucu olarak ${url} öğesini de kullanabilirsiniz. Ör. "--url=${url} --kiosk"
+Yer tutucu sona eklenecekse belirtilmesi gerekmez veya yer tutucu tek bağımsız değişken olacaksa ilgili politika boş bırakılabilir.
+
+Politika devre dışı veya boş bırakılırsa, tarayıcıya parametre olarak sadece URL geçirilir.</string>
+      <string id="AlternativeBrowserArguments">Alternatif Tarayıcı Bağımsız Değişkenleri</string>
+      <string id="ChromeArguments">Chrome Bağımsız Değişkenleri</string>
+      <string id="AlternativeBrowserPath_Part">Alternatif Tarayıcı Yolu</string>
+      <string id="URLList_Part">Alternatif Tarayıcıda Açılacak Ana Makineler</string>
+      <string id="KeepLastChromeTab_Explain">Chrome'da açık olan son sekme alternatif tarayıcıya yönlendirildiğinde ne olacağını belirtmenize olanak verir.
+
+Politika etkinleştirildiğinde veya hiç ayarlanmadığında, son sekme açık kalır ve geçişten sonra yeni sekme sayfasına işaret eder. Devre dışı olarak ayarlanırsa son sekme kapatılır ve bu da, açık durumda başka Chrome penceresi yoksa Chrome'u kapatır.</string>
+      <string id="UseIeSiteList_Part">IE Kurumsal Mod Site Listesi Politikasını Kullan</string>
+      <string id="SUPPORTED_WINXPSP2">Microsoft Windows XP SP2 veya sonrası</string>
+      <string id="AlternativeBrowserPath">Alternatif Tarayıcı Yolu</string>
+      <string id="UseIeSiteList_Explain">Etkinleştirilirse, (https://technet.microsoft.com/itpro/internet-explorer/ie11-deploy-guide/turn-on-enterprise-mode-and-use-a-site-list) içinde tanımlanan şekilde Internet Explorer'ın Site Listesi politikasındaki girişler de tarayıcılar arası geçişleri tetikler.
+
+Ayarlanmaz veya devre dışı bırakılırsa yalnızca uzantı politikasındaki URL'ler kullanılır.</string>
+      <string id="AlternativeBrowserPath_Explain">Alternatif tarayıcının yürütülebilir dosyasını belirtin.
+Alternatif tarayıcı olarak kullanılacak programı belirtmenize olanak verir.
+
+Etkinleştirilirse, politikada mutlak bir yol belirtebilir veya aşağıdaki değişkenlerden birini kullanabilirsiniz:
+
+${ie} - Internet Explorer için varsayılan yükleme konumu
+Bu örnekte, tarayıcının konumunu seçmek için HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\IEXPLORE.EXE kullanılmıştır.
+${firefox} - Firefox için varsayılan yükleme konumu
+Bu örnekte, tarayıcının konumunu seçmek için HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\FIREFOX.EXE kullanılmıştır.
+${safari} - Safari için varsayılan yükleme konumu
+Bu örnekte, tarayıcının konumunu seçmek için HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\SAFARI.EXE kullanılmıştır.
+
+Politika etkinleştirilmezse veya boş bırakılırsa, varsayılan alternatif tarayıcı olan Internet Explorer kullanılır (sanki ${ie} değeri kullanılmış gibi düşünülür).</string>
+      <string id="ShowTransitionScreen_Part">Geçiş Ekranını Chrome'da Bir Süre Göster</string>
+      <string id="URLList_Explain">Alternatif tarayıcıda açılacak ana makine alan adlarının listesini belirtmenize olanak verir.
+
+Politika etkinleştirilmişse alternatif tarayıcıya geçişi tetikleyecek bir filtre listesi sağlamanız gerekir. Her giriş aşağıdaki dört türden birinde olmalıdır:
+
+Ana makine adı bölümü: Alan adının tamamı ("www.example.com" gibi) veya bir kısmı ("example.com", hatta "example" gibi) belirtilmelidir. Joker karakterler henüz desteklenmemektedir.
+URL öneki: Gerekirse protokol ve bağlantı noktasıyla birlikte, sadece uygun URL önekleri tam olarak eşleştirilir. Ör. "http://login.example.com" veya "https://www.example.com:8080/login/".
+Negatif giriş: "!" ile başlar ve yukarıda açıklandığı gibi ana makine adı kısmıyla veya URL önekiyle devam eder. Negatif girişler her zaman Chrome'da açılır. Ör. "!example.com" veya "!file:///c:/localapp/".
+Joker karakter girişi: Sadece tek bir "*" karakteri içerir. Her URL ile eşleşir. Çoğu URL'nin alternatif tarayıcıda, az sayıda URL'nin ise Chrome'da açılacağı durumlarda, negatif girişlerle birlikte kullanılmak için tasarlanmıştır.
+
+Negatif girişler pozitif girişlere oranla daha yüksek önceliklere sahiptir. Bu da bir alan adının büyük bölümünün beyaz listeye eklenmesine olanak sağlarken, daha küçük kısmının Chrome'da açılmak üzere kaydedilmesine izin verir.
+Joker karakter girişi (varsa), ancak diğer tüm kurallar kontrol edildikten sonra uygulanır.
+
+Yönlendirme için şu protokoller izlenir: http:, https:.
+
+Belirtilmezse veya boş bırakılırsa, alternatif tarayıcıya herhangi bir geçiş tetiklenmez.</string>
+      <string id="ChromePath_Explain">Alternatif tarayıcıdan geri dönüldüğünde başlatılacak Chrome yürütülebilir dosyasını belirtmenize olanak verir(*).
+
+Politika etkinleştirildiğinde politikada mutlak bir yol belirtebilir veya aşağıdaki değişkeni kullanabilirsiniz:
+
+${chrome} - Chrome için varsayılan yükleme konumu
+Bu örnekte tarayıcının konumunu seçmek için HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\Chrome.EXE kullanılmıştır.
+
+Politika devre dışı veya boş bırakılırsa, varsayılan Chrome yüklemesi kullanılır (sanki ${chrome} değeri kullanılmış gibi düşünülür).
+
+*: Chrome'a otomatik olarak geri dönme özelliğini şu anda sadece Internet Explorer desteklemektedir.</string>
+      <string id="Cat_LegacyBrowserSupport">Eski Tarayıcı Desteği</string>
+      <string id="AlternativeBrowserArguments_Part">Alternatif Tarayıcı Bağımsız Değişkenleri</string>
+      <string id="URLGreyList_Part">Her İki Tarayıcıda da Geçişi Tetiklememesi Gereken Ana Makineler</string>
+      <string id="UseIeSiteList_Policy">IE Kurumsal Mod Site Listesi Politikasını Kullan</string>
+      <string id="URLGreyList_Policy">Her İki Tarayıcıda da Geçişi Tetiklememesi Gereken Ana Makineler</string>
+      <string id="ShowTransitionScreen_Explain">Sekmedeki geçiş mesajının, diğer tarayıcıya geçmeden önce Chrome'da ne kadar süreyle görüneceğini belirtmenize olanak tanır. Bu seçenek, geçişi görselleştirmenize yardımcı olur. Politika değeri, saniye cinsinden belirtilir.
+
+Ayarlanmamışsa, geçiş tamamlandığında sekme hemen kapanır.</string>
+      <string id="URLList_Policy">Alternatif Tarayıcıda Açılacak Ana Makineler</string>
+      <string id="ChromePath">Chrome Yolu</string>
+      <string id="ChromeArguments_Part">Chrome Bağımsız Değişkenleri</string>
+      <string id="KeepLastChromeTab_Part">Son Chrome Sekmesini Geçişte Sakla</string>
+      <string id="AlternativeBrowserArguments_Explain">Alternatif tarayıcının yürütülebilir dosyasına geçirilecek bağımsız değişkenleri belirtmenize olanak verir.
+
+Politika etkinleştirilirse, alternatif tarayıcı çağrıldığında, sağlanan parametreler kullanılır.
+
+URL'nin, komut satırının neresinde görüneceğini belirtmek için özel yer tutucu olarak ${url} öğesini de kullanabilirsiniz. Ör. "--url=${url} --kiosk".
+Yer tutucu sona eklenecekse belirtilmesi gerekmez veya yer tutucu tek bağımsız değişken olacaksa ilgili politika boş bırakılabilir.
+
+Politika devre dışı veya boş bırakılırsa, parametre olarak tarayıcıya sadece URL geçirilir.</string>
+      <string id="URLGreyList_Explain">Her iki tarayıcıda da açılacak ana makine alan adlarının listesini belirtmenize olanak verir.
+
+Bu politika etkinleştirildiğinde, bu listedeki alan adları her iki tarayıcıda da kullanılabilir ve iki yönde de geçişi tetiklemez.
+
+Olası bir kullanım yeri, bu listedeki yeni ve eski uygulamalar arasında paylaşılan, kimlik doğrulama alan adlarıdır.
+
+Ana makine adı bölümleri: Tam alan adları ("www.example.com" gibi) veya bu adlara ait bölümler ("example.com: hatta "example" gibi) belirtilmelidir. Joker karakterler henüz desteklenmemektedir.
+URL önekleri: Gerekirse yalnızca uygun URL önekleri protokolle ve bağlantı noktasıyla tamamen eşleştirilir. Örneğin, "http://login.example.com" veya "https://www.example.com:8080/login/"
+
+Belirtilmez veya boş bırakılırsa, "Alternatif Tarayıcıda Açılacak Ana Makineler" listesinde bulunmayan alan adları tekrar Chrome'a geçişi tetikler(*).
+
+*: Chrome'a otomatik olarak geri dönme özelliği şu anda sadece Internet Explorer'da desteklenmektedir.</string>
+      <string id="ChromePath_Part">Chrome Yolu</string>
+</stringTable>
+  <presentationTable>
+    <presentation id="AlternativeBrowserPath">
+      <textBox refId="AlternativeBrowserPath_Part">
+        <label>Alternatif Tarayıcı Yolu</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="AlternativeBrowserArguments">
+      <textBox refId="AlternativeBrowserArguments_Part">
+        <label>Alternatif Tarayıcı Bağımsız Değişkenleri</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="ChromePath">
+      <textBox refId="ChromePath_Part">
+        <label>Chrome Yolu</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="ChromeArguments">
+      <textBox refId="ChromeArguments_Part">
+        <label>Chrome Bağımsız Değişkenleri</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="URLList_Policy">
+      <listBox refId="URLList_Part">Alternatif Tarayıcıda Açılacak Ana Makineler</listBox>
+    </presentation>
+    <presentation id="URLGreyList_Policy">
+      <listBox refId="URLGreyList_Part">Her İki Tarayıcıda da Geçişi Tetiklememesi Gereken Ana Makineler</listBox>
+    </presentation>
+    <presentation id="KeepLastChromeTab_Policy"/>
+    <presentation id="ShowTransitionScreen_Policy">
+      <decimalTextBox refId="ShowTransitionScreen_Part">Geçiş Ekranını Chrome'da Bir Süre Göster</decimalTextBox>
+    </presentation>
+    <presentation id="UseIeSiteList_Policy"/>
+  </presentationTable>
+</resources>
+</policyDefinitionResources>

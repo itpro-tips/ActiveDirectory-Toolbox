@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<policyDefinitionResources revision="1.0" schemaVersion="1.0">
+  <displayName>
+  </displayName>
+  <description>
+  </description>
+  <resources>
+    <stringTable>
+      <string id="KeepLastChromeTab_Policy">让最后一个 Chrome 标签页在转换时保持打开状态</string>
+      <string id="ShowTransitionScreen_Policy">转换屏幕在 Chrome 中显示一段时间</string>
+      <string id="ChromeArguments_Explain">允许您指定要在执行 Chrome 时向其传递的参数。
+
+启用此政策后，系统在调用 Chrome 时会使用提供的参数。
+
+您也可以使用特殊占位符 ${url} 指定网址应出现在命令行中的哪个位置，例如“--url=${url} --kiosk”。
+如果该占位符应当附在末尾，那么您无需指定它；如果该占位符应当是唯一的参数，那么您可将此政策留空。
+
+如果停用此政策或将其留空，则系统只会将该网址作为参数传递给浏览器。</string>
+      <string id="AlternativeBrowserArguments">备用浏览器参数</string>
+      <string id="ChromeArguments">Chrome 参数</string>
+      <string id="AlternativeBrowserPath_Part">备用浏览器路径</string>
+      <string id="URLList_Part">在备用浏览器中打开的主机</string>
+      <string id="KeepLastChromeTab_Explain">允许您指定在最后一个打开的 Chrome 标签页重定向到备用浏览器时会出现什么情况。
+
+如果启用了或未设置此政策，最后一个标签页将在转换后保持打开状态并指向新标签页。如果停用了此政策，那么最后一个标签页将被关闭，这将导致 Chrome 也被关闭（如果不存在其他任何打开的 Chrome 窗口）。</string>
+      <string id="UseIeSiteList_Part">使用 IE 企业模式站点列表政策</string>
+      <string id="SUPPORTED_WINXPSP2">Microsoft Windows XP SP2 或更高版本</string>
+      <string id="AlternativeBrowserPath">备用浏览器路径</string>
+      <string id="UseIeSiteList_Explain">启用后，适用于 Internet Explorer 的站点列表政策中的条目也可以按下列网址中的定义触发浏览器转换：https://technet.microsoft.com/itpro/internet-explorer/ie11-deploy-guide/turn-on-enterprise-mode-and-use-a-site-list。
+
+如果未设置或已停用此政策，那么系统将只使用扩展程序政策中的网址。</string>
+      <string id="AlternativeBrowserPath_Explain">指定备用浏览器的可执行文件。
+允许您指定将哪个程序用作备用浏览器。
+
+启用后，您可以在此政策中指定绝对路径，也可以使用以下某个变量：
+
+${ie} - Internet Explorer 的默认安装位置
+在本例中，使用 HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\IEXPLORE.EXE 选取浏览器的安装位置。
+${firefox} - Firefox 的默认安装位置
+在本例中，使用 HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\FIREFOX.EXE 选取浏览器的安装位置。
+${safari} - Safari 的默认安装位置
+在本例中，使用 HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\SAFARI.EXE 选取浏览器的安装位置。
+
+如果不启用此政策或将其留空，则默认使用 Internet Explorer 作为备用浏览器，也就是相当于选用 ${ie} 值。</string>
+      <string id="ShowTransitionScreen_Part">转换屏幕在 Chrome 中显示一段时间</string>
+      <string id="URLList_Explain">允许您指定要在备用浏览器中打开的主机域名列表。
+
+启用此政策后，您必须提供一份列表，在其中列出哪些过滤器将触发向备用浏览器转换的事件。该列表中的每个条目均应为下列四种类型之一：
+
+主机名部分：应指定完整域名（如“www.example.com”），或部分域名（如“example.com”，甚至是“example”）。目前尚不支持通配符。
+网址前缀：只有指定了协议的正确网址前缀才算完整，必要时还应加上端口。例如，“http://login.example.com”或“https://www.example.com:8080/login/”。
+否定条目：以“!”开头，后跟上述的主机名部分或网址前缀。否定条目一律在 Chrome 中打开。例如，“!example.com”或“!file:///c:/localapp/”。
+通配符条目：仅包含一个“*”字符。匹配任意网址。旨在与否定条目一起使用，前提是大多数网址应在备用浏览器中打开，而只有少数网址应在 Chrome 中打开。
+
+否定条目的优先级高于肯定条目。因此，系统会将相应域名的大部分内容列入白名单，同时只保存它们的小部分内容，以便在 Chrome 中打开这些域名。
+只有当所有其他规则都已被选中之后，通配符条目（如果有）才会被应用。
+
+系统会对下列协议实施监控，以了解其是否会重定向：http:、https:。
+
+如果未指定该列表或将此政策留空，则不会触发向备用浏览器转换事件。</string>
+      <string id="ChromePath_Explain">允许您指定从备用浏览器(*)返回后要启动的 Chrome 可执行文件。
+
+启用此政策后，您可以在此政策中指定绝对路径，也可以使用以下变量：
+
+${chrome} - Chrome 的默认安装位置
+在本例中，使用 HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\Chrome.EXE 选取浏览器的安装位置。
+
+如果停用此政策或将其留空，系统将会使用 Chrome 的默认安装路径，也就是相当于选用 ${chrome} 值。
+
+*：目前只有 Internet Explorer 支持自动返回到 Chrome。</string>
+      <string id="Cat_LegacyBrowserSupport">旧版浏览器支持</string>
+      <string id="AlternativeBrowserArguments_Part">备用浏览器参数</string>
+      <string id="URLGreyList_Part">在任一浏览器中都不应触发转换的主机</string>
+      <string id="UseIeSiteList_Policy">使用 IE 企业模式站点列表政策</string>
+      <string id="URLGreyList_Policy">在任一浏览器中都不应触发转换的主机</string>
+      <string id="ShowTransitionScreen_Explain">允许您指定在转换到其他浏览器之前，标签页中的转换消息在 Chrome 中显示多长时间。这样有助于直观呈现转换过程。指定的时间以秒为单位。
+
+如果未设置此政策，那么当转换可以完成时，标签页会立即关闭。</string>
+      <string id="URLList_Policy">在备用浏览器中打开的主机</string>
+      <string id="ChromePath">Chrome 路径</string>
+      <string id="ChromeArguments_Part">Chrome 参数</string>
+      <string id="KeepLastChromeTab_Part">让最后一个 Chrome 标签页在转换时保持打开状态</string>
+      <string id="AlternativeBrowserArguments_Explain">允许您指定要传递给备用浏览器的可执行文件的参数。
+
+启用此政策后，系统在调用备用浏览器时会使用提供的参数。
+
+您也可以使用特殊占位符 ${url} 指定该网址应出现在命令行中的哪个位置，例如“--url=${url} --kiosk”。
+如果该占位符应当附在末尾，那么您无需指定它；如果该占位符应当是唯一的参数，那么您可将此政策留空。
+
+如果停用此政策或将其留空，则系统只会将该网址作为参数传递给浏览器。</string>
+      <string id="URLGreyList_Explain">允许您指定可在任一浏览器中打开的主机域名列表。
+
+启用此政策后，该列表中的域名在两种浏览器中均可访问，而且无论使用哪一种都不会触发转换。
+
+一个可能的用例就是该列表中由新版应用和旧版应用共享的任何身份验证域名。
+
+主机名部分：应指定完整的域名（如“www.example.com”），或部分域名（如“example.com”，甚至是“example”）。目前尚不支持通配符。
+网址前缀：只有指定了协议的正确网址前缀才算完整，必要时还应加上端口。例如，“http://login.example.com”或“https://www.example.com:8080/login/”。
+
+如果未指定该列表或将此政策留空，那么“在备用浏览器中打开的主机”列表中未列出的任何域名都会触发返回到 Chrome(*) 的转换。
+
+*：目前只有 Internet Explorer 支持自动返回到 Chrome。</string>
+      <string id="ChromePath_Part">Chrome 路径</string>
+</stringTable>
+  <presentationTable>
+    <presentation id="AlternativeBrowserPath">
+      <textBox refId="AlternativeBrowserPath_Part">
+        <label>备用浏览器路径</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="AlternativeBrowserArguments">
+      <textBox refId="AlternativeBrowserArguments_Part">
+        <label>备用浏览器参数</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="ChromePath">
+      <textBox refId="ChromePath_Part">
+        <label>Chrome 路径</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="ChromeArguments">
+      <textBox refId="ChromeArguments_Part">
+        <label>Chrome 参数</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="URLList_Policy">
+      <listBox refId="URLList_Part">在备用浏览器中打开的主机</listBox>
+    </presentation>
+    <presentation id="URLGreyList_Policy">
+      <listBox refId="URLGreyList_Part">在任一浏览器中都不应触发转换的主机</listBox>
+    </presentation>
+    <presentation id="KeepLastChromeTab_Policy"/>
+    <presentation id="ShowTransitionScreen_Policy">
+      <decimalTextBox refId="ShowTransitionScreen_Part">转换屏幕在 Chrome 中显示一段时间</decimalTextBox>
+    </presentation>
+    <presentation id="UseIeSiteList_Policy"/>
+  </presentationTable>
+</resources>
+</policyDefinitionResources>

@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<policyDefinitionResources revision="1.0" schemaVersion="1.0">
+  <displayName>
+  </displayName>
+  <description>
+  </description>
+  <resources>
+    <stringTable>
+      <string id="KeepLastChromeTab_Policy">పరివర్తన చెందుతున్నప్పుడు చివరి Chrome ట్యాబ్‌ను తెరిచి ఉంచండి</string>
+      <string id="ShowTransitionScreen_Policy">కొంత సమయం Chromeలో పరివర్తన స్క్రీన్‌ని చూపండి</string>
+      <string id="ChromeArguments_Explain">అమలు చేయబడినప్పుడు Chromeకు అందించవలసిన ఆర్గ్యుమెంట్‌లను పేర్కొనడానికి మిమ్మల్ని అనుమతిస్తుంది.
+
+విధానం ప్రారంభించబడితే అందించిన పరామితులు Chromeను ప్రారంభించినప్పుడు ఉపయోగించబడతాయి.
+
+మీరు ఆదేశ పంక్తిలో కనిపించే urlను పేర్కొనడానికి ఈ ప్రత్యేకమైన ప్లేస్‌హోల్డర్ ${url}ను కూడా ఉపయోగించవచ్చు. ఉదా. "--url=${url} --kiosk".
+ప్లేస్‌హోల్డర్‌‌ను చివరిలో చేర్చవలసి ఉంటే మీరు దీన్ని పేర్కొనవలసిన అవసరం లేదు లేదా ఇది మాత్రమే అందించవలసిన ఆర్గ్యుమెంట్ అయితే మీరు విధానాన్ని ఖాళీగా ఉంచవచ్చు.
+
+విధానం నిలిపివేయబడితే లేదా ఖాళీగా వదిలివేయబడితే బ్రౌజర్‌కు పరామితిగా url మాత్రమే అందించబడుతుంది.</string>
+      <string id="AlternativeBrowserArguments">ప్రత్యామ్నాయ బ్రౌజర్ ఆర్గ్యుమెంట్‌లు</string>
+      <string id="ChromeArguments">Chrome ఆర్గ్యుమెంట్‌లు</string>
+      <string id="AlternativeBrowserPath_Part">ప్రత్యామ్నాయ బ్రౌజర్ పథం</string>
+      <string id="URLList_Part">ప్రత్యామ్నాయ బ్రౌజర్‌లో తెరవడానికి హోస్ట్‌లు</string>
+      <string id="KeepLastChromeTab_Explain">Chromeలో చివరిగా తెరిచిన ట్యాబ్ ప్రత్యామ్నాయ బ్రౌజర్‌కు మళ్లించబడుతున్నప్పుడు ఏమి జరగాలో పేర్కొనడానికి మిమ్మల్ని అనుమతిస్తుంది.
+
+ఈ విధానాన్ని ప్రారంభించినప్పుడు లేదా సెట్ చేయనప్పుడు, చివరి ట్యాబ్ అలాగే తెరవబడి ఉంటుంది మరియు పరివర్తన తర్వాత కొత్త ట్యాబ్ పేజీకి మళ్లించబడుతుంది. దీన్ని నిలిపివేయడానికి సెట్ చేస్తే, చివరి ట్యాబ్ మూసివేయబడుతుంది మరియు ఆ సమయంలో ఇతర Chrome విండోలు ఏవీ తెరిచి లేకపోతే Chrome మూసివేయబడుతుంది.</string>
+      <string id="UseIeSiteList_Part">IE ఎంటర్‌ప్రైజ్ మోడ్ సైట్ జాబితా విధానాన్ని ఉపయోగించండి</string>
+      <string id="SUPPORTED_WINXPSP2">Microsoft Windows XP SP2 లేదా తదుపరి</string>
+      <string id="AlternativeBrowserPath">ప్రత్యామ్నాయ బ్రౌజర్ పథం</string>
+      <string id="UseIeSiteList_Explain">ప్రారంభించినప్పుడు, (https://technet.microsoft.com/itpro/internet-explorer/ie11-deploy-guide/turn-on-enterprise-mode-and-use-a-site-list)లో నిర్వచించినట్లు Internet Explorer కోసం సైట్ జాబితా విధానంలోని నమోదుల ద్వారా కూడా బ్రౌజర్‌ల మధ్య పరివర్తనాలు ప్రారంభించబడతాయి.
+
+ఇది సెట్ చేయబడకపోతే లేదా నిలిపివేయబడితే, పొడిగింపు విధానంలోని urlలు మాత్రమే ఉపయోగించబడతాయి.</string>
+      <string id="AlternativeBrowserPath_Explain">అమలు చేయగల ప్రత్యామ్నాయ బ్రౌజర్‌ను పేర్కొనండి.
+ప్రత్యామ్నాయ బ్రౌజర్‌గా ఉపయోగించవలసిన ప్రోగ్రామ్‌ను పేర్కొనడానికి మిమ్మల్ని అనుమతిస్తుంది.
+
+ప్రారంభిస్తే మీరు విధానంలో ఖచ్చితమైన పథాన్ని పేర్కొనవచ్చు లేదా క్రింది చరరాశుల్లో ఒకదాన్ని ఉపయోగించవచ్చు:
+
+${ie} - ఈ సందర్భంలో బ్రౌజర్ యొక్క స్థానాన్ని ఎంచుకోవడానికి Internet Explorer కోసం డిఫాల్ట్ ఇన్‌స్టాల్ స్థానం HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\IEXPLORE.EXE ఉపయోగించబడుతుంది.
+${firefox} - ఈ సందర్భంలో బ్రౌజర్ యొక్క స్థానాన్ని ఎంచుకోవడానికి Firefox యొక్క డిఫాల్ట్ ఇన్‌స్టాల్ స్థానం HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\FIREFOX.EXE ఉపయోగించబడుతుంది.
+${safari} - ఈ సందర్భంలో బ్రౌజర్ యొక్క స్థానాన్ని ఎంచుకోవడానికి Safari యొక్క డిఫాల్ట్ ఇన్‌స్టాల్ స్థానం HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\SAFARI.EXE ఉపయోగించబడుతుంది.
+
+విధానం ప్రారంభించబడకపోతే లేదా ఖాళీగా వదిలివేయబడితే ${ie} విలువతో Internet Explorer డిఫాల్ట్ ప్రత్యామ్నాయ బ్రౌజర్‌గా ఉపయోగించబడుతుంది.</string>
+      <string id="ShowTransitionScreen_Part">కొంత సమయం Chromeలో పరివర్తన స్క్రీన్‌ని చూపండి</string>
+      <string id="URLList_Explain">ప్రత్యామ్నాయ బ్రౌజర్‌లో తెరవడానికి హోస్ట్ డొమైన్ పేర్ల జాబితాను పేర్కొనడానికి మిమ్మల్ని అనుమతిస్తుంది.
+
+విధానం ప్రారంభించబడితే మీరు ఫిల్టర్‌ల జాబితాను అందించాలి, ఇవి ప్రత్యామ్నాయ బ్రౌజర్‌కు పరివర్తనాన్ని ప్రారంభిస్తాయి. ప్రతి నమోదు క్రింది నాలుగు రకాల్లో ఒకటి అయ్యి ఉండాలి:
+
+హోస్ట్-పేరు భాగం: "www.example.com" వంటి సంపూర్ణ డొమైన్ పేర్లు లేదా వాటిలోని "example.com" లేకపోతే "example" వంటి భాగాలను పేర్కొనాలి. వైల్డ్‌కార్డ్‌లకు ఇంకా మద్దతు లేదు.
+URL ఆదిప్రత్యయం: అవసరమైతే తగిన URL ఆదిప్రత్యయాలు మాత్రమే ప్రోటోకాల్ మరియు పోర్ట్‌తో పూర్తిగా సరిపోలబడ్చతాయి. ఉదా. "http://login.example.com" లేదా "https://www.example.com:8080/login/".
+ప్రతికూల నమోదు: ఇది "!"తో ప్రారంభమై, ఎగువ వివరించినట్లుగా హోస్ట్-పేరు భాగం లేదా URL ఆదిప్రత్యయంగా కొనసాగుతుంది. ప్రతికూల నమోదులు ఎల్లప్పుడూ Chromeలో తెరవబడతాయి. ఉదా. "!example.com" లేదా "!file:///c:/localapp/".
+వైల్డ్‌కార్డ్ నమోదు: ఒక "*" అక్షరాన్ని మాత్రమే కలిగి ఉంటుంది. ఏ URLనైనా సరిపోలుస్తుంది. ఎక్కువ URLలు ప్రత్యామ్నాయ బ్రౌజర్‌లో తెరవబడాలనుకున్నప్పుడు మరియు ఎంపిక చేసిన కొన్ని URLలు మాత్రమే Chromeలో తెరవబడాలనుకున్నప్పుడు, ప్రతికూల నమోదులతో కలిపి ఉపయోగించడానికి ఇది ఉద్దేశించబడింది.
+
+ప్రతికూల నమోదులు అనుకూల నమోదుల కంటే ఎక్కువ ప్రాధాన్యతలను కలిగి ఉంటాయి, అంటే అనుకూల నమోదుల వలన డొమైన్‌లో అత్యధిక భాగాలు అనుమతించబడతాయి, అయితే ప్రతికూల నమోదుల వలన కొన్ని భాగాలు మాత్రమే Chromeలో తెరవబడతాయి.
+ఒకవేళ వైల్డ్‌కార్డ్ నమోదు ఉన్నట్లయితే అన్ని ఇతర నియమాలను తనిఖీ చేసిన తర్వాత మాత్రమే అది వర్తింపజేయబడుతుంది.
+
+మళ్లింపు కోసం క్రింది ప్రోటోకాల్‌లు పర్యవేక్షించబడతాయి: http:, https:.
+
+పేర్కొనకపోతే లేదా ఖాళీగా వదిలివేస్తే - ప్రత్యామ్నాయ బ్రౌజర్‌కు పరివర్తన ప్రారంభించబడదు.</string>
+      <string id="ChromePath_Explain">ప్రత్యామ్నాయ బ్రౌజర్(*) నుండి తిరిగి వస్తున్నప్పుడు ప్రారంభించబడవలసిన అమలు చేయగల Chromeను పేర్కొనడానికి మిమ్మల్ని అనుమతిస్తుంది.
+
+విధానం ప్రారంభించబడినప్పుడు మీరు విధానంలో ఖచ్చితమైన పథాన్ని పేర్కొనవచ్చు లేదంటే క్రింది చరరాశిని ఉపయోగించవచ్చు:
+
+${chrome} - ఈ సందర్భంలో బ్రౌజర్ స్థానం కోసం Chrome యొక్క డిఫాల్ట్ ఇన్‌స్టాల్ స్థానం
+HKEY_LOCAL_MACHINESOFTWAREMicrosoftWindowsCurrentVersionApp PathsChrome.EXE ఉపయోగించబడుతుంది.
+
+విధానం నిలిపివేయబడితే లేదా ఖాళీగా వదిలివేయబడితే ${chrome} విలువను ఉపయోగించినప్పుడు Chrome యొక్క డిఫాల్ట్ ఇన్‌స్టాలేషన్ ఉపయోగించబడుతుంది.
+
+*: ప్రస్తుతం Internet Explorer మాత్రమే స్వయంచాలకంగా Chromeకు తిరిగి వెళ్లడాన్ని మద్దతు ఇస్తుంది.</string>
+      <string id="Cat_LegacyBrowserSupport">లెగసీ బ్రౌజర్ మద్దతు</string>
+      <string id="AlternativeBrowserArguments_Part">ప్రత్యామ్నాయ బ్రౌజర్ ఆర్గ్యుమెంట్‌లు</string>
+      <string id="URLGreyList_Part">ఏ బ్రౌజర్‌లో పరివర్తనను ప్రారంభించని హోస్ట్‌లు</string>
+      <string id="UseIeSiteList_Policy">IE ఎంటర్‌ప్రైజ్ మోడ్ సైట్ జాబితా విధానాన్ని ఉపయోగించండి</string>
+      <string id="URLGreyList_Policy">ఏ బ్రౌజర్‌లో పరివర్తనను ప్రారంభించని హోస్ట్‌లు</string>
+      <string id="ShowTransitionScreen_Explain">ఇతర బ్రౌజర్‌కు పరివర్తనం చేయడానికి ముందు ట్యాబ్‌లో పరివర్తన సందేశం Chromeలో ఎంత సమయం కనిపించాలో పేర్కొనడానికి మిమ్మల్ని అనుమతిస్తుంది. ఇది పరివర్తనాన్ని చూడటానికి సహాయ పడుతుంది. విధానాన్ని సెకన్లలో పేర్కొనాలి.
+
+దీనిని సెట్ చేయకపోతే, పరివర్తనం పూర్తయిన వెంటనే ట్యాబ్ మూసివేయబడుతుంది.</string>
+      <string id="URLList_Policy">ప్రత్యామ్నాయ బ్రౌజర్‌లో తెరవడానికి హోస్ట్‌లు</string>
+      <string id="ChromePath">Chrome పథం</string>
+      <string id="ChromeArguments_Part">Chrome ఆర్గ్యుమెంట్‌లు</string>
+      <string id="KeepLastChromeTab_Part">పరివర్తన చెందుతున్నప్పుడు చివరి Chrome ట్యాబ్‌ను తెరిచి ఉంచండి</string>
+      <string id="AlternativeBrowserArguments_Explain">అమలు చేయగల ప్రత్యామ్నాయ బ్రౌజర్‌కు అందించవలసిన ఆర్గ్యుమెంట్‌లను పేర్కొనడానికి మిమ్మల్ని అనుమతిస్తుంది.
+
+విధానం ప్రారంభించబడితే అందించిన పరామితులు ప్రత్యామ్నాయ బ్రౌజర్ అమలు చేయబడినప్పుడు ఉపయోగించబడతాయి.
+
+మీరు ఆదేశ పంక్తిలో url ఎక్కడ కనిపించాలో పేర్కొనడానికి ప్రత్యేక ప్లేస్‌హోల్డర్ ${url}ను కూడా ఉపయోగించవచ్చు. ఉదా. "--url=${url} --kiosk".
+ప్లేస్‌హోల్డర్‌‌ను చివరిలో చేర్చవలసి ఉంటే మీరు దీన్ని పేర్కొనవలసిన అవసరం లేదు లేదా ఇది మాత్రమే అందించవలసిన ఆర్గ్యుమెంట్ అయితే మీరు విధానాన్ని ఖాళీగా ఉంచవచ్చు.
+
+విధానం నిలిపివేయబడితే లేదా ఖాళీగా వదిలివేయబడితే బ్రౌజర్‌కు పరామితిగా url మాత్రమే అందించబడుతుంది.</string>
+      <string id="URLGreyList_Explain">ఏదో ఒక బ్రౌజర్‌లో తెరవడం కోసం హోస్ట్ డొమైన్ పేర్ల జాబితాను పేర్కొనడానికి మిమ్మల్ని అనుమతిస్తుంది.
+
+విధానం ప్రారంభించబడితే, ఈ జాబితాలోని డొమైన్‌లు రెండు బ్రౌజర్‌ల్లోనూ అందుబాటులో ఉంటాయి మరియు ఏ విధంగానూ పరివర్తనను ప్రారంభించవు.
+
+ఈ జాబితాలో కొత్త మరియు లెగసీ అనువర్తనాల మధ్య భాగస్వామ్యం చేయబడిన ఏవైనా ప్రామాణీకరణ డొమైన్‌లు అనేది ఉపయోగించడానికి సాధ్యమయ్యే సందర్భం.
+
+హోస్ట్-పేరు భాగాలు: "www.example.com" వంటి సంపూర్ణ డొమైన్ పేర్లు లేదా వాటిలో "example.com: లేకపోతే "example" వంటి భాగాలను పేర్కొనాలి. వైల్డ్‌కార్డ్‌లకు ఇంకా మద్దతు లేదు.
+URL ఆదిప్రత్యయాలు: అవసరమైతే తగిన URL ఆదిప్రత్యయాలు మాత్రమే ప్రోటోకాల్ మరియు పోర్ట్‌తో పూర్తిగా సరిపోలబడతాయి. ఉదా. "http://login.example.com" లేదా "https://www.example.com:8080/login/".
+
+పేర్కొనకపోతే లేదా ఖాళీగా వదిలివేస్తే - "ప్రత్యామ్నాయ బ్రౌజర్‌లో తెరవడానికి హోస్ట్‌లు" జాబితాలో లేని ఏదైనా డొమైన్ మళ్లీ Chrome(*)కు పరివర్తనాన్ని ప్రారంభిస్తుంది.
+
+*: స్వయంచాలకంగా Chromeకు తిరిగి వెళ్లడానికి ప్రస్తుతం Internet Explorerలో మాత్రమే మద్దతు ఉంది.</string>
+      <string id="ChromePath_Part">Chrome పథం</string>
+</stringTable>
+  <presentationTable>
+    <presentation id="AlternativeBrowserPath">
+      <textBox refId="AlternativeBrowserPath_Part">
+        <label>ప్రత్యామ్నాయ బ్రౌజర్ పథం</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="AlternativeBrowserArguments">
+      <textBox refId="AlternativeBrowserArguments_Part">
+        <label>ప్రత్యామ్నాయ బ్రౌజర్ ఆర్గ్యుమెంట్‌లు</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="ChromePath">
+      <textBox refId="ChromePath_Part">
+        <label>Chrome పథం</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="ChromeArguments">
+      <textBox refId="ChromeArguments_Part">
+        <label>Chrome ఆర్గ్యుమెంట్‌లు</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="URLList_Policy">
+      <listBox refId="URLList_Part">ప్రత్యామ్నాయ బ్రౌజర్‌లో తెరవడానికి హోస్ట్‌లు</listBox>
+    </presentation>
+    <presentation id="URLGreyList_Policy">
+      <listBox refId="URLGreyList_Part">ఏ బ్రౌజర్‌లో పరివర్తనను ప్రారంభించని హోస్ట్‌లు</listBox>
+    </presentation>
+    <presentation id="KeepLastChromeTab_Policy"/>
+    <presentation id="ShowTransitionScreen_Policy">
+      <decimalTextBox refId="ShowTransitionScreen_Part">కొంత సమయం Chromeలో పరివర్తన స్క్రీన్‌ని చూపండి</decimalTextBox>
+    </presentation>
+    <presentation id="UseIeSiteList_Policy"/>
+  </presentationTable>
+</resources>
+</policyDefinitionResources>

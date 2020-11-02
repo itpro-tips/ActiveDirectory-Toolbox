@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<policyDefinitionResources revision="1.0" schemaVersion="1.0">
+  <displayName>
+  </displayName>
+  <description>
+  </description>
+  <resources>
+    <stringTable>
+      <string id="KeepLastChromeTab_Policy">Podczas przejścia zachowaj ostatnio otwartą kartę Chrome</string>
+      <string id="ShowTransitionScreen_Policy">Wyświetl przez pewien czas ekran przejścia w Chrome</string>
+      <string id="ChromeArguments_Explain">Pozwala określić argumenty, które zostaną przekazane do Chrome w momencie jego uruchomienia.
+
+Jeśli ta zasada będzie włączona, podane parametry zostaną użyte w momencie wywołania Chrome.
+
+Możesz też wstawić specjalny symbol zastępczy ${url}, by określić, gdzie powinien pojawić się URL w wierszu polecenia. Przykład: „--url=${url} --kiosk”.
+Nie musisz podawać tego symbolu zastępczego, jeśli ma zostać wstawiony na końcu lub ma być jedynym argumentem – zasada może wtedy pozostać pusta.
+
+Jeśli ta zasada będzie wyłączona lub pusta, jedynym parametrem przekazanym do przeglądarki będzie URL.</string>
+      <string id="AlternativeBrowserArguments">Argumenty alternatywnej przeglądarki</string>
+      <string id="ChromeArguments">Argumenty Chrome</string>
+      <string id="AlternativeBrowserPath_Part">Ścieżka alternatywnej przeglądarki</string>
+      <string id="URLList_Part">Hosty, które zostaną otwarte w alternatywnej przeglądarce</string>
+      <string id="KeepLastChromeTab_Explain">Pozwala określić, co się stanie, gdy ostatnia karta otwarta w Chrome zostanie przekierowana do alternatywnej przeglądarki.
+
+Gdy ta zasada jest włączona lub nie jest ustawiona, ostatnia karta pozostanie otwarta i po przejściu będzie się odwoływać do strony nowej karty. Jeśli ta zasada jest wyłączona, ostatnia karta zostanie zamknięta, co spowoduje zamknięcie Chrome, jeśli żadne inne okna Chrome nie są otwarte.</string>
+      <string id="UseIeSiteList_Part">Użyj zasad listy witryn Trybu przedsiębiorstwa IE</string>
+      <string id="SUPPORTED_WINXPSP2">Microsoft Windows XP z dodatkiem SP2 lub nowszy</string>
+      <string id="AlternativeBrowserPath">Ścieżka alternatywnej przeglądarki</string>
+      <string id="UseIeSiteList_Explain">Gdy ta zasada jest włączona, przejścia między przeglądarkami będą inicjowane także przez wpisy w zasadzie SiteList dla Internet Explorera zgodnie z opisem na stronie https://technet.microsoft.com/itpro/internet-explorer/ie11-deploy-guide/turn-on-enterprise-mode-and-use-a-site-list.
+
+Jeśli zasada nie jest ustawiona lub jest wyłączona, używane są tylko adresy URL określone w zasadach dotyczących rozszerzeń.</string>
+      <string id="AlternativeBrowserPath_Explain">Określ plik wykonywalny alternatywnej przeglądarki.
+Pozwala określić program, który będzie używany jako alternatywna przeglądarka.
+
+Jeśli ta zasada jest włączona, możesz podać w niej ścieżkę bezwzględną lub użyć jednej z tych zmiennych:
+
+${ie} – domyślna lokalizacja, w której jest zainstalowany Internet Explorer.
+W tym przypadku do wskazania lokalizacji przeglądarki jest używany ten wpis w rejestrze: HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\IEXPLORE.EXE.
+${firefox} – domyślna lokalizacja, w której jest zainstalowany Firefox.
+W tym przypadku do wskazania lokalizacji przeglądarki jest używany ten wpis w rejestrze: HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\FIREFOX.EXE.
+${safari} – domyślna lokalizacja, w której jest zainstalowany Safari.
+W tym przypadku do wskazania lokalizacji przeglądarki jest używany ten wpis w rejestrze:
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\SAFARI.EXE.
+
+Jeśli zasada nie będzie włączona lub pozostanie pusta, zostanie użyta domyślna przeglądarka alternatywna – czyli Internet Explorer przy założeniu, że podano wartość ${ie}.</string>
+      <string id="ShowTransitionScreen_Part">Wyświetl przez pewien czas ekran przejścia w Chrome</string>
+      <string id="URLList_Explain">Pozwala określić listę nazw domen, które zostaną otwarte w alternatywnej przeglądarce.
+
+Jeśli ta zasada jest włączona, musisz podać listę filtrów, które uruchomią przejście na alternatywną przeglądarkę. Każdy wpis powinien należeć do jednego z tych czterech typów:
+
+Nazwa hosta – mogą to być pełne nazwy domen (np. „www.example.com”) lub ich fragmenty (np. „example.com”, a nawet samo „example”). Symbole wieloznaczne nie są jeszcze obsługiwane.
+Prefiks URL – można podać tylko właściwe przedrostki URL, w razie potrzeby wraz z protokołem lub portem (np. „http://login.example.com” lub „https://www.example.com:8080/login/”).
+Wpis ujemny – zaczyna się od „!” i w dalszej części zawiera nazwę hosta lub prefiks URL (jak opisano wyżej). Wpisy ujemne są zawsze otwierane w Chrome. Przykład: „!example.com” lub „!file:///c:/localapp/”.
+Wpis zawierający symbol wieloznaczny – zawiera tylko pojedynczy znak „*”. Pasuje do każdego adresu URL. Jest przeznaczony do użycia z wpisami ujemnymi, w przypadku, gdy większość adresów URL ma zostać otwarta w alternatywnej przeglądarce, a tylko niektóre z nich w Chrome.
+
+Wpisy ujemne mają wyższy priorytet niż dodatnie, co pozwala dodać do białej listy duże części domeny, podczas gdy jej mniejsze części są otwierane w Chrome.
+Wpis zawierający symbol wieloznaczny (jeśli jest obecny) jest używany tylko wtedy, gdy wszystkie pozostałe zasady zostały sprawdzone.
+
+Oto protokoły monitorowane pod kątem przekierowania: http:, https:.
+
+Jeśli ta zasada nie jest określona lub pozostaje pusta, przejście na alternatywną przeglądarkę nie zostanie uruchomione.</string>
+      <string id="ChromePath_Explain">Pozwala określić plik wykonywalny Chrome, który zostanie otwarty po powrocie z alternatywnej przeglądarki*.
+
+Kiedy ta zasada jest włączona, możesz podać w niej ścieżkę bezwzględną lub użyć tej zmiennej:
+
+${chrome} – domyślna lokalizacja, w której jest zainstalowany Chrome.
+W tym przypadku do wskazania lokalizacji przeglądarki jest używany ten wpis w rejestrze: HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\Chrome.EXE.
+
+Jeśli ta zasada będzie wyłączona lub pusta, zostanie użyta domyślna instalacja Chrome – tak jakby była podana wartość ${chrome}.
+
+* Obecnie tylko Internet Explorer obsługuje automatyczny powrót do Chrome.</string>
+      <string id="Cat_LegacyBrowserSupport">Obsługa starszych przeglądarek</string>
+      <string id="AlternativeBrowserArguments_Part">Argumenty alternatywnej przeglądarki</string>
+      <string id="URLGreyList_Part">Hosty, które nie powinny inicjować przejścia w żadnej z przeglądarek</string>
+      <string id="UseIeSiteList_Policy">Użyj zasad listy witryn Trybu przedsiębiorstwa IE</string>
+      <string id="URLGreyList_Policy">Hosty, które nie powinny inicjować przejścia w żadnej z przeglądarek</string>
+      <string id="ShowTransitionScreen_Explain">Pozwala określić, jak długo na karcie Chrome ma być widoczny komunikat poprzedzający przejście na inną przeglądarkę. Jest on graficzną informacją o przejściu. Jednostką w tej zasadzie są sekundy.
+
+Jeśli zasada nie zostanie ustawiona, karta zostanie zamknięta od razu w momencie, gdy przejście będzie możliwe.</string>
+      <string id="URLList_Policy">Hosty, które zostaną otwarte w alternatywnej przeglądarce</string>
+      <string id="ChromePath">Ścieżka Chrome</string>
+      <string id="ChromeArguments_Part">Argumenty Chrome</string>
+      <string id="KeepLastChromeTab_Part">Podczas przejścia zachowaj ostatnio otwartą kartę Chrome</string>
+      <string id="AlternativeBrowserArguments_Explain">Pozwala określić argumenty, które zostaną przekazane do pliku wykonywalnego alternatywnej przeglądarki.
+
+Jeśli ta zasada będzie włączona, podane parametry zostaną użyte w momencie wywołania alternatywnej przeglądarki.
+
+Możesz też wstawić specjalny symbol zastępczy ${url}, by określić, gdzie powinien pojawić się URL w wierszu polecenia. Przykład: „--url=${url} --kiosk”.
+Nie musisz podawać tego symbolu zastępczego, jeśli ma zostać wstawiony na końcu lub ma być jedynym argumentem – zasada może wtedy pozostać pusta.
+
+Jeśli ta zasada będzie wyłączona lub pusta, jedynym parametrem przekazanym do przeglądarki będzie URL.</string>
+      <string id="URLGreyList_Explain">Pozwala określić listę nazw domen, które zostaną otwarte w jednej z przeglądarek.
+
+Kiedy ta zasada jest włączona, domeny na tej liście będą dostępne w obu przeglądarkach i nie spowoduje to przejścia na inną przeglądarkę.
+
+Możliwe przypadki zastosowania dotyczą domen uwierzytelniania, które są używane jednocześnie przez nowsze i starsze aplikacje z listy.
+
+Nazwy hostów – mogą to być pełne nazwy domen (np. „www.example.com”) lub ich fragmenty (np. „example.com”, a nawet samo „example”). Symbole wieloznaczne nie są jeszcze obsługiwane.
+Prefiksy URL – można podać tylko właściwe prefiksy URL, w razie potrzeby wraz z protokołem lub portem (np. „http://login.example.com” lub „https://www.example.com:8080/login/”).
+
+Jeśli domeny nie zostaną określone lub zasada pozostanie pusta, każda domena spoza listy „Hosty, które zostaną otwarte w alternatywnej przeglądarce” spowoduje powrót do Chrome*.
+
+* Automatyczny powrót do Chrome obecnie obsługuje tylko Internet Explorer.</string>
+      <string id="ChromePath_Part">Ścieżka Chrome</string>
+</stringTable>
+  <presentationTable>
+    <presentation id="AlternativeBrowserPath">
+      <textBox refId="AlternativeBrowserPath_Part">
+        <label>Ścieżka alternatywnej przeglądarki</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="AlternativeBrowserArguments">
+      <textBox refId="AlternativeBrowserArguments_Part">
+        <label>Argumenty alternatywnej przeglądarki</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="ChromePath">
+      <textBox refId="ChromePath_Part">
+        <label>Ścieżka Chrome</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="ChromeArguments">
+      <textBox refId="ChromeArguments_Part">
+        <label>Argumenty Chrome</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="URLList_Policy">
+      <listBox refId="URLList_Part">Hosty, które zostaną otwarte w alternatywnej przeglądarce</listBox>
+    </presentation>
+    <presentation id="URLGreyList_Policy">
+      <listBox refId="URLGreyList_Part">Hosty, które nie powinny inicjować przejścia w żadnej z przeglądarek</listBox>
+    </presentation>
+    <presentation id="KeepLastChromeTab_Policy"/>
+    <presentation id="ShowTransitionScreen_Policy">
+      <decimalTextBox refId="ShowTransitionScreen_Part">Wyświetl przez pewien czas ekran przejścia w Chrome</decimalTextBox>
+    </presentation>
+    <presentation id="UseIeSiteList_Policy"/>
+  </presentationTable>
+</resources>
+</policyDefinitionResources>

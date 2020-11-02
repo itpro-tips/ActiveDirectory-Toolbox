@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<policyDefinitionResources revision="1.0" schemaVersion="1.0">
+  <displayName>
+  </displayName>
+  <description>
+  </description>
+  <resources>
+    <stringTable>
+      <string id="KeepLastChromeTab_Policy">রূপান্তরের সময় শেষ Chrome ট্যাবটি রাখুন</string>
+      <string id="ShowTransitionScreen_Policy">Chrome এ কিছু সময়ের জন্য রূপান্তর স্ক্রিন দেখান</string>
+      <string id="ChromeArguments_Explain">যখন এটি সম্পাদনযোগ্য হয় তখন Chrome এ পাস করার জন্য বিতর্ক নির্দিষ্ট করতে আপনাকে অনুমতি দেয়৷
+
+যদি নীতি সক্ষম করা থাকে তবে যখন Chrome শুরু করা হয় তখন প্রদেয় পরিমিতি ব্যবহৃত হবে৷
+
+এছাড়াও কমান্ড লাইনে urlটি কোথায় প্রদর্শিত হবে তা নির্দিষ্ট করতে আপনি বিষেশ প্লেসহোল্ডার ${url} ব্যবহার করতে পারেন৷ উদা: "--url=${url} --kiosk"৷
+যদি এটিকে শেষে যোগ করতে হয় তবে আপনাকে প্লেসহোল্ডার নির্দিষ্ট করতে হবে না বা যদি এটি একমাত্র বিতর্ক হয় তবে আপনি এই নীতিটিকে খালি ছেড়ে দিতে পারেন৷
+
+যদি নীতি অক্ষম করা থাকে বা খালি ছাড়া থাকে তবে একমাত্র ব্রাউজারটিতে url একটি পরিমিতি হিসাবে পাস হবে৷</string>
+      <string id="AlternativeBrowserArguments">বিকল্প ব্রাউজার বিতর্কগুলি</string>
+      <string id="ChromeArguments">Chrome বিতর্কগুলি</string>
+      <string id="AlternativeBrowserPath_Part">বিকল্প ব্রাউজার পাথ</string>
+      <string id="URLList_Part">বিকল্প ব্রাউজারে খোলার হোস্টগুলি</string>
+      <string id="KeepLastChromeTab_Explain">যখন Chrome এর শেষ খোলা ট্যাবটিকে বিকল্প ব্রাউজারে পুনঃনির্দেশিত করা হয় তখন কি হবে তা নির্দিষ্ট করার অনুমতি দেয়৷
+
+যখন এই নীতিটি সক্ষম করা থাকে বা সেট করা থাকে না তখন শেষ ট্যাবটি খোলা থেকে যাবে এবং রূপান্তরের পরে নতুন ট্যাব পৃষ্ঠাতে নির্দেশিত হবে৷ যদি অক্ষম হিসাবে সেট করা থাকে তবে, শেষ ট্যাবটি বন্ধ হয়ে যাবে এবং যার ফলে যদি অন্য কোনো Chrome উইন্ডো খোলা না থাকে তাহলে Chrome বন্ধ হয়ে যাবে৷</string>
+      <string id="UseIeSiteList_Part">IE এন্টারপ্রাইজ মোডের সাইটের তালিকার নীতি ব্যবহার করুন</string>
+      <string id="SUPPORTED_WINXPSP2">Microsoft Windows XP SP2 বা পরবর্তী</string>
+      <string id="AlternativeBrowserPath">বিকল্প ব্রাউজার পাথ</string>
+      <string id="UseIeSiteList_Explain">যখন সক্ষম করা থাকে তখন (https://technet.microsoft.com/itpro/internet-explorer/ie11-deploy-guide/turn-on-enterprise-mode-and-use-a-site-list) এ নির্ধারিত করা Internet Explorer এর সাইটের তালিকার নীতিতে থাকা এন্ট্রিগুলি থেকেও ব্রাউজারগুলির মধ্যে রূপান্তর ট্রিগার হবে।
+
+যখন এটি সেট করা থাকে না বা অক্ষম করা থাকে তখন শুধুমাত্র এক্সটেনশন নীতিতে থাকা URL ব্যবহার করা হবে।</string>
+      <string id="AlternativeBrowserPath_Explain">বিকল্প ব্রাউজারের সম্পাদনযোগ্যতা নির্দিষ্ট করুন৷
+একটি বিকল্প ব্রাউজার হিসাবে ব্যবহার করতে প্রোগ্রাম নির্দিষ্ট করতে আপনাকে অনুমতি দেয়৷
+
+যদি সক্ষম করা থাকে তবে আপনি হয় নীতির মধ্যে একটি সুনির্দিষ্ট পাথ নির্দিষ্ট করতে পারেন বা নিম্নলিখিত যেকোনো একটি ভেরিয়েবল ব্যবহার করুন:
+
+${ie} - এই ক্ষেত্রে Internet Explorer ইনস্টলের ডিফল্ট অবস্থান HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\IEXPLORE.EXE ব্রাউজারের অবস্থান চয়ন করতে ব্যবহৃত হয়৷
+${firefox} - এই ক্ষেত্রে Firefox ইনস্টলের ডিফল্ট অবস্থান HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\FIREFOX.EXE ব্রাউজারের অবস্থান চয়ন করতে ব্যবহৃত হয়৷
+${safari} - এই ক্ষেত্রে Safari ইনস্টলের ডিফল্ট অবস্থান HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\SAFARI.EXE ব্রাউজারের অবস্থান চয়ন করতে ব্যবহৃত হয়৷
+
+যদি নীতি সক্ষম করা না থাকে বা খালি ছাড়া থাকে এবং যদি ${ie} মান ব্যবহৃত হয় তবে ডিফল্ট বিকল্প ব্রাউজার Internet Explorer ব্যবহৃত হবে৷</string>
+      <string id="ShowTransitionScreen_Part">Chrome এ কিছু সময়ের জন্য রূপান্তর স্ক্রিন দেখান</string>
+      <string id="URLList_Explain">বিকল্প ব্রাউজারে খোলার জন্য, হোস্ট ডোমেন নামগুলির একটি তালিকা নির্দিষ্ট করতে আপনাকে অনুমতি দেয়৷
+
+যদি নীতিটি সক্ষম করা থাকে তবে আপনাকে ফিল্টারগুলির একটি তালিকা প্রদান করতে হবে যা রূপান্তরটিকে বিকল্প ব্রাউজারে নিয়ে যাবে৷ প্রত্যেকটি এন্ট্রিকে নিম্নলিখিত প্রকারগুলির মধ্যে যেকোনো একটি হতে হবে:
+
+হোস্ট-নামের অংশ: হয় "www.example.com" এর মতো সম্পূর্ণ ডোমেন নাম নির্দিষ্ট করতে হবে বা "example.com: এর মতো সেগুলির অংশ বা এমনকি "উদাহরণ"৷ ওয়াইল্ডকার্ডগুলি এখনো সমর্থিত নয়৷
+URL উপসর্গ: শুধুমাত্র প্রোটোকল এবং যদি প্রয়োজন হয় পোর্টের সাথে উপযুক্ত URL উপসর্গ সম্পূর্ণভাবে মেলে৷ উদা: "http://login.example.com" বা "https://www.example.com:8080/login/"৷
+নেভিগেট এন্ট্রি: "!" দিয়ে শুরু হয় এবং হোস্ট-নামের অংশ বা উপরের বর্ণনা অনুযায়ী URL উপসর্গ হিসাবে অবিরত থাকে৷ নেভিগেট এন্ট্রিগুলি সর্বদা Chrome এর মধ্যে খোলে৷ উদাঃ, "!example.com" বা "!file:///c:/localapp/"৷
+ওয়াইল্ডকার্ড এন্ট্রি: শুধুমাত্র একটি অক্ষর "*" থাকে৷ যেকোনো URLকে মেলায়৷ যদি বেশিরভাগ URLগুলি বিকল্প ব্রাউজারে না খোলে এবং শুধুমাত্র খুব কম সংখ্যক URL Chrome এ খোলে, সেক্ষেত্রে ঋণাত্মক এন্ট্রিগুলির সাথে ব্যবহৃত হয়৷
+
+ঋণাত্মক এন্ট্রিগুলি, ধনাত্মক এন্ট্রিগুলির চেয়ে বেশী গুরুত্বপূর্ণ যা কোনো ডোমেনের একটি বৃহৎ অংশকে হোয়াইটলিস্ট করার অনুমতি দেয় যেখানে খুব কম অংশকে Chrome এ খোলার জন্য সেট করা হয়৷
+যদি ওয়াইল্ডকার্ড এন্ট্রির সুযোগ থাকে তাহলে অন্যান্য সমস্ত নীতি পরীক্ষা করা হয়ে যাওয়ার পরই কেবলমাত্র এর প্রয়োগ করা যেতে পারে৷
+
+পুনঃনির্দেশিত করার জন্য নিম্নলিখিত প্রোটোকলগুলি নিরীক্ষণ করা হয়: http:, https:৷
+
+যদি নির্দিষ্ট করা না থাকে বা খালি ছাড়া থাকে - তবে বিকল্প ব্রাউজারে কোনো রূপান্তর ট্রিগার করা হবে না৷</string>
+      <string id="ChromePath_Explain">যখন বিকল্প ব্রাউজার থেকে ফিরে আসে তখন Chrome লঞ্চ হতে এর সম্পাদনযোগ্যতা নির্দিষ্ট করতে অনুমতি দেয়(*)৷
+
+যখন নীতি সক্ষম করা থাকে তবে আপনি হয় নীতিটির মধ্যে একটি সুনির্দিষ্ট পাথ নির্দিষ্ট করতে পারেন বা নিম্নলিখিত ভেরিয়েবল ব্যবহার করুন::
+
+${chrome} - এই ক্ষেত্রে Chrome এর ডিফল্ট অবস্থান HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\Chrome.EXE ব্রাউজারের অবস্থান চয়ন করতে ব্যবহৃত হয়৷
+
+যদি নীতি অক্ষম করা থাকে বা খালি ছাড়া থাকে এবং যদি ${chrome} মান ব্যবহার হয়ে থাকে, তবে Chrome এর ডিফল্ট ইনস্টলেশন ব্যবহৃত হবে৷
+
+*: বর্তমানে Chrome এ স্বয়ংক্রিয়ভাবে ফিরে যাওয়া একমাত্র Internet Explorer সমর্থন করে৷</string>
+      <string id="Cat_LegacyBrowserSupport">লেগাসি ব্রাউজার সমর্থন</string>
+      <string id="AlternativeBrowserArguments_Part">বিকল্প ব্রাউজার বিতর্কগুলি</string>
+      <string id="URLGreyList_Part">কোনও ব্রাউজারেই রূপান্তরকে ট্রিগার না করা হোস্ট</string>
+      <string id="UseIeSiteList_Policy">IE এন্টারপ্রাইজ মোডের সাইটের তালিকার নীতি ব্যবহার করুন</string>
+      <string id="URLGreyList_Policy">কোনও ব্রাউজারেই রূপান্তরকে ট্রিগার না করা হোস্ট</string>
+      <string id="ShowTransitionScreen_Explain">ট্যাবের মধ্যে দেখানো রূপান্তরের মেসেজটি অন্য ব্রাউজারে রূপান্তর হওয়ার আগে Chrome এ কত সময় দেখা যাবে সেটি উল্লেখ করতে দেয়। এর ফলে রূপান্তরটি ঘটতে দেখা যায়। সময়ের মান সেকেন্ডে দেওয়া হয়।
+
+যদি এটি সেট করা না থাকে তাহলে রূপান্তর সম্পন্ন করলে ট্যাবটি অবিলম্বে বন্ধ হয়ে যাবে।</string>
+      <string id="URLList_Policy">বিকল্প ব্রাউজারে খোলার হোস্টগুলি</string>
+      <string id="ChromePath">Chrome পাথ</string>
+      <string id="ChromeArguments_Part">Chrome বিতর্কগুলি</string>
+      <string id="KeepLastChromeTab_Part">রূপান্তরের সময় শেষ Chrome ট্যাবটি রাখুন</string>
+      <string id="AlternativeBrowserArguments_Explain">বিকল্প ব্রাউজারটির সম্পাদনযোগ্যতা পাস করাতে আপনাকে বিতর্ক নির্দিষ্ট করার অনুমতি দেয়৷
+
+যদি নীতি সক্ষম করা থাকে, তবে যখন বিকল্প ব্রাউজার শুরু করা হয় তখন প্রদেয় পরিমিতি ব্যবহার করা হবে৷
+
+এছাড়াও কমান্ড লাইনে urlটি কোথায় প্রদর্শিত হবে তা নির্দিষ্ট করতে আপনি বিষেশ প্লেসহোল্ডার ${url} ব্যবহার করতে পারেন৷ উদা: "--url=${url} --kiosk"৷
+যদি এটিকে শেষে যোগ করতে হয় তবে আপনাকে প্লেসহোল্ডার নির্দিষ্ট করতে হবে না বা যদি এটি একমাত্র বিতর্ক হয় তবে আপনি এই নীতিটিকে খালি ছেড়ে দিতে পারেন৷
+
+যদি নীতি অক্ষম করা থাকে বা খালি ছাড়া থাকে তবে একমাত্র ব্রাউজারটিতে url একটি পরিমিতি হিসাবে পাস হবে৷</string>
+      <string id="URLGreyList_Explain">উভয় ব্রাউজারে খোলার জন্য, হোস্ট ডোমেন নামগুলির একটি তালিকা নির্দিষ্ট করতে আপনাকে অনুমতি দেয়৷
+
+যখন এই নীতিটি সক্ষম করা থাকে, তখন এই তালিকার ডোমেনগুলি উভয় ব্রাউজারেই উপলব্ধ হবে এবং কোনো ভাবে রূপান্তর ট্রিগার করবে না৷
+
+একটি সম্ভাব্য ব্যবহারের ক্ষেত্র হল যেকোনো প্রমাণীকরণ ডোমেইন যেগুলি এই তালিকার মধ্যে নতুন এবং লেগ্যাসি অ্যাপ্লিকেশানগুলির মধ্যে ভাগ করা হয়৷
+
+হোস্ট-নামের অংশ: হয় "www.example.com" এর মত সম্পূর্ণ ডোমেন নাম নির্দিষ্ট করতে হবে বা "example.com: এর মত সেগুলির অংশ বা এমনকি "উদাহরণ"৷ ওয়াইল্ডকার্ডগুলি এখনো সমর্থিত নয়৷
+URL উপসর্গ: শুধুমাত্র প্রোটোকল এবং যদি প্রয়োজন হয় পোর্টের সাথে উপযুক্ত URL উপসর্গ সম্পূর্ণভাবে মেলে৷ উদা: "http://login.example.com" বা "https://www.example.com:8080/login/"৷
+
+যদি নির্দিষ্ট না থাকে বা খালি ছাড়া থাকে - "বিকল্প ব্রাউজারে খোলার হোস্টগুলি" তালিকাতে না থাকা যেকোনো ডোমেন পুনরায় Chrome একটি রূপান্তর ট্রিগার করবে(*)৷
+
+*: বর্তমানে Chrome এ স্বয়ংক্রিয়ভাবে ফিরে যাওয়া একমাত্র Internet Explorer সমর্থন করে৷</string>
+      <string id="ChromePath_Part">Chrome পাথ</string>
+</stringTable>
+  <presentationTable>
+    <presentation id="AlternativeBrowserPath">
+      <textBox refId="AlternativeBrowserPath_Part">
+        <label>বিকল্প ব্রাউজার পাথ</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="AlternativeBrowserArguments">
+      <textBox refId="AlternativeBrowserArguments_Part">
+        <label>বিকল্প ব্রাউজার বিতর্কগুলি</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="ChromePath">
+      <textBox refId="ChromePath_Part">
+        <label>Chrome পাথ</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="ChromeArguments">
+      <textBox refId="ChromeArguments_Part">
+        <label>Chrome বিতর্কগুলি</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="URLList_Policy">
+      <listBox refId="URLList_Part">বিকল্প ব্রাউজারে খোলার হোস্টগুলি</listBox>
+    </presentation>
+    <presentation id="URLGreyList_Policy">
+      <listBox refId="URLGreyList_Part">কোনও ব্রাউজারেই রূপান্তরকে ট্রিগার না করা হোস্ট</listBox>
+    </presentation>
+    <presentation id="KeepLastChromeTab_Policy"/>
+    <presentation id="ShowTransitionScreen_Policy">
+      <decimalTextBox refId="ShowTransitionScreen_Part">Chrome এ কিছু সময়ের জন্য রূপান্তর স্ক্রিন দেখান</decimalTextBox>
+    </presentation>
+    <presentation id="UseIeSiteList_Policy"/>
+  </presentationTable>
+</resources>
+</policyDefinitionResources>

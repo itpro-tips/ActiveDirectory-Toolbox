@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<policyDefinitionResources revision="1.0" schemaVersion="1.0">
+  <displayName>
+  </displayName>
+  <description>
+  </description>
+  <resources>
+    <stringTable>
+      <string id="KeepLastChromeTab_Policy">Conserva ultima scheda di Chrome al passaggio</string>
+      <string id="ShowTransitionScreen_Policy">Mostra schermata passaggio in Chrome per un po' di tempo</string>
+      <string id="ChromeArguments_Explain">Ti consente di specificare gli argomenti da passare a Chrome quando è in esecuzione.
+
+Se la norma è abilitata, verranno utilizzati i parametri forniti quando viene richiamato Chrome.
+
+Puoi inoltre utilizzare il segnaposto speciale ${url} per specificare dove deve essere visualizzato l'URL nella riga di comando. Ad es. "--url=${url} --kiosk".
+Non devi necessariamente specificare il segnaposto; se deve essere aggiunto alla fine o se deve essere l'unico argomento, puoi lasciare tale norma vuota.
+
+Se la norma è disabilitata o lasciata vuota, verrà passato al browser solo l'URL sotto forma di parametro.</string>
+      <string id="AlternativeBrowserArguments">Argomenti del browser alternativo</string>
+      <string id="ChromeArguments">Argomenti Chrome</string>
+      <string id="AlternativeBrowserPath_Part">Percorso browser alternativo</string>
+      <string id="URLList_Part">Host da aprire nel browser alternativo</string>
+      <string id="KeepLastChromeTab_Explain">Ti consente di specificare che cosa succede quando l'ultima scheda aperta in Chrome viene indirizzata al browser alternativo.
+
+Se questa norma viene attivata o non viene impostata, l'ultima scheda rimarrà aperta e rimanderà alla pagina Nuova scheda dopo il passaggio. Se non viene attivata, l'ultima scheda verrà chiusa e verrà chiuso anche Chrome se non ci sono altre finestre di Chrome aperte.</string>
+      <string id="UseIeSiteList_Part">Usa norma di un elenco di siti per modalità Enterprise di IE</string>
+      <string id="SUPPORTED_WINXPSP2">Microsoft Windows XP SP2 o versioni successive</string>
+      <string id="AlternativeBrowserPath">Percorso browser alternativo</string>
+      <string id="UseIeSiteList_Explain">Se questa norma viene attivata, i passaggi tra browser vengono attivati anche dalle voci della norma di un elenco di siti per Internet Explorer, come definito all'indirizzo https://technet.microsoft.com/itpro/internet-explorer/ie11-deploy-guide/turn-on-enterprise-mode-and-use-a-site-list.
+
+Se la norma non viene impostata o viene disattivata, verranno usati soltanto gli URL indicati nella norma dell'estensione.</string>
+      <string id="AlternativeBrowserPath_Explain">Specifica il file eseguibile del browser alternativo.
+Ti consente di specificare il programma da utilizzare come browser alternativo.
+
+Se questa norma è abilitata, puoi specificare un percorso assoluto al suo interno o utilizzare una delle seguenti variabili:
+
+${ie} - In questo caso, per scegliere il percorso del browser viene utilizzato il percorso di installazione predefinito per Internet Explorer
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\IEXPLORE.EXE.
+${firefox} - In questo caso, per scegliere il percorso del browser viene utilizzato il percorso di installazione predefinito per Firefox
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\FIREFOX.EXE.
+${safari} - In questo caso, per scegliere il percorso del browser viene utilizzato il percorso di installazione predefinito per Safari
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\SAFARI.EXE.
+
+Se la norma non è abilitata o viene lasciata vuota, verrà utilizzato il browser alternativo che è Internet Explorer, determinato come se venisse utilizzato il valore ${ie}.</string>
+      <string id="ShowTransitionScreen_Part">Mostra schermata passaggio in Chrome per un po' di tempo</string>
+      <string id="URLList_Explain">Ti consente di specificare un elenco di nomi di dominio host da aprire nel browser alternativo.
+
+Se la norma viene attivata, devi fornire un elenco di filtri che attiveranno il passaggio al browser alternativo. Ogni voce deve essere uno dei seguenti quattro tipi:
+
+Parti di nomi host: devono essere specificati nomi di dominio completi come "www.example.com" o parti di essi come "example.com" o persino "example". I caratteri jolly non sono ancora supportati.
+Prefisso URL: soltanto i prefissi URL adeguati vengono associati completi di protocollo e porta, se necessario. Ad esempio, "http://login.example.com" o "https://www.example.com:8080/login/".
+Voce negativa: inizia con "!" e continua con parte del nome host o prefisso URL come spiegato in precedenza. Le voci negative vengono aperte sempre in Chrome. Ad esempio, "!example.com" o "!file:///c:/localapp/".
+Voce con carattere jolly: contiene soltanto un unico carattere "*". Corrisponde a qualsiasi URL. Deve essere utilizzata insieme alle voci negative, se la maggior parte degli URL deve essere aperta nel browser alternativo e soltanto una piccola parte di URL deve essere aperta in Chrome.
+
+Le voci negative hanno priorità maggiori rispetto alle voci positive che consentono di autorizzare ampie parti di un dominio lasciando parti minori da aprire in Chrome.
+La voce con carattere jolly, se presente, viene applicata soltanto dopo avere verificato tutte le altre regole.
+
+Vengono monitorati i seguenti protocolli per il reindirizzamento: http:, https:.
+
+Se la norma non viene specificata o viene lasciata vuota, non verranno attivati passaggi al browser alternativo.</string>
+      <string id="ChromePath_Explain">Ti consente di specificare il file eseguibile di Chrome da avviare quando torni dal browser alternativo(*).
+
+Quando la norma è abilitata, puoi specificare un percorso assoluto al suo interno o utilizzare la seguente variabile:
+
+${chrome} - In questo caso, per scegliere il percorso del browser viene utilizzato il percorso di installazione predefinito per Chrome
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\Chrome.EXE.
+
+Se la norma è disabilitata o lasciata vuota, verrà utilizzata l'installazione predefinita di Chrome, come se venisse utilizzato il valore ${chrome}.
+
+*. Al momento solo Internet Explorer supporta il ritorno automatico a Chrome.</string>
+      <string id="Cat_LegacyBrowserSupport">Supporto dei browser precedenti</string>
+      <string id="AlternativeBrowserArguments_Part">Argomenti del browser alternativo</string>
+      <string id="URLGreyList_Part">Host che non devono attivare una transizione nei due browser</string>
+      <string id="UseIeSiteList_Policy">Usa norma di un elenco di siti per modalità Enterprise di IE</string>
+      <string id="URLGreyList_Policy">Host che non devono attivare una transizione nei due browser</string>
+      <string id="ShowTransitionScreen_Explain">Consente di specificare per quanto tempo il messaggio relativo al passaggio nella scheda sarà visibile in Chrome prima del passaggio all'altro browser. Questo consente di visualizzare il passaggio. La norma deve essere specificata in secondi.
+
+Se la norma non viene impostata, la scheda viene chiusa immediatamente quando è possibile completare il passaggio.</string>
+      <string id="URLList_Policy">Host da aprire nel browser alternativo</string>
+      <string id="ChromePath">Percorso Chrome</string>
+      <string id="ChromeArguments_Part">Argomenti Chrome</string>
+      <string id="KeepLastChromeTab_Part">Conserva ultima scheda di Chrome al passaggio</string>
+      <string id="AlternativeBrowserArguments_Explain">Ti consente di specificare gli argomenti da passare al file eseguibile del browser alternativo.
+
+Se la norma è abilitata, verranno utilizzati i parametri forniti quando viene richiamato il browser alternativo.
+
+Puoi inoltre utilizzare il segnaposto speciale ${url} per specificare dove deve essere visualizzato l'URL nella riga di comando. Ad es. "--url=${url} --kiosk".
+Non devi necessariamente specificare il segnaposto; se deve essere aggiunto alla fine o se deve essere l'unico argomento, puoi lasciare tale norma vuota.
+
+Se la norma è disabilitata o lasciata vuota, verrà passato al browser solo l'URL sotto forma di parametro.</string>
+      <string id="URLGreyList_Explain">Ti consente di specificare un elenco di nomi di dominio di host da aprire in uno dei due browser.
+
+Quando la norma è abilitata, i domini in questo elenco saranno disponibili in entrambi i browser e non attiveranno una transizione né in un caso né nell'altro.
+
+Un possibile caso di utilizzo sono i domini di autenticazione condivisi tra app nuove e precedenti in questo elenco.
+
+Parti di nomi di host: devono essere specificati nomi di dominio completi come "www.example.com" o parti di essi come "example.com" o persino "example". I caratteri jolly non sono ancora supportati.
+Prefissi URL: sono accettati solo prefissi URL appropriati, completi di protocollo e porta, se necessari. Ad esempio "http://login.example.com" o "https://www.example.com:8080/login/".
+
+Se la norma non è specificata o è lasciata vuota, qualsiasi dominio non presente nell'elenco "Host da aprire nel browser alternativo" attiverà una transizione per tornare a Chrome(*).
+
+*. Al momento solo Internet Explorer supporta il ritorno automatico a Chrome.</string>
+      <string id="ChromePath_Part">Percorso Chrome</string>
+</stringTable>
+  <presentationTable>
+    <presentation id="AlternativeBrowserPath">
+      <textBox refId="AlternativeBrowserPath_Part">
+        <label>Percorso browser alternativo</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="AlternativeBrowserArguments">
+      <textBox refId="AlternativeBrowserArguments_Part">
+        <label>Argomenti del browser alternativo</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="ChromePath">
+      <textBox refId="ChromePath_Part">
+        <label>Percorso Chrome</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="ChromeArguments">
+      <textBox refId="ChromeArguments_Part">
+        <label>Argomenti Chrome</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="URLList_Policy">
+      <listBox refId="URLList_Part">Host da aprire nel browser alternativo</listBox>
+    </presentation>
+    <presentation id="URLGreyList_Policy">
+      <listBox refId="URLGreyList_Part">Host che non devono attivare una transizione nei due browser</listBox>
+    </presentation>
+    <presentation id="KeepLastChromeTab_Policy"/>
+    <presentation id="ShowTransitionScreen_Policy">
+      <decimalTextBox refId="ShowTransitionScreen_Part">Mostra schermata passaggio in Chrome per un po' di tempo</decimalTextBox>
+    </presentation>
+    <presentation id="UseIeSiteList_Policy"/>
+  </presentationTable>
+</resources>
+</policyDefinitionResources>

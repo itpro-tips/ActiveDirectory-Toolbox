@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<policyDefinitionResources revision="1.0" schemaVersion="1.0">
+  <displayName>
+  </displayName>
+  <description>
+  </description>
+  <resources>
+    <stringTable>
+      <string id="KeepLastChromeTab_Policy">Действия с последней вкладкой при переходе в другой браузер</string>
+      <string id="ShowTransitionScreen_Policy">Временный показ экрана перехода в Chrome</string>
+      <string id="ChromeArguments_Explain">Позволяет указать аргументы, с которыми будет запускаться Chrome.
+
+Если правило включено, исполняемый файл Chrome запускается с указанными параметрами.
+
+Также можно использовать специальный тег ${url} для указания URL-адреса в командной строке. Пример: "--url=${url} --kiosk".
+Если тег является последним или единственным аргументом, его можно опустить.
+
+Если правило отключено или не заполнено, в качестве аргумента для браузера передается только URL.</string>
+      <string id="AlternativeBrowserArguments">Аргументы для альтернативного браузера</string>
+      <string id="ChromeArguments">Аргументы для Chrome</string>
+      <string id="AlternativeBrowserPath_Part">Путь к альтернативному браузеру</string>
+      <string id="URLList_Part">Хосты, которые следует открывать в альтернативном браузере</string>
+      <string id="KeepLastChromeTab_Explain">Позволяет указать, что должно происходить, когда адрес страницы на последней открытой вкладке Chrome перенаправляется в альтернативный браузер.
+
+Если правило включено или не заполнено, после перехода в другой браузер на последней вкладке Chrome открывается страница быстрого доступа. Если правило отключено, последняя вкладка закрывается. В этом случае Chrome закрывается полностью (если не открыты другие окна Chrome).</string>
+      <string id="UseIeSiteList_Part">Использование списка сайтов в режиме предприятия в Internet Explorer</string>
+      <string id="SUPPORTED_WINXPSP2">Microsoft Windows XP SP2 или более поздней версии</string>
+      <string id="AlternativeBrowserPath">Путь к альтернативному браузеру</string>
+      <string id="UseIeSiteList_Explain">Когда правило включено, переход между браузерами также осуществляется по списку сайтов, определенных для Internet Explorer. Подробную информацию можно найти здесь: https://technet.microsoft.com/itpro/internet-explorer/ie11-deploy-guide/turn-on-enterprise-mode-and-use-a-site-list.
+
+Если правило не включено, используются только те URL, которые указаны в правиле, касающемся расширений.</string>
+      <string id="AlternativeBrowserPath_Explain">Укажите путь к исполняемому файлу альтернативного браузера.
+Позволяет выбрать программу, которая будет использоваться в качестве альтернативного браузера.
+
+Если правило включено, в нем можно указать абсолютный путь к файлу или использовать одну из следующих переменных:
+
+${ie} – папка, в которой по умолчанию установлен браузер Internet Explorer.
+В этом случае путь к файлу браузера извлекается из ключа реестра HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\IEXPLORE.EXE.
+${firefox} – папка, в которой по умолчанию установлен браузер Firefox.
+В этом случае путь к файлу браузера извлекается из ключа реестра HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\FIREFOX.EXE.
+${safari} – папка, в которой по умолчанию установлен браузер Safari.
+В этом случае путь к файлу браузера извлекается из ключа реестра HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\SAFARI.EXE.
+
+Если правило не включено или не заполнено, в качестве альтернативного браузера по умолчанию будет использоваться Internet Explorer, как если бы использовалось значение ${ie}.</string>
+      <string id="ShowTransitionScreen_Part">Временный показ экрана перехода в Chrome</string>
+      <string id="URLList_Explain">Позволяет указать список доменов, страницы которых следует открывать в альтернативном браузере.
+
+Если правило включено, необходимо указать список фильтров, при использовании которых будет запускаться альтернативный браузер. Допускается четыре типа записей:
+
+Имена хостов. Можно указывать как полные имена доменов (например, www.example.com), так и их фрагменты (например, example.com или даже example). Подстановочные знаки в настоящее время не поддерживаются.
+Префиксы URL. Следует указывать префиксы целиком, включая протокол и при необходимости номер порта. Примеры: http://login.example.com, https://www.example.com:8080/login/.
+Отрицательная запись. Перед префиксом URL или именем хоста необходимо добавить символ "!". Отрицательные записи всегда открываются в Chrome. Примеры: !example.com, !file:///c:/localapp/.
+Запись с подстановочными знаками. Содержит только символ "*". Может применяться для каждого URL. Ее следует использовать вместе с отрицательными записями, если большинство ссылок должно открываться в альтернативном браузере, а не в Chrome.
+
+Отрицательные записи имеют приоритет над положительными. Благодаря этому можно добавить в белый список много доменов. Тогда только небольшая часть ссылок будет открываться в Chrome.
+Запись с подстановочными знаками применяется только после проверки остальных правил.
+
+Правило действует для адресов с протоколами http и https.
+
+Если правило отключено или не задано, страницы не будут автоматически открываться в альтернативном браузере.</string>
+      <string id="ChromePath_Explain">Позволяет указать путь к файлу Chrome, который будет запускаться после возврата из альтернативного браузера*.
+
+Если правило включено, в нем можно указать абсолютный путь к исполняемому файлу или использовать следующую переменную:
+
+${chrome} – папка, в которой по умолчанию установлен Chrome
+В этом случае путь к файлу браузера извлекается из ключа реестра HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\Chrome.EXE.
+
+Если правило отключено или не заполнено, будет использоваться папка, в которой по умолчанию установлен браузер Chrome (как если бы было указано значение ${chrome}).
+
+*В настоящее время автоматический возврат в Chrome возможен только из Internet Explorer.</string>
+      <string id="Cat_LegacyBrowserSupport">Поддержка альтернативного браузера</string>
+      <string id="AlternativeBrowserArguments_Part">Аргументы для альтернативного браузера</string>
+      <string id="URLGreyList_Part">Хосты, которые следует открывать в текущем браузере</string>
+      <string id="UseIeSiteList_Policy">Использование списка сайтов в режиме предприятия в Internet Explorer</string>
+      <string id="URLGreyList_Policy">Хосты, которые следует открывать в текущем браузере</string>
+      <string id="ShowTransitionScreen_Explain">Позволяет задать время (в секундах), в течение которого сообщение о переходе в другой браузер будет показываться на вкладке Chrome. Таким образом можно визуализировать процесс.
+
+Если правило не включено, вкладка будет закрываться, как только будет возможен переход.</string>
+      <string id="URLList_Policy">Хосты, которые следует открывать в альтернативном браузере</string>
+      <string id="ChromePath">Путь к Chrome</string>
+      <string id="ChromeArguments_Part">Аргументы для Chrome</string>
+      <string id="KeepLastChromeTab_Part">Действия с последней вкладкой при переходе в другой браузер</string>
+      <string id="AlternativeBrowserArguments_Explain">Позволяет указать, с какими аргументами будет запускаться альтернативный браузер.
+
+Если правило включено, исполняемый файл альтернативного браузера запускается с указанными параметрами.
+
+Также можно использовать специальный тег ${url} для указания URL-адреса в командной строке. Пример: "--url=${url} --kiosk".
+Если тег является последним или единственным аргументом, его можно опустить.
+
+Если правило отключено или не заполнено, в качестве параметра для браузера передается только URL.</string>
+      <string id="URLGreyList_Explain">Позволяет указать список доменов, страницы которых можно открывать в любом браузере.
+
+Если правило включено, страницы из указанных доменов открываются в том браузере, который активен в настоящий момент.
+
+В данном правиле можно указать, например, домены служб аутентификации, которые используются как новыми, так и старыми приложениями.
+
+Имена хостов. Можно указывать как полные имена доменов (например, www.example.com), так и их фрагменты (например, example.com или даже example). Подстановочные знаки в настоящее время не поддерживаются.
+Префиксы URL. Следует указывать префиксы целиком, включая протокол и при необходимости номер порта. Примеры: http://login.example.com, https://www.example.com:8080/login/.
+
+Если правило отключено или не заполнено, все страницы из доменов, не указанных в списке "Хосты, которые следует открывать в альтернативном браузере", открываются в Chrome*.
+
+*В настоящее время автоматический возврат в Chrome возможен только из Internet Explorer.</string>
+      <string id="ChromePath_Part">Путь к Chrome</string>
+</stringTable>
+  <presentationTable>
+    <presentation id="AlternativeBrowserPath">
+      <textBox refId="AlternativeBrowserPath_Part">
+        <label>Путь к альтернативному браузеру</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="AlternativeBrowserArguments">
+      <textBox refId="AlternativeBrowserArguments_Part">
+        <label>Аргументы для альтернативного браузера</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="ChromePath">
+      <textBox refId="ChromePath_Part">
+        <label>Путь к Chrome</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="ChromeArguments">
+      <textBox refId="ChromeArguments_Part">
+        <label>Аргументы для Chrome</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="URLList_Policy">
+      <listBox refId="URLList_Part">Хосты, которые следует открывать в альтернативном браузере</listBox>
+    </presentation>
+    <presentation id="URLGreyList_Policy">
+      <listBox refId="URLGreyList_Part">Хосты, которые следует открывать в текущем браузере</listBox>
+    </presentation>
+    <presentation id="KeepLastChromeTab_Policy"/>
+    <presentation id="ShowTransitionScreen_Policy">
+      <decimalTextBox refId="ShowTransitionScreen_Part">Временный показ экрана перехода в Chrome</decimalTextBox>
+    </presentation>
+    <presentation id="UseIeSiteList_Policy"/>
+  </presentationTable>
+</resources>
+</policyDefinitionResources>

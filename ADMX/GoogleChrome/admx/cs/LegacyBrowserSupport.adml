@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<policyDefinitionResources revision="1.0" schemaVersion="1.0">
+  <displayName>
+  </displayName>
+  <description>
+  </description>
+  <resources>
+    <stringTable>
+      <string id="KeepLastChromeTab_Policy">Při přechodu v Chromu zachovat naposledy otevřenou kartu</string>
+      <string id="ShowTransitionScreen_Policy">Zobrazit v Chromu na určitou dobu obrazovku přechodu</string>
+      <string id="ChromeArguments_Explain">Umožňuje zadat argumenty, které budou při spuštění předány Chromu.
+
+Pokud je tato zásada povolena, budou při spuštění Chromu použity zadané parametry.
+
+Pomocí speciálního zástupného symbolu ${url} také můžete určit, kde má být v příkazovém řádku uvedena adresa URL. Příklad: „--url=${url} --kiosk“.
+Pokud se má URL vložit na konec, tento zástupný symbol zadávat nemusíte. Pokud je adresa URL jediným argumentem, můžete tuto zásadu ponechat prázdnou.
+
+Pokud je tato zásada zakázána nebo ponechána prázdná, bude prohlížeči jako parametr předána pouze adresa URL.</string>
+      <string id="AlternativeBrowserArguments">Argumenty alternativního prohlížeče</string>
+      <string id="ChromeArguments">Argumenty prohlížeče Chrome</string>
+      <string id="AlternativeBrowserPath_Part">Cesta k alternativnímu prohlížeči</string>
+      <string id="URLList_Part">Hostitelé, kteří se mají otevírat v alternativním prohlížeči</string>
+      <string id="KeepLastChromeTab_Explain">Umožňuje zadat, co se stane při přesměrování poslední otevřené karty z Chromu na alternativní prohlížeč.
+
+Pokud je tato zásada povolena nebo není nastavena, bude poslední karta ponechána otevřená a bude po přechodu ukazovat na stránku Nová karta. Pokud je v této zásadě nastaveno zakázání, poslední karta bude zavřena. Pokud v Chromu nejsou otevřena žádná jiná okna, povede to k zavření Chromu.</string>
+      <string id="UseIeSiteList_Part">Použít zásadu seznamu webů podnikové sítě prohlížeče Internet Explorer</string>
+      <string id="SUPPORTED_WINXPSP2">Microsoft Windows XP SP2 nebo novější</string>
+      <string id="AlternativeBrowserPath">Cesta k alternativnímu prohlížeči</string>
+      <string id="UseIeSiteList_Explain">Pokud je povolena tato zásada, budou se přechody mezi prohlížeči spouštět také prostřednictvím položek v zásadě SiteList pro Internet Explorer, která je popsána na stránce https://technet.microsoft.com/itpro/internet-explorer/ie11-deploy-guide/turn-on-enterprise-mode-and-use-a-site-list.
+
+Pokud tato zásada není nastavena nebo je zakázána, použijí se pouze adresy URL v zásadě pro rozšíření.</string>
+      <string id="AlternativeBrowserPath_Explain">Zadejte spustitelný soubor alternativního prohlížeče.
+Umožňuje zadat, který program se má použít jako alternativní prohlížeč.
+
+Pokud je tato zásada povolena, můžete do ní buď zadat absolutní cestu, nebo použít jednu z následujících proměnných:
+
+${ie} – V tomto případě se použije výchozí umístění instalace prohlížeče Internet Explorer
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\IEXPLORE.EXE.
+${firefox} – V tomto případě se použije výchozí umístění instalace prohlížeče Firefox
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\FIREFOX.EXE.
+${safari} – V tomto případě se jako umístění prohlížeče použije výchozí umístění instalace prohlížeče Safari HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\SAFARI.EXE.
+
+Pokud tato zásada není povolena nebo je ponechána prázdná, použije se výchozí alternativní prohlížeč, což je Internet Explorer ve stejném umístění, jako by byla použita hodnota ${ie}.</string>
+      <string id="ShowTransitionScreen_Part">Zobrazit v Chromu na určitou dobu obrazovku přechodu</string>
+      <string id="URLList_Explain">Umožňuje zadat seznam názvů domén hostitelů, které se mají otevírat v alternativním prohlížeči.
+
+Pokud je tato zásada povolena, je třeba zadat seznam filtrů, které spustí přechod na alternativní prohlížeč. Každý záznam by měl být některý z následujících čtyř typů:
+
+Část názvu hostitele: Je třeba uvést buď úplné názvy domén (například „www.example.com“), nebo jejich části (například „example.com“ nebo dokonce jen „example“). Zástupné znaky zatím nejsou podporovány.
+Předpona adresy URL: Odpovídat budou pouze správné předpony adres URL včetně protokolu a portu (pokud je potřeba). Příklad: „http://login.example.com“ nebo „https://www.example.com:8080/login/“.
+Vylučující záznam: Začíná znakem „!“ a pokračuje jako část názvu hostitele nebo předpona adresy URL, jak je uvedeno výše. Vylučující záznamy se vždy otevírají v Chromu. Příklad: „!example.com“ nebo „!file:///c:/localapp/“.
+Záznam se zástupným symbolem: Obsahuje pouze jeden znak „*“. Odpovídá libovolné adrese URL. Je určen k použití společně s vylučujícími záznamy v případě, že se má většina adres URL otevírat v alternativním prohlížeči a pouze malá část adres URL v Chromu.
+
+Vylučující záznamy mají menší prioritu než pozitivní záznamy. Lze tak velké části domény uvést na seznamu povolených a přitom pro menší části ponechat otevírání v Chromu.
+Záznam se zástupným symbolem (pokud je uveden) se použije až poté, co byla zkontrolována všechna ostatní pravidla.
+
+Přesměrování je sledováno u následujících protokolů: http:, https:.
+
+Pokud tato zásada není zadána nebo je ponechána prázdná, přechod na alternativní prohlížeč se neaktivuje.</string>
+      <string id="ChromePath_Explain">Umožňuje zadat spustitelný soubor Chromu, který se má spustit při návratu z alternativního prohlížeče(*).
+
+Pokud je tato zásada povolena, můžete v ní buď uvést absolutní cestu, nebo použít následující proměnnou:
+
+${chrome} – V tomto případě se použije výchozí umístění instalace prohlížeče Chrome
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\Chrome.EXE.
+
+Pokud je tato zásada zakázána nebo je ponechána prázdná, použije se výchozí umístění instalace prohlížeče Chrome, stejně jako by byla použita hodnota ${chrome}.
+
+*: V současné době podporuje automatický návrat do Chromu pouze prohlížeč Internet Explorer.</string>
+      <string id="Cat_LegacyBrowserSupport">Podpora starších prohlížečů</string>
+      <string id="AlternativeBrowserArguments_Part">Argumenty alternativního prohlížeče</string>
+      <string id="URLGreyList_Part">Hostitelé, kteří nemají spouštět přechod v ani jednom prohlížeči</string>
+      <string id="UseIeSiteList_Policy">Použít zásadu seznamu webů podnikové sítě prohlížeče Internet Explorer</string>
+      <string id="URLGreyList_Policy">Hostitelé, kteří nemají spouštět přechod v ani jednom prohlížeči</string>
+      <string id="ShowTransitionScreen_Explain">Umožňuje zadat, na jak dlouho se před přechodem do jiného prohlížeče na kartě v Chromu zobrazí zpráva o přechodu. Pomáhá to s vizualizací přechodu. Tato zásada se zadává v sekundách.
+
+Pokud tato zásada není nastavena, zavře se karta ihned, jakmile je možné přechod provést.</string>
+      <string id="URLList_Policy">Hostitelé, kteří se mají otevírat v alternativním prohlížeči</string>
+      <string id="ChromePath">Cesta k prohlížeči Chrome</string>
+      <string id="ChromeArguments_Part">Argumenty prohlížeče Chrome</string>
+      <string id="KeepLastChromeTab_Part">Při přechodu v Chromu zachovat naposledy otevřenou kartu</string>
+      <string id="AlternativeBrowserArguments_Explain">Umožňuje zadat argumenty, které mají být předány spustitelnému souboru alternativního prohlížeče.
+
+Pokud je tato zásada povolena, budou při volání alternativního prohlížeče použity zadané parametry.
+
+Pomocí speciálního zástupného symbolu ${url} také můžete určit, kde má být v příkazovém řádku uvedena adresa URL. Příklad: „--url=${url} --kiosk“.
+Pokud se má URL vložit na konec, tento zástupný symbol zadávat nemusíte. Pokud je adresa URL jediným argumentem, můžete tuto zásadu ponechat prázdnou.
+
+Pokud je tato zásada zakázána nebo ponechána prázdná, bude prohlížeči jako parametr předána pouze adresa URL.</string>
+      <string id="URLGreyList_Explain">Umožňuje zadat seznam názvů domén hostitelů, které se mohou otevírat v obou prohlížečích.
+
+Pokud je tato zásada povolena, domény v tomto seznamu budou k dispozici v obou prohlížečích a nebudou spouštět přechod ani jedním směrem.
+
+Tento seznam lze použít například k uvedení ověřovacích domén, které jsou sdíleny mezi novými a starými aplikacemi.
+
+Části názvu hostitele: Je třeba uvést buď úplné názvy domén (například „www.example.com“), nebo jejich části (například „example.com“ nebo dokonce jen „example“). Zástupné znaky zatím nejsou podporovány.
+Předpony adres URL: Odpovídat budou pouze správné předpony adres URL včetně protokolu a portu (pokud je potřeba). Příklad: „http://login.example.com“ nebo „https://www.example.com:8080/login/“.
+
+Pokud tato zásada není zadána nebo je seznam ponechán prázdný, každá doména, která není uvedena v seznamu „Hostitelé, kteří se mají otevírat v alternativním prohlížeči“, spustí přechod zpět do Chromu(*).
+
+*: V současné době podporuje automatický návrat do Chromu pouze prohlížeč Internet Explorer.</string>
+      <string id="ChromePath_Part">Cesta k prohlížeči Chrome</string>
+</stringTable>
+  <presentationTable>
+    <presentation id="AlternativeBrowserPath">
+      <textBox refId="AlternativeBrowserPath_Part">
+        <label>Cesta k alternativnímu prohlížeči</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="AlternativeBrowserArguments">
+      <textBox refId="AlternativeBrowserArguments_Part">
+        <label>Argumenty alternativního prohlížeče</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="ChromePath">
+      <textBox refId="ChromePath_Part">
+        <label>Cesta k prohlížeči Chrome</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="ChromeArguments">
+      <textBox refId="ChromeArguments_Part">
+        <label>Argumenty prohlížeče Chrome</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="URLList_Policy">
+      <listBox refId="URLList_Part">Hostitelé, kteří se mají otevírat v alternativním prohlížeči</listBox>
+    </presentation>
+    <presentation id="URLGreyList_Policy">
+      <listBox refId="URLGreyList_Part">Hostitelé, kteří nemají spouštět přechod v ani jednom prohlížeči</listBox>
+    </presentation>
+    <presentation id="KeepLastChromeTab_Policy"/>
+    <presentation id="ShowTransitionScreen_Policy">
+      <decimalTextBox refId="ShowTransitionScreen_Part">Zobrazit v Chromu na určitou dobu obrazovku přechodu</decimalTextBox>
+    </presentation>
+    <presentation id="UseIeSiteList_Policy"/>
+  </presentationTable>
+</resources>
+</policyDefinitionResources>

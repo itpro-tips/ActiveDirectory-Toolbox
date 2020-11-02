@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<policyDefinitionResources revision="1.0" schemaVersion="1.0">
+  <displayName>
+  </displayName>
+  <description>
+  </description>
+  <resources>
+    <stringTable>
+      <string id="KeepLastChromeTab_Policy">Ohranjanje zadnjega Chromovega zavihka pri prehodu</string>
+      <string id="ShowTransitionScreen_Policy">Zaslon za prehod v Chromu je prikazan nekaj časa</string>
+      <string id="ChromeArguments_Explain">Omogoča, da določite argumente, ki se posredujejo Chromu, kadar se zažene.
+
+Če je pravilnik omogočen, se navedeni parametri uporabijo, kadar se zažene Chrome.
+
+Uporabite lahko tudi posebni nadomestni znak ${url}, da določite, kje v ukazni vrstici naj se pojavi URL. Primer: »--url=${url} --kiosk«.
+Če je nadomestni znak dodan na konec ali če je edini argument, vam ga ni treba določiti in lahko pravilnik pustite prazen.
+
+Če je pravilnik onemogočen ali prazen, se brskalniku kot parameter pošlje samo URL.</string>
+      <string id="AlternativeBrowserArguments">Argumenti za nadomestni brskalnik</string>
+      <string id="ChromeArguments">Argumenti za Chrome</string>
+      <string id="AlternativeBrowserPath_Part">Pot do nadomestnega brskalnika</string>
+      <string id="URLList_Part">Gostitelji za odpiranje v nadomestnem brskalniku</string>
+      <string id="KeepLastChromeTab_Explain">Omogoča, da določite, kaj se zgodi, ko se zadnji zavihek, odprt v Chromu, preusmerja na nadomestni brskalnik.
+
+Če je ta pravilnik omogočen ali ni nastavljen, zadnji zavihek ostane odprt in po prehodu kaže na stran za nov zavihek. Če je onemogočen, se zapre zadnji zavihek, kar pomeni, da se zapre tudi Chrome, če ni odprtih nobenih drugih Chromovih oken.</string>
+      <string id="UseIeSiteList_Part">Uporaba pravilnika za sezname spletnih mest v načinu za podjetja Internet Explorerja</string>
+      <string id="SUPPORTED_WINXPSP2">Microsoft Windows XP SP2 ali novejši</string>
+      <string id="AlternativeBrowserPath">Pot do nadomestnega brskalnika</string>
+      <string id="UseIeSiteList_Explain">Če je ta pravilnik omogočen, prehode med brskalniki prav tako sprožijo vnosi v pravilniku za sezname spletnih mest za Internet Explorer, kot so opredeljeni tukaj: (https://technet.microsoft.com/itpro/internet-explorer/ie11-deploy-guide/turn-on-enterprise-mode-and-use-a-site-list).
+
+Če pravilnik ni nastavljen ali je onemogočen, se uporabijo smo URL-ji iz pravilnika za razširitve.</string>
+      <string id="AlternativeBrowserPath_Explain">Določite izvedljivo datoteko nadomestnega brskalnika.
+Omogoča izbiro programa, ki se uporabi kot nadomestni brskalnik.
+
+Če je pravilnik omogočen, lahko v njem določite absolutno pot ali uporabite eno od teh spremenljivk:
+
+${ie} – v tem primeru se za izbiro brskalnika uporabi privzeto mesto namestitve Internet Explorerja
+(HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\IEXPLORE.EXE).
+${firefox}  – v tem primeru se za izbiro brskalnika uporabi privzeto mesto namestitve Firefoxa (HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\FIREFOX.EXE).
+${safari}  – v tem primeru se za izbiro brskalnika uporabi privzeto mesto namestitve Safarija (HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\SAFARI.EXE).
+
+Če ta pravilnik ni omogočen ali je prazen, se uporabi privzeti nadomestni brskalnik Internet Explorer, ki je določen, kot da bi bila uporabljena vrednost ${ie}.</string>
+      <string id="ShowTransitionScreen_Part">Zaslon za prehod v Chromu je prikazan nekaj časa</string>
+      <string id="URLList_Explain">Omogoča, da določite seznam z imeni domen gostiteljev, ki se odprejo v nadomestnem brskalniku.
+
+Če je pravilnik omogočen, morate navesti seznam filtrov, ki sprožijo prehod na nadomestni brskalnik. Vsak vnos mora biti ena od teh vrst:
+
+Del z imenom gostitelja: določiti je treba celotna imena domen, na primer »www.example.com«, oziroma njihove dele, na primer »example.com« ali celo »example«. Nadomestni znaki še niso podprti.
+Predpona URL-ja: samo pravilne predpone URL-jev se v celoti ujemajo s protokolom in vrati, če je treba. Na primer »http://login.example.com« ali »https://www.example.com:8080/login/«.
+Negativni vnos: začne se z »!« in konča z delom z imenom gostitelja ali predpono URL-ja, kot je opisano zgoraj. Negativni vnosi se vedno odprejo v Chromu. Npr. »!example.com« ali »!file:///c:/localapp/«.
+Vnos nadomestnega znaka: vsebuje samo en znak »*«. Ujema se s poljubnim URL-jem. Namenjen uporabi skupaj z negativnimi vnosi, če se naj večina URL-jev odpira v nadomestnem brskalniku in samo določeno število v Chromu.
+
+Negativni vnosi imajo višje prednosti kot pozitivni, kar pomeni, da lahko na seznam dovoljenih daste velik del domene, manjše razdelke pa prihranite za odpiranje v Chromu.
+Morebitni vnos nadomestnega znaka se uporabi šele, ko so bila preverjena vsa druga pravila.
+
+Preusmerjanje se nadzoruje pri teh protokolih: http:, https:.
+
+Če ni navedeno ali je prazno, se prehod na nadomestni brskalnik ne sproži.</string>
+      <string id="ChromePath_Explain">Omogoča izbiro Chromove izvedljive datoteke, ki se zažene pri vrnitvi iz nadomestnega brskalnika (*).
+
+Če je pravilnik omogočen, lahko v njem določite absolutno pot ali uporabite to spremenljivko:
+
+${chrome} – v tem primeru se za izbiro brskalnika uporabi privzeto mesto namestitve Chroma (HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\Chrome.EXE).
+
+Če je pravilnik onemogočen ali prazen, se uporabi privzeta namestitev Chroma, kot da bi bila uporabljena vrednost ${chrome}.
+
+*: Trenutno podpira samodejno vrnitev v Chrome samo Internet Explorer.</string>
+      <string id="Cat_LegacyBrowserSupport">Podpora za starejše brskalnike</string>
+      <string id="AlternativeBrowserArguments_Part">Argumenti za nadomestni brskalnik</string>
+      <string id="URLGreyList_Part">Gostitelji, ki ne sprožijo prehoda v nobenem brskalniku</string>
+      <string id="UseIeSiteList_Policy">Uporaba pravilnika za sezname spletnih mest v načinu za podjetja Internet Explorerja</string>
+      <string id="URLGreyList_Policy">Gostitelji, ki ne sprožijo prehoda v nobenem brskalniku</string>
+      <string id="ShowTransitionScreen_Explain">Omogoča, da določite, kako dolgo bo vidno sporočilo za prehod na zavihku v Chromu, preden bo opravljen prehod na drugi brskalnik. To olajša predstavo prehoda. Pravilnik se določi v sekundah.
+
+Če pravilnik ni nastavljen, bo zavihek zaprt takoj, ko bo mogoče dokončati prehod.</string>
+      <string id="URLList_Policy">Gostitelji za odpiranje v nadomestnem brskalniku</string>
+      <string id="ChromePath">Pot do Chroma</string>
+      <string id="ChromeArguments_Part">Argumenti za Chrome</string>
+      <string id="KeepLastChromeTab_Part">Ohranjanje zadnjega Chromovega zavihka pri prehodu</string>
+      <string id="AlternativeBrowserArguments_Explain">Omogoča, da določite argumente, ki se pošljejo izvedljivi datoteki nadomestnega brskalnika.
+
+Če je pravilnik omogočen, se navedeni parametri uporabijo, kadar se zažene nadomestni brskalnik.
+
+Uporabite lahko tudi posebni nadomestni znak ${url}, da določite, kje v ukazni vrstici naj se pojavi URL. Primer: »--url=${url} --kiosk«.
+Če je nadomestni znak dodan na konec ali če je edini argument, vam ga ni treba določiti in lahko pravilnik pustite prazen.
+
+Če je pravilnik onemogočen ali prazen, se brskalniku kot parameter pošlje samo URL.</string>
+      <string id="URLGreyList_Explain">Omogoča, da določite seznam z imeni domen gostiteljev, ki se odprejo v obeh brskalnikih.
+
+Če je pravilnik omogočen, so domene na seznamu na voljo obema brskalnikoma in ne sprožijo prehoda v nobeno smer.
+
+Uporablja se lahko za domene za preverjanje pristnosti, ki jih skupaj uporabljajo nove in starejše aplikacije s tega seznama.
+
+Deli imen gostiteljev: določiti je treba celotna imena domen, na primer »www.example.com«, oziroma njihove dele, na primer »example.com« ali celo »example«. Nadomestni znaki še niso podprti.
+Predpone URL-jev: samo pravilne predpone URL-jev se v celoti ujemajo s protokolom in vrati, če je treba. Na primer »http://login.example.com« ali »https://www.example.com:8080/login/«.
+
+Če pravilnik ni določen ali je prazen, sprožijo domene, ki niso na seznamu »Gostitelji za odpiranje v nadomestnem brskalniku«, prehod na Chrome (*).
+
+(*) Samodejno vrnitev v Chrome trenutno podpira samo Internet Explorer.</string>
+      <string id="ChromePath_Part">Pot do Chroma</string>
+</stringTable>
+  <presentationTable>
+    <presentation id="AlternativeBrowserPath">
+      <textBox refId="AlternativeBrowserPath_Part">
+        <label>Pot do nadomestnega brskalnika</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="AlternativeBrowserArguments">
+      <textBox refId="AlternativeBrowserArguments_Part">
+        <label>Argumenti za nadomestni brskalnik</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="ChromePath">
+      <textBox refId="ChromePath_Part">
+        <label>Pot do Chroma</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="ChromeArguments">
+      <textBox refId="ChromeArguments_Part">
+        <label>Argumenti za Chrome</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="URLList_Policy">
+      <listBox refId="URLList_Part">Gostitelji za odpiranje v nadomestnem brskalniku</listBox>
+    </presentation>
+    <presentation id="URLGreyList_Policy">
+      <listBox refId="URLGreyList_Part">Gostitelji, ki ne sprožijo prehoda v nobenem brskalniku</listBox>
+    </presentation>
+    <presentation id="KeepLastChromeTab_Policy"/>
+    <presentation id="ShowTransitionScreen_Policy">
+      <decimalTextBox refId="ShowTransitionScreen_Part">Zaslon za prehod v Chromu je prikazan nekaj časa</decimalTextBox>
+    </presentation>
+    <presentation id="UseIeSiteList_Policy"/>
+  </presentationTable>
+</resources>
+</policyDefinitionResources>

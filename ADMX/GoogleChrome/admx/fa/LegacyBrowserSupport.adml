@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<policyDefinitionResources revision="1.0" schemaVersion="1.0">
+  <displayName>
+  </displayName>
+  <description>
+  </description>
+  <resources>
+    <stringTable>
+      <string id="KeepLastChromeTab_Policy">نگه داشتن آخرین برگه Chrome در انتقال</string>
+      <string id="ShowTransitionScreen_Policy">نمایش صفحه انتقال در Chrome برای مدت‌زمان مشخصی</string>
+      <string id="ChromeArguments_Explain">به شما امکان می‌دهد آرگومان‌هایی را مشخص کنید که باید هنگام اجرای Chrome به آن ارائه شوند.
+
+اگر خط‌مشی فعال باشد پارامترهای ارائه‌شده هنگام فراخوانی Chrome استفاده می‌شوند.
+
+همچنین می‌توانید از نگهدارنده مکان ویژه {url}$ استفاده کنید، تا مشخص کنید در خط فرمان، نشانی اینترنتی کجا باید ظاهر شود. مثلاً "--url=${url} --kiosk".
+در صورتی که نگهدارنده مکان باید در انتها افزوده شود یا در صورتی که این تنها آرگومانی است که می‌توانید خط‌مشی را برای آن خالی بگذارید، مجبور نیستید نگهدارنده مکان را مشخص کنید.
+
+اگر خط‌مشی غیرفعال باشد یا خالی گذاشته شده باشد فقط نشانی اینترنتی به عنوان پارامتر به مرورگر ارائه می‌شود.</string>
+      <string id="AlternativeBrowserArguments">آرگومان‌های مرورگر جایگزین</string>
+      <string id="ChromeArguments">آرگومان‌های Chrome</string>
+      <string id="AlternativeBrowserPath_Part">مسیر مرورگر جایگزین</string>
+      <string id="URLList_Part">میزبان‌هایی برای باز شدن در مرورگر جایگزین</string>
+      <string id="KeepLastChromeTab_Explain">به شما امکان می‌دهد مشخص کنید هنگامی که آخرین برگه باز در Chrome درحال هدایت شدن به مرورگر جایگزین است، چه اتفاقی بیافتد.
+
+اگر این خط‌مشی فعال باشد یا تنظیم نشود، آخرین برگه، باز باقی می‌ماند و بعد از انتقال به صفحه برگه جدید تغییر می‌کند. اگر روی غیرفعال تنظیم شود، آخرین برگه بسته می‌شود که اگر پنجره Chrome دیگری باز نباشد، به بسته شدن Chrome منجر می‌شود.</string>
+      <string id="UseIeSiteList_Part">استفاده از خط‌مشی فهرست سایت حالت شرکتی IE</string>
+      <string id="SUPPORTED_WINXPSP2">Microsoft Windows XP SP2 یا بالاتر</string>
+      <string id="AlternativeBrowserPath">مسیر مرورگر جایگزین</string>
+      <string id="UseIeSiteList_Explain">وقتی فعال باشد، انتقال بین مرورگرها با ورودی‌های موجود در خط‌مشی SiteList برای Internet Explorer که در (https://technet.microsoft.com/itpro/internet-explorer/ie11-deploy-guide/turn-on-enterprise-mode-and-use-a-site-list) مشخص شده است، هم فعال می‌شود.
+
+اگر تنظیم نشود یا غیرفعال شود، فقط نشانی‌های وب در خط‌مشی گسترش استفاده خواهد شد.</string>
+      <string id="AlternativeBrowserPath_Explain">فایل قابل اجرای مرورگر جایگزین را مشخص کنید.
+به شما امکان می‌دهد برنامه‌ای را مشخص کنید که باید بعنوان مرورگر جایگزین استفاده شود.
+
+درصورت فعال بودن، می‌توانید یا مسیر قطعی را در خط‌مشی مشخص کنید یا یکی از متغیرهای زیر را استفاده کنید:
+
+{ie}$ - مکان پیش‌فرض نصب برای Internet Explorer
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\IEXPLORE.EXE استفاده می‌شود تا مکان مرورگر در این مورد تعیین شود.
+{firefox}$ - مکان پیش‌فرض نصب برای Firefox
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\FIREFOX.EXE استفاده می‌شود تا مکان مرورگر در این مورد تعیین شود.
+{safari}$ - مکان پیش‌فرض نصب  برای Safari
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\SAFARI.EXE استفاده می‌شود تا مکان مرورگر در این مورد تعیین شود.
+
+اگر خط‌مشی فعال نباشد، یا خالی گذاشته شده باشد، مرورگر جایگزین پیش‌فرض استفاده می‌شود که‏ Internet Explorer است انگار که متغیر {ie}$ استفاده شده باشد.</string>
+      <string id="ShowTransitionScreen_Part">نمایش صفحه انتقال در Chrome برای مدت‌زمان مشخصی</string>
+      <string id="URLList_Explain">به شما امکان می‌دهد فهرستی از نام‌های دامنه میزبان را برای باز شدن در مرورگر جایگزین مشخص کنید.
+
+اگر خط‌مشی فعال باشد، باید فهرستی از فیلترهایی را ارائه دهید که انتقال به مرورگر جایگزین را فعال می‌کنند. هر ورودی باید یکی از چهار نوع زیر باشد:
+
+بخش نام میزبان: یا نام‌ کامل میزبان، مانند «www.example.com» و یا بخش‌هایی از آن مانند «example.com» یا حتی «example» باید مشخص شود.
+نویسه‌های عام هنوز پشتیبانی نمی‌شوند.
+پیشوند نشانی اینترنتی: فقط پیشوندهای صحیح نشانی اینترنتی، با پروتکل و درگاه (در صورت نیاز) کاملاً تطابق دارند. برای مثال «http://login.example.com» یا «https://www.example.com:8080/login/‎».
+ورودی منفی: با «!» شروع می‌شود و همان‌طور که در بالا شرح داده شده است، به‌عنوان بخش نام میزبان یا پیشوند نشانی اینترنتی ادامه می‌یابد. ورودی‌های منفی همیشه در Chrome باز می‌شوند. مثلاً «‎!example.com» یا «‎!file:///c:/localapp/‎».
+ورودی نویسه عام: فقط حاوی یک نویسه «*» است. بر هر نشانی اینترنتی منطبق می‌شود. برای استفاده با ورودی‌های منفی در نظر گرفته می‌شود، اگر اکثر نشانی‌های اینترنتی باید در مرورگر جایگزین باز شوند و فقط تعداد اندکی از نشانی‌های اینترنتی منتخب باید در Chrome باز شوند.
+
+ورودی‌های منفی بر ورودی‌های مثبت اولویت‌های بالاتری دارند که اجازه می‌دهد بخش‌های بزرگی از یک دامنه در فهرست مجاز قرار بگیرند در حالیکه بخش‌های کوچکتر را برای باز شدن در Chrome ذخیره می‌کند.
+اگر ورودی نویسه عام موجود باشد فقط بعد از آنکه همه قوانین دیگر بررسی شدند، اعمال می‌شود.
+
+این پروتکل‌ها برای هدایت کردن نظارت می‌شوند: http:‎،‏ https:‎.
+
+اگر مشخص نشده باشد یا خالی گذاشته شود - هیچ انتقالی به مرورگر جایگزین فعال نمی‌شود.</string>
+      <string id="ChromePath_Explain">به شما امکان می‌دهد فایل قابل اجرای Chrome را مشخص کنید که باید هنگام بازگشت از مرورگر جایگزین راه‌اندازی شود(*).
+
+وقتی خط‌مشی فعال باشد می‌توانید یا مسیر قطعی را در خط‌مشی مشخص کنید یا از متغیرهای زیر استفاده کنید:
+
+{chrome}$ - مکان پیش‌فرض نصب برای Chrome
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\Chrome.EXE استفاده می‌شود تا مکان مرورگر در این مورد تعیین شود.
+
+اگر خط‌مشی غیرفعال باشد، یا خالی گذاشته شده باشد، نصب پیش‌فرض Chrome استفاده می‌شود انگار که متغیر {chrome}$ استفاده شده باشد.
+
+*: در حال حاضر فقط Internet Explorer از بازگشت خودکار به Chrome پشتیبانی می‌کند.</string>
+      <string id="Cat_LegacyBrowserSupport">پشتیبانی از مرورگر قدیمی</string>
+      <string id="AlternativeBrowserArguments_Part">آرگومان‌های مرورگر جایگزین</string>
+      <string id="URLGreyList_Part">میزبان‌هایی که نباید در هیچ‌کدام از مرورگرها انتقالی را فعال کنند</string>
+      <string id="UseIeSiteList_Policy">استفاده از خط‌مشی فهرست سایت حالت شرکتی IE</string>
+      <string id="URLGreyList_Policy">میزبان‌هایی که نباید در هیچ‌کدام از مرورگرها انتقالی را فعال کنند</string>
+      <string id="ShowTransitionScreen_Explain">به شما امکان می‌دهد مشخص کنید پیام انتقال قبل از انتقال به مرورگر دیگر چه مدت‌زمانی در برگه Chrome قابل‌مشاهده باشد. این کار به تجسم انتقال کمک می‌کند. واحد ثانیه برای این خط‌مشی استفاده می‌شود.
+
+اگر تنظیم نشود، زمانی‌که انتقال بتواند کامل شود، برگه فوراً بسته خواهد شد.</string>
+      <string id="URLList_Policy">میزبان‌هایی برای باز شدن در مرورگر جایگزین</string>
+      <string id="ChromePath">مسیر Chrome</string>
+      <string id="ChromeArguments_Part">آرگومان‌های Chrome</string>
+      <string id="KeepLastChromeTab_Part">نگه داشتن آخرین برگه Chrome در انتقال</string>
+      <string id="AlternativeBrowserArguments_Explain">به شما امکان می‌دهد آرگومان‌هایی را مشخص کنید که باید به فایل اجرایی مرورگر جایگزین ارائه شوند.
+
+اگر خط‌مشی فعال باشد، پارامترهای ارائه شده هنگام فراخوانی مرورگر جایگزین استفاده خواهند شد.
+
+همچنین می‌توانید از نگهدارنده‌ مکان ویژه {url}$‏‏ استفاده کنید تا مشخص کنید در خط فرمان، نشانی اینترنتی کجا باید نمایش داده شود. مثلاً "--url=${url} --kiosk".
+درصورتی که نگهدارنده مکان باید در انتها اضافه شود یا در صورتی که نگهدارنده مکان باید تنها آرگومانی باشد که می‌توانید خط‌مشی را برای آن خالی بگذارید، مجبور نیستید نگهدارنده مکان را مشخص کنید.
+
+اگر خط‌مشی غیرفعال یا خالی باشد فقط نشانی اینترنتی به عنوان پارامتر به مرورگر ارائه می‌شود.‏‎‎‎‎‎‎</string>
+      <string id="URLGreyList_Explain">به شما امکان می‌دهد فهرست نام دامنه‌های میزبانی را مشخص کنید که باید در هر دو مرورگرها باز شوند.
+
+وقتی این خط‌مشی فعال باشد، دامنه‌های این فهرست در هر دو مرورگر دردسترس خواهند بود و انتقالی را در هیچ‌یک از دو جهت فعال نمی‌کند.
+
+یکی از موارد استفاده، دامنه‌های احراز هویت هستند که بین برنامه‌های جدید و قدیمی در این فهرست مشترک هستند.
+
+بخش‌های نام میزبان: یا نام کامل دامنه مانند «www.example.com» یا بخشی از آن مانند «example.com:» یا حتی «example» باید مشخص شود. از نویسه‌های عام هنوز پشتیبانی نمی‌شود.
+
+پیشوندهای نشانی اینترنتی: فقط پیشوندهای صحیح نشانی اینترنتی با پروتکل و پورت در صورت نیاز کاملاً تطابق دارند. مثلاً "http://login.example.com" یا "https://www.example.com:8080/login‏/‏".
+
+در صورتی که مشخص نشده باشد یا خالی گذاشته شده باشد - هر دامنه‌ای که در فهرست «میزبان‌هایی که باید در مرورگر جایگزین باز شوند» نباشد انتقال بازگشتی به Chrome را فعال می‌کند (*).
+
+*: درحال‌حاضر فقط Internet Explorer از بازگشت خودکار به Chrome پشتیبانی می‌کند.</string>
+      <string id="ChromePath_Part">مسیر Chrome</string>
+</stringTable>
+  <presentationTable>
+    <presentation id="AlternativeBrowserPath">
+      <textBox refId="AlternativeBrowserPath_Part">
+        <label>مسیر مرورگر جایگزین</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="AlternativeBrowserArguments">
+      <textBox refId="AlternativeBrowserArguments_Part">
+        <label>آرگومان‌های مرورگر جایگزین</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="ChromePath">
+      <textBox refId="ChromePath_Part">
+        <label>مسیر Chrome</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="ChromeArguments">
+      <textBox refId="ChromeArguments_Part">
+        <label>آرگومان‌های Chrome</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="URLList_Policy">
+      <listBox refId="URLList_Part">میزبان‌هایی برای باز شدن در مرورگر جایگزین</listBox>
+    </presentation>
+    <presentation id="URLGreyList_Policy">
+      <listBox refId="URLGreyList_Part">میزبان‌هایی که نباید در هیچ‌کدام از مرورگرها انتقالی را فعال کنند</listBox>
+    </presentation>
+    <presentation id="KeepLastChromeTab_Policy"/>
+    <presentation id="ShowTransitionScreen_Policy">
+      <decimalTextBox refId="ShowTransitionScreen_Part">نمایش صفحه انتقال در Chrome برای مدت‌زمان مشخصی</decimalTextBox>
+    </presentation>
+    <presentation id="UseIeSiteList_Policy"/>
+  </presentationTable>
+</resources>
+</policyDefinitionResources>

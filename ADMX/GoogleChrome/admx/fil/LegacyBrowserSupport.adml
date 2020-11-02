@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<policyDefinitionResources revision="1.0" schemaVersion="1.0">
+  <displayName>
+  </displayName>
+  <description>
+  </description>
+  <resources>
+    <stringTable>
+      <string id="KeepLastChromeTab_Policy">Panatilihin Sa Paglipat ang Huling Tab ng Chrome</string>
+      <string id="ShowTransitionScreen_Policy">Ipakita ang Screen ng Paglipat sa Chrome Nang Ilang Sandali</string>
+      <string id="ChromeArguments_Explain">Nagbibigay-daan sa iyong tukuyin ang mga argument na ipapasa sa Chrome kapag pinagana ito. 
+
+Kapag pinagana ang patakaran, magagamit ang mga ibinigay na parameter kapag ginamit ang Chrome.
+
+Maaari mo ring gamitin ang espesyal na placeholder na ${url} upang tukuyin kung saan dapat lumabas ang url sa linya ng command. Hal. "--url=${url} --kiosk".
+Hindi mo kailangang tukuyin ang placeholder kung dapat itong idagdag sa dulo o kung ito lang dapat ang argument kung saan maaari mong hayaang walang laman ang patakarang iyon.
+
+Kung hindi pinagana ang patakaran o kung hinayaan itong walang laman, ang url lang ang ipapasa bilang isang parameter sa browser.</string>
+      <string id="AlternativeBrowserArguments">Mga Argument ng Alternatibong Browser</string>
+      <string id="ChromeArguments">Mga Argument sa Chrome</string>
+      <string id="AlternativeBrowserPath_Part">Path ng Kahaliling Browser</string>
+      <string id="URLList_Part">Mga Host na Bubuksan sa Kahaliling Browser</string>
+      <string id="KeepLastChromeTab_Explain">Nagbibigay-daan sa iyong tukuyin kung ano ang nangyayari kapag nare-redirect ang huling nakabukas na tab sa Chrome patungo sa alternatibong browser.
+
+Kapag naka-enable ang patakarang ito o hindi naitakda, mahahayaang nakabukas ang huling tab at hahantong sa page ng bagong tab pagkatapos ng paglipat. Kung nakatakda ito sa naka-disable, magsasara ang huling tab na hahantong sa pagsasara ng Chrome kung walang iba pang window ng Chrome na nakabukas.</string>
+      <string id="UseIeSiteList_Part">Gamitin ang Patakaran sa Listahan ng Site ng IE Enterprise Mode</string>
+      <string id="SUPPORTED_WINXPSP2">Microsoft Windows XP SP2 o mas bago</string>
+      <string id="AlternativeBrowserPath">Path ng Alternatibong Browser</string>
+      <string id="UseIeSiteList_Explain">Kapag naka-enable, ang paglipat sa pagitan ng mga browser ay mati-trigger din ng mga entry sa patakaran ng SiteList para sa Internet Explorer tulad ng tinukoy sa (https://technet.microsoft.com/itpro/internet-explorer/ie11-deploy-guide/turn-on-enterprise-mode-and-use-a-site-list).
+
+Kung hindi ito nakatakda o naka-disable, ang mga url lang sa patakaran ng extension ang gagamitin.</string>
+      <string id="AlternativeBrowserPath_Explain">Tukuyin ang executable ng kahaliling browser.
+Nagbibigay-daan sa iyong tukuyin ang gagamiting program bilang isang kahaliling browser. 
+
+Kung pinagana, maaari mong tukuyin ang isang ganap na path sa patakaran o gamitin ang isa sa mga sumusunod na variable:
+
+${ie} -  Ang default na lokasyon sa pag-install para sa Internet Explorer
+Ginagamit ang HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\IEXPLORE.EXE upang piliin ang lokasyon ng browser sa sitwasyong ito.
+${firefox} - Ang default na lokasyon sa pag-install para sa Firefox
+Ginagamit ang HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\FIREFOX.EXE upang piliin ang lokasyon ng browser sa sitwasyong ito.
+${safari} -  Ang default na lokasyon sa pag-install para sa Safari
+Ginagamit ang HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\SAFARI.EXE upang piliin ang lokasyon ng browser sa sitwasyong ito.
+
+Kung hindi na-enable ang patakaran o kung hinayaan itong walang laman, magagamit ang default na kahaliling browser na Internet Explorer na nakaayos na para bang ginamit ang ${ie} na halaga.</string>
+      <string id="ShowTransitionScreen_Part">Ipakita ang Screen ng Paglipat sa Chrome Nang Ilang Sandali</string>
+      <string id="URLList_Explain">Nagbibigay-daan sa iyong tukuyin ang isang listahan ng mga host domain name na bubuksan sa Alternatibong browser.
+
+Kung naka-enable ang patakaran, kailangan mong magbigay ng listahan ng mga filter na magti-trigger sa paglipat sa alternatibong browser. Ang bawat entry ay dapat na isa sa apat na sumusunod na uri:
+
+Bahagi ng host-name: Alinman sa kumpletong mga domain name tulad ng "www.example.com" ang dapat tukuyin o mga bahagi ng mga ito tulad ng "example.com" o kahit "example". Hindi pa sinusuportahan ang mga wildcard.
+Prefix ng URL: Mga wastong prefix ng URL lang ang itinutugma nang kumpleto sa protocol at sa port kung kinakailangan. Hal. "http://login.example.com" o "https://www.example.com:8080/login/".
+Negatibong entry: Nagsisimula sa "!" at nagpapatuloy bilang bahagi ng host-name o prefix ng URL tulad ng inilalarawan sa itaas. Palaging binubuksan sa Chrome ang mga negatibong entry. Hal. "!example.com" o "!file:///c:/localapp/".
+Wildcard na entry: Naglalaman lang ng isang character na "*." Tumutugma sa anumang URL. Sadyang ginagamit kasama ang mga negatibong entry, kung ang karamihan ng mga URL ay dapat buksan sa alternatibong browser at maliit na seleksyon lang ng mga URL ang dapat na nakabukas sa Chrome.
+
+Binibigyan ng mas mataas na priyoridad ang mga negatibong entry kaysa sa mga positibong entry na nagbibigay-daan sa pag-whitelist ng malalaking bahagi ng domain habang naglalaan ng mas maliliit na seksyong bubuksan sa Chrome.
+Kung naroon ang wildcard na entry, mailalapat lang ito kung nasuri na lahat ng iba pang panuntunan.
+
+Sinusubaybayan ang mga sumusunod para sa pag-redirect: http:, https:.
+
+Kung hindi tinukoy o kung hinayaang walang laman - walang mati-trigger na paglipat sa alternatibong browser.</string>
+      <string id="ChromePath_Explain">Nagbibigay-daan sa iyong tukuyin ang ilulunsad na executable ng Chrome kapag bumabalik mula sa kahaliling browser(*).
+
+Kapag pinagana ang patakaran, maaari mong tukuyin ang isang ganap na path sa patakaran o gamitin ang sumusunod na variable:
+
+${chrome} - Ang default na lokasyon sa pag-install para sa Chrome
+Ginagamit ang HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\Chrome.EXE upang piliin ang lokasyon ng browser sa sitwasyong ito.
+
+Kung hindi pinagana ang patakaran o kung hinayaan itong walang laman, gagamitin ang default na pag-install ng Chrome na para bang nagamit na ang halagang ${chrome}.
+
+*: Sa kasalukuyan, ang Internet Explorer lang ang sumusuporta sa awtomatikong pagbalik sa Chrome.</string>
+      <string id="Cat_LegacyBrowserSupport">Suporta sa Legacy Browser</string>
+      <string id="AlternativeBrowserArguments_Part">Mga Argument ng Alternatibong Browser</string>
+      <string id="URLGreyList_Part">Mga Host na Hindi Dapat Mag-trigger ng Paglipat sa Alinmang Browser</string>
+      <string id="UseIeSiteList_Policy">Gamitin ang Patakaran sa Listahan ng Site ng IE Enterprise Mode</string>
+      <string id="URLGreyList_Policy">Mga Host na Hindi Dapat Mag-trigger ng Paglipat sa Alinmang Browser</string>
+      <string id="ShowTransitionScreen_Explain">Nagbibigay-daan sa iyong tukuyin kung gaano katagal makikita ang mensahe ng paglipat sa tab sa Chrome bago ang paglipat sa iba pang browser. Nakakatulong ito na ilarawan ang paglipat. Natutukoy ang patakaran sa loob ng ilang segundo.
+
+Kung hindi ito nakatakda, magsasara kaagad ang tab pagkatapos, kapag maaari nang makumpleto ang paglipat.</string>
+      <string id="URLList_Policy">Mga Host na Bubuksan sa Alternatibong Browser</string>
+      <string id="ChromePath">Path ng Chrome</string>
+      <string id="ChromeArguments_Part">Mga Argument sa Chrome</string>
+      <string id="KeepLastChromeTab_Part">Panatilihin Sa Paglipat ang Huling Tab ng Chrome</string>
+      <string id="AlternativeBrowserArguments_Explain">Nagbibigay-daan sa iyong tukuyin ang mga argument na ipapasa sa executable ng kahaliling browser.
+
+Kung na-enable ang patakaran, gagamitin ang mga ibinigay na parameter kapag ginamit ang kahaliling browser.
+
+Maaari mo ring gamitin ang espesyal na placeholder na ${url} upang tukuyin kung saan dapat lumabas ang url sa linya ng command. Hal. "--url=${url} --kiosk".
+Hindi mo kailangang tukuyin ang placeholder kung dapat itong idagdag sa dulo o kung ito lang dapat ang argument kung saan maaari mong hayaang walang laman ang patakarang iyon.
+
+Kung hindi pinagana ang patakaran o kung hinayaan itong walang laman, ang url lang ang ipapasa bilang isang parameter sa browser.</string>
+      <string id="URLGreyList_Explain">Nagbibigay-daan sa iyong tukuyin ang isang listahan ng mga domain name na bubuksan sa alinmang browser.
+
+Kapag naka-enable ang patakarang ito, magiging available ang mga domain sa listahang ito sa parehong browser at hindi magti-trigger ng paglipat sa alinmang paraan.
+
+Isang posibleng sitwasyon ng paggamit ay ang anumang domain sa pag-authenticate na nakabahagi sa mga bago at legacy na app sa listahang ito. 
+
+Mga bahagi ng host-name: Alinman sa kumpletong domain name tulad ng "www.example.com" o mga bahagi nito tulad ng "example.com: o kahit na "example." Hindi pa sinusuportahan ang mga wildcard.
+Mga prefix ng URL: Mga wastong prefix ng URL lang ang itinutugma nang kumpleto sa protocol at sa port kung kinakailangan. Hal. "http://login.example.com" o "https://www.example.com:8080/login/".
+
+Kung hindi tinukoy o kung hinayaang walang laman - ang anumang domain na wala sa listahan ng "Mga Host na Bubuksan sa Alternatibong Browser" ay magti-trigger ng paglipat nang pabalik sa Chrome(*)
+
+*: Sa kasalukuyan, ang Internet Explorer lang ang sumusuporta sa awtomatikong pagbalik sa Chrome.</string>
+      <string id="ChromePath_Part">Path ng Chrome</string>
+</stringTable>
+  <presentationTable>
+    <presentation id="AlternativeBrowserPath">
+      <textBox refId="AlternativeBrowserPath_Part">
+        <label>Path ng Alternatibong Browser</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="AlternativeBrowserArguments">
+      <textBox refId="AlternativeBrowserArguments_Part">
+        <label>Mga Argument ng Alternatibong Browser</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="ChromePath">
+      <textBox refId="ChromePath_Part">
+        <label>Path ng Chrome</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="ChromeArguments">
+      <textBox refId="ChromeArguments_Part">
+        <label>Mga Argument sa Chrome</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="URLList_Policy">
+      <listBox refId="URLList_Part">Mga Host na Bubuksan sa Alternatibong Browser</listBox>
+    </presentation>
+    <presentation id="URLGreyList_Policy">
+      <listBox refId="URLGreyList_Part">Mga Host na Hindi Dapat Mag-trigger ng Paglipat sa Alinmang Browser</listBox>
+    </presentation>
+    <presentation id="KeepLastChromeTab_Policy"/>
+    <presentation id="ShowTransitionScreen_Policy">
+      <decimalTextBox refId="ShowTransitionScreen_Part">Ipakita ang Screen ng Paglipat sa Chrome Nang Ilang Sandali</decimalTextBox>
+    </presentation>
+    <presentation id="UseIeSiteList_Policy"/>
+  </presentationTable>
+</resources>
+</policyDefinitionResources>

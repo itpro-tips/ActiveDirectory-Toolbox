@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<policyDefinitionResources revision="1.0" schemaVersion="1.0">
+  <displayName>
+  </displayName>
+  <description>
+  </description>
+  <resources>
+    <stringTable>
+      <string id="KeepLastChromeTab_Policy">Laatste Chrome-tabblad behouden bij overgang</string>
+      <string id="ShowTransitionScreen_Policy">Overgangsscherm in Chrome enige tijd weergeven</string>
+      <string id="ChromeArguments_Explain">Hiermee kunt u de argumenten specificeren die worden doorgegeven aan Chrome wanneer het programma wordt uitgevoerd.
+
+Als het beleid is ingeschakeld, worden de opgegeven parameters gebruikt wanneer Chrome wordt aangeroepen.
+
+U kunt ook de speciale placeholder ${url} gebruiken om te specificeren waar de URL moet worden weergegeven op de opdrachtregel. Bijvoorbeeld '--url=${url} --kiosk'.
+U hoeft de speciale placeholder niet te specificeren als deze aan het eind moet worden bijgevoegd of als dit het enige argument is. In dit geval kunt u dat beleid leeg laten.
+
+Als het beleid is uitgeschakeld of leeg wordt gelaten, wordt alleen de URL als parameter doorgegeven aan de browser.</string>
+      <string id="AlternativeBrowserArguments">Argumenten voor alternatieve browser</string>
+      <string id="ChromeArguments">Chrome-argumenten</string>
+      <string id="AlternativeBrowserPath_Part">Alternatief browserpad</string>
+      <string id="URLList_Part">Hosts die worden geopend in de alternatieve browser</string>
+      <string id="KeepLastChromeTab_Explain">Hiermee kunt u specificeren wat er gebeurt wanneer het laatste geopende tabblad in Chrome wordt omgeleid naar de alternatieve browser.
+
+Wanneer dit beleid is ingeschakeld of niet wordt ingesteld, blijft het laatste tabblad open en verwijst dit naar de nieuwe tabbladpagina na de overgang. Als het beleid is uitgeschakeld, wordt het laatste tabblad gesloten, wat ertoe leidt dat Chrome wordt gesloten als er geen andere Chrome-vensters zijn geopend.</string>
+      <string id="UseIeSiteList_Part">Beleid gebruiken voor lijst met websites van ondernemingsmodus uit Internet Explorer</string>
+      <string id="SUPPORTED_WINXPSP2">Microsoft Windows XP SP2 of hoger</string>
+      <string id="AlternativeBrowserPath">Alternatief browserpad</string>
+      <string id="UseIeSiteList_Explain">Wanneer dit beleid is ingeschakeld, worden overgangen tussen browsers ook geactiveerd door vermeldingen uit het beleid voor de lijst met websites voor Internet Explorer zoals gedefinieerd in (https://technet.microsoft.com/itpro/internet-explorer/ie11-deploy-guide/turn-on-enterprise-mode-and-use-a-site-list).
+
+Als het beleid niet is ingesteld of is uitgeschakeld, worden alleen de URL's in het extensiebeleid gebruikt.</string>
+      <string id="AlternativeBrowserPath_Explain">Het uitvoerbare bestand van de alternatieve browser specificeren.
+Hiermee kunt u het programma specificeren dat moet worden gebruikt als alternatieve browser.
+
+Indien ingeschakeld, kunt u een absoluut pad in het beleid specificeren of een van de volgende variabelen gebruiken:
+
+${ie} - De standaardinstallatielocatie voor Internet Explorer.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\IEXPLORE.EXE wordt gebruikt om de locatie van de browser te kiezen in dit geval.
+${firefox} - De standaardinstallatielocatie voor Firefox.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\FIREFOX.EXE wordt gebruikt om de locatie van de browser te kiezen in dit geval.
+${safari} - De standaardinstallatielocatie voor Safari.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\SAFARI.EXE wordt gebruikt om de locatie van de browser te kiezen in dit geval.
+
+Als het beleid niet is ingeschakeld of leeg wordt gelaten, wordt de standaard alternatieve browser gebruikt. Dit is Internet Explorer, alsof de waarde ${ie} is gebruikt.</string>
+      <string id="ShowTransitionScreen_Part">Overgangsscherm in Chrome enige tijd weergeven</string>
+      <string id="URLList_Explain">Hiermee kunt u een lijst met hostdomeinnamen specificeren die in de alternatieve browser moeten worden geopend.
+
+Als het beleid is ingeschakeld, moet u een lijst met filters leveren waardoor de overgang naar de alternatieve browser wordt geactiveerd. Elke vermelding moet een van de volgende vier typen zijn:
+
+Hostnaamfragmenten: Volledige domeinnamen (zoals 'www.example.com') moeten worden gespecificeerd, of gedeelten hiervan (zoals 'example.com' of zelfs 'example'. Jokertekens worden nog niet ondersteund.
+URL-voorvoegsels: Alleen correcte URL-voorvoegsels worden volledig gekoppeld aan protocol en poort wanneer dat nodig is. Bijvoorbeeld 'http://login.example.com' of 'https://www.example.com:8080/login/'.
+Negatieve vermeldingen: Beginnen met '!' en gaan verder als hostnaamfragmenten of URL-voorvoegsels zoals hierboven beschreven. Negatieve vermeldingen worden altijd geopend in Chrome. Bijvoorbeeld '!example.com' of '!file:///c:/localapp/'.
+Vermeldingen met jokerteken: Kunnen slechts één teken '*' bevatten. Komen overeen met elke URL. Bedoeld voor gebruik in combinatie met negatieve vermeldingen, als de meeste URL's moeten worden geopend in de alternatieve browser en slechts een klein aantal URL's moet worden geopend in Chrome.
+
+Negatieve vermeldingen hebben een hogere prioriteit dan positieve vermeldingen. Zo kunnen grote delen van een domein op een witte lijst worden gezet terwijl kleinere delen overblijven en kunnen worden geopend in Chrome.
+Vermeldingen met jokerteken, indien aanwezig, worden pas toegepast nadat alle andere regels zijn gecontroleerd.
+
+De volgende protocollen worden gecontroleerd op omleidingen: http:, https:.
+
+Als het beleid niet is gespecificeerd of leeg wordt gelaten, wordt er geen overgang naar de alternatieve browser geactiveerd.</string>
+      <string id="ChromePath_Explain">Hiermee kunt u het uitvoerbare bestand van Chrome specificeren dat moet worden gestart wanneer u terugkeert uit de alternatieve browser(*).
+
+Wanneer het beleid is ingeschakeld, kunt u een absoluut pad in het beleid specificeren of de volgende variabele gebruiken:
+
+${chrome} - De standaardinstallatielocatie voor Chrome.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\Chrome.EXE wordt gebruikt om de locatie van de browser te kiezen in dit geval.
+
+Als het beleid is uitgeschakeld of leeg wordt gelaten, wordt de standaardinstallatie van Chrome gebruikt alsof de waarde ${chrome} is gebruikt.
+
+*: Momenteel ondersteunt alleen Internet Explorer automatisch terugkeren naar Chrome.</string>
+      <string id="Cat_LegacyBrowserSupport">Ondersteuning voor oudere browsers</string>
+      <string id="AlternativeBrowserArguments_Part">Argumenten voor alternatieve browser</string>
+      <string id="URLGreyList_Part">Hosts die in geen van de browsers een overgang moeten activeren</string>
+      <string id="UseIeSiteList_Policy">Beleid gebruiken voor lijst met websites van ondernemingsmodus uit Internet Explorer</string>
+      <string id="URLGreyList_Policy">Hosts die in geen van de browsers een overgang moeten activeren</string>
+      <string id="ShowTransitionScreen_Explain">Hiermee kunt u specificeren hoelang het overgangsbericht op het tabblad zichtbaar is in Chrome voordat wordt overgegaan naar de andere browser. Op deze manier wordt de overgang beter gevisualiseerd. Het beleid wordt gespecificeerd in seconden.
+
+Als dit beleid niet is ingesteld, wordt het tabblad onmiddellijk gesloten wanneer de overgang kan worden voltooid.</string>
+      <string id="URLList_Policy">Hosts die worden geopend in de alternatieve browser</string>
+      <string id="ChromePath">Chrome-pad</string>
+      <string id="ChromeArguments_Part">Chrome-argumenten</string>
+      <string id="KeepLastChromeTab_Part">Laatste Chrome-tabblad behouden bij overgang</string>
+      <string id="AlternativeBrowserArguments_Explain">Hiermee kunt u de argumenten specificeren die worden doorgegeven aan het uitvoerbare bestand van de alternatieve browser.
+
+Als het beleid is ingeschakeld, worden de opgegeven parameters gebruikt wanneer de alternatieve browser wordt aangeroepen.
+
+U kunt ook de speciale placeholder ${url} gebruiken om te specificeren waar de URL moet worden weergegeven in de opdrachtregel. Bijvoorbeeld '--url=${url} --kiosk'.
+U hoeft de speciale placeholder niet te specificeren als deze aan het eind moet worden bijgevoegd of als dit het enige argument is. In dit geval kunt u dat beleid leeg laten.
+
+Als het beleid is uitgeschakeld of leeg wordt gelaten, wordt alleen de URL als parameter doorgegeven aan de browser.</string>
+      <string id="URLGreyList_Explain">Hiermee kunt u een lijst met hostdomeinnamen specificeren die in beide browsers kunnen worden geopend.
+
+Wanneer dit beleid is ingeschakeld, zijn de domeinen op deze lijst beschikbaar in beide browsers en activeren ze geen overgang.
+
+Een mogelijke gebruikssituatie is een verificatiedomein dat wordt gedeeld tussen nieuwe en oudere apps in deze lijst.
+
+Hostnaamfragmenten: Volledige domeinnamen (zoals 'www.example.com') moeten worden gespecificeerd, of gedeelten hiervan (zoals 'example.com' of zelfs 'example'). Jokertekens worden nog niet ondersteund.
+URL-voorvoegsels: Alleen correcte URL-voorvoegsels worden volledig gekoppeld aan protocol en poort wanneer dat nodig is. Bijvoorbeeld 'http://login.example.com' of 'https://www.example.com:8080/login/'.
+
+Als dit beleid niet wordt gespecificeerd of leeg wordt gelaten, activeert elk domein dat niet op de lijst 'Hosts die worden geopend in de alternatieve browser' staat, een overgang terug naar Chrome(*).
+
+*: Momenteel ondersteunt alleen Internet Explorer automatisch terugkeren naar Chrome.</string>
+      <string id="ChromePath_Part">Chrome-pad</string>
+</stringTable>
+  <presentationTable>
+    <presentation id="AlternativeBrowserPath">
+      <textBox refId="AlternativeBrowserPath_Part">
+        <label>Alternatief browserpad</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="AlternativeBrowserArguments">
+      <textBox refId="AlternativeBrowserArguments_Part">
+        <label>Argumenten voor alternatieve browser</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="ChromePath">
+      <textBox refId="ChromePath_Part">
+        <label>Chrome-pad</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="ChromeArguments">
+      <textBox refId="ChromeArguments_Part">
+        <label>Chrome-argumenten</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="URLList_Policy">
+      <listBox refId="URLList_Part">Hosts die worden geopend in de alternatieve browser</listBox>
+    </presentation>
+    <presentation id="URLGreyList_Policy">
+      <listBox refId="URLGreyList_Part">Hosts die in geen van de browsers een overgang moeten activeren</listBox>
+    </presentation>
+    <presentation id="KeepLastChromeTab_Policy"/>
+    <presentation id="ShowTransitionScreen_Policy">
+      <decimalTextBox refId="ShowTransitionScreen_Part">Overgangsscherm in Chrome enige tijd weergeven</decimalTextBox>
+    </presentation>
+    <presentation id="UseIeSiteList_Policy"/>
+  </presentationTable>
+</resources>
+</policyDefinitionResources>

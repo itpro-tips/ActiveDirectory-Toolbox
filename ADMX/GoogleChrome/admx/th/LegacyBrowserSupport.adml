@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<policyDefinitionResources revision="1.0" schemaVersion="1.0">
+  <displayName>
+  </displayName>
+  <description>
+  </description>
+  <resources>
+    <stringTable>
+      <string id="KeepLastChromeTab_Policy">ให้แท็บสุดท้ายของ Chrome เปลี่ยน</string>
+      <string id="ShowTransitionScreen_Policy">แสดงหน้าจอการเปลี่ยนใน Chrome สักครู่หนึ่ง</string>
+      <string id="ChromeArguments_Explain">ช่วยให้คุณระบุอาร์กิวเมนต์ที่จะส่งไปยัง Chrome เมื่อถูกเรียกใช้
+
+หากเปิดใช้งานนโยบาย พารามิเตอร์ที่ให้มาจะถูกใช้เมื่อมีการเรียกใช้ Chrome
+
+นอกจากนี้ คุณสามารถใช้ตัวยึดตำแหน่งพิเศษ ${url} เพื่อระบุตำแหน่งที่ url ควรปรากฏในบรรทัดคำสั่ง เช่น "--url=${url} --kiosk"
+คุณไม่จำเป็นต้องระบุตัวยึดตำแหน่ง หาก url ต้องต่อท้ายที่ด้านหลัง หรือหาก url นั้นเป็นเพียงอาร์กิวเมนต์เดียว คุณสามารถเว้นว่างนโยบายได้
+
+หากปิดใช้งานหรือเว้นว่างนโยบาย เฉพาะ url เท่านั้นที่จะถูกส่งไปยังเบราว์เซอร์ในฐานะพารามิเตอร์</string>
+      <string id="AlternativeBrowserArguments">อาร์กิวเมนต์เบราว์เซอร์สำรอง</string>
+      <string id="ChromeArguments">อาร์กิวเมนต์ของ Chrome</string>
+      <string id="AlternativeBrowserPath_Part">เส้นทางเบราว์เซอร์สำรอง</string>
+      <string id="URLList_Part">โฮสต์ที่จะเปิดในเบราว์เซอร์สำรอง</string>
+      <string id="KeepLastChromeTab_Explain">ให้คุณระบุสิ่งที่จะเกิดขึ้นเมื่อแท็บสุดท้ายที่เปิดใน Chrome มีการเปลี่ยนเส้นทางไปยังเบราว์เซอร์สำรอง
+
+เมื่อเปิดใช้นโยบายนี้หรือไม่ได้ตั้งค่าไว้ แท็บสุดท้ายดังกล่าวจะเปิดค้างไว้และชี้ไปยังหน้าแท็บใหม่หลังการเปลี่ยนเบราว์เซอร์ หากตั้งค่าเป็นปิดใช้ แท็บสุดท้ายจะปิดซึ่งจะทำให้ Chrome ปิดลงหากไม่มีหน้าต่าง Chrome อื่นๆ เปิดอยู่</string>
+      <string id="UseIeSiteList_Part">ใช้นโยบายรายการเว็บไซต์โหมดองค์กรของ IE</string>
+      <string id="SUPPORTED_WINXPSP2">Microsoft Windows XP SP2 หรือใหม่กว่า</string>
+      <string id="AlternativeBrowserPath">เส้นทางเบราว์เซอร์สำรอง</string>
+      <string id="UseIeSiteList_Explain">เมื่อเปิดใช้ การเปลี่ยนระหว่างเบราว์เซอร์จะเกิดขึ้นได้จากรายการในนโยบาย SiteList ของ Internet Explorer ด้วย ตามที่ระบุไว้ใน https://technet.microsoft.com/itpro/internet-explorer/ie11-deploy-guide/turn-on-enterprise-mode-and-use-a-site-list
+
+หากไม่ได้ตั้งค่าหรือไม่ได้เปิดใช้ ระบบจะใช้เฉพาะ URL ในนโยบายส่วนขยาย</string>
+      <string id="AlternativeBrowserPath_Explain">ระบุไฟล์สั่งการของเบราว์เซอร์สำรอง
+ช่วยให้คุณระบุโปรแกรมที่จะใช้เป็นเบราว์เซอร์สำรอง
+
+หากเปิดใช้งานแล้ว คุณสามารถเลือกระบุเส้นทางที่แน่นอนในนโยบาย หรือใช้ตัวแปรใดตัวแปรหนึ่งต่อไปนี้ได้
+
+${ie} - ตำแหน่งติดตั้งเริ่มต้นสำหรับ Internet Explorer
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\IEXPLORE.EXE ใช้เพื่อเลือกตำแหน่งของเบราว์เซอร์ในกรณีนี้
+${firefox} - ตำแหน่งติดตั้งเริ่มต้นสำหรับ Firefox
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\FIREFOX.EXE ใช้เพื่อเลือกตำแหน่งของเบราว์เซอร์ในกรณีนี้
+${safari} - ตำแหน่งติดตั้งเริ่มต้นสำหรับ Safari
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\SAFARI.EXE ใช้เพื่อเลือกตำแหน่งของเบราว์เซอร์ในกรณีนี้
+
+หากนโยบายไม่ได้เปิดใช้งานหรือปล่อยให้ว่าง เบราว์เซอร์สำรองเริ่มต้นจะถูกใช้งาน ซึ่งก็คือ Internet Explorer หากใช้ค่า ${ie}</string>
+      <string id="ShowTransitionScreen_Part">แสดงหน้าจอการเปลี่ยนใน Chrome สักครู่หนึ่ง</string>
+      <string id="URLList_Explain">ช่วยให้คุณระบุรายการชื่อโดเมนของโฮสต์ที่จะเปิดในเบราว์เซอร์สำรอง
+
+หากเปิดใช้นโยบายนี้ คุณต้องระบุรายการตัวกรองซึ่งจะทำให้เกิดการเปลี่ยนไปใช้เบราว์เซอร์สำรอง ตัวกรองแต่ละตัวควรเป็นประเภทใดประเภทหนึ่งใน 4 ประเภทต่อไปนี้:
+
+ส่วนชื่อโฮสต์: ควรระบุชื่อโดเมนที่สมบูรณ์ เช่น "www.example.com" หรือบางส่วนของชื่อ เช่น "example.com" หรือแม้กระทั่ง "example" ทั้งนี้ ยังไม่มีการรองรับสัญลักษณ์แทน
+อักษรนำหน้า URL: เฉพาะอักษรนำหน้า URL ที่ถูกต้องเท่านั้นที่จะจับคู่ได้อย่างสมบูรณ์กับโปรโตคอลและพอร์ตในกรณีที่จำเป็น เช่น "http://login.example.com" หรือ "https://www.example.com:8080/login/"
+รายการปฏิเสธ: ขึ้นต้นด้วย "!" และเป็นส่วนของชื่อโฮสต์หรือคำนำหน้า URL ดังที่อธิบายด้านบน รายการปฏิเสธจะเปิดใน Chrome เสมอ เช่น "!example.com" หรือ "!file:///c:/localapp/"
+รายการสัญลักษณ์แทน: มีเฉพาะอักขระ "*" ตัวเดียวเท่านั้น จะจับคู่กับ URL ได้ทั้งหมด ควรใช้ร่วมกับรายการปฏิเสธในกรณีที่ URL ส่วนใหญ่ควรเปิดในเบราว์เซอร์สำรองและเฉพาะ URL จำนวนไม่มากที่เลือกไว้ควรเปิดใน Chrome
+
+รายการปฏิเสธมีลำดับความสำคัญสูงกว่ารายการยอมรับ ซึ่งทำให้สามารถอนุญาตโดเมนส่วนใหญ่ได้ ขณะที่ให้โดเมนส่วนน้อยส่วนเปิดใน Chrome
+ระบบจะนำรายการสัญลักษณ์แทน (ถ้ามี) ไปใช้หลังจากตรวจสอบกฎอื่นๆ ทั้งหมดแล้ว
+
+ระบบจะตรวจสอบโปรโตคอลต่อไปนี้สำหรับการเปลี่ยนเส้นทาง: http:, https:
+
+หากไม่กำหนดหรือเว้นว่างไว้ จะไม่เกิดการเปลี่ยนไปใช้เบราว์เซอร์สำรอง</string>
+      <string id="ChromePath_Explain">ช่วยให้คุณระบุไฟล์สั่งการของ Chrome ที่จะเรียกใช้เมื่อกลับจากเบราว์เซอร์สำรอง(*)
+
+เมื่อเปิดใช้งานนโยบาย คุณสามารถเลือกระบุเส้นทางที่แน่นอนในนโยบาย หรือใช้ตัวแปรต่อไปนี้ได้
+
+${chrome} - ตำแหน่งติดตั้งเริ่มต้นสำหรับ Chrome
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\Chrome.EXE ถูกใช้เพื่อเลือกตำแหน่งของเบราว์เซอร์ในกรณีนี้
+
+หากปิดใช้งานหรือเว้นว่างนโยบาย การติดตั้งเริ่มต้นของ Chrome จะถูกใช้ในลักษณะเดียวกับที่ใช้ค่า ${chrome}
+
+*: ในปัจจุบัน เฉพาะ Internet Explorer เท่านั้นที่รองรับการกลับมาที่ Chrome โดยอัตโนมัติ</string>
+      <string id="Cat_LegacyBrowserSupport">การรองรับเบราว์เซอร์เวอร์ชันเก่า</string>
+      <string id="AlternativeBrowserArguments_Part">อาร์กิวเมนต์เบราว์เซอร์สำรอง</string>
+      <string id="URLGreyList_Part">โฮสต์ที่ไม่ควรทำให้เกิดการเปลี่ยนเบราว์เซอร์</string>
+      <string id="UseIeSiteList_Policy">ใช้นโยบายรายการเว็บไซต์โหมดองค์กรของ IE</string>
+      <string id="URLGreyList_Policy">โฮสต์ที่ไม่ควรทำให้เกิดการเปลี่ยนเบราว์เซอร์</string>
+      <string id="ShowTransitionScreen_Explain">อนุญาตให้คุณระบุระยะเวลาที่ข้อความการเปลี่ยนในแท็บจะแสดงใน Chrome ก่อนเปลี่ยนเป็นเบราว์เซอร์อื่น การดำเนินการนี้ช่วยให้เห็นภาพการเปลี่ยน นโยบายนี้จะระบุค่าเป็นวินาที
+
+หากไม่ได้ตั้งค่า แท็บจะปิดทันทีเมื่อการเปลี่ยนเสร็จสมบูรณ์</string>
+      <string id="URLList_Policy">โฮสต์ที่จะเปิดในเบราว์เซอร์สำรอง</string>
+      <string id="ChromePath">เส้นทาง Chrome</string>
+      <string id="ChromeArguments_Part">อาร์กิวเมนต์ของ Chrome</string>
+      <string id="KeepLastChromeTab_Part">เก็บแท็บสุดท้ายของ Chrome ไว้เมื่อมีการเปลี่ยน</string>
+      <string id="AlternativeBrowserArguments_Explain">ช่วยให้คุณระบุอาร์กิวเมนต์ที่จะส่งไปยังไฟล์สั่งการของเบราว์เซอร์สำรอง
+
+หากเปิดใช้งานนโยบาย พารามิเตอร์ที่ให้มาจะถูกใช้เมื่อมีการเรียกใช้เบราว์เซอร์สำรอง
+
+นอกจากนี้ คุณสามารถใช้ตัวยึดตำแหน่งพิเศษ ${url} เพื่อระบุตำแหน่งที่ url ควรปรากฏในบรรทัดคำสั่ง เช่น "--url=${url} --kiosk"
+คุณไม่จำเป็นต้องระบุตัวยึดตำแหน่ง หาก url ต้องต่อท้ายที่ด้านหลัง หรือหาก url นั้นเป็นเพียงอาร์กิวเมนต์เดียว คุณสามารถเว้นว่างนโยบายได้
+
+หากปิดใช้งานหรือเว้นว่างนโยบาย เฉพาะ url เท่านั้นที่จะถูกส่งไปยังเบราว์เซอร์ในฐานะพารามิเตอร์</string>
+      <string id="URLGreyList_Explain">ช่วยให้คุณระบุรายการชื่อโดเมนของโฮสต์ที่จะเปิดในเบราว์เซอร์ใดเบราว์เซอร์หนึ่ง
+
+เมื่อเปิดใช้นโยบายนี้ โดเมนในรายการนี้จะพร้อมใช้งานในทั้ง 2 เบราว์เซอร์ และจะไม่ทำให้เกิดการเปลี่ยนเบราว์เซอร์ไม่ว่าจะใช้เบราว์เซอร์ใด
+
+กรณีการใช้งานที่เป็นไปได้คือ โดเมนการตรวจสอบสิทธิ์ใดๆ ที่แชร์ระหว่างแอปใหม่และแอปดั้งเดิมในรายการนี้
+
+ส่วนชื่อโฮสต์: ต้องระบุชื่อโดเมนที่สมบูรณ์ เช่น "www.example.com" หรือบางส่วนของชื่อ เช่น "example.com: หรือ "example" ทั้งนี้ ยังไม่มีการรองรับสัญลักษณ์แทน
+อักษรนำหน้า URL: เฉพาะอักษรนำหน้า URL ที่เหมาะสมเท่านั้นที่จะจับคู่ได้อย่างสมบูรณ์กับโปรโตคอลและพอร์ตในกรณีที่จำเป็น เช่น "http://login.example.com" หรือ "https://www.example.com:8080/login/"
+
+หากไม่ได้ระบุหรือเว้นว่างไว้ โดเมนที่ไม่ได้อยู่ในรายชื่อ "โฮสต์ที่จะเปิดในเบราว์เซอร์สำรอง" จะทำให้เกิดการเปลี่ยนกลับไปใช้ Chrome(*)
+
+*: ในปัจจุบัน เฉพาะ Internet Explorer เท่านั้นที่รองรับการกลับมาใช้ Chrome โดยอัตโนมัติ</string>
+      <string id="ChromePath_Part">เส้นทาง Chrome</string>
+</stringTable>
+  <presentationTable>
+    <presentation id="AlternativeBrowserPath">
+      <textBox refId="AlternativeBrowserPath_Part">
+        <label>เส้นทางเบราว์เซอร์สำรอง</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="AlternativeBrowserArguments">
+      <textBox refId="AlternativeBrowserArguments_Part">
+        <label>อาร์กิวเมนต์เบราว์เซอร์สำรอง</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="ChromePath">
+      <textBox refId="ChromePath_Part">
+        <label>เส้นทาง Chrome</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="ChromeArguments">
+      <textBox refId="ChromeArguments_Part">
+        <label>อาร์กิวเมนต์ของ Chrome</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="URLList_Policy">
+      <listBox refId="URLList_Part">โฮสต์ที่จะเปิดในเบราว์เซอร์สำรอง</listBox>
+    </presentation>
+    <presentation id="URLGreyList_Policy">
+      <listBox refId="URLGreyList_Part">โฮสต์ที่ไม่ควรทำให้เกิดการเปลี่ยนเบราว์เซอร์</listBox>
+    </presentation>
+    <presentation id="KeepLastChromeTab_Policy"/>
+    <presentation id="ShowTransitionScreen_Policy">
+      <decimalTextBox refId="ShowTransitionScreen_Part">แสดงหน้าจอการเปลี่ยนใน Chrome สักครู่หนึ่ง</decimalTextBox>
+    </presentation>
+    <presentation id="UseIeSiteList_Policy"/>
+  </presentationTable>
+</resources>
+</policyDefinitionResources>

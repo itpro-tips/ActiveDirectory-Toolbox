@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<policyDefinitionResources revision="1.0" schemaVersion="1.0">
+  <displayName>
+  </displayName>
+  <description>
+  </description>
+  <resources>
+    <stringTable>
+      <string id="KeepLastChromeTab_Policy">Запазване на последния раздел в Chrome при преход</string>
+      <string id="ShowTransitionScreen_Policy">Показване на екрана за преход в Chrome за известно време</string>
+      <string id="ChromeArguments_Explain">Дава възможност да посочите аргументите, които да се предадат на Chrome, когато се изпълнява.
+
+Ако правилото е активирано, параметрите ще се използват при стартирането на Chrome.
+
+Можете също да ползвате специалния заместител ${url}, за да укажете къде в командния ред трябва да се показва URL адресът. Напр. „--url=${url} --kiosk“.
+Не е необходимо да посочвате заместителя, ако URL адресът трябва да се добави в края. В случай че трябва да е единственият аргумент, можете да оставите правилото празно.
+
+Ако то е деактивирано или не е попълнено, като параметър към браузъра ще се подаде само URL адресът.</string>
+      <string id="AlternativeBrowserArguments">Аргументи на алтернативния браузър</string>
+      <string id="ChromeArguments">Аргументи на Chrome</string>
+      <string id="AlternativeBrowserPath_Part">Път към алтернативния браузър</string>
+      <string id="URLList_Part">Хостове за отваряне в алтернативния браузър</string>
+      <string id="KeepLastChromeTab_Explain">Дава възможност да посочите какво да се случва, когато последният отворен раздел в Chrome бъде пренасочен към алтернативния браузър.
+
+Когато това правило е активирано или не е зададено, последният раздел ще остане отворен и след прехода ще се изведе новият раздел в браузъра. Ако правилото е деактивирано, последният раздел ще се затвори, което ще доведе до затварянето на Chrome, в случай че не са отворени други прозорци на браузъра.</string>
+      <string id="UseIeSiteList_Part">Използване на правилото за списък със сайтове за корпоративния режим на IE</string>
+      <string id="SUPPORTED_WINXPSP2">Microsoft Windows XP SP2 или по-нова версия</string>
+      <string id="AlternativeBrowserPath">Път към алтернативния браузър</string>
+      <string id="UseIeSiteList_Explain">Когато настройката е активирана, преходите между браузърите ще се задействат и от записите в правилото SiteList за Internet Explorer, както е описано на адрес https://technet.microsoft.com/itpro/internet-explorer/ie11-deploy-guide/turn-on-enterprise-mode-and-use-a-site-list.
+
+Ако настройката не е зададена или е деактивирана, ще се използват само URL адресите от правилото за разширения.</string>
+      <string id="AlternativeBrowserPath_Explain">Посочете изпълнимия файл на алтернативния браузър.
+Дава възможност да укажете коя програма да се използва като алтернативен браузър.
+
+Ако правилото е активирано, можете или да посочите абсолютен път, или да ползвате някоя от следните променливи:
+
+${ie} – Стандартното място на инсталацията на Internet Explorer
+В този случай за определяне на местоположението на браузъра се ползва HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\IEXPLORE.EXE
+${firefox} – Стандартното място на инсталацията на Firefox
+В този случай за определяне на местоположението на браузъра се ползва HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\FIREFOX.EXE
+${safari} – Стандартното място на инсталацията на Safari
+В този случай за определяне на местоположението на браузъра се ползва HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\SAFARI.EXE
+
+Ако правилото не е активирано или е празно, ще се използва алтернативният браузър по подразбиране, който е Internet Explorer – все едно е зададена стойността ${ie}.</string>
+      <string id="ShowTransitionScreen_Part">Показване на екрана за преход в Chrome за известно време</string>
+      <string id="URLList_Explain">Дава възможност да посочите списък с имена на домейни, които да се отварят в алтернативния браузър.
+
+Ако правилото е активирано, трябва да предоставите списък с филтри, които ще задействат прехода към алтернативния браузър. Всеки запис трябва да е някой от следните четири типа:
+
+Част от име на хост: Трябва да се посочат цели имена на домейни, като „www.example.com“, или части от тях, като „example.com“ или дори „example“. Още не се поддържат заместващи знаци.
+Префикс на URL адрес: Намира се съответствие само с правилни префикси на URL адреси, включващи протокол и порт, ако е необходимо. Напр. „http://login.example.com“ или „https://www.example.com:8080/login/“.
+Отрицателен запис: Започва с „!“ и продължава като част от име на хост или префикс на URL адрес, както е описано по-горе. Отрицателните записи, напр. „!example.com“ или „!file:///c:/localapp/“, винаги се отварят в Chrome.
+Заместващ запис: Съдържа само един знак „*“ и съответства на всеки URL адрес. Предназначен е за използване заедно с отрицателни записи, ако повечето URL адреси трябва да се отварят в алтернативния браузър и само малка част от тях – в Chrome.
+
+Отрицателните записи са с по-висок приоритет от положителните, което дава възможност големите части от домейните да се поставят в белия списък, а по-малките да се запазват за отваряне в Chrome.
+Ако е налице заместващ запис, той се прилага само след като всички други правила бъдат проверени.
+
+Следните протоколи се наблюдават за пренасочване: http:, https:.
+
+Ако няма посочен списък или правилото е празно, няма да се задейства преход към алтернативния браузър.</string>
+      <string id="ChromePath_Explain">Дава възможност да посочите изпълнимия файл на Chrome, който да се стартира при връщане от алтернативния браузър(*).
+
+Когато правилото е активирано, можете или да посочите абсолютен път, или да ползвате следната променлива:
+
+${chrome} – Стандартното място на инсталацията на Chrome
+В този случай за определяне на местоположението на браузъра се ползва HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\Chrome.EXE
+
+Ако правилото е деактивирано или празно, ще се използва стандартната инсталация на Chrome – все едно е зададена стойността ${chrome}.
+
+* Понастоящем само Internet Explorer поддържа автоматично връщане към Chrome.</string>
+      <string id="Cat_LegacyBrowserSupport">Поддръжка на наследени браузъри</string>
+      <string id="AlternativeBrowserArguments_Part">Аргументи на алтернативния браузър</string>
+      <string id="URLGreyList_Part">Хостове, които не бива да задействат преход в нито един от двата браузъра</string>
+      <string id="UseIeSiteList_Policy">Използване на правилото за списък със сайтове за корпоративния режим на IE</string>
+      <string id="URLGreyList_Policy">Хостове, които не бива да задействат преход в нито един от двата браузъра</string>
+      <string id="ShowTransitionScreen_Explain">Дава възможност да посочите колко време да се показва съобщението за прехода в раздела в Chrome, преди да се извърши преминаването към другия браузър. Това помага за визуализирането на прехода. Правилото се конфигурира в секунди.
+
+Ако то не е зададено, разделът ще се затваря незабавно, когато преходът може да бъде завършен.</string>
+      <string id="URLList_Policy">Хостове за отваряне в алтернативния браузър</string>
+      <string id="ChromePath">Път на Chrome</string>
+      <string id="ChromeArguments_Part">Аргументи на Chrome</string>
+      <string id="KeepLastChromeTab_Part">Запазване на последния раздел в Chrome при преход</string>
+      <string id="AlternativeBrowserArguments_Explain">Дава възможност да посочите аргументите, които да се предадат на изпълнимия файл на алтернативния браузър.
+
+Ако правилото е активирано, параметрите ще се използват при стартирането на алтернативния браузър.
+
+Можете също да ползвате специалния заместител ${url}, за да укажете къде в командния ред трябва да се показва URL адресът. Напр. „--url=${url} --kiosk“.
+Не е необходимо да посочвате заместителя, ако URL адресът трябва да се добави в края. В случай че трябва да е единственият аргумент, можете да оставите правилото празно.
+
+Ако то е деактивирано или не е попълнено, като параметър към браузъра ще се подаде само URL адресът.</string>
+      <string id="URLGreyList_Explain">Дава възможност да посочите списък с имена на домейни, които да се отварят във всеки от двата браузъра.
+
+Когато правилото е активирано, домейните от списъка ще бъдат налице и в двата браузъра и няма да задействат преход нито в едната, нито в другата посока.
+
+Това може да се ползва например за домейни за удостоверяване, с които работят и новите, и наследените приложения в този списък.
+
+Части от имена на хостове: Трябва да се посочат цели имена на домейни, като „www.example.com“, или части от тях, като „example.com“ или дори „example“. Още не се поддържат заместващи знаци.
+Префикси на URL адреси: Намира се съответствие само с правилни префикси на URL адреси, включващи протокол и порт, ако е необходимо. Напр. „http://login.example.com“ или „https://www.example.com:8080/login/“.
+
+Ако няма посочен списък или правилото е празно, всеки домейн, който не е в списъка „Хостове за отваряне в алтернативния браузър“, ще задейства връщане към Chrome(*).
+
+* Понастоящем само Internet Explorer поддържа автоматично връщане към Chrome.</string>
+      <string id="ChromePath_Part">Път на Chrome</string>
+</stringTable>
+  <presentationTable>
+    <presentation id="AlternativeBrowserPath">
+      <textBox refId="AlternativeBrowserPath_Part">
+        <label>Път към алтернативния браузър</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="AlternativeBrowserArguments">
+      <textBox refId="AlternativeBrowserArguments_Part">
+        <label>Аргументи на алтернативния браузър</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="ChromePath">
+      <textBox refId="ChromePath_Part">
+        <label>Път на Chrome</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="ChromeArguments">
+      <textBox refId="ChromeArguments_Part">
+        <label>Аргументи на Chrome</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="URLList_Policy">
+      <listBox refId="URLList_Part">Хостове за отваряне в алтернативния браузър</listBox>
+    </presentation>
+    <presentation id="URLGreyList_Policy">
+      <listBox refId="URLGreyList_Part">Хостове, които не бива да задействат преход в нито един от двата браузъра</listBox>
+    </presentation>
+    <presentation id="KeepLastChromeTab_Policy"/>
+    <presentation id="ShowTransitionScreen_Policy">
+      <decimalTextBox refId="ShowTransitionScreen_Part">Показване на екрана за преход в Chrome за известно време</decimalTextBox>
+    </presentation>
+    <presentation id="UseIeSiteList_Policy"/>
+  </presentationTable>
+</resources>
+</policyDefinitionResources>

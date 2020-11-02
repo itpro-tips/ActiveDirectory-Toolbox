@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<policyDefinitionResources revision="1.0" schemaVersion="1.0">
+  <displayName>
+  </displayName>
+  <description>
+  </description>
+  <resources>
+    <stringTable>
+      <string id="KeepLastChromeTab_Policy">Păstrează deschisă ultima filă din Chrome la trecere</string>
+      <string id="ShowTransitionScreen_Policy">Afișează ecranul de trecere în Chrome pentru o perioadă</string>
+      <string id="ChromeArguments_Explain">Prin această politică poți să specifici argumentele de transmis browserului Chrome la executarea acestuia.
+
+Dacă această politică este activată, în momentul invocării browserului Chrome vor fi utilizați parametrii introduși.
+
+De asemenea, poți utiliza substituentul special ${url} pentru a specifica unde trebuie să apară adresa URL în linia de comandă. De ex., „--url=${url} --kiosk”.
+Dacă substituentul trebuie atașat la final, nu este necesar să îl specifici; de asemenea, dacă acesta este singurul argument, poți lăsa această politică necompletată.
+
+Dacă politica este dezactivată sau lăsată necompletată, numai adresa URL va fi transmisă ca parametru la browser.</string>
+      <string id="AlternativeBrowserArguments">Argumente pentru browserul secundar</string>
+      <string id="ChromeArguments">Argumente pentru Chrome</string>
+      <string id="AlternativeBrowserPath_Part">Calea browserului secundar</string>
+      <string id="URLList_Part">Gazde care vor fi deschise în browserul secundar</string>
+      <string id="KeepLastChromeTab_Explain">Prin această politică poți să specifici ce se întâmplă când ultima filă deschisă din Chrome este redirecționată către browserul secundar.
+
+Dacă politica este activată sau neconfigurată, ultima filă va rămâne deschisă și va direcționa către pagina Filă nouă după trecere. Dacă politica este dezactivată, ultima filă va fi închisă, ceea ce va duce la închiderea browserului Chrome, dacă nu mai există nicio altă fereastră Chrome deschisă.</string>
+      <string id="UseIeSiteList_Part">Folosește politica Lista de site-uri din Modul Enterprise din Internet Explorer</string>
+      <string id="SUPPORTED_WINXPSP2">Microsoft Windows XP SP2 sau o versiune ulterioară</string>
+      <string id="AlternativeBrowserPath">Calea browserului secundar</string>
+      <string id="UseIeSiteList_Explain">Dacă politica este activată, trecerile între browsere vor fi declanșate de intrările din politica SiteList pentru Internet Explorer, conform definițiilor de la (https://technet.microsoft.com/itpro/internet-explorer/ie11-deploy-guide/turn-on-enterprise-mode-and-use-a-site-list).
+
+Dacă politica nu este configurată sau este dezactivată, vor fi folosite numai adresele URL din politica privind extensiile.</string>
+      <string id="AlternativeBrowserPath_Explain">Specifică fișierul executabil al browserului secundar.
+Această politică îți permite să specifici programul de utilizat ca browser secundar.
+
+Dacă politica este activată, poți să specifici în cadrul acesteia o cale absolută sau să folosești una dintre următoarele variabile:
+
+${ie} - Locația de instalare prestabilită pentru Internet Explorer
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\IEXPLORE.EXE se folosește în acest caz pentru a alege locația browserului.
+${firefox} - Locația de instalare prestabilită pentru Firefox
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\FIREFOX.EXE se folosește în acest caz pentru a alege locația browserului.
+${safari} - Locația de instalare prestabilită pentru Safari
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\SAFARI.EXE se folosește în acest caz pentru a alege locația browserului.
+
+Dacă politica nu este activată sau specificată, se va folosi browserul secundar prestabilit, și anume Internet Explorer. Acesta este determinat ca și cum ar fi utilizată valoarea ${ie}.</string>
+      <string id="ShowTransitionScreen_Part">Afișează ecranul de trecere în Chrome pentru o perioadă</string>
+      <string id="URLList_Explain">Prin această politică poți să specifici o listă cu nume de domenii ale gazdelor care vor fi deschise în browserul secundar.
+
+Dacă politica este activată, trebuie să specifici o listă de filtre care vor declanșa trecerea la browserul secundar. Fiecare intrare trebuie să se încadreze în unul dintre următoarele patru tipuri:
+
+Parte a numelui de gazdă: trebuie să specifici fie nume de domenii complete (de ex., „www.example.com”), fie părți ale acestora (de ex., „example.com” sau chiar „example”). Metacaracterele nu sunt acceptate deocamdată.
+Prefix al adresei URL: numai prefixele corecte ale adreselor URL sunt potrivite complet cu protocolul și portul, dacă este necesar. De ex., „http://login.example.com” sau „https://www.example.com:8080/login/”.
+Intrare negativă: începe cu „!” și continuă ca parte a numelui de gazdă sau ca prefix al adresei URL, conform descrierii de mai sus. Intrările negative se deschid întotdeauna în Chrome. De ex., „!example.com” sau „!file:///c:/localapp/”.
+Intrare cu metacaracter: conține un singur caracter „*”. Se potrivește cu orice adresă URL. Este destinată utilizării împreună cu intrări negative, dacă majoritatea adreselor URL trebuie să fie deschise în browserul secundar și numai o mică parte din adresele URL trebuie să fie deschise în Chrome.
+
+Intrările negative au priorități mai mari decât intrările pozitive, ceea ce permite trecerea unor părți mari de domenii pe lista albă, păstrând părțile mai mici pentru a fi deschise în Chrome.
+Intrarea cu metacaracter, dacă este prezentă, se aplică numai după ce au fost verificate toate celelalte reguli.
+
+Următoarele protocoale sunt monitorizate pentru redirecționare: http:, https:.
+
+Dacă politica nu este specificată sau completată, nu se va declanșa nicio trecere la browserul secundar.</string>
+      <string id="ChromePath_Explain">Această politică îți permite să specifici fișierul executabil Chrome care va fi lansat atunci când se face revenirea de la browserul secundar(*).
+
+Dacă politica este activată, poți să specifici în cadrul acesteia o cale absolută sau să folosești următoarea variabilă:
+
+${chrome} - Locația de instalare prestabilită pentru Chrome
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\Chrome.EXE se folosește în acest caz pentru a alege locația browserului.
+
+Dacă politica este dezactivată sau lăsată necompletată, va fi utilizată instalarea prestabilită a browserului Chrome, ca și când ar fi fost utilizată valoarea ${chrome}.
+
+*: În prezent, numai Internet Explorer acceptă revenirea automată la Chrome.</string>
+      <string id="Cat_LegacyBrowserSupport">Compatibilitate pentru browsere vechi</string>
+      <string id="AlternativeBrowserArguments_Part">Argumente pentru browserul secundar</string>
+      <string id="URLGreyList_Part">Gazdele care nu trebuie să declanșeze trecerea între browsere</string>
+      <string id="UseIeSiteList_Policy">Folosește politica Lista de site-uri din Modul Enterprise din Internet Explorer</string>
+      <string id="URLGreyList_Policy">Gazdele care nu trebuie să declanșeze trecerea între browsere</string>
+      <string id="ShowTransitionScreen_Explain">Prin această politică poți să specifici cât timp va fi vizibil în Chrome mesajul de trecere în filă, înainte de trecerea la celălalt browser. Astfel, trecerea poate fi vizualizată. Această politică este specificată în secunde.
+
+Dacă politica nu este configurată, fila va fi închisă imediat ce trecerea poate fi finalizată.</string>
+      <string id="URLList_Policy">Gazde care vor fi deschise în browserul secundar</string>
+      <string id="ChromePath">Calea browserului Chrome</string>
+      <string id="ChromeArguments_Part">Argumente pentru Chrome</string>
+      <string id="KeepLastChromeTab_Part">Păstrează deschisă ultima filă din Chrome la trecere</string>
+      <string id="AlternativeBrowserArguments_Explain">Această politică îți permite să specifici argumentele de transmis fișierului executabil al browserului secundar.
+
+Dacă politica este activată, în momentul invocării browserului secundar vor fi utilizați parametrii introduși.
+
+De asemenea, poți folosi substituentul special ${url} pentru a specifica locul în care trebuie să apară adresa URL în linia de comandă. De ex., „--url=${url} --kiosk”.
+Dacă substituentul trebuie atașat la final, nu este necesar să îl specifici; de asemenea, dacă acesta este singurul argument, poți lăsa această politică necompletată.
+
+Dacă politica este dezactivată sau lăsată necompletată, numai adresa URL va fi transmisă ca parametru la browser.</string>
+      <string id="URLGreyList_Explain">Prin această politică poți să specifici o listă cu nume de domenii ale gazdelor care pot fi deschise în oricare dintre browsere.
+
+Dacă politica este activată, domeniile din această listă vor fi disponibile în ambele browsere și nu vor declanșa o trecere de la unul la celălalt.
+
+Un caz posibil de utilizare a acestei politici îl reprezintă domeniile ce presupun autentificarea și la care au acces atât aplicațiile noi, cât și cele vechi din această listă.
+
+Părți ale numelor de gazdă: trebuie să specifici fie nume de domenii complete (de ex., „www.example.com”), fie părți ale acestora (de ex., „example.com” sau chiar „example”). Metacaracterele nu sunt acceptate deocamdată.
+Prefixe ale adreselor URL: numai prefixele corecte ale adreselor URL sunt potrivite complet cu protocolul și portul, dacă este necesar. De ex., „http://login.example.com” sau „https://www.example.com:8080/login/”.
+
+Dacă politica nu este specificată sau completată, toate domeniile care nu se află în lista „Gazde care vor fi deschise în browserul secundar” vor declanșa revenirea la browserul Chrome(*).
+
+*: În prezent, numai Internet Explorer acceptă revenirea automată la Google Chrome.</string>
+      <string id="ChromePath_Part">Calea browserului Chrome</string>
+</stringTable>
+  <presentationTable>
+    <presentation id="AlternativeBrowserPath">
+      <textBox refId="AlternativeBrowserPath_Part">
+        <label>Calea browserului secundar</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="AlternativeBrowserArguments">
+      <textBox refId="AlternativeBrowserArguments_Part">
+        <label>Argumente pentru browserul secundar</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="ChromePath">
+      <textBox refId="ChromePath_Part">
+        <label>Calea browserului Chrome</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="ChromeArguments">
+      <textBox refId="ChromeArguments_Part">
+        <label>Argumente pentru Chrome</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="URLList_Policy">
+      <listBox refId="URLList_Part">Gazde care vor fi deschise în browserul secundar</listBox>
+    </presentation>
+    <presentation id="URLGreyList_Policy">
+      <listBox refId="URLGreyList_Part">Gazdele care nu trebuie să declanșeze trecerea între browsere</listBox>
+    </presentation>
+    <presentation id="KeepLastChromeTab_Policy"/>
+    <presentation id="ShowTransitionScreen_Policy">
+      <decimalTextBox refId="ShowTransitionScreen_Part">Afișează ecranul de trecere în Chrome pentru o perioadă</decimalTextBox>
+    </presentation>
+    <presentation id="UseIeSiteList_Policy"/>
+  </presentationTable>
+</resources>
+</policyDefinitionResources>

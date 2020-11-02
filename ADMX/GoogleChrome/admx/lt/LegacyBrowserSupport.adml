@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<policyDefinitionResources revision="1.0" schemaVersion="1.0">
+  <displayName>
+  </displayName>
+  <description>
+  </description>
+  <resources>
+    <stringTable>
+      <string id="KeepLastChromeTab_Policy">Pereinant palikti paskutinį „Chrome“ skirtuką</string>
+      <string id="ShowTransitionScreen_Policy">Kurį laiką rodyti perėjimo ekraną naršyklėje „Chrome“</string>
+      <string id="ChromeArguments_Explain">Leidžiama nurodyti argumentus, skirtus perduoti į „Chrome“, kai ji vykdoma.
+
+Jei politika įgalinta, iškvietus „Chrome“ bus naudojami pateikti parametrai.
+
+Taip pat galite naudoti specialią rezervuotą vietą „${url}“, jei norite nurodyti, kurioje komandos eilutės vietoje turi būti URL. Pvz., „--url=${url} --kiosk“.
+Neprivalote nurodyti rezervuotos vietos, jei ji turėtų būti pridėta prie pabaigos. Jei ji turėtų būti vienintelis argumentas, galite palikti tą politikos lauką tuščią.
+
+Jei politika neleidžiama arba jos laukas paliktas tuščias, kaip parametras naršyklei perduodamas tik URL.</string>
+      <string id="AlternativeBrowserArguments">Alternatyvios naršyklės argumentai</string>
+      <string id="ChromeArguments">„Chrome“ argumentai</string>
+      <string id="AlternativeBrowserPath_Part">Alternatyvios naršyklės kelias</string>
+      <string id="URLList_Part">Prieglobos, skirtos atidaryti alternatyvioje naršyklėje</string>
+      <string id="KeepLastChromeTab_Explain">Leidžiama nurodyti, kas nutinka, kai paskutinio atidaryto „Chrome“ skirtuko puslapis peradresuojamas į alternatyvią naršyklę.
+
+Kai ši politika įgalinta arba nenustatyta, paskutinio skirtuko puslapis paliekamas atidarytas ir perėjus nukreipiama į naujo skirtuko puslapį. Jei ši funkcija išjungta, paskutinio skirtuko puslapis uždaromas ir atitinkamai uždaroma „Chrome“, jei nėra atidarytų kitų „Chrome“ langų.</string>
+      <string id="UseIeSiteList_Part">„Internet Explorer“ įmonės režimo svetainių sąrašo politika</string>
+      <string id="SUPPORTED_WINXPSP2">„Microsoft Windows XP“ SP2 arba naujesnė versija</string>
+      <string id="AlternativeBrowserPath">Alternatyvios naršyklės kelias</string>
+      <string id="UseIeSiteList_Explain">Įgalinus šią politiką, perėjimą tarp naršyklių taip pat suaktyvins „Internet Explorer“ svetainių sąrašo politikos įrašai, kaip aprašyta šiame straipsnyje: https://technet.microsoft.com/itpro/internet-explorer/ie11-deploy-guide/turn-on-enterprise-mode-and-use-a-site-list.
+
+Jei ši politika nenustatyta arba išjungta, bus naudojami tik pagal plėtinio politiką nurodyti URL.</string>
+      <string id="AlternativeBrowserPath_Explain">Nurodykite alternatyvios naršyklės vykdomąjį failą.
+Leidžiama nurodyti programą, kuri naudojama kaip alternatyvi naršyklė.
+
+Jei įgalinta, galite nurodyti absoliutųjį politikos kelią arba naudoti vieną iš šių kintamųjų:
+
+„${ie}“ – numatytoji „Internet Explorer“ įdiegimo vieta
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\IEXPLORE.EXE šiuo atveju naudojama naršyklės vietai parinkti.
+„${firefox}“ – numatytoji „Firefox“ įdiegimo vieta
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\FIREFOX.EXE šiuo atveju naudojama naršyklės vietai parinkti.
+„${safari}“ – numatytoji „Safari“ įdiegimo vieta
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\SAFARI.EXE šiuo atveju naudojama naršyklės vietai parinkti.
+
+Jei politika nėra įgalinta arba jos laukas paliktas tuščias, bus naudojama numatytoji alternatyvi naršyklė (nustatyta „Internet Explorer“, lyg būtų naudojama vertė „${ie}“).</string>
+      <string id="ShowTransitionScreen_Part">Kurį laiką rodyti perėjimo ekraną naršyklėje „Chrome“</string>
+      <string id="URLList_Explain">Leidžiama nurodyti prieglobų domenų, skirtų atidaryti alternatyvioje naršyklėje, pavadinimų sąrašą.
+
+Jei politika įgalinta, turite pateikti filtrų, kurie suaktyvins perėjimą į alternatyvią naršyklę, sąrašą. Kiekvienas įrašas turi būti vieno iš toliau nurodytų keturių tipų.
+
+Prieglobos pavadinimo dalis: turėtų būti nurodyti visi domenų pavadinimai, pavyzdžiui, „www.example.com“, arba jų dalys, pavyzdžiui, „example.com“ ar net „example“. Pakaitos simboliai dar nepalaikomi.
+URL priešdėlis: tik tinkami URL priešdėliai prireikus visiškai atitiks protokolą ir prievadą. Pvz., „http://login.example.com“ arba „https://www.example.com:8080/login/“.
+Neigiamas įrašas: prasideda simboliu „!“ ir toliau nurodomas kaip prieglobos pavadinimo dalis ar URL priešdėlis, kaip nurodyta anksčiau. Neigiami įrašai visada atidaromi „Chrome“ naršyklėje. Pvz., „!example.com“ arba „!file:///c:/localapp/“.
+Pakaitos simbolio įrašas: apima tik vieną „*“ simbolį. Atitinka bet kurį URL. Skirtas naudoti su neigiamais įrašais, jei dauguma URL turi būti atidaryti alternatyvioje naršyklėje ir tik keli atrinkti URL turi būti atidaryti „Chrome“ naršyklėje.
+
+Neigiamiems įrašams suteikiami aukštesni prioritetai nei teigiamiems įrašams, todėl į baltąjį sąrašą galima įtraukti dideles domeno dalis, išsaugant mažesnes skiltis, kad jos būtų atidarytos „Chrome“.
+Jei nurodytas pakaitos simbolio įrašas, jis taikomas tik patikrinus visas kitas taisykles.
+
+Nurodyti protokolai stebimi peradresuojant: „http:“, „https:“.
+
+Jei nenurodyta arba jei laukas paliktas tuščias, nesuaktyvinamas joks perėjimas į alternatyvią naršyklę.</string>
+      <string id="ChromePath_Explain">Leidžiama nurodyti „Chrome“ vykdomąjį failą, paleidžiamą, kai grįžtama iš alternatyvios naršyklės (*).
+
+Kai politika įgalinta, galite nurodyti absoliutųjį politikos kelią arba naudoti šį kintamąjį:
+
+„${chrome}“ – numatytoji „Chrome“ įdiegimo vieta
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\Chrome.EXE šiuo atveju naudojama naršyklės vietai parinkti.
+
+Jei politika neleidžiama arba jos laukas paliktas tuščias, bus naudojama numatytoji „Chrome“ įdiegimo vieta, lyg būtų naudojama vertė „${chrome}“.
+
+* Šiuo metu tik „Internet Explorer“ palaikomas automatinis grįžimas į „Chrome“.</string>
+      <string id="Cat_LegacyBrowserSupport">Pasenusių naršyklių palaikymas</string>
+      <string id="AlternativeBrowserArguments_Part">Alternatyvios naršyklės argumentai</string>
+      <string id="URLGreyList_Part">Prieglobos, kurios neturėtų suaktyvinti perėjimo jokioje naršyklėje</string>
+      <string id="UseIeSiteList_Policy">„Internet Explorer“ įmonės režimo svetainių sąrašo politika</string>
+      <string id="URLGreyList_Policy">Prieglobos, kurios neturėtų suaktyvinti perėjimo jokioje naršyklėje</string>
+      <string id="ShowTransitionScreen_Explain">Galite nurodyti, kiek laiko perėjimo pranešimas turi būti rodomas „Chrome“ skirtuke prieš pereinant į kitą naršyklę. Taip galite vizualizuoti perėjimą. Trukmė pagal šią politiką nustatoma sekundėmis.
+
+Jei politika nenustatyta, skirtukas bus uždarytas iš karto, kai bus galima pereiti.</string>
+      <string id="URLList_Policy">Prieglobos, skirtos atidaryti alternatyvioje naršyklėje</string>
+      <string id="ChromePath">„Chrome“ kelias</string>
+      <string id="ChromeArguments_Part">„Chrome“ argumentai</string>
+      <string id="KeepLastChromeTab_Part">Pereinant palikti paskutinį „Chrome“ skirtuką</string>
+      <string id="AlternativeBrowserArguments_Explain">Leidžiama nurodyti argumentus, skirtus perduoti į alternatyvios naršyklės vykdomąjį failą.
+
+Jei politika įgalinta, iškvietus alternatyvią naršyklę bus naudojami pateikti parametrai.
+
+Taip pat galite naudoti specialią rezervuotą vietą „${url}“, jei norite nurodyti, kurioje komandos eilutės vietoje turi būti URL. Pvz., „--url=${url} --kiosk“.
+Neprivalote nurodyti rezervuotos vietos, jei ji turėtų būti pridėta prie pabaigos. Jei ji turėtų būti vienintelis argumentas, galite palikti tą politikos lauką tuščią.
+
+Jei politika neleidžiama arba jos laukas paliktas tuščias, kaip parametras naršyklei perduodamas tik URL.</string>
+      <string id="URLGreyList_Explain">Leidžiama nurodyti prieglobų domenų, skirtų atidaryti bet kurioje naršyklėje, pavadinimų sąrašą.
+
+Kai ši politika įgalinta, šio sąrašo domenai bus pasiekiami abiejose naršyklėse ir taip pat nesuaktyvins perėjimo.
+
+Galimas naudojimo pavyzdys – visi šio sąrašo autentifikavimo domenai, kurie bendrinami naujose ir pasenusiose programose.
+
+Prieglobų pavadinimų dalys: turėtų būti nurodyti visi domenų pavadinimai, pavyzdžiui, „www.example.com“, arba jų dalys, pavyzdžiui, „example.com“ ar net „example“. Pakaitos simboliai dar nepalaikomi.
+URL priešdėliai: tik tinkami URL priešdėliai prireikus visiškai atitiks protokolą ir prievadą. Pvz., „http://login.example.com“ arba „https://www.example.com:8080/login/“.
+
+Jei nenurodyta arba jei laukas paliktas tuščias, visi domenai, kurių nėra sąraše „Prieglobos, skirtos atidaryti alternatyvioje naršyklėje“, suaktyvins grįžimą į „Chrome“ (*).
+
+* Šiuo metu tik „Internet Explorer“ palaikomas automatinis grįžimas į „Chrome“.</string>
+      <string id="ChromePath_Part">„Chrome“ kelias</string>
+</stringTable>
+  <presentationTable>
+    <presentation id="AlternativeBrowserPath">
+      <textBox refId="AlternativeBrowserPath_Part">
+        <label>Alternatyvios naršyklės kelias</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="AlternativeBrowserArguments">
+      <textBox refId="AlternativeBrowserArguments_Part">
+        <label>Alternatyvios naršyklės argumentai</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="ChromePath">
+      <textBox refId="ChromePath_Part">
+        <label>„Chrome“ kelias</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="ChromeArguments">
+      <textBox refId="ChromeArguments_Part">
+        <label>„Chrome“ argumentai</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="URLList_Policy">
+      <listBox refId="URLList_Part">Prieglobos, skirtos atidaryti alternatyvioje naršyklėje</listBox>
+    </presentation>
+    <presentation id="URLGreyList_Policy">
+      <listBox refId="URLGreyList_Part">Prieglobos, kurios neturėtų suaktyvinti perėjimo jokioje naršyklėje</listBox>
+    </presentation>
+    <presentation id="KeepLastChromeTab_Policy"/>
+    <presentation id="ShowTransitionScreen_Policy">
+      <decimalTextBox refId="ShowTransitionScreen_Part">Kurį laiką rodyti perėjimo ekraną naršyklėje „Chrome“</decimalTextBox>
+    </presentation>
+    <presentation id="UseIeSiteList_Policy"/>
+  </presentationTable>
+</resources>
+</policyDefinitionResources>

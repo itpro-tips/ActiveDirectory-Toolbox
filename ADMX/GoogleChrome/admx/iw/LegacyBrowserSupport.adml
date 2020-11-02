@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<policyDefinitionResources revision="1.0" schemaVersion="1.0">
+  <displayName>
+  </displayName>
+  <description>
+  </description>
+  <resources>
+    <stringTable>
+      <string id="KeepLastChromeTab_Policy">שמירת הכרטיסייה האחרונה של Chrome בעת מעבר</string>
+      <string id="ShowTransitionScreen_Policy">הצגה של מסך מעבר ב-Chrome למשך זמן מסוים</string>
+      <string id="ChromeArguments_Explain">מאפשרת לך לציין את הארגומנטים שיועברו ל-Chrome כשיופעל.
+
+אם המדיניות מופעלת, ייעשה שימוש בפרמטרים שסופקו כש-Chrome יופעל.
+
+ניתן גם להשתמש במציין המיקום המיוחד {url}$ כדי לציין היכן צריכה להופיע כתובת האתר בשורת הפקודה. למשל "--url=${url} --kiosk".
+אתה לא חייב לפרט את מציין המיקום. אם הוא צריך להיות מצורף לסוף או אם הוא צריך להיות הארגומנט היחיד, אתה יכול להשאיר את המדיניות הזו ריקה.
+
+אם המדיניות מושבתת או נשארת ריקה רק כתובת האתר תועבר כפרמטר לדפדפן.
+</string>
+      <string id="AlternativeBrowserArguments">ארגומנטים של דפדפן חלופי</string>
+      <string id="ChromeArguments">ארגומנטים של Chrome</string>
+      <string id="AlternativeBrowserPath_Part">נתיב דפדפן חלופי</string>
+      <string id="URLList_Part">מארחים שייפתחו בדפדפן החלופי</string>
+      <string id="KeepLastChromeTab_Explain">מאפשרת לך לציין מה יקרה כאשר הכרטיסייה הפתוחה האחרונה ב-Chrome תופנה מחדש אל הדפדפן החלופי.
+
+כשהמדיניות פועלת, או אם לא הוגדרה, הכרטיסייה האחרונה תישאר פתוחה ותצביע אל דף הכרטיסייה החדשה לאחר המעבר. אם היא הוגדרה כמושבתת, הכרטיסייה האחרונה תיסגר. מצב זה יגרום לסגירת Chrome אם אין עוד חלונות פתוחים של Chrome.</string>
+      <string id="UseIeSiteList_Part">שימוש במדיניות רשימת אתרים של מצב ארגון ב-IE</string>
+      <string id="SUPPORTED_WINXPSP2">Microsoft Windows XP SP2 ואילך</string>
+      <string id="AlternativeBrowserPath">נתיב דפדפן חלופי</string>
+      <string id="UseIeSiteList_Explain">כשהמדיניות הזו מופעלת, מעברים בין דפדפנים יופעלו גם על-ידי רשומות במדיניות SiteList של Internet Explorer כפי שמוגדר בכתובת https://technet.microsoft.com/itpro/internet-explorer/ie11-deploy-guide/turn-on-enterprise-mode-and-use-a-site-list.
+
+אם המדיניות לא הוגדרה או אם היא הושבתה, יעשה שימוש רק בכתובות האתרים במדיניות התוסף.</string>
+      <string id="AlternativeBrowserPath_Explain">מציינת את קובץ ההפעלה של הדפדפן החלופי.
+מאפשרת לך לציין את התוכנית שתשמש כדפדפן החלופי.
+
+אם אפשרות זו מופעלת, תוכל לציין במדיניות נתיב מוחלט או להשתמש באחד מהמשתנים הבאים:
+
+{ie}$ - מיקום ברירת המחדל שבו מותקן Internet Explorer HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\IEXPLORE.EXE משמש לבחירת מיקום הדפדפן במקרה זה.
+{‏firefox}$‏ - מיקום ברירת המחדל להתקנת Firefox ‏HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App  Paths\FIREFOX.EXE משמש לבחירת מיקום הדפדפן במקרה זה.
+{‏safari}‏$ - מיקום ברירת המחדל להתקנת Safari
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App  Paths\SAFARI.EXE משמש לבחירת מיקום הדפדפן במקרה זה.
+
+אם המדיניות אינה מופעלת או נשארת ריקה, ייעשה שימוש בדפדפן ברירת המחדל החלופי, שהוא Internet Explorer, שייקבע כאילו נעשה שימוש בערך {ie}$.
+</string>
+      <string id="ShowTransitionScreen_Part">הצגה של מסך מעבר ב-Chrome למשך זמן מסוים</string>
+      <string id="URLList_Explain">מאפשרת לך לציין רשימה של שמות דומיינים מארחים לפתיחה בדפדפן החלופי.
+
+אם המדיניות הופעלה, עליך לספק רשימת מסננים שיפעילו את המעבר אל הדפדפן החלופי. כל רשומה צריכה להשתייך לאחד מארבעת הסוגים הבאים:
+
+חלקי שמות מארחים: יש לציין שמות דומיינים מלאים, כמו "www.example.com", או חלקים מהם, כמו "example.com" או אפילו "example". תווים כלליים אינם נתמכים בשלב זה.
+תחילית של כתובות אתרים: רק תחיליות תקינות של כתובות אתרים מותאמות באופן מלא עם פרוטוקול ויציאה, במקרה הצורך. לדוגמה, "http://login.example.com" או "https://www.example.com:8080/login/‎".
+רשומה שלילית: מתחילה ב-"!" וממשיכה כחלק משם מארח או כתחילית של כתובת אתר, כפי שמתואר למעלה. רשומות שליליות נפתחות תמיד ב-Chrome. לדוגמה, "‎!example.com" או "‎!file:///c:/localapp/‎".
+רשומת תו כללי: מכילה רק תו "*" יחיד. תואמת לכל כתובת אתר. מיועדת לשימוש יחד עם רשומות שליליות במקרים שבהם על רוב כתובות האתרים להיפתח בדפדפן החלופי, ורק קבוצה קטנה של כתובות אתרים צריכה להיפתח ב-Chrome.
+
+לרשומות שליליות יש עדיפות גבוהה יותר מאשר לרשומות חיוביות. מצב זה מאפשר להוסיף לרשימת ההיתרים חלקים גדולים מדומיין מסוים, תוך שמירה של חלקים קטנים יותר לפתיחה ב-Chrome.
+רשומת התו הכללי, אם תצוין, תיושם רק לאחר בדיקת כל הכללים האחרים.
+
+הפרוטוקולים הבאים מנוטרים להפניה מחדש: http:‎‏, https:‎.
+
+אם המדיניות הזו לא צוינה או נותרה ריקה – לא יופעל מעבר אל הדפדפן החלופי.</string>
+      <string id="ChromePath_Explain">מאפשרת לך לציין את קובץ ההפעלה של Chrome שיופעל בעת חזרה מהדפדפן החלופי(*).
+
+כשהמדיניות מופעלת, תוכל לציין במדיניות נתיב מוחלט או להשתמש במשתנה הבא:
+
+{chrome}$ - מיקום ברירת המחדל להתקנת Chrome.
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\Chrome.EXE משמש לבחירת מיקום הדפדפן במקרה זה.
+
+אם המדיניות מושבתת או נשארת ריקה ייעשה שימוש בהתקנת ברירת המחדל של Chrome כאילו נעשה שימוש בערך ‎‏{chrome}$.
+
+*: נכון לעכשיו, רק Internet Explorer תומך בחזרה אוטומטית ל-Chrome.
+</string>
+      <string id="Cat_LegacyBrowserSupport">תמיכה בדפדפן מדור קודם</string>
+      <string id="AlternativeBrowserArguments_Part">ארגומנטים של דפדפן חלופי</string>
+      <string id="URLGreyList_Part">מארחים שלא צריכים להפעיל מעבר באף אחד מהדפדפנים</string>
+      <string id="UseIeSiteList_Policy">שימוש במדיניות רשימת אתרים של מצב ארגון ב-IE</string>
+      <string id="URLGreyList_Policy">מארחים שלא צריכים להפעיל מעבר באף אחד מהדפדפנים</string>
+      <string id="ShowTransitionScreen_Explain">מאפשרת לך לציין את משך הזמן להצגת הודעת המעבר בכרטיסייה ב-Chrome לפני המעבר לדפדפן האחר. ההודעה הזו עוזרת בהצגת המעבר. המדיניות מצוינת בשניות.
+
+אם היא לא מוגדרת, הכרטיסייה תיסגר מיד כשאפשר להשלים את המעבר.</string>
+      <string id="URLList_Policy">מארחים שייפתחו בדפדפן החלופי</string>
+      <string id="ChromePath">נתיב Chrome</string>
+      <string id="ChromeArguments_Part">ארגומנטים של Chrome</string>
+      <string id="KeepLastChromeTab_Part">שמירת הכרטיסייה האחרונה של Chrome בעת מעבר</string>
+      <string id="AlternativeBrowserArguments_Explain">מאפשרת לך לציין את הארגומנטים שיועברו אל קובץ ההפעלה של הדפדפן החלופי. 
+
+אם המדיניות מופעלת, ייעשה שימוש בפרמטרים שסופקו כשהדפדפן החלופי יופעל. 
+
+אתה יכול להשתמש גם במציין המיקום המיוחד {url}$ כדי לציין היכן צריכה להופיע כתובת האתר בשורת הפקודה. למשל "--url=${url} --kiosk".
+אתה לא חייב להוסיף את מציין המיקום. אם הוא צריך להיות מצורף לסוף או אם הוא צריך להיות הארגומנט היחיד, אתה יכול להשאיר את המדיניות הזו ריקה.
+
+אם המדיניות מושבתת או נשארת ריקה, רק כתובת האתר תועבר כפרמטר לדפדפן.
+</string>
+      <string id="URLGreyList_Explain">מאפשרת לך לציין רשימה של שמות דומיינים של מארחים שייפתחו באחד מהדפדפנים.
+
+כשהמדיניות הזו מופעלת, הדומיינים ברשימה יהיו זמינים בשני הדפדפנים ולא יפעילו מעבר לדפדפן השני.
+
+מקרה שימוש אפשרי הוא דומיינים לאימות שהם משותפים ברשימה הזו ליישומים חדשים וליישומים מדור קודם. 
+
+חלקי שמות מארחים: יש לציין שמות דומיינים מלאים, כמו "www.example.com", או חלקים מהם, כמו "example.com" או אפילו "example". תווים כלליים אינם נתמכים בשלב זה.
+תחיליות של כתובות אתרים: רק תחיליות תקינות של כתובות אתרים מותאמות באופן מלא עם פרוטוקול ויציאה, במקרה הצורך. לדוגמה, "http://login.example.com" או "https://www.example.com:8080/login/‎".
+
+אם המדיניות הזו לא צוינה או נותרה ריקה - כל דומיין שאינו ברשימת "מארחים שייפתחו בדפדפן החלופי" יפעיל מעבר חזרה אל Chrome(*)‎.
+
+*: בשלב זה רק Internet Explorer תומך בחזרה אוטומטית ל-Chrome.</string>
+      <string id="ChromePath_Part">נתיב Chrome</string>
+</stringTable>
+  <presentationTable>
+    <presentation id="AlternativeBrowserPath">
+      <textBox refId="AlternativeBrowserPath_Part">
+        <label>נתיב דפדפן חלופי</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="AlternativeBrowserArguments">
+      <textBox refId="AlternativeBrowserArguments_Part">
+        <label>ארגומנטים של דפדפן חלופי</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="ChromePath">
+      <textBox refId="ChromePath_Part">
+        <label>נתיב Chrome</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="ChromeArguments">
+      <textBox refId="ChromeArguments_Part">
+        <label>ארגומנטים של Chrome</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="URLList_Policy">
+      <listBox refId="URLList_Part">מארחים שייפתחו בדפדפן החלופי</listBox>
+    </presentation>
+    <presentation id="URLGreyList_Policy">
+      <listBox refId="URLGreyList_Part">מארחים שלא צריכים להפעיל מעבר באף אחד מהדפדפנים</listBox>
+    </presentation>
+    <presentation id="KeepLastChromeTab_Policy"/>
+    <presentation id="ShowTransitionScreen_Policy">
+      <decimalTextBox refId="ShowTransitionScreen_Part">הצגה של מסך מעבר ב-Chrome למשך זמן מסוים</decimalTextBox>
+    </presentation>
+    <presentation id="UseIeSiteList_Policy"/>
+  </presentationTable>
+</resources>
+</policyDefinitionResources>

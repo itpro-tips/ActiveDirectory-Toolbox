@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<policyDefinitionResources revision="1.0" schemaVersion="1.0">
+  <displayName>
+  </displayName>
+  <description>
+  </description>
+  <resources>
+    <stringTable>
+      <string id="KeepLastChromeTab_Policy">Behold den siste Chrome-fanen under overgang</string>
+      <string id="ShowTransitionScreen_Policy">Vis overgangsskjermen i Chrome en stund</string>
+      <string id="ChromeArguments_Explain">Gjør det mulig å angi argumenter som skal sendes til Chrome når den kjøres.
+
+Hvis innstillingen er aktivert, brukes de angitte parametrene når Chrome startes.
+
+Du kan også bruke den spesielle plassholderen ${url} for å angi hvor nettadressen skal vises i kommandolinjen. Eksempel: «--url=${url} --kiosk».
+Du trenger ikke å angi plassholderen hvis den skal legges til på slutten, eller hvis den skal være det eneste argumentet. Da kan du la den innstillingen stå tom.
+
+Hvis innstillingen er deaktivert eller tom, er det bare nettadressen som sendes som parameter til nettleseren.</string>
+      <string id="AlternativeBrowserArguments">Alternative nettleserargumenter</string>
+      <string id="ChromeArguments">Chrome-argumenter</string>
+      <string id="AlternativeBrowserPath_Part">Alternativ nettleserbane</string>
+      <string id="URLList_Part">Verter som skal åpnes i den alternative nettleseren</string>
+      <string id="KeepLastChromeTab_Explain">Gjør det mulig å angi hva som skjer når den siste åpne fanen i Chrome blir viderekoblet til den alternative nettleseren.
+
+Når denne innstillingen er aktivert eller ikke er valgt, blir den siste fanen stående åpen og peker til en ny fane etter overgangen. Hvis den er deaktivert, blir den siste fanen lukket, noe som fører til at Chrome lukkes hvis det ikke finnes andre åpne Chrome-vinduer.</string>
+      <string id="UseIeSiteList_Part">Bruk innstillingen for nettstedslister i IE Enterprise-modus</string>
+      <string id="SUPPORTED_WINXPSP2">Microsoft Windows XP SP2 eller nyere</string>
+      <string id="AlternativeBrowserPath">Alternativ nettleserbane</string>
+      <string id="UseIeSiteList_Explain">Når denne innstillingen er aktivert, utløses overganger mellom nettlesere også av oppføringer i innstillingen for nettstedslister i Internet Explorer, som definert her: (https://technet.microsoft.com/itpro/internet-explorer/ie11-deploy-guide/turn-on-enterprise-mode-and-use-a-site-list).
+
+Hvis innstillingen ikke er angitt, eller hvis den er deaktivert, brukes bare nettadressene i utvidelsesinnstillingen.</string>
+      <string id="AlternativeBrowserPath_Explain">Angi den kjørbare banen for den alternative nettleseren.
+Gjør det mulig å angi programmet som skal brukes som alternativ nettleser.
+
+Hvis den er aktivert, kan du enten angi en absolutt bane for innstillingen eller bruke en av følgende variabler:
+
+${ie} – standardplasseringen for Internet Explorer
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\IEXPLORE.EXE brukes for å velge nettleserens plassering i dette tilfellet.
+${firefox} – standardplasseringen for Firefox
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\FIREFOX.EXE brukes for å velge nettleserens plassering i dette tilfellet.
+${safari} – standardplasseringen for Safari
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\SAFARI.EXE brukes for å velge nettleserens plassering i dette tilfellet.
+
+Hvis innstillingen ikke er aktivert eller er tom, er det standardnettleseren som brukes – Internet Explorer – som om verdien for ${ie} er valgt.</string>
+      <string id="ShowTransitionScreen_Part">Vis overgangsskjermen i Chrome en stund</string>
+      <string id="URLList_Explain">Gjør det mulig å angi en liste over domenenavn for verter som skal åpnes i den alternative nettleseren.
+
+Hvis innstillingen er aktivert, må du oppgi en liste over filtre som utløser overgangen til den alternative nettleseren. Hver oppføring skal være én av følgende fire typer:
+
+Deler av vertsnavn: Du må angi enten fullstendige domenenavn, som f.eks. «www.example.com», eller deler av dem, som f.eks. «example.com» eller bare «example». Jokertegn støttes foreløpig ikke.
+Prefikser for nettadresser: Bare nøyaktige prefikser for nettadresser samsvares fullstendig med protokollen og porten (hvis det er nødvendig). For eksempel «http://login.example.com» eller «https://www.example.com:8080/login/».
+Negative oppføringer: begynner med «!» og fortsetter som vertsnavndeler eller prefikser for nettadresser, som beskrevet ovenfor. Negative oppføringer åpnes alltid i Chrome. For eksempel «example.com» eller «file:///c/localapp/».
+Jokertegnoppføringer: inneholder bare ett enkelt «*»-tegn og samsvarer med alle nettadresser. De er ment brukt sammen med negative oppføringer hvis de fleste nettadressene skal åpnes i den alternative nettleseren og bare et lite utvalg skal åpnes i Chrome.
+
+Negative oppføringer har høyere prioritet enn positive oppføringer, noe som gjør det mulig å godkjenne store deler av et domene, mens et mindre utvalg skal åpnes i Chrome.
+Eventuelle jokertegnoppføringer brukes bare etter at alle andre regler er kontrollert.
+
+Følgende protokoller overvåkes for viderekobling: http:, https:.
+
+Hvis innstillingen ikke er spesifisert eller den er tom, utløses ikke overgang til den alternative nettleseren.</string>
+      <string id="ChromePath_Explain">Gjør det mulig å angi den kjørbare filen for Chrome som skal startes når brukeren kommer tilbake fra den alternative nettleseren(*).
+
+Når innstillingen er aktivert, kan du enten angi en absolutt bane i innstillingene eller bruke følgende variabel:
+
+${chrome} – standardplasseringen av Chrome
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\Chrome.EXE brukes for å velge plasseringen av nettelseren i dette tilfellet.
+
+Hvis innstillingen er deaktivert eller tom, brukes standardinstallasjonen av Chrome – som om verdien ${chrome} hadde vært brukt.
+
+*: For øyeblikket er det bare Internet Explorer som støtter automatisk retur til Chrome.</string>
+      <string id="Cat_LegacyBrowserSupport">Støtte for eldre nettlesere</string>
+      <string id="AlternativeBrowserArguments_Part">Alternative nettleserargumenter</string>
+      <string id="URLGreyList_Part">Verter som ikke skal utløse overføring i noen av nettleserne</string>
+      <string id="UseIeSiteList_Policy">Bruk innstillingen for nettstedslister i IE Enterprise-modus</string>
+      <string id="URLGreyList_Policy">Verter som ikke skal utløse overføring i noen av nettleserne</string>
+      <string id="ShowTransitionScreen_Explain">Lar deg spesifisere hvor lenge overgangsmeldingen i fanen skal vises i Chrome før den andre nettleseren blir brukt i stedet. Dette bidrar til å visualisere overgangen. Innstillingen spesifiseres i sekunder.
+
+Hvis innstillingen ikke er angitt, lukkes fanen umiddelbart når overgangen kan fullføres.</string>
+      <string id="URLList_Policy">Verter som skal åpnes i den alternative nettleseren</string>
+      <string id="ChromePath">Chrome-bane</string>
+      <string id="ChromeArguments_Part">Chrome-argumenter</string>
+      <string id="KeepLastChromeTab_Part">Behold den siste Chrome-fanen under overgang</string>
+      <string id="AlternativeBrowserArguments_Explain">Gjør det mulig å angi argumentene som skal sendes til den kjørbare filen for den alternative nettleseren.
+
+Hvis innstillingen aktiveres, brukes parametrene som oppgis når den alternative nettleseren startes.
+
+Du kan også bruke den spesielle plassholderen ${url} for å spesifisere at nettadressen skal vises på kommandolinjen. Eksempel: «--url=${url} --kiosk».
+Du trenger ikke å spesifisere plassholderen hvis den skal legges til på slutten, eller hvis den skal være det eneste argumentet. Da kan du la innstillingen stå tom.
+
+Hvis innstillingen er deaktivert eller tom, er det bare nettadressen som sendes som parameter til nettleseren.</string>
+      <string id="URLGreyList_Explain">Gjør det mulig å angi en liste over domenenavn for verter som kan åpnes i begge nettleserne.
+
+Hvis denne innstillingen er aktivert, blir domenene i listen tilgjengelige i begge nettleserne, og det utløses ingen overføring i noen retning.
+
+Et mulig brukstilfelle er autentiseringsdomener som deles mellom nye og eldre apper i denne listen.
+
+Vertsnavndeler: Du må angi enten fullstendige domenenavn, som f.eks. «www.example.com», eller deler av dem, som f.eks. «example.com» eller bare «example». Jokertegn støttes foreløpig ikke.
+Prefikser for nettadresser: Bare nøyaktige prefikser for nettadresser samsvares fullstendig med protokollen og porten (hvis det er nødvendig). For eksempel «http://login.example.com» eller «https://www.example.com:8080/login/».
+
+Hvis innstillingen ikke er angitt eller den er tom, utløser alle domener som ikke står på «Verter som skal åpnes i den alternative nettleseren»-listen, en overgang tilbake til Chrome(*).
+
+*: Foreløpig er det bare Internet Explorer som støtter automatisk retur til Chrome.</string>
+      <string id="ChromePath_Part">Chrome-bane</string>
+</stringTable>
+  <presentationTable>
+    <presentation id="AlternativeBrowserPath">
+      <textBox refId="AlternativeBrowserPath_Part">
+        <label>Alternativ nettleserbane</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="AlternativeBrowserArguments">
+      <textBox refId="AlternativeBrowserArguments_Part">
+        <label>Alternative nettleserargumenter</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="ChromePath">
+      <textBox refId="ChromePath_Part">
+        <label>Chrome-bane</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="ChromeArguments">
+      <textBox refId="ChromeArguments_Part">
+        <label>Chrome-argumenter</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="URLList_Policy">
+      <listBox refId="URLList_Part">Verter som skal åpnes i den alternative nettleseren</listBox>
+    </presentation>
+    <presentation id="URLGreyList_Policy">
+      <listBox refId="URLGreyList_Part">Verter som ikke skal utløse overføring i noen av nettleserne</listBox>
+    </presentation>
+    <presentation id="KeepLastChromeTab_Policy"/>
+    <presentation id="ShowTransitionScreen_Policy">
+      <decimalTextBox refId="ShowTransitionScreen_Part">Vis overgangsskjermen i Chrome en stund</decimalTextBox>
+    </presentation>
+    <presentation id="UseIeSiteList_Policy"/>
+  </presentationTable>
+</resources>
+</policyDefinitionResources>

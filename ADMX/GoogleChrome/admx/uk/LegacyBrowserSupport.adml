@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<policyDefinitionResources revision="1.0" schemaVersion="1.0">
+  <displayName>
+  </displayName>
+  <description>
+  </description>
+  <resources>
+    <stringTable>
+      <string id="KeepLastChromeTab_Policy">Залишати останню вкладку Chrome після переходу</string>
+      <string id="ShowTransitionScreen_Policy">Деякий час показувати екран переходу в Chrome</string>
+      <string id="ChromeArguments_Explain">Дозволяє вказати аргументи, які передаватимуться Chrome під час його виконання.
+
+Якщо це правило ввімкнено, указані параметри використовуються під час виклику Chrome.
+
+Можна також скористатися спеціальним заповнювачем ${url}, щоб указати місце відображення URL-адреси в командному рядку. Наприклад, "--url=${url} --kiosk".
+Не потрібно вказувати заповнювач, якщо він додається в кінці. Якщо заповнювач буде єдиним аргументом, можна також залишити це правило порожнім.
+
+Якщо це правило вимкнено чи залишено порожнім, веб-переглядачу як параметр передається лише URL-адреса.</string>
+      <string id="AlternativeBrowserArguments">Аргументи альтернативного веб-переглядача</string>
+      <string id="ChromeArguments">Аргументи Chrome</string>
+      <string id="AlternativeBrowserPath_Part">Шлях до альтернативного веб-переглядача</string>
+      <string id="URLList_Part">Хости, які мають відкриватися в альтернативному веб-переглядачі</string>
+      <string id="KeepLastChromeTab_Explain">Дозволяє вказати, що відбувається, коли остання відкрита в Chrome вкладка переспрямовується в альтернативний веб-переглядач.
+
+Якщо це правило ввімкнено або не налаштовано, остання вкладка залишатиметься відкритою, а в альтернативному веб-переглядачі відкриється сторінка нової вкладки. Якщо це правило вимкнено, остання вкладка закриватиметься разом із Chrome, якщо не відкрито інших вікон Chrome.</string>
+      <string id="UseIeSiteList_Part">Використовувати правило для списку сайтів у корпоративному режимі в IE</string>
+      <string id="SUPPORTED_WINXPSP2">Microsoft Windows XP з пакетом SP2 або новішої версії</string>
+      <string id="AlternativeBrowserPath">Шлях до альтернативного веб-переглядача</string>
+      <string id="UseIeSiteList_Explain">Якщо це правило ввімкнено, перехід в інший веб-переглядач ініціюватиметься записами в правилі SiteList для Internet Explorer, як указано на сторінці https://technet.microsoft.com/itpro/internet-explorer/ie11-deploy-guide/turn-on-enterprise-mode-and-use-a-site-list.
+
+Якщо це правило не налаштовано або вимкнено, використовуватимуться лише URL-адреси, указані в правилі щодо розширень.</string>
+      <string id="AlternativeBrowserPath_Explain">Указати виконуваний файл альтернативного веб-переглядача.
+Дозволяє вказати програму, яка буде використовуватись як альтернативний веб-переглядач.
+
+Якщо це правило ввімкнено, у ньому можна вказати повний шлях або скористатися однією зі змінних нижче.
+
+${ie} – місце встановлення Internet Explorer за умовчанням
+У цьому випадку HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\IEXPLORE.EXE використовується для вибору розташування веб-переглядача.
+${firefox} – місце встановлення Firefox за умовчанням
+У цьому випадку HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\FIREFOX.EXE використовується для вибору розташування веб-переглядача.
+${safari} – місце встановлення Safari за умовчанням
+У цьому випадку HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\SAFARI.EXE використовується для вибору розташування веб-переглядача.
+
+Якщо це правило вимкнено чи залишено порожнім, використовується альтернативний веб-переглядач, яким призначається Internet Explorer (ніби використовується значення ${ie}).</string>
+      <string id="ShowTransitionScreen_Part">Деякий час показувати екран переходу в Chrome</string>
+      <string id="URLList_Explain">Дозволяє вказати список доменних імен хостів, які мають відкриватися в альтернативному веб-переглядачі.
+
+Якщо це правило ввімкнено, потрібно вказати список фільтрів, які ініціюватимуть перехід в альтернативний веб-переглядач. Нижче наведено чотири типи можливих фільтрів.
+
+Імена хостів: потрібно вказати повні доменні імена, як-от www.pryklad.com, їх частини, як-от pryklad.com, чи навіть pryklad. Символи підстановки наразі не підтримуються.
+Префікси URL-адрес: зіставляються лише дійсні префікси URL-адрес, у яких указано протокол і порт, якщо потрібно. Приклад: http://login.pryklad.com або https://www.pryklad.com:8080/login/.
+Негативні записи: на початку вводиться "!", а потім – ім’я хосту або префікс URL-адреси, як описано вище. Негативні записи завжди відкриваються у веб-переглядачі Chrome. Приклад: !pryklad.com або !file:///c:/dodatok/.
+Записи підстановки: містять лише один символ "*". Відповідають будь-якій URL-адресі. Якщо більшість URL-адрес мають відкриватися в альтернативному веб-переглядачі або лише незначна частина URL-адрес має відкриватися в Chrome, записи підстановки потрібно використовувати разом із негативними записами.
+
+Негативні записи мають вищий пріоритет, ніж позитивні. Це дає змогу вносити в список дозволених більшу частину ресурсів домену, а решту відкривати в Chrome.
+Записи підстановки (якщо такі є) застосовуються лише після перевірки всіх інших правил.
+
+Для переспрямування відстежуються такі протоколи: http:, https:.
+
+Якщо це правило вимкнено чи залишено порожнім, перехід в альтернативний веб-переглядач не ініціюється.</string>
+      <string id="ChromePath_Explain">Дозволяє вказати виконуваний файл Chrome, який має запускатися під час повернення з альтернативного веб-переглядача(*).
+
+Якщо це правило ввімкнено, у ньому можна вказати повний шлях або скористатися поданою нижче змінною.
+
+${chrome} – місце встановлення Chrome за умовчанням
+У цьому випадку HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\Chrome.EXE використовується для вибору розташування веб-переглядача.
+
+Якщо це правило вимкнено чи залишено порожнім, використовується місце встановлення Chrome за умовчанням (ніби використовується значення {chrome}).
+
+* Зараз лише Internet Explorer підтримує автоматичне повернення в Chrome.</string>
+      <string id="Cat_LegacyBrowserSupport">Підтримка застарілих веб-переглядачів</string>
+      <string id="AlternativeBrowserArguments_Part">Аргументи альтернативного веб-переглядача</string>
+      <string id="URLGreyList_Part">Хости, які не мають ініціювати перехід у жодному веб-переглядачі</string>
+      <string id="UseIeSiteList_Policy">Використовувати правило для списку сайтів у корпоративному режимі в IE</string>
+      <string id="URLGreyList_Policy">Хости, які не мають ініціювати перехід у жодному веб-переглядачі</string>
+      <string id="ShowTransitionScreen_Explain">Дозволяє вказати, як довго повідомлення про перехід відображатиметься на вкладці в Chrome перед переходом в інший веб-переглядач. Таким чином перехід візуалізується. Значення правила вказується в секундах.
+
+Якщо це правило не налаштовано, вкладка закриватиметься одразу після переходу.</string>
+      <string id="URLList_Policy">Хости, які мають відкриватися в альтернативному веб-переглядачі</string>
+      <string id="ChromePath">Шлях до Chrome</string>
+      <string id="ChromeArguments_Part">Аргументи Chrome</string>
+      <string id="KeepLastChromeTab_Part">Залишати останню вкладку Chrome після переходу</string>
+      <string id="AlternativeBrowserArguments_Explain">Дозволяє вказати аргументи, які передаватимуться виконуваному файлу альтернативного веб-переглядача.
+
+Якщо це правило ввімкнено, указані параметри використовуються під час виклику альтернативного веб-переглядача.
+
+Можна також скористатися спеціальним заповнювачем ${url}, щоб указати місце відображення URL-адреси в командному рядку. Наприклад, "--url=${url} --kiosk".
+Не потрібно вказувати заповнювач, якщо він додається в кінці. Якщо заповнювач буде єдиним аргументом, можна також залишити це правило порожнім.
+
+Якщо це правило вимкнено чи залишено порожнім, веб-переглядачу як параметр передається лише URL-адреса.</string>
+      <string id="URLGreyList_Explain">Дозволяє вказати список доменних імен хостів, які мають відкриватися в обох веб-переглядачах.
+
+Якщо це правило ввімкнено, домени з цього списку відкриватимуться в обох веб-переглядачах і не ініціюватимуть перехід з одного веб-переглядача в інший.
+
+Можливий випадок застосування – будь-які домени автентифікації, що спільно використовуються новими та застарілими додатками з цього списку.
+
+Імена хостів: потрібно вказати повні доменні імена, як-от www.pryklad.com, їх частини, як-от pryklad.com, чи навіть pryklad. Символи підстановки наразі не підтримуються.
+Префікси URL-адрес: зіставляються лише дійсні префікси URL-адрес, у яких указано протокол і порт, якщо потрібно. Приклад: http://login.pryklad.com або https://www.pryklad.com:8080/login/.
+
+Якщо це правило вимкнено чи залишено порожнім, будь-який домен, не вказаний у списку "Хости, які мають відкриватися в альтернативному веб-переглядачі", ініціює повернення в Chrome(*).
+
+* Зараз лише Internet Explorer підтримує автоматичне повернення в Chrome.</string>
+      <string id="ChromePath_Part">Шлях до Chrome</string>
+</stringTable>
+  <presentationTable>
+    <presentation id="AlternativeBrowserPath">
+      <textBox refId="AlternativeBrowserPath_Part">
+        <label>Шлях до альтернативного веб-переглядача</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="AlternativeBrowserArguments">
+      <textBox refId="AlternativeBrowserArguments_Part">
+        <label>Аргументи альтернативного веб-переглядача</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="ChromePath">
+      <textBox refId="ChromePath_Part">
+        <label>Шлях до Chrome</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="ChromeArguments">
+      <textBox refId="ChromeArguments_Part">
+        <label>Аргументи Chrome</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="URLList_Policy">
+      <listBox refId="URLList_Part">Хости, які мають відкриватися в альтернативному веб-переглядачі</listBox>
+    </presentation>
+    <presentation id="URLGreyList_Policy">
+      <listBox refId="URLGreyList_Part">Хости, які не мають ініціювати перехід у жодному веб-переглядачі</listBox>
+    </presentation>
+    <presentation id="KeepLastChromeTab_Policy"/>
+    <presentation id="ShowTransitionScreen_Policy">
+      <decimalTextBox refId="ShowTransitionScreen_Part">Деякий час показувати екран переходу в Chrome</decimalTextBox>
+    </presentation>
+    <presentation id="UseIeSiteList_Policy"/>
+  </presentationTable>
+</resources>
+</policyDefinitionResources>

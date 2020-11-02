@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<policyDefinitionResources revision="1.0" schemaVersion="1.0">
+  <displayName>
+  </displayName>
+  <description>
+  </description>
+  <resources>
+    <stringTable>
+      <string id="KeepLastChromeTab_Policy">आखिरी Chrome टैब को बदलाव (ट्रांज़िशन) पर रखें</string>
+      <string id="ShowTransitionScreen_Policy">Chrome में कुछ देर तक बदलाव (ट्रांज़िशन) स्क्रीन दिखाएं</string>
+      <string id="ChromeArguments_Explain">आपको वे तर्क निर्दिष्ट करने देती है जो उसे एक्ज़िक्यूट करने पर Chrome को पास किए जाने चाहिए.
+
+यदि पॉलिसी सक्षम है तो Chrome शुरू करने पर, दिए गए पैरामीटर उपयोग किए जाएंगे.
+
+आप यह निर्दिष्ट करने के लिए विशेष प्लेसहोल्डर ${url} का भी उपयोग कर सकते हैं कि url को कमांड लाइन में कहां दिखाई देना चाहिए. उदा. "--url=${url} --kiosk".
+अगर उसे अंत में जोड़ा जाता है तो आपको प्लेसहोल्डर निर्दिष्ट करने की ज़रुरत नहीं होती है या अगर वह एकमात्र तर्क है तो आप उस पॉलिसी को खाली छोड़ सकते हैं.
+
+यदि पॉलिसी अक्षम है या खाली छोड़ दी जाती है, तो ब्राउज़र को पैरामीटर के रूप में केवल url पास किया जाएगा.</string>
+      <string id="AlternativeBrowserArguments">वैकल्पिक ब्राउज़र तर्क</string>
+      <string id="ChromeArguments">Chrome तर्क</string>
+      <string id="AlternativeBrowserPath_Part">वैकल्पिक ब्राउज़र पाथ</string>
+      <string id="URLList_Part">वैकल्पिक ब्राउज़र में खोलने के लिए होस्ट</string>
+      <string id="KeepLastChromeTab_Explain">आपको यह तय करने देती है कि जब Chrome के आखिरी खुले टैब को वैकल्‍पिक ब्राउज़र में ले जाया जा रहा हो (रीडायरेक्ट) तो क्‍या होगा.
+
+जब यह पॉलिसी सक्षम होती है या सेट नहीं होती तो आखिरी टैब खुला रहेगा और बदलाव (ट्रांज़िशन) के बाद नए टैब पेज की ओर इशारा करेगा. अगर उसे अक्षम पर सेट किया गया हो तो फिर आखिरी टैब बंद हो जाएगा जिससे कोई दूसरी Chrome विंडो खुली न होने पर Chrome भी बंद हो जाएगा.</string>
+      <string id="UseIeSiteList_Part">IE एंटरप्राइज़ मोड साइट सूची पॉलिसी उपयोग करें</string>
+      <string id="SUPPORTED_WINXPSP2">Microsoft Windows XP SP2 या बाद का वर्शन</string>
+      <string id="AlternativeBrowserPath">वैकल्पिक ब्राउज़र पाथ</string>
+      <string id="UseIeSiteList_Explain">सक्षम होने पर, ब्राउज़र के बीच होने वाले बदलाव (ट्रांज़िशन) Internet Explorer के लिए SiteList पॉलिसी की प्रविष्टियों से भी ट्रिगर हो जाएंगे, जैसा कि (https://technet.microsoft.com/itpro/internet-explorer/ie11-deploy-guide/turn-on-enterprise-mode-and-use-a-site-list) में बताया गया है.
+
+अगर उसे सेट नहीं किया गया हो या वह अक्षम हो तो केवल एक्सटेंशन पॉलिसी के url का उपयोग किया जाएगा.</string>
+      <string id="AlternativeBrowserPath_Explain">वैकल्पिक ब्राउज़र के एक्ज़िक्यूटेबल निर्दिष्ट करें.
+आपको बताने देती है कि वैकल्पिक ब्राउज़र के रूप में किस प्रोग्राम का उपयोग किया जाना चाहिए.
+
+सक्षम होने पर आप या तो पॉलिसी में एक ऐब्सोल्यूट पाथ बता सकते हैं या इनमें से किसी एक वैरिएबल का उपयोग कर सकते हैं:
+
+${ie} - इस स्थिति में ब्राउज़र के स्थान को चुनने के लिए Internet Explorer के डिफ़ॉल्ट इंस्टॉल स्थान
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\IEXPLORE.EXE का उपयोग किया जाता है.
+${firefox} - इस स्थिति में ब्राउज़र के स्थान को चुनने के लिए Firefox के डिफ़ॉल्ट इंस्टॉल स्थान
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\FIREFOX.EXE का उपयोग किया जाता है.
+${safari} - इस स्थिति में ब्राउज़र के स्थान को चुनने के लिए Safari के डिफ़ॉल्ट इंस्टॉल स्थान
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\SAFARI.EXE का उपयोग किया जाता है.
+
+यदि पॉलिसी सक्षम नहीं है या खाली छोड़ दी जाती है तो डिफ़ॉल्ट वैकल्पिक ब्राउज़र का उपयोग किया जाएगा जो कि Internet Explorer है, जैसे ${ie} वैल्यू का उपयोग किया जा रहा हो.</string>
+      <string id="ShowTransitionScreen_Part">Chrome में कुछ देर तक बदलाव (ट्रांज़िशन) स्क्रीन दिखाएं</string>
+      <string id="URLList_Explain">आपको वैकल्‍पिक ब्राउज़र में खोले जाने वाले होस्‍ट डोमेन नामों की सूची बताने देती है.
+
+अगर पॉलिसी सक्षम की गई है तो आपको उन फ़िल्‍टर की सूची देनी होगी जो वैकल्‍पिक ब्राउज़र में बदलाव (ट्रांज़िशन) शुरू/ट्रिगर करेंगे. हर प्रविष्‍टि इन चार में से किसी एक तरह की होनी चाहिए:
+
+होस्‍ट-नाम भाग: "www.example.com" जैसे पूरे डोमेन नाम या "example.com" जैसा उनका एक हिस्सा या सिर्फ़ "example" बताया जाना चाहिए. वाइल्‍डकार्ड अभी काम नहीं करते हैं.
+URL का आगे वाला भाग (प्रीफ़िक्स): यदि आवश्‍यक हो तो प्रोटोकॉल और पोर्ट के साथ केवल उचित URL के आगे वाले भागों (प्रीफ़िक्स) का ही पूरा मिलान किया जाता है. उदा. "http://login.example.com" या "https://www.example.com:8080/login/".
+नकारात्‍मक प्रविष्‍टि: "!" से शुरू होती है और ऊपर बताए अनुसार होस्‍ट-नाम के भाग या URL के आगे वाले भाग (प्रीफ़िक्स) के रूप में जारी रहती है. नकारात्‍मक प्रविष्‍टियां हमेशा Chrome में खुलती हैं. उदा. "!example.com" या "!file:///c:/localapp/".
+वाइल्‍डकार्ड प्रविष्‍टि: केवल एक वर्ण "*" शामिल होता है. किसी भी URL से मेल खाती है. नकारात्‍मक प्रविष्‍टियों के साथ उपयोग किए जाने के लिए होती है, अगर अधिकांश URL वैकल्‍पिक ब्राउज़र में खोले जाने चाहिए और URL का केवल एक छोटा चयन ही Chrome में खुलना चाहिए.
+
+नकारात्‍मक प्रविष्‍टियों को सकारात्‍मक प्रविष्‍टियों के मुकाबले उच्‍च प्राथमिकता मिलती है जिससे छोटे भागों को Chrome में खोले जाने के लिए सहेजते हुए डोमेन के बड़े भागों को वाइटलिस्ट किया जा सकता है.
+अगर वाइल्‍डकार्ड प्रविष्‍टि मौजूद हो तो उसे बाकी सभी नियमों को जांच लेने के बाद ही लागू किया जाता है.
+
+रीडायरेक्‍ट करने के लिए आगे दिए गए प्रोटोकॉल की निगरानी की जाती है: http:, https:.
+
+अगर निर्दिष्ट नहीं किया जाता है या खाली छोड़ा जाता है - तो वैकल्‍पिक ब्राउज़र में बदलाव (ट्रांज़िशन) ट्रिगर/शुरू नहीं होगा.</string>
+      <string id="ChromePath_Explain">आपको वैकल्पिक ब्राउज़र(*) से वापस आते समय लॉन्च किए जाने वाले Chrome के एक्ज़िक्यूटेबल निर्दिष्ट करने देती है.
+
+पॉलिसी के सक्षम होने पर आप या तो पॉलिसी में एक ऐब्सोल्यूट पाथ निर्दिष्ट कर सकते हैं या इस वैरिएबल का उपयोग कर सकते हैं:
+
+${chrome} - इस स्थिति में ब्राउज़र के स्थान को चुनने के लिए Chrome के डिफ़ॉल्ट इंस्टॉल स्थान
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\Chrome.EXE का उपयोग किया जाता है.
+
+यदि पॉलिसी अक्षम है या खाली छोड़ी जाती है, तो Chrome के डिफ़ॉल्ट इंस्टॉलेशन का उपयोग किया जाएगा, जैसे ${chrome} वैल्यू का उपयोग किया गया हो.
+
+*: इस समय केवल Internet Explorer पर ही Chrome पर अपने आप वापस आने की सुविधा मौजूद है.</string>
+      <string id="Cat_LegacyBrowserSupport">लेगसी ब्राउज़र सहायता</string>
+      <string id="AlternativeBrowserArguments_Part">वैकल्पिक ब्राउज़र तर्क</string>
+      <string id="URLGreyList_Part">वे होस्ट जिन्हें किसी भी ब्राउज़र में बदला जाना (ट्रांज़िशन) ट्रिगर/शुरू नहीं करना चाहिए</string>
+      <string id="UseIeSiteList_Policy">IE एंटरप्राइज़ मोड साइट सूची पॉलिसी उपयोग करें</string>
+      <string id="URLGreyList_Policy">वे होस्ट जिन्हें किसी भी ब्राउज़र में बदला जाना (ट्रांज़िशन) ट्रिगर/शुरू नहीं करना चाहिए</string>
+      <string id="ShowTransitionScreen_Explain">आपको यह तय करने देती है कि दूसरे ब्राउज़र में बदलने (ट्रांज़िशन करने) से पहले, टैब का बदलाव (ट्रांज़िशन) संदेश Chrome में कितनी देर तक दिखाई देता रहेगा. इससे बदलाव (ट्रांज़िशन) को देखने में सहायता मिलती है. यह पॉलिसी सेकंड में निर्दिष्ट की जाती है.
+
+अगर इसे सेट नहीं किया गया हो तो बदलाव (ट्रांज़िशन) पूरा होते ही टैब बंद कर दिया जाएगा.</string>
+      <string id="URLList_Policy">वैकल्पिक ब्राउज़र में खोलने के लिए होस्ट</string>
+      <string id="ChromePath">Chrome पाथ</string>
+      <string id="ChromeArguments_Part">Chrome तर्क</string>
+      <string id="KeepLastChromeTab_Part">आखिरी Chrome टैब को बदलाव (ट्रांज़िशन) पर रखें</string>
+      <string id="AlternativeBrowserArguments_Explain">आपको वैकल्पिक ब्राउज़र के एक्ज़िक्यूटेबल में पास किए जाने वाले तर्कों को निर्दिष्ट करने देती है.
+
+यदि पॉलिसी सक्षम है तो वैकल्पिक ब्राउज़र शुरू करने पर, दिए गए पैरामीटर उपयोग किए जाएंगे.
+
+आप यह निर्दिष्ट करने के लिए विशेष प्लेसहोल्डर ${url} का भी उपयोग कर सकते हैं कि url को कमांड लाइन में कहां दिखाई देना चाहिए. उदा. "--url=${url} --kiosk".
+अगर उसे अंत में जोड़ा जाता है तो आपको प्लेसहोल्डर निर्दिष्ट करने की ज़रुरत नहीं होती है या अगर वह एकमात्र तर्क है तो आप उस पॉलिसी को खाली छोड़ सकते हैं.
+
+यदि पॉलिसी अक्षम है या खाली छोड़ दी जाती है, तो ब्राउज़र को पैरामीटर के रूप में केवल url पास किया जाएगा.</string>
+      <string id="URLGreyList_Explain">आपको किसी भी ब्राउज़र में खोले जाने के लिए होस्ट डोमेन नामों की सूची बताने देती है.
+
+जब यह पॉलिसी सक्षम होती है, तब इस सूची के डोमेन दोनों ब्राउज़र में उपलब्ध होंगे और दोनों स्थितियों में बदलाव (ट्रांज़िशन) ट्रिगर/शुरू नहीं करेंगे.
+
+संभावित यूज़ केस (उपयोग की स्थिति) ऐसे प्रमाणीकरण डोमेन होते हैं जिन्हें इस सूची में नए और लेगसी ऐप के बीच शेयर किया जाता है.
+
+होस्ट-नाम भाग: "www.example.com" जैसे पूरे डोमेन नाम या "example.com" जैसा उनका एक हिस्सा या सिर्फ़ "example" बताया जाना चाहिए. वाइल्डकार्ड अभी काम नहीं करते हैं.
+URL के आगे वाले भाग (प्रीफ़िक्स): यदि आवश्यक हो तो प्रोटोकॉल और पोर्ट के साथ केवल उचित URL के आगे वाले भागों (प्रीफ़िक्स) का ही पूरा मिलान किया जाता है. उदा. "http://login.example.com" या "https://www.example.com:8080/login/".
+
+अगर निर्दिष्ट नहीं किया जाता है या खाली छोड़ा जाता है - तो कोई भी डोमेन जो "वैकल्पिक ब्राउज़र में खोले जाने वाले होस्ट" सूची में मौजूद नहीं है, वह Chrome(*) पर वापस बदला जाना (ट्रांज़िशन) ट्रिगर/शुुुरू करेगा.
+
+*: इस समय केवल Internet Explorer पर ही Chrome पर अपने आप वापस आने की सुविधा मौजूद है.</string>
+      <string id="ChromePath_Part">Chrome पाथ</string>
+</stringTable>
+  <presentationTable>
+    <presentation id="AlternativeBrowserPath">
+      <textBox refId="AlternativeBrowserPath_Part">
+        <label>वैकल्पिक ब्राउज़र पाथ</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="AlternativeBrowserArguments">
+      <textBox refId="AlternativeBrowserArguments_Part">
+        <label>वैकल्पिक ब्राउज़र तर्क</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="ChromePath">
+      <textBox refId="ChromePath_Part">
+        <label>Chrome पाथ</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="ChromeArguments">
+      <textBox refId="ChromeArguments_Part">
+        <label>Chrome तर्क</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="URLList_Policy">
+      <listBox refId="URLList_Part">वैकल्पिक ब्राउज़र में खोलने के लिए होस्ट</listBox>
+    </presentation>
+    <presentation id="URLGreyList_Policy">
+      <listBox refId="URLGreyList_Part">वे होस्ट जिन्हें किसी भी ब्राउज़र में बदला जाना (ट्रांज़िशन) ट्रिगर/शुरू नहीं करना चाहिए</listBox>
+    </presentation>
+    <presentation id="KeepLastChromeTab_Policy"/>
+    <presentation id="ShowTransitionScreen_Policy">
+      <decimalTextBox refId="ShowTransitionScreen_Part">Chrome में कुछ देर तक बदलाव (ट्रांज़िशन) स्क्रीन दिखाएं</decimalTextBox>
+    </presentation>
+    <presentation id="UseIeSiteList_Policy"/>
+  </presentationTable>
+</resources>
+</policyDefinitionResources>

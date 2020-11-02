@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<policyDefinitionResources revision="1.0" schemaVersion="1.0">
+  <displayName>
+  </displayName>
+  <description>
+  </description>
+  <resources>
+    <stringTable>
+      <string id="KeepLastChromeTab_Policy">Giữ tab chrome cuối cùng khi chuyển đổi</string>
+      <string id="ShowTransitionScreen_Policy">Hiển thị màn hình chuyển đổi trên Chrome trong một khoảng thời gian</string>
+      <string id="ChromeArguments_Explain">Cho phép bạn chỉ định các đối số được truyền cho Chrome khi Chrome được thực thi.
+
+Nếu chính sách được bật thì các tham số được cung cấp sẽ được sử dụng khi gọi Chrome.
+
+Bạn cũng có thể sử dụng trình giữ chỗ đặc biệt ${url} để chỉ định vị trí url sẽ xuất hiện trong dòng lệnh. Ví dụ: "--url=${url} --kiosk".
+Bạn không phải chỉ định trình giữ chỗ nếu url được thêm vào cuối hoặc nếu url là đối số duy nhất thì bạn có thể để trống chính sách đó.
+
+Nếu chính sách bị tắt hoặc bị để trống thì chỉ url được truyền làm tham số cho trình duyệt.</string>
+      <string id="AlternativeBrowserArguments">Các đối số của trình duyệt thay thế</string>
+      <string id="ChromeArguments">Các đối số Chrome</string>
+      <string id="AlternativeBrowserPath_Part">Đường dẫn trình duyệt thay thế</string>
+      <string id="URLList_Part">Các máy chủ để mở trong trình duyệt thay thế</string>
+      <string id="KeepLastChromeTab_Explain">Cho phép bạn chỉ định điều gì sẽ diễn ra khi tab được mở cuối cùng trong Chrome đang được chuyển hướng sang trình duyệt thay thế.
+
+Khi bật hoặc không đặt chính sách này, tab cuối cùng sẽ mở và trỏ tới trang tab mới sau khi chuyển đổi. Nếu đặt chính sách này thành tắt thì tab cuối cùng sẽ đóng. Điều này sẽ khiến Chrome bị đóng nếu không có cửa sổ Chrome nào khác đang mở.</string>
+      <string id="UseIeSiteList_Part">Sử dụng chính sách danh sách trang web ở chế độ doanh nghiệp IE</string>
+      <string id="SUPPORTED_WINXPSP2">Microsoft Windows XP SP2 trở lên</string>
+      <string id="AlternativeBrowserPath">Đường dẫn trình duyệt thay thế</string>
+      <string id="UseIeSiteList_Explain">Khi bật chính sách này, các mục nhập trong chính sách SiteList cho Internet Explorer như định nghĩa trong (https://technet.microsoft.com/itpro/internet-explorer/ie11-deploy-guide/turn-on-enterprise-mode-and-use-a-site-list) cũng sẽ kích hoạt chuyển đổi giữa các trình duyệt.
+
+Nếu đã tắt hoặc chưa đặt chính sách này thì chỉ các url trong chính sách tiện ích sẽ sử dụng.</string>
+      <string id="AlternativeBrowserPath_Explain">Chỉ định tệp thực thi của trình duyệt thay thế.
+Cho phép bạn chỉ định chương trình được sử dụng làm trình duyệt thay thế.
+
+Nếu được bật, bạn có thể chỉ định đường dẫn tuyệt đối trong chính sách hoặc sử dụng một trong số những biến sau:
+
+${ie} - Vị trí cài đặt mặc định cho Internet Explorer
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\IEXPLORE.EXE được sử dụng để chọn vị trí của trình duyệt trong trường hợp này.
+${firefox} - Vị trí cài đặt mặc định cho Firefox
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\FIREFOX.EXE được sử dụng để chọn vị trí của trình duyệt trong trường hợp này.
+${safari} - Vị trí cài đặt mặc định cho Safari
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\SAFARI.EXE được sử dụng để chọn vị trí của trình duyệt trong trường hợp này.
+
+Nếu chính sách không được bật hoặc bị để trống thì trình duyệt thay thế mặc định sẽ được sử dụng và sẽ được xác định là Internet Explorer như thể giá trị ${ie} được sử dụng.</string>
+      <string id="ShowTransitionScreen_Part">Hiển thị màn hình chuyển đổi trên Chrome trong một khoảng thời gian</string>
+      <string id="URLList_Explain">Cho phép bạn chỉ định danh sách tên miền lưu trữ sẽ mở trong trình duyệt thay thế.
+
+Nếu bật chính sách này, bạn phải cung cấp danh sách các bộ lọc sẽ kích hoạt chuyển đổi sang trình duyệt thay thế. Mọi mục nhập phải thuộc một trong bốn loại sau đây:
+
+Phần tên máy chủ: Nên chỉ định tên miền hoàn chỉnh như "www.example.com" hoặc một phần của các tên này, chẳng hạn như "example.com" hay thậm chí cả "example". Hiện chúng tôi chưa hỗ trợ ký tự đại diện.
+Tiền tố URL: Chỉ các tiền tố URL chính xác mới khớp hoàn toàn với giao thức và cổng nếu cần. Ví dụ: "http://login.example.com" hoặc "https://www.example.com:8080/login/".
+Mục nhập âm: Bắt đầu bằng "!" và tiếp tục dưới dạng một phần của tên máy chủ hoặc tiền tố URL như mô tả ở trên. Các mục nhập âm luôn được mở trong Chrome. Ví dụ: "!example.com" hoặc "!file:///c:/localapp/".
+Mục nhập ký tự đại diện: Chỉ chứa một ký tự đơn "*". Khớp với mọi URL. Được dùng cùng với mục nhập âm nếu hầu hết các URL sẽ mở trong trình duyệt thay thế và chỉ một số lượng nhỏ các URL sẽ mở trong Chrome.
+
+Mục nhập âm có mức ưu tiên cao hơn mục nhập dương. Điều này cho phép đưa vào danh sách cho phép các phần lớn của miền trong khi lưu các phần nhỏ hơn để mở trong Chrome.
+Mục nhập ký tự đại diện nếu có chỉ được áp dụng sau khi đã kiểm tra tất cả các quy tắc khác.
+
+Các giao thức sau đây được theo dõi chuyển hướng: http:, https:.
+ 
+Nếu không được chỉ định hoặc để trống thì quá trình chuyển đổi sang trình duyệt thay thế sẽ không được kích hoạt.</string>
+      <string id="ChromePath_Explain">Cho phép bạn chỉ định tệp thực thi của Chrome cần chạy khi quay trở lại từ trình duyệt thay thế(*).
+
+Khi chính sách được bật, bạn có thể chỉ định đường dẫn tuyệt đối trong chính sách hoặc sử dụng biến sau:
+
+${chrome} - Vị trí cài đặt mặc định cho Chrome
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\Chrome.EXE được sử dụng để chọn vị trí của trình duyệt trong trường hợp này.
+
+Nếu chính sách bị tắt hoặc bị để trống thì cài đặt mặc định của Chrome sẽ được sử dụng như thể giá trị ${chrome} được sử dụng.
+
+*: Hiện tại chỉ Internet Explorer hỗ trợ trở về Chrome một cách tự động.</string>
+      <string id="Cat_LegacyBrowserSupport">Hỗ trợ trình duyệt cũ</string>
+      <string id="AlternativeBrowserArguments_Part">Các đối số của trình duyệt thay thế</string>
+      <string id="URLGreyList_Part">Máy chủ sẽ không kích hoạt chuyển đổi ở cả hai trình duyệt</string>
+      <string id="UseIeSiteList_Policy">Sử dụng chính sách danh sách trang web ở chế độ doanh nghiệp IE</string>
+      <string id="URLGreyList_Policy">Máy chủ sẽ không kích hoạt chuyển đổi ở cả hai trình duyệt</string>
+      <string id="ShowTransitionScreen_Explain">Cho phép bạn chỉ định khoảng thời gian thông báo chuyển đổi trong tab sẽ hiển thị trên Chrome trước khi chuyển sang trình duyệt khác. Điều này giúp trực quan hóa quá trình chuyển đổi. Chính sách được chỉ định bằng giây.
+
+Nếu không đặt chính sách thì tab sẽ bị đóng ngay khi có thể hoàn tất quá trình chuyển đổi.</string>
+      <string id="URLList_Policy">Các máy chủ để mở trong trình duyệt thay thế</string>
+      <string id="ChromePath">Đường dẫn Chrome</string>
+      <string id="ChromeArguments_Part">Các đối số Chrome</string>
+      <string id="KeepLastChromeTab_Part">Giữ tab chrome cuối cùng khi chuyển đổi</string>
+      <string id="AlternativeBrowserArguments_Explain">Cho phép bạn chỉ định các đối số được truyền tới tệp thực thi trình duyệt thay thế.
+
+Nếu chính sách được bật thì các tham số được cung cấp sẽ được sử dụng khi gọi trình duyệt thay thế.
+
+Bạn cũng có thể sử dụng trình giữ chỗ đặc biệt ${url} để chỉ định vị trí url sẽ xuất hiện trong dòng lệnh. Ví dụ: "--url=${url} --kiosk".
+Bạn không phải chỉ định trình giữ chỗ nếu url được thêm vào cuối hoặc nếu url là đối số duy nhất thì bạn có thể để trống chính sách đó.
+
+Nếu chính sách bị tắt hoặc bị để trống thì chỉ url được truyền làm tham số cho trình duyệt.</string>
+      <string id="URLGreyList_Explain">Cho phép bạn chỉ định một danh sách các tên miền máy chủ được mở trong cả hai trình duyệt.
+
+Khi bật chính sách này, các miền trong danh sách này sẽ có sẵn trong cả hai trình duyệt và sẽ không kích hoạt chuyển đổi theo cả hai chiều.
+
+Trường hợp sử dụng có thể là bất cứ miền xác thực nào được chia sẻ giữa các ứng dụng cũ và mới trong danh sách này.
+
+Phần tên máy chủ: Nên chỉ định tên miền hoàn chỉnh như "www.example.com" hoặc một phần của các tên này, chẳng hạn như "example.com" hay thậm chí cả "example". Hiện chúng tôi chưa hỗ trợ ký tự đại diện.
+Tiền tố URL: Chỉ các tiền tố URL chính xác mới khớp hoàn toàn với giao thức và cổng nếu cần. Ví dụ: "http://login.example.com" hoặc "https://www.example.com:8080/login/".
+
+Nếu không được chỉ định hoặc để trống - mọi miền không có trong danh sách "Các máy chủ để mở trong trình duyệt thay thế" đều sẽ kích hoạt quá trình chuyển đổi về Chrome(*).
+
+*: Hiện tại chỉ Internet Explorer hỗ trợ quá trình chuyển đổi về Chrome một cách tự động.</string>
+      <string id="ChromePath_Part">Đường dẫn Chrome</string>
+</stringTable>
+  <presentationTable>
+    <presentation id="AlternativeBrowserPath">
+      <textBox refId="AlternativeBrowserPath_Part">
+        <label>Đường dẫn trình duyệt thay thế</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="AlternativeBrowserArguments">
+      <textBox refId="AlternativeBrowserArguments_Part">
+        <label>Các đối số của trình duyệt thay thế</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="ChromePath">
+      <textBox refId="ChromePath_Part">
+        <label>Đường dẫn Chrome</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="ChromeArguments">
+      <textBox refId="ChromeArguments_Part">
+        <label>Các đối số Chrome</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="URLList_Policy">
+      <listBox refId="URLList_Part">Các máy chủ để mở trong trình duyệt thay thế</listBox>
+    </presentation>
+    <presentation id="URLGreyList_Policy">
+      <listBox refId="URLGreyList_Part">Máy chủ sẽ không kích hoạt chuyển đổi ở cả hai trình duyệt</listBox>
+    </presentation>
+    <presentation id="KeepLastChromeTab_Policy"/>
+    <presentation id="ShowTransitionScreen_Policy">
+      <decimalTextBox refId="ShowTransitionScreen_Part">Hiển thị màn hình chuyển đổi trên Chrome trong một khoảng thời gian</decimalTextBox>
+    </presentation>
+    <presentation id="UseIeSiteList_Policy"/>
+  </presentationTable>
+</resources>
+</policyDefinitionResources>

@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<policyDefinitionResources revision="1.0" schemaVersion="1.0">
+  <displayName>
+  </displayName>
+  <description>
+  </description>
+  <resources>
+    <stringTable>
+      <string id="KeepLastChromeTab_Policy">የመጨረሻውን የChrome ትር በሽግግር ላይ አቆይ</string>
+      <string id="ShowTransitionScreen_Policy">ለተወሰነ ጊዜ በChrome ውስጥ የሽግግር ማያ ገጽን አሳይ</string>
+      <string id="ChromeArguments_Explain">Chrome ሲፈጸም ወደ እሱ የሚተላለፉት ነጋሪ እሴቶች እንዲገልጹ ይፈቅድልዎታል። 
+
+መመሪያው ነቅቶ ከሆነ Chrome ሲጠራ የቀረቡት ልኬቶች ጥቅም ላይ ይውላሉ።
+
+እንዲሁም ዩአርኤሉ በማዘዢያ መስመሩ ላይ የት መምጣት እንዳለበት ለመግለጽ ልዩ ቦታ ያዢውን ${url} መጠቀምም ይችላሉ። ለምሳሌ፦ «--url={url} --kiosk»።
+ቦታ ያዢውን መጨረሻ ላይ መያያዝ ካለበት እሱን መግለፅ አይኖርብዎትም፣ ወይም ደግሞ ብቸኛው ነጋሪ እሴት መሆን ካለበት ያንን መመሪያ ባዶ መተው ይችላሉ።
+
+መመሪያው ከተሰናከለ ወይም ባዶ እንደሆነ ከተተወ ዩአርኤሉ ብቻ ነው እንደ ልኬት ለአሳሹ የሚተላለፈው።</string>
+      <string id="AlternativeBrowserArguments">ተለዋጭ የአሳሽ ነጋሪ እሴቶች</string>
+      <string id="ChromeArguments">የChrome ነጋሪ እሴቶች</string>
+      <string id="AlternativeBrowserPath_Part">ተለዋጭ የአሳሽ ዱካ</string>
+      <string id="URLList_Part">በተለዋጭ አሳሹ የሚከፈቱ አስተናጋጆች</string>
+      <string id="KeepLastChromeTab_Explain">አንድ በChrome ውስጥ ለመጨረሻ ጊዜ የተከፈተ ትር ወደ ተለዋጭ አሳሽ አቅጣጫ እንዲቀይር በሚደረግበት ጊዜ ምን እንደሚፈጠር እንዲገልጹ ያስችልዎታል።
+
+ይህ መመሪያ በሚነቃበት ጊዜ ወይም ባልተዋቀረበት ጊዜ የመጨረሻው ትር ክፍት ሆኖ ይተዋል፣ እና ከሽግግሩ በኋላ ወደ አዲሱ ትር ገጽ እንዲጠቁም ይደረጋል። እንዲሰናከል ሆኖ ከተዘጋጀ የመጨረሻው ትር በሚዘጋበት ጊዜ ሌሎች የተከፈቱ የChrome መስኮቶች ከሌሉ Chrome እንዲዘጋ ያደርጋል።</string>
+      <string id="UseIeSiteList_Part">የIE Enterprise Mode Site ዝርዝር መመሪያን ተጠቀም</string>
+      <string id="SUPPORTED_WINXPSP2">Microsoft Windows XP SP2 ወይም ከዚያ በኋላ</string>
+      <string id="AlternativeBrowserPath">ተለዋጭ የአሳሽ ዱካ</string>
+      <string id="UseIeSiteList_Explain">በሚነቃበት ጊዜ፣ በአሳሾች መካከል ያሉት ሽግግሮቹ በ(https://technet.microsoft.com/itpro/internet-explorer/ie11-deploy-guide/turn-on-enterprise-mode-and-use-a-site-list) ላይ በተገለጸው መሠረት በSiteList መመሪያ ውስጥ ባሉት ግቤቶች ለInternet Explorer እንዲቀሰቀሱ ይደረጋሉ።
+
+ካልተቀናበረ ወይም ከተሰናከለ በቅጥያው መመሪያ ውስጥ ያሉት መመሪያዎች ብቻ ጥቅም ላይ ይውላሉ።</string>
+      <string id="AlternativeBrowserPath_Explain">የተለዋጭ አሳሹ ተፈጻሚ ይግለጹ።
+ፕሮግራሙ እንደ ተለዋጭ አሳሽ ስራ ላይ እንዲውል እንዲገልጹ ይፈቅድልዎታል።
+
+ከነቃ በመመሪያው ውስጥ ፍጹም ዱካውን መግለጽ ወይም ከሚከተሉት ተለዋዋጮች ውስጥ አንዱን መጠቀም ይችላሉ፦
+
+${ie} - የInternet Explorer ነባሪ የጭነት ቦታ
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\IEXPLORE.EXE is used to pick the location of the browser in this case.
+${firefox} - የFirefox ነባሪ የጭነት ቦታ
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\FIREFOX.EXE is used to pick the location of the browser in this case.
+${safari} - የSafari ነባሪ የጭነት ቦታ
+በዚህ አጋጣሚ የአሳሹ ቦታ ለመምረጥ HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\SAFARI.EXE ስራ ላይ ይውላል።
+
+መመሪያው ካልነቃ ወይም ባዶ ከተተወ ነባሪው ተለዋጭ አሳሽ ስራ ላይ ይውላል፣ ይህም ${ie} ከሆነ የነቃው Internet Explorer ነው የሚሆነው።</string>
+      <string id="ShowTransitionScreen_Part">ለተወሰነ ጊዜ በChrome ውስጥ የሽግግር ማያ ገጽን አሳይ</string>
+      <string id="URLList_Explain">በተለዋጩ አሳሽ የሚከፈቱ የአስተናጋጅ ጎራ ስሞች ዝርዝር እንዲጠቅሱ ያስችልዎታል።
+
+መመሪያው ከነቃ ወደ ተለዋጭ አሳሹ የሚደረገውን ሽግግር የሚያስጀምሩ የማጣሪያዎች ዝርዝር ማቅረብ ይኖርብዎታል። እያንዳንዱ ግቤት ከሚከተሉት አራት ዓይነቶች አንዱን መሆን ይኖርበታል፦
+
+የአስተናጋጅ ስም ክፍል፦ እንደ «www.example.com» ያሉ የተሟሉ የጎራ ስሞች፣ ወይም እንደ «example.com» ያሉ የእነርሱ ክፍሎች፣ ወይም እንዲያውም «example» መጠቀስ አለባቸው። ልቅ ምልክቶች እስካሁን የተደገፉ አይደሉም።
+የዩአርኤል ቅድመ-ቅጥያ፦ ካስፈለገ ትክክለኛ የዩአርኤል ቅድመ-ቅጥያዎች ብቻ ናቸው ከፕሮቶኮሉ እና ከወደቡ ጋር የሚዛመዱት። ምሳሌ፦ «http://login.example.com»  ወይም «https://www.example.com:8080/login/»።
+አሉታዊ ግቤት፦ በ«!» ይጀምር እና ከላይ እንደተገለጸው እንደ አስተናጋጅ ስም ክፍል ወይም የዩአርኤል ቅድመ-ቅጥያ ይቀጥላል። አሉታዊ ግቤቶች ሁልጊዜ በChrome ውስጥ ነው የሚከፈቱት። ምሳሌ፦ «!example.com » ወይም «!file:///c:/localapp/»።
+የልቅ ምልክት ግቤት፦ አንዲት ነጠላ የ«*» ቁምፊ ብቻ ይይዛል። ከማንኛውም ዩአርኤል ጋር ይዛመዳል። አብዛኛዎቹ ዩአርኤሎች በተለዋጩ አሳሽ መከፈት እና ትንሽ የተመረጡ ዩአርኤሎች ብቻ በChrome ውስጥ መከፈት ካለባቸው ከአሉታዊ ግቤቶች ጋር አንድ ላይ ጥቅም ላይ እንዲውል የታሰበ ነው።
+
+ጥቂት ክፍሎች በChrome ውስጥ እንዲከፈቱ በማስቀመጥ የአንድን ጎራ አብዛኛዎቹን ክፍሎች በተፈቀደላቸው ዝርዝር ላይ ማስቀመጥ ከሚያስችሉት ከአዎንታዊ ግቤቶች ይልቅ አሉታዊ ግቤቶች ከፍተኛ ተቀዳሚነት ደረጃ አላቸው።
+የልቅ ምልክት ግቤት ካለ ሌሎች ደንቦች ከተረጋገጡ በኋላ ብቻ ነው ተፈጻሚ የሚሆነው።
+
+የሚከተሉት ፕሮቶኮሎች አቅጣጫን ለማስቀየር ቁጥጥር ይደረግባቸዋል፦ http:፣ https:።
+
+ሳይጠቀስ ከቀረ ወይም ባዶ ከተተወ - ወደ ተለዋጭ አሳሹ ምንም ዓይነት ሽግግር እንዲጀምር አይደረግም።</string>
+      <string id="ChromePath_Explain">ከተለዋጭ አሳሽ(*) ሲመለሱ የChrome ተፈጻሚ እንዲጀመር እንዲገልጹ ይፈቅድልዎታል።
+
+መመሪያው ነቅቶ ከሆነ ወይም በመመሪያው ውስጥ ፍጹም ዱካውን መግለጽ ይችላሉ ወይም የሚከተለውን ተለዋዋጭ መጠቀም ይችላሉ፦
+
+${chrome} - የChrome ነባሪ የጭነት ቦታ
+በዚህ አጋጣሚ የአሳሹ ቦታ ለመምረጥ HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\Chrome.EXE ስራ ላይ ይውላል።
+
+መመሪያው ካልነቃ ወይም ባዶ ከተተወ ነባሪው ተለዋጭ አሳሽ ስራ ላይ ይውላል፣ ይህም ${chrome} ከሆነ የነቃው Chrome ነው የሚሆነው።
+
+*: በአሁኑ ጊዜ Internet Explorer ብቻ ነው በራስ-ሰር ወደ Chrome መመለስ የሚደግፈው።</string>
+      <string id="Cat_LegacyBrowserSupport">የቆየ የአሳሽ ድጋፍ</string>
+      <string id="AlternativeBrowserArguments_Part">ተለዋጭ የአሳሽ ነጋሪ እሴቶች</string>
+      <string id="URLGreyList_Part">በየትኛውም አሳሽ ሽግግርን ማስጀመር የሌለባቸው አስተናጋጆች</string>
+      <string id="UseIeSiteList_Policy">የIE Enterprise Mode Site ዝርዝር መመሪያን ተጠቀም</string>
+      <string id="URLGreyList_Policy">በየትኛውም አሳሽ ሽግግርን ማስጀመር የሌለባቸው አስተናጋጆች</string>
+      <string id="ShowTransitionScreen_Explain">ወደ ሌላ አሳሽ ከመሸጋገሩ በፊት በChrome ውስጥ የሚታየው የሽግግር መልዕክት በትር ውስጥ ለምን ያክል ጊዜ እንደሚታይ እንዲወስኑ ይፈቅድልዎታል። ይህ መመሪያ በሰከንዶች የሚጠቀስ ነው።
+
+ሳይቀናበር ከተተወ ትሩ ሽግግሩ ሊጠናቀቅ ሲችል ወዲያውኑ ይዘጋል።</string>
+      <string id="URLList_Policy">በተለዋጭ አሳሹ የሚከፈቱ አስተናጋጆች</string>
+      <string id="ChromePath">የChrome ዱካ</string>
+      <string id="ChromeArguments_Part">የChrome ነጋሪ እሴቶች</string>
+      <string id="KeepLastChromeTab_Part">የመጨረሻውን የChrome ትር በሽግግር ላይ አቆይ</string>
+      <string id="AlternativeBrowserArguments_Explain">ወደ የተለዋጭ አሳሹ ተፈፃሚ የሚተላለፉትን ነጋሪ እሴቶችን እንዲገልጹ ይፈቅድልዎታል።
+
+መመሪያው ነቅቶ ከሆነ ተለዋጭ አሳሹ ሲጠራ የቀረቡት ልኬቶች ስራ ላይ ይውላሉ።
+
+እንዲሁም ዩአርኤሉ በማዘዢያ መስመሩ ላይ የት መምጣት እንዳለበት ለመግለጽ ልዩ ቦታ ያዢውን ${url} መጠቀምም ይችላሉ። ለምሳሌ፦ «--url={url} --kiosk»።
+ቦታ ያዢውን መጨረሻ ላይ መያያዝ ካለበት እሱን መግለፅ አይኖርብዎትም፣ ወይም ደግሞ ብቸኛው ነጋሪ እሴት መሆን ካለበት ያንን መመሪያ ባዶ መተው ይችላሉ።
+
+መመሪያው ከተሰናከለ ወይም ባዶ እንደሆነ ከተተወ ዩአርኤሉ ብቻ ነው እንደ ልኬት ለአሳሹ የሚተላለፈው።</string>
+      <string id="URLGreyList_Explain">በየትኛውም አሳሽ የሚከፈቱትን አስተናጋጅ የጎራ ስሞች ዝርዝር እንዲጠቅሱ ያስችልዎታል።
+
+ይህ መመሪያ ሲነቃ በዚህ ዝርዝር ውስጥ ያሉት ጎራዎች በሁለቱም አሳሾች ውስጥ እንዲኖር የሚደረጉ ሲሆን በሁለቱም አቅጣጫ ሽግግር አያስጀምርም።
+
+ይህ ስራ ላይ ሊውልባቸው የሚችልባቸው ሁኔታዎች በዚህ ዝርዝር ውስጥ ባሉ አዳዲስ እና የቆዩ መተግበሪያዎች መካከል የሚጋሩ ማንኛውም የማረጋገጫ ጎራዎች ናቸው።
+
+የአስተናጋጅ ስም ክፍሎች፦ እንደ «www.example.com» ያሉ ሙሉ የጎራ ስሞች፣ ወይም እንደ «example.com» ያሉ የእነሱ ክፍሎች፣ ወይም እንዲያውም «example» መጠቀስ አለባቸው። ልቅ ምልክቶች ገና አይደገፉም።
+የዩአርኤል ቅድመ-ቅጥያዎች፦ አስፈላጊ ሆነው ከተገኙ ትክክለኛ የዩአርኤል ቅድመ-ቅጥያዎች ብቻ ናቸው ከፕሮቶኮል እና ወደ ጋር የሚዛመዱት። ለምሳሌ፦ «http://login.example.com" ወይም "https://www.example.com:8080/login/»።
+
+ሳይጠቀስ ከቀረ ወይም ባዶ ከተተወ - በ«በተለዋጭ አሳሹ ውስጥ የሚከፍቱ አስተናጋጆች» በሚለው ዝርዝር ውስጥ የሌለ ማንኛውም ጎራ ወደ Chrome(*) ተመልሶ የሚደረግ ሽግግር ይጀመራል።
+
+*፦ በአሁኑ ወቅት Internet Explorer ብቻ በራስ-ሰር ወደ Chrome መመለስ ይፈቅዳል።</string>
+      <string id="ChromePath_Part">የChrome ዱካ</string>
+</stringTable>
+  <presentationTable>
+    <presentation id="AlternativeBrowserPath">
+      <textBox refId="AlternativeBrowserPath_Part">
+        <label>ተለዋጭ የአሳሽ ዱካ</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="AlternativeBrowserArguments">
+      <textBox refId="AlternativeBrowserArguments_Part">
+        <label>ተለዋጭ የአሳሽ ነጋሪ እሴቶች</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="ChromePath">
+      <textBox refId="ChromePath_Part">
+        <label>የChrome ዱካ</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="ChromeArguments">
+      <textBox refId="ChromeArguments_Part">
+        <label>የChrome ነጋሪ እሴቶች</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="URLList_Policy">
+      <listBox refId="URLList_Part">በተለዋጭ አሳሹ የሚከፈቱ አስተናጋጆች</listBox>
+    </presentation>
+    <presentation id="URLGreyList_Policy">
+      <listBox refId="URLGreyList_Part">በየትኛውም አሳሽ ሽግግርን ማስጀመር የሌለባቸው አስተናጋጆች</listBox>
+    </presentation>
+    <presentation id="KeepLastChromeTab_Policy"/>
+    <presentation id="ShowTransitionScreen_Policy">
+      <decimalTextBox refId="ShowTransitionScreen_Part">ለተወሰነ ጊዜ በChrome ውስጥ የሽግግር ማያ ገጽን አሳይ</decimalTextBox>
+    </presentation>
+    <presentation id="UseIeSiteList_Policy"/>
+  </presentationTable>
+</resources>
+</policyDefinitionResources>

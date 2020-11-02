@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<policyDefinitionResources revision="1.0" schemaVersion="1.0">
+  <displayName>
+  </displayName>
+  <description>
+  </description>
+  <resources>
+    <stringTable>
+      <string id="KeepLastChromeTab_Policy">Üleminekul Chrome'i viimase vahelehe säilitamine</string>
+      <string id="ShowTransitionScreen_Policy">Chrome'is mõneks ajaks üleminekuekraani kuvamine</string>
+      <string id="ChromeArguments_Explain">Võimaldab teil määrata muutujad, mis edastatakse Chrome'i, kui see täidetakse.
+
+Kui reegel on lubatud, kasutatakse Chrome'i avamisel antud parameetreid.
+
+Saate kasutada ka erikohahoidjat ${url}, et määrata, kus URL käsureal peaks ilmuma. Nt „--url=${url} --kiosk”.
+Te ei pea kohahoidjat määrama, kui see lisatakse lõppu. Kui kohahoidja on ainus muutuja, võite selle reegli tühjaks jätta.
+
+Kui reegel on keelatud või tühjaks jäetud, edastatakse brauserile parameetrina ainult URL.</string>
+      <string id="AlternativeBrowserArguments">Alternatiivse brauseri muutujad</string>
+      <string id="ChromeArguments">Chrome'i muutujad</string>
+      <string id="AlternativeBrowserPath_Part">Alternatiivse brauseri tee</string>
+      <string id="URLList_Part">Alternatiivses brauseris avatavad hostid</string>
+      <string id="KeepLastChromeTab_Explain">Võimaldab määrata, mis juhtub juhul, kui Chrome'i viimane avatud vaheleht suunatakse ümber alternatiivsesse brauserisse.
+
+Kui reegel on lubatud või määramata, jäetakse viimane vaheleht avatuks ja see suunatakse pärast üleminekut uuele vahelehele. Kui reegel on keelatud, suletakse viimane vaheleht. Kui see on ainus avatud Chrome'i aken, sulgub ka Chrome.</string>
+      <string id="UseIeSiteList_Part">IE Enterprise Mode'i saidiloendi reegli kasutamine</string>
+      <string id="SUPPORTED_WINXPSP2">Microsoft Windows XP SP2 või uuem</string>
+      <string id="AlternativeBrowserPath">Alternatiivse brauseri tee</string>
+      <string id="UseIeSiteList_Explain">Kui see on lubatud, käivitatakse brauseritevahelised üleminekud Internet Exploreri puhul ka reegli SiteList kirjetega, mida on kirjeldatud veebilehel https://technet.microsoft.com/itpro/internet-explorer/ie11-deploy-guide/turn-on-enterprise-mode-and-use-a-site-list.
+
+
+Kui see on määramata või keelatud, siis kasutatakse ainult laienduse reeglis olevaid URL-e.</string>
+      <string id="AlternativeBrowserPath_Explain">Määrake alternatiivse brauseri täitmisfail.
+Võimaldab määrata alternatiivse brauserina kasutatava programmi.
+
+Kui see on lubatud, saate reeglis määrata absoluutse tee või kasutada ühte järgmistest muutujatest.
+
+${ie} – sel juhul kasutatakse brauseri asukoha valimiseks Internet Exploreri installi vaikeasukohta
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\IEXPLORE.EXE.
+${firefox} – sel juhul kasutatakse brauseri asukoha valimiseks Firefoxi installi vaikeasukohta
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\FIREFOX.EXE.
+${safari} – sel juhul kasutatakse brauseri asukoha valimiseks Safari installi vaikeasukohta
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\SAFARI.EXE.
+
+Kui reegel pole lubatud või on jäetud tühjaks, kasutatakse alternatiivset vaikebrauserit, mis määratakse Internet Exploreris, nagu oleks kasutatud väärtust ${ie}.</string>
+      <string id="ShowTransitionScreen_Part">Chrome'is mõneks ajaks üleminekuekraani kuvamine</string>
+      <string id="URLList_Explain">Võimaldab määrata loendi hostide domeeninimedest, mis avatakse alternatiivses brauseris.
+
+Kui reegel on lubatud, tuleb teil sisestada filtrite loend, mis käivitab ülemineku alternatiivsele brauserile. Iga kirje tüüp peab olema üks järgmistest.
+
+Hostinime osa: sisestada tuleb täielikud domeeninimed, näiteks „www.example.com”, või nimede osad, näiteks „example.com” või isegi „example”. Metamärke veel ei toetata.
+URL-i eesliide: vastendatakse ainult kindlad URL-i eesliited, mida saab täiendada vajadusel protokolli ja pordiga, nt „http://login.example.com” või „https://www.example.com:8080/login/”.
+Negatiivne kirje: kirje alguses on „!”, sellele järgneb ülalkirjeldatud hostinime osa või URL-i eesliide. Negatiivsed kirjed avatakse alati Chrome'is. Nt „!example.com” või „!file:///c:/localapp/”.
+Metamärgiga kirje: sisaldab ainult üht märki „*” ja vastendab mis tahes URL-i. See on mõeldud kasutamiseks koos negatiivsete kirjetega, kui enamik URL-e tuleb avada alternatiivses brauseris ja vaid teatud URL-id Chrome'is.
+
+Negatiivsete kirjete prioriteet on positiivsetest suurem, mis võimaldab kanda lubatud loendisse domeeni suured osad ja avada väiksemad jaotised Chrome'is.
+Kui metamärgiga kirje on lisatud, kehtib see vaid pärast kõikide muude reeglite kontrollimist.
+
+Ümbersuunamiseks jälgitakse järgmiseid protokolle: http:, https:.
+
+Kui reegel on määramata või jäetakse tühjaks, ei käivitata üleminekut alternatiivsele brauserile.</string>
+      <string id="ChromePath_Explain">Võimaldab teil määrata Chrome'i täitmisfaili, mis tuleb käivitada naasmisel alternatiivsest brauserist(*).
+
+Kui reegel on lubatud, saate seal määrata absoluutse tee või kasutada järgmist muutujat.
+
+${chrome} – sel juhul kasutatakse brauseri asukoha valimiseks Chrome'i installi vaikeasukohta HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\Chrome.EXE.
+
+Kui reegel pole lubatud või on jäetud tühjaks, kasutatakse Chrome'i vaikeinstalli, nagu oleks kasutatud väärtust ${chrome}.
+
+*: praegu toetab automaatselt Chrome'i naasmist ainult Internet Explorer.</string>
+      <string id="Cat_LegacyBrowserSupport">Pärandbrauserite tugi</string>
+      <string id="AlternativeBrowserArguments_Part">Alternatiivse brauseri muutujad</string>
+      <string id="URLGreyList_Part">Hostid, mis ei peaks kummaski brauseris üleminekut käivitama</string>
+      <string id="UseIeSiteList_Policy">IE Enterprise Mode'i saidiloendi reegli kasutamine</string>
+      <string id="URLGreyList_Policy">Hostid, mis ei peaks kummaski brauseris üleminekut käivitama</string>
+      <string id="ShowTransitionScreen_Explain">Võimaldab määrata, kui kaua on üleminekusõnum Chrome'i vahelehel enne teisele brauserile üleminekut nähtav. See aitab üleminekut visualiseerida. Reegel määratakse sekundites.
+
+Kui see on määramata, suletakse vaheleht kohe, kui ülemineku saab lõpule viia.</string>
+      <string id="URLList_Policy">Alternatiivses brauseris avatavad hostid</string>
+      <string id="ChromePath">Chrome'i tee</string>
+      <string id="ChromeArguments_Part">Chrome'i muutujad</string>
+      <string id="KeepLastChromeTab_Part">Üleminekul Chrome'i viimase vahelehe säilitamine</string>
+      <string id="AlternativeBrowserArguments_Explain">Võimaldab teil määrata muutujad, mis tuleb edastada alternatiivse brauseri täitmisfaili.
+
+Kui reegel on lubatud, kasutatakse alternatiivse brauseri avamisel antud parameetreid.
+
+Samuti saate kasutada erikohahoidjat ${url}, et määrata, kus URL käsureal peaks ilmuma. Nt „--url=${url} --kiosk”.
+Te ei pea kohahoidjat määrama, kui see lisatakse lõppu, või kui kohahoidja on ainus muutuja, võite selle reegli tühjaks jätta.
+
+Kui reegel on keelatud või tühjaks jäetud, edastatakse brauserile parameetrina ainult URL.</string>
+      <string id="URLGreyList_Explain">Võimaldab teil määrata loendi hostide domeeninimedest, mis avatakse emmas-kummas brauseris.
+
+Kui see reegel on lubatud, on selle loendi domeenid saadaval mõlemas brauseris ja üleminekut ei käivitata kummalgi juhul.
+
+Võimalikud kasutusjuhtumid on mis tahes autentimisdomeenid, mis jagatakse loendis olevate uute ja pärandrakenduste vahel.
+
+Hostinimede osad: sisestada tuleb täielikud domeeninimed, nagu „www.example.com”, või nimede osad, nagu „example.com:” või isegi „example”. Metamärke veel ei toetata.
+URL-i eesliited: vajaduse korral vastendatakse protokolli ja pordiga ainult kehtivad URL-i eesliited. Nt „http://login.example.com” või „https://www.example.com:8080/login/”.
+
+Kui see ei ole määratud või on jäetud tühjaks, siis käivitavad ülemineku tagasi Chrome'i kõik domeenid, mida ei ole loendis „Alternatiivses brauseris avatavad hostid”(*).
+
+*: praegu toetab automaatselt Chrome'i naasmist ainult Internet Explorer.</string>
+      <string id="ChromePath_Part">Chrome'i tee</string>
+</stringTable>
+  <presentationTable>
+    <presentation id="AlternativeBrowserPath">
+      <textBox refId="AlternativeBrowserPath_Part">
+        <label>Alternatiivse brauseri tee</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="AlternativeBrowserArguments">
+      <textBox refId="AlternativeBrowserArguments_Part">
+        <label>Alternatiivse brauseri muutujad</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="ChromePath">
+      <textBox refId="ChromePath_Part">
+        <label>Chrome'i tee</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="ChromeArguments">
+      <textBox refId="ChromeArguments_Part">
+        <label>Chrome'i muutujad</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="URLList_Policy">
+      <listBox refId="URLList_Part">Alternatiivses brauseris avatavad hostid</listBox>
+    </presentation>
+    <presentation id="URLGreyList_Policy">
+      <listBox refId="URLGreyList_Part">Hostid, mis ei peaks kummaski brauseris üleminekut käivitama</listBox>
+    </presentation>
+    <presentation id="KeepLastChromeTab_Policy"/>
+    <presentation id="ShowTransitionScreen_Policy">
+      <decimalTextBox refId="ShowTransitionScreen_Part">Chrome'is mõneks ajaks üleminekuekraani kuvamine</decimalTextBox>
+    </presentation>
+    <presentation id="UseIeSiteList_Policy"/>
+  </presentationTable>
+</resources>
+</policyDefinitionResources>

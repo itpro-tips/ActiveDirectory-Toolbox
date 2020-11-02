@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<policyDefinitionResources revision="1.0" schemaVersion="1.0">
+  <displayName>
+  </displayName>
+  <description>
+  </description>
+  <resources>
+    <stringTable>
+      <string id="KeepLastChromeTab_Policy">Veicot pāreju, saglabāt pēdējo Chrome cilni</string>
+      <string id="ShowTransitionScreen_Policy">Pārlūkprogrammā Chrome noteiktu laiku rāda pārejas ekrānu</string>
+      <string id="ChromeArguments_Explain">Atļauj norādīt argumentus, kurus pārsūtīt pārlūkprogrammai Chrome, kad tā tiek atvērta.
+
+Ja politika ir iespējota, sniegtie parametri tiks izmantoti Chrome atvēršanas brīdī.
+
+Varat izmantot arī īpašo vietturi ${url}, lai norādītu, kur komandrindā jātiek parādītam vietrādim URL. Piemērs: “--url=${url} --kiosk”.
+Vietturis nav jānorāda gadījumos, kad tas ir jāpievieno argumenta beigās; ja tas ir vienīgais arguments, politikai var nenorādīt iestatījumu.
+
+Ja politika ir atspējota vai iestatījums nav norādīts, pārlūkprogrammai kā parametrs tiks pārsūtīts tikai vietrādis URL.</string>
+      <string id="AlternativeBrowserArguments">Papildu pārlūkprogrammas argumenti</string>
+      <string id="ChromeArguments">Chrome argumenti</string>
+      <string id="AlternativeBrowserPath_Part">Papildu pārlūkprogrammas ceļš</string>
+      <string id="URLList_Part">Vietnes, kas jāatver papildu pārlūkprogrammā</string>
+      <string id="KeepLastChromeTab_Explain">Var norādīt, kas notiek, kad uz papildu pārlūkprogrammu tiek novirzīta pēdējā pārlūkprogrammā Chrome atvērtā cilne.
+
+Ja šī politika ir iespējota vai nav iestatīta, pēdējā cilne pēc pārejas paliks atvērta un norādīs uz jaunās cilnes lapu. Ja politika ir atspējota, pēdējā cilne tiks aizvērta, kā rezultātā tiks aizvērta arī pārlūkprogramma Chrome (ja nebūs atvērts neviens cits Chrome logs).</string>
+      <string id="UseIeSiteList_Part">Izmantot IE uzņēmumu režīma vietņu saraksta politiku</string>
+      <string id="SUPPORTED_WINXPSP2">Microsoft Windows XP SP2 vai jaunāka versija</string>
+      <string id="AlternativeBrowserPath">Papildu pārlūkprogrammas ceļš</string>
+      <string id="UseIeSiteList_Explain">Tās iespējojot, pārejas starp pārlūkprogrammām aktivizēs ieraksti Internet Explorer vietņu saraksta politikā, kā noteikts šeit: https://technet.microsoft.com/itpro/internet-explorer/ie11-deploy-guide/turn-on-enterprise-mode-and-use-a-site-list.
+
+Ja šāda pāreja nebūs iestatīta vai būs atspējota, tiks izmantoti tikai paplašinājumu politikas URL.</string>
+      <string id="AlternativeBrowserPath_Explain">Norādiet papildu pārlūkprogrammas izpildāmo failu.
+Ļauj norādīt programmu, kas tiks izmantota kā papildu pārlūkprogramma.
+
+Ja politika ir iespējota, varat tajā norādīt absolūto ceļu vai izmantot vienu no tālāk norādītajiem mainīgajiem.
+
+${ie} — noklusējuma instalēšanas vieta pārlūkprogrammai Internet Explorer
+Lai šajā gadījumā izvēlētos pārlūkprogrammas atrašanās vietu, tiek izmantots izpildāmais fails HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\IEXPLORE.EXE.
+${firefox} — noklusējuma instalēšanas vieta pārlūkprogrammai Firefox
+Lai šajā gadījumā izvēlētos pārlūkprogrammas atrašanās vietu, tiek izmantots izpildāmais fails HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\FIREFOX.EXE.
+${safari} — noklusējuma instalēšanas vieta pārlūkprogrammai Safari
+Lai šajā gadījumā izvēlētos pārlūkprogrammas atrašanās vietu, tiek izmantots izpildāmais fails HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\SAFARI.EXE.
+
+Ja politika nav iespējota vai iestatījums nav norādīts, tiks izmantota noklusējuma pārlūkprogramma (Internet Explorer), kas noteikta, pieņemot, ka tika lietota vērtība ${ie}.</string>
+      <string id="ShowTransitionScreen_Part">Pārlūkprogrammā Chrome noteiktu laiku rāda pārejas ekrānu</string>
+      <string id="URLList_Explain">Atļauj norādīt papildu pārlūkprogrammā atveramo vietņu domēnu nosaukumu sarakstu.
+
+Ja politika ir iespējota, jums ir jānorāda to filtru saraksts, kuri aktivizēs pāreju uz papildu pārlūkprogrammu. Katram ierakstam ir jāatbilst kādam no tālāk norādītajiem četriem veidiem.
+
+Vietnes nosaukuma daļa: jānorāda pilns domēna nosaukums, piemēram, “www.example.com”, vai tā daļa, piemēram, “example.com” vai tikai “example”. Aizstājējzīmes pagaidām netiek atbalstītas.
+URL prefikss: tikai atbilstoši URL prefiksi tiek pilnībā saskaņoti ar protokolu un portu, ja nepieciešams. Piemērs: “http://login.example.com” vai “https://www.example.com:8080/login/”.
+Negatīvs ieraksts: sākas ar “!”, pēc tam ir vietnes nosaukuma daļa vai URL prefikss, kā aprakstīts iepriekš. Negatīvie ieraksti vienmēr tiek atvērti pārlūkprogrammā Chrome. Piemērs: “!example.com” vai “!file:///c:/localapp/”.
+Aizstājējzīmes ieraksts: ir ietverta tikai rakstzīme “*”. Atbilst jebkuram vietrādim URL. Paredzēts izmantošanai kopā ar negatīvajiem ierakstiem, ja lielākā daļa vietrāžu URL ir jāatver papildu pārlūkprogrammā, bet pārlūkprogrammā Chrome ir jāatver tikai maza daļa vietrāžu URL.
+
+Negatīvajiem ierakstiem ir augstāka prioritāte nekā pozitīvajiem ierakstiem, kuri ļauj baltajā sarakstā iekļaut lielas domēna daļas, vienlaikus saglabājot mazākas sadaļas atvēršanai pārlūkprogrammā Chrome.
+Ja pastāv aizstājējzīmes ieraksts, tas tiek izmantots tikai pēc tam, kad ir pārbaudītas visas pārējās kārtulas.
+
+Novirzīšanai tiek pārraudzīti šādi protokoli: http:, https:
+
+Ja politika nav norādīta vai tās vērtība ir atstāta tukša, pāreja uz papildu pārlūkprogrammu netiks aktivizēta.</string>
+      <string id="ChromePath_Explain">Atļauj norādīt Chrome izpildāmo failu, kas tiks palaists, atgriežoties no papildu pārlūkprogrammas*.
+
+Kad politika ir iespējota, varat tajā norādīt absolūto ceļu vai izmantot tālāk norādīto mainīgo.
+
+${chrome} — noklusējuma instalēšanas vieta pārlūkprogrammai Chrome.
+Lai šajā gadījumā izvēlētos pārlūkprogrammas atrašanās vietu, tiek izmantots izpildāmais fails HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\Chrome.EXE.
+
+Ja politika ir atspējota vai iestatījums nav norādīts, tiks izmantota Chrome noklusējuma instalācija, pieņemot, ka ir izmantota vērtība ${chrome}.
+
+* Pašlaik automātiska atgriešanās uz pārlūkprogrammu Chrome tiek atbalstīta tikai pārlūkprogrammā Internet Explorer.</string>
+      <string id="Cat_LegacyBrowserSupport">Mantoto pārlūkprogrammu atbalsts</string>
+      <string id="AlternativeBrowserArguments_Part">Papildu pārlūkprogrammas argumenti</string>
+      <string id="URLGreyList_Part">Vietnes, kuru atvēršana neaktivizē pāreju uz citu pārlūkprogrammu</string>
+      <string id="UseIeSiteList_Policy">Izmantot IE uzņēmumu režīma vietņu saraksta politiku</string>
+      <string id="URLGreyList_Policy">Vietnes, kuru atvēršana neaktivizē pāreju uz citu pārlūkprogrammu</string>
+      <string id="ShowTransitionScreen_Explain">Var norādīt, cik ilgi pārlūkprogrammā Chrome būs redzams pārejas ziņojums cilnē pirms pārejas uz citu pārlūkprogrammu. Tādējādi var vizualizēt pāreju. Politikas vērtība tiek norādīta sekundēs.
+
+Ja iestatījums nebūs norādīts, cilne tiks aizvērta, tiklīdz būs iespējams pabeigt pāreju.</string>
+      <string id="URLList_Policy">Vietnes, kas jāatver papildu pārlūkprogrammā</string>
+      <string id="ChromePath">Chrome ceļš</string>
+      <string id="ChromeArguments_Part">Chrome argumenti</string>
+      <string id="KeepLastChromeTab_Part">Veicot pāreju, saglabāt pēdējo Chrome cilni</string>
+      <string id="AlternativeBrowserArguments_Explain">Atļauj norādīt argumentus, kurus pārsūtīt papildu pārlūkprogrammas izpildāmajam failam.
+
+Ja politika ir iespējota, sniegtie parametri tiks izmantoti papildu pārlūkprogrammas atvēršanas brīdī.
+
+Varat izmantot arī īpašo vietturi ${url}, lai norādītu, kur komandrindā jātiek parādītam vietrādim URL. Piemērs: “--url=${url} --kiosk”.
+Vietturis nav jānorāda gadījumos, kad tas ir jāpievieno argumenta beigās; ja tas ir vienīgais arguments, politikai var nenorādīt iestatījumu.
+
+Ja politika ir atspējota vai iestatījums nav norādīts, pārlūkprogrammai kā parametrs tiks pārsūtīts tikai vietrādis URL.</string>
+      <string id="URLGreyList_Explain">Atļauj norādīt sarakstu ar to vietņu domēnu nosaukumiem, kuras var atvērt abās pārlūkprogrammās.
+
+Ja šī politika ir iespējota, sarakstā norādītos domēnus var atvērt abās pārlūkprogrammās un pāreja netiek aktivizēta.
+
+Šī iespēja ir noderīga gadījumos, kad šajā sarakstā esošie autentifikācijas domēni tiek vienlaicīgi izmantoti gan jaunajās, gan mantotajās lietotnēs.
+
+Vietņu nosaukumu daļas: jānorāda pilns domēna nosaukums, piemēram, “www.example.com”, vai tā daļa, piemēram, “example.com” vai tikai “example”. Aizstājējzīmes pagaidām netiek atbalstītas.
+URL prefiksi: tikai atbilstoši URL prefiksi tiek pilnībā saskaņoti ar protokolu un portu, ja nepieciešams. Piemērs: “http://login.example.com” vai “https://www.example.com:8080/login/”.
+
+Ja politika netiek norādīta vai tās vērtība ir atstāta tukša, visi domēnu nosaukumi, kas nav iekļauti sarakstā “Vietnes, kas jāatver papildu pārlūkprogrammā”, aktivizē pāreju uz Chrome*.
+
+* Pašlaik automātiska atgriešanās uz pārlūkprogrammu Chrome tiek atbalstīta tikai pārlūkprogrammā Internet Explorer.</string>
+      <string id="ChromePath_Part">Chrome ceļš</string>
+</stringTable>
+  <presentationTable>
+    <presentation id="AlternativeBrowserPath">
+      <textBox refId="AlternativeBrowserPath_Part">
+        <label>Papildu pārlūkprogrammas ceļš</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="AlternativeBrowserArguments">
+      <textBox refId="AlternativeBrowserArguments_Part">
+        <label>Papildu pārlūkprogrammas argumenti</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="ChromePath">
+      <textBox refId="ChromePath_Part">
+        <label>Chrome ceļš</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="ChromeArguments">
+      <textBox refId="ChromeArguments_Part">
+        <label>Chrome argumenti</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="URLList_Policy">
+      <listBox refId="URLList_Part">Vietnes, kas jāatver papildu pārlūkprogrammā</listBox>
+    </presentation>
+    <presentation id="URLGreyList_Policy">
+      <listBox refId="URLGreyList_Part">Vietnes, kuru atvēršana neaktivizē pāreju uz citu pārlūkprogrammu</listBox>
+    </presentation>
+    <presentation id="KeepLastChromeTab_Policy"/>
+    <presentation id="ShowTransitionScreen_Policy">
+      <decimalTextBox refId="ShowTransitionScreen_Part">Pārlūkprogrammā Chrome noteiktu laiku rāda pārejas ekrānu</decimalTextBox>
+    </presentation>
+    <presentation id="UseIeSiteList_Policy"/>
+  </presentationTable>
+</resources>
+</policyDefinitionResources>

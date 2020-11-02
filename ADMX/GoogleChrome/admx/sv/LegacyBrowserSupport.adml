@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<policyDefinitionResources revision="1.0" schemaVersion="1.0">
+  <displayName>
+  </displayName>
+  <description>
+  </description>
+  <resources>
+    <stringTable>
+      <string id="KeepLastChromeTab_Policy">Behåll den sista fliken i Chrome vid övergång</string>
+      <string id="ShowTransitionScreen_Policy">Visa övergångsskärmen i Chrome en viss tid</string>
+      <string id="ChromeArguments_Explain">Här kan du ange vilka argument som ska skickas till Chrome när programmet startas.
+
+Om policyn är aktiverad används de angivna parametrarna när Chrome anropas.
+
+Du kan också ange webbadressens position i kommandoraden med den särskilda platshållaren ${url}. Exempel:"--url=${url} --kiosk.
+Du behöver inte ange platshållaren om den ska läggas till sist eller om den ska vara det enda argumentet. Då kan du lämna den policyn tom.
+
+Om policyn inaktiveras eller lämnas tom skickas endast webbadressen som parameter till webbläsaren.
+</string>
+      <string id="AlternativeBrowserArguments">Argument för alternativ webbläsare</string>
+      <string id="ChromeArguments">Argument för Chrome</string>
+      <string id="AlternativeBrowserPath_Part">Sökväg till alternativ webbläsare</string>
+      <string id="URLList_Part">Värdadresser som ska öppnas i den alternativa webbläsaren</string>
+      <string id="KeepLastChromeTab_Explain">Här kan du ange vad som ska hända när den sista öppna fliken i Chrome omdirigeras till den alternativa webbläsaren.
+
+När den här policyn är aktiverad eller om den inte anges lämnas den sista fliken öppen och pekar mot sidan ny flik efter övergången. Om policyn är inaktiverad stängs den sista fliken, vilket leder till att Chrome stängs om inga andra fönster är öppna i Chrome.</string>
+      <string id="UseIeSiteList_Part">Använda policyn för webbplatslistor med företagsläget i IE</string>
+      <string id="SUPPORTED_WINXPSP2">Microsoft Windows XP SP2 eller senare</string>
+      <string id="AlternativeBrowserPath">Sökväg till alternativ webbläsare</string>
+      <string id="UseIeSiteList_Explain">När policyn är angiven aktiveras övergångar mellan webbläsare även av poster i policyn SiteList för Internet Explorer, vilket anges på (https://technet.microsoft.com/itpro/internet-explorer/ie11-deploy-guide/turn-on-enterprise-mode-and-use-a-site-list).
+
+Om policyn inte anges eller är inaktiverad används bara webbadresserna i policyn för tillägget.</string>
+      <string id="AlternativeBrowserPath_Explain">Ange sökvägen till den alternativa webbläsarens körbara fil.
+Här kan du ange vilket program som ska användas som alternativ webbläsare.
+
+När policyn är aktiverad kan du antingen ange en absolut sökväg eller använda någon av variablerna nedan:
+
+${ie} – Standardinstallationsplatsen för Internet Explorer
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\IEXPLORE.EXE används för att ange var webbläsaren finns i det här fallet.
+${firefox} – Standardinstallationsplatsen för Firefox
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\FIREFOX.EXE används för att ange var webbläsaren finns i det här fallet.
+${safari} – Standardinstallationsplatsen för Safari
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\SAFARI.EXE används för att ange var webbläsaren finns i det här fallet.
+
+Om policyn inaktiveras eller lämnas tom används standardvalet för alternativ webbläsare, vilket är Internet Explorer. Sökvägen bestäms då som om värdet ${ie} hade angetts.</string>
+      <string id="ShowTransitionScreen_Part">Visa övergångsskärmen i Chrome en viss tid</string>
+      <string id="URLList_Explain">Här kan du ange en lista med värddomännamn som ska öppnas i den alternativa webbläsaren.
+
+Om policyn är aktiverad måste du tillhandahålla en lista med filter som ska utlösa övergången till den alternativa webbläsaren. I varje post i listan ska någon av följande fyra typer anges:
+
+Del av värdnamn: Ange antingen fullständiga domännamn som www.example.com eller delar, som example.com eller till och med example. Jokertecken stöds inte ännu.
+Webbadressprefix: Endast korrekt utformade webbadressprefix matchas, med protokoll och port vid behov. Exempel: http://login.example.com eller https://www.example.com:8080/login/.
+Negativ post: Börjar med ett utropstecken (!) och fortsätter med en del av ett värdnamn eller ett webbadressprefix enligt ovan. Negativa poster öppnas alltid i Chrome. Exempel: !example.com eller !file:///c:/localapp/.
+Post med jokertecken: Innehåller bara tecknet *. Matchar alla webbadresser. Tänkt att användas tillsammans med negativa poster ifall de flesta webbadresser ska öppnas i den alternativa webbläsaren och endast ett fåtal webbadresser ska öppnas i Chrome.
+
+Negativa poster har högre prioritet än positiva, vilket gör det möjligt att tillåta stora delar av en domän samtidigt som mindre delar av den ska öppnas i Chrome.
+Om det finns en post med jokertecken tillämpas den sist, när alla andra regler har kontrollerats.
+
+Följande protokoll övervakas för omdirigeringen: http:, https:.
+
+Om policyn inte anges eller om den lämnas tom aktiveras ingen övergång till den alternativa webbläsaren.</string>
+      <string id="ChromePath_Explain">Här kan du ange sökvägen till den körbara fil för Chrome som startas vid överlämning från den alternativa webbläsaren(*).
+
+När policyn är aktiverad kan du antingen ange en absolut sökväg i policyn eller använda följande variabel:
+
+${chrome} – Standardinstallationsplatsen för Chrome
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\Chrome.EXE används för att ange var webbläsaren finns i det här fallet.
+
+Om policyn inaktiveras eller lämnas tom används standardinstallationsplatsen för Chrome som om värdet ${chrome} hade angetts.
+
+* För närvarande är det bara Internet Explorer som stöder automatisk överlämning till Chrome.</string>
+      <string id="Cat_LegacyBrowserSupport">Stöd för äldre webbläsare</string>
+      <string id="AlternativeBrowserArguments_Part">Argument för alternativ webbläsare</string>
+      <string id="URLGreyList_Part">Värdadresser som inte ska aktivera en övergång i någon av webbläsarna</string>
+      <string id="UseIeSiteList_Policy">Använda policyn för webbplatslistor med företagsläget i IE</string>
+      <string id="URLGreyList_Policy">Värdadresser som inte ska aktivera en övergång i någon av webbläsarna</string>
+      <string id="ShowTransitionScreen_Explain">Här kan du ange hur lång tid övergångsmeddelandet på fliken visas i Chrome före övergången till den andra webbläsaren. På så sätt kan du visualisera övergången. Policyn anges i sekunder.
+
+Om policyn inte anges stängs fliken direkt när övergången kan slutföras.</string>
+      <string id="URLList_Policy">Värdadresser som ska öppnas i den alternativa webbläsaren</string>
+      <string id="ChromePath">Sökväg till Chrome</string>
+      <string id="ChromeArguments_Part">Argument för Chrome</string>
+      <string id="KeepLastChromeTab_Part">Behåll den sista fliken i Chrome vid övergång</string>
+      <string id="AlternativeBrowserArguments_Explain">Här kan du ange vilka argument som ska skickas till den alternativa webbläsarens körbara fil.
+
+Om policyn är aktiverad används de angivna parametrarna när den alternativa webbläsaren anropas.
+
+Du kan också ange webbadressens position i kommandoraden med den särskilda platshållaren ${url}. Exempel:"--url=${url} --kiosk.
+Du behöver inte ange platshållaren om den ska läggas till sist eller om den ska vara det enda argumentet. Då kan du lämna den policyn tom.
+
+Om policyn inaktiveras eller lämnas tom skickas endast webbadressen som parameter till webbläsaren.</string>
+      <string id="URLGreyList_Explain">Här kan du ange en lista över värddomännamn som kan öppnas i endera webbläsaren.
+
+När den här policyn är aktiverad blir domänerna i listan tillgängliga i båda webbläsarna och ingen övergång sker åt något håll. 
+
+Detta kan vara bra till exempel för autentiseringsdomäner som är gemensamma för nya och äldre appar i den här listan.
+
+Delar av värdnamn: Ange antingen fullständiga domännamn som www.example.com eller delar, som example.com eller till och med example. Jokertecken stöds inte ännu.
+Webbadressprefix:. Endast korrekt utformade webbadressprefix matchas med protokoll och port vid behov. Exempel: http://login.example.com eller https://www.example.com:8080/login/.
+
+Om policyn inte anges eller listan lämnas tom kopplas alla domäner som inte står med i listan ”Värdadresser som ska öppnas i den alternativa webbläsaren” om till Chrome.(*)
+
+* För närvarande är det bara Internet Explorer som stöder automatisk övergång till Chrome.</string>
+      <string id="ChromePath_Part">Sökväg till Chrome</string>
+</stringTable>
+  <presentationTable>
+    <presentation id="AlternativeBrowserPath">
+      <textBox refId="AlternativeBrowserPath_Part">
+        <label>Sökväg till alternativ webbläsare</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="AlternativeBrowserArguments">
+      <textBox refId="AlternativeBrowserArguments_Part">
+        <label>Argument för alternativ webbläsare</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="ChromePath">
+      <textBox refId="ChromePath_Part">
+        <label>Sökväg till Chrome</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="ChromeArguments">
+      <textBox refId="ChromeArguments_Part">
+        <label>Argument för Chrome</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="URLList_Policy">
+      <listBox refId="URLList_Part">Värdadresser som ska öppnas i den alternativa webbläsaren</listBox>
+    </presentation>
+    <presentation id="URLGreyList_Policy">
+      <listBox refId="URLGreyList_Part">Värdadresser som inte ska aktivera en övergång i någon av webbläsarna</listBox>
+    </presentation>
+    <presentation id="KeepLastChromeTab_Policy"/>
+    <presentation id="ShowTransitionScreen_Policy">
+      <decimalTextBox refId="ShowTransitionScreen_Part">Visa övergångsskärmen i Chrome en viss tid</decimalTextBox>
+    </presentation>
+    <presentation id="UseIeSiteList_Policy"/>
+  </presentationTable>
+</resources>
+</policyDefinitionResources>

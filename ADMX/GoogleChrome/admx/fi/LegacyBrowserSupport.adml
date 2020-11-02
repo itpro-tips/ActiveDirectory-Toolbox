@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<policyDefinitionResources revision="1.0" schemaVersion="1.0">
+  <displayName>
+  </displayName>
+  <description>
+  </description>
+  <resources>
+    <stringTable>
+      <string id="KeepLastChromeTab_Policy">Edellisen Chrome-välilehden säilyttäminen siirtymän aikana</string>
+      <string id="ShowTransitionScreen_Policy">Siirtymänäytön näyttäminen Chromessa jonkin aikaa</string>
+      <string id="ChromeArguments_Explain">Voit määrittää Chromen käynnistystiedostolle annettavat argumentit.
+
+Jos tämä käytäntö on käytössä, annettuja parametrejä käytetään, kun Chromea kutsutaan.
+
+Voit myös käyttää paikkamerkkiä ${url} määrittämään, missä URL-osoitteen tulee näkyä komentorivillä. Esim. "--url=${url} --kiosk".
+Paikkamerkkiä ei tarvitse määrittää, jos se lisättäisiin kohteen loppuun. Jos paikkamerkki on ainoa argumentti, voit jättää käytännön tyhjäksi.
+
+Jos tämä käytäntö ei ole käytössä tai se on tyhjä, selaimelle annetaan argumenttina vain URL-osoite.</string>
+      <string id="AlternativeBrowserArguments">Vaihtoehtoisten selaimien argumentit</string>
+      <string id="ChromeArguments">Chromen argumentit</string>
+      <string id="AlternativeBrowserPath_Part">Vaihtoehtoinen selaimen polku</string>
+      <string id="URLList_Part">Vaihtoehtoisessa selaimessa avattavat verkkotunnukset</string>
+      <string id="KeepLastChromeTab_Explain">Voit määrittää, mitä tapahtuu, jos Chromen viimeinen avoin välilehti uudelleenohjataan vaihtoehtoiseen selaimeen.
+
+Kun käytäntö on käytössä tai käytäntöä ei ole määritetty, viimeinen välilehti jätetään auki, ja se vie uusi välilehti ‑sivulle siirtymän jälkeen. Jos käytäntö on poistettu käytöstä, viimeinen välilehti suljetaan, mikä johtaa Chromen sulkemiseen, jos muita Chrome-ikkunoita ei ole auki.</string>
+      <string id="UseIeSiteList_Part">IE:n yritystilan SiteList-käytännön käyttö</string>
+      <string id="SUPPORTED_WINXPSP2">Microsoft Windows XP SP2 tai uudempi</string>
+      <string id="AlternativeBrowserPath">Vaihtoehtoinen selaimen polku</string>
+      <string id="UseIeSiteList_Explain">Kun käytäntö on käytössä, myös Internet Explorerin SiteList-käytännön kohdat aiheuttavat selainten välisiä siirtymiä seuraavan määrittelyn mukaisesti: https://technet.microsoft.com/itpro/internet-explorer/ie11-deploy-guide/turn-on-enterprise-mode-and-use-a-site-list.
+
+Jos käytäntöä ei ole määritetty tai se on poistettu käytöstä, vain laajennuskäytännön URL-osoitteita käytetään.</string>
+      <string id="AlternativeBrowserPath_Explain">Määritä vaihtoehtoisen selaimen käynnistystiedoston sijainti.
+Voit määrittää vaihtoehtoisena selaimena käytettävän ohjelman.
+
+Jos tämä asetus on käytössä, voit joko määrittää käytännössä absoluuttisen polun tai käyttää yhtä seuraavista muuttujista:
+
+${ie} – Internet Explorerin asennuksen oletussijainti
+Polun HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\IEXPLORE.EXE avulla valitaan selaimen sijainti.
+{firefox} – Firefoxin asennuksen oletussijainti
+Polun HKEY_LOCAL_MACHINESOFTWAREMicrosoftWindowsCurrentVersionApp PathsFIREFOX.EXE avulla valitaan selaimen sijainti.
+${safari} – Safarin asennuksen oletussijainti
+Polun HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\SAFARI.EXE avulla valitaan selaimen sijainti.
+
+Jos tämä käytäntö ei ole käytössä tai se on tyhjä, vaihtoehtoisena selaimena käytetään oletuksena Internet Exploreria, eli toimitaan aivan kuin ${ie}-arvo olisi käytössä.</string>
+      <string id="ShowTransitionScreen_Part">Siirtymänäytön näyttäminen Chromessa jonkin aikaa</string>
+      <string id="URLList_Explain">Voit määrittää luettelon verkkotunnuksista, jotka avataan vaihtoehtoisessa selaimessa.
+
+Jos tämä käytäntö on käytössä, sinun on annettava luettelo suodattimista, jotka käynnistävät siirtymän vaihtoehtoiseen selaimeen. Jokaisen kohdan on oltava jokin seuraavista neljästä tyypistä:
+
+Isäntänimen osa: Anna joko kokonaiset verkkotunnuksen nimet kuten www.example.com tai niiden osat kuten example.com tai example. Jokerimerkkejä ei vielä tueta.
+URL-osoitteen etuliite: Käytä vain kelvollisia URL-osoitteiden etuliitteitä. Voit lisätä tarvittaessa protokollan ja portin. Esim. http://login.example.com tai https://www.example.com:8080/login/.
+Negatiivinen teksti: Alkaa merkillä "!" ja seuraava osa on isäntänimen osa tai URL-osoitteen etuliite. Negatiiviset tekstit avataan aina Chromessa. Esim. !example.com tai !file:///c:/localapp/.
+Jokerimerkkiteksti: Sisältää vain yhden *-merkin. Sopii mihin tahansa URL-osoitteeseen. Tarkoitettu käytettäväksi yhdessä negatiivisten tekstien kanssa, jos useimmat URL-osoitteet pitäisi avata vaihtoehtoisessa selaimessa ja vain pieni osa URL-osoitteista pitäisi avata Chromessa.
+
+Negatiivisten tekstien prioriteetti on korkeampi kuin positiivisten tekstien, minkä vuoksi verkkotunnuksen suuret osat voidaan lisätä sallittujen luetteloon ja pienemmät osat voidaan tallentaa avattavaksi Chromessa.
+Jos jokerimerkkiteksti on mukana, sitä sovelletaan vasta sen jälkeen, kun kaikki muut säännöt on tarkistettu.
+
+Seuraavia protokollia seurataan uudelleenohjauksen vuoksi: http: ja https:.
+
+Jos käytäntöä ei ole määritetty tai jos se on tyhjä, siirtymää tai vaihtoehtoista selainta ei käynnistetä.</string>
+      <string id="ChromePath_Explain">Voit määrittää, mikä Chromen käynnistystiedosto käynnistetään, kun vaihtoehtoisen selaimen käyttö lopetetaan(*).
+
+Jos tämä käytäntö on käytössä, voit joko määrittää käytännössä absoluuttisen polun tai käyttää seuraavaa muuttujaa:
+
+${chrome} – Chromen asennuksen oletussijainti
+Polun HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\Chrome.EXE avulla valitaan selaimen sijainti.
+
+Jos käytäntö ei ole käytössä tai se on tyhjä, käytetään Chromen oletusasennusta, eli toimitaan aivan kuin ${chrome}-arvo olisi käytössä.
+
+*: Tällä hetkellä vain Internet Explorer tukee automaattista Chromeen palaamista.</string>
+      <string id="Cat_LegacyBrowserSupport">Vanhojen selaimien tuki</string>
+      <string id="AlternativeBrowserArguments_Part">Vaihtoehtoisten selaimien argumentit</string>
+      <string id="URLGreyList_Part">Verkkotunnukset, joiden ei tule käynnistää siirtymää kummassakaan selaimessa</string>
+      <string id="UseIeSiteList_Policy">IE:n yritystilan SiteList-käytännön käyttö</string>
+      <string id="URLGreyList_Policy">Verkkotunnukset, joiden ei tule käynnistää siirtymää kummassakaan selaimessa</string>
+      <string id="ShowTransitionScreen_Explain">Voit määrittää, kuinka kauan välilehden siirtymäviesti näkyy Chromessa ennen toiseen selaimeen siirtymistä. Tämä auttaa siirtymän visualisoinnissa. Käytäntö määritetään sekunteina.
+
+Jos käytäntöä ei ole määritetty, välilehti suljetaan välittömästi, kun siirtymä voidaan suorittaa.</string>
+      <string id="URLList_Policy">Vaihtoehtoisessa selaimessa avattavat verkkotunnukset</string>
+      <string id="ChromePath">Chromen polku</string>
+      <string id="ChromeArguments_Part">Chromen argumentit</string>
+      <string id="KeepLastChromeTab_Part">Edellisen Chrome-välilehden säilyttäminen siirtymän aikana</string>
+      <string id="AlternativeBrowserArguments_Explain">Voit määrittää vaihtoehtoisen selaimen käynnistystiedostolle annettavat argumentit.
+
+Jos tämä käytäntö on käytössä, annettuja parametrejä käytetään, kun vaihtoehtoista selainta kutsutaan.
+
+Voit myös käyttää paikkamerkkiä ${url} määrittämään, missä URL-osoitteen tulee näkyä komentorivillä. Esim. "--url=${url} --kiosk".
+Paikkamerkkiä ei tarvitse määrittää, jos se lisättäisiin kohteen loppuun. Jos paikkamerkki on ainoa argumentti, voit jättää käytännön tyhjäksi.
+
+Jos tämä käytäntö ei ole käytössä tai se on tyhjä, selaimelle annetaan argumenttina vain URL-osoite.</string>
+      <string id="URLGreyList_Explain">Voit määrittää luettelon verkkotunnuksista, jotka voidaan avata kummassakin selaimessa.
+
+Kun tämä käytäntö on käytössä, luettelossa olevat verkkotunnukset voidaan avata molemmissa selaimissa, eivätkä ne käynnistä selainsiirtymää.
+
+Esimerkki käyttötapauksesta ovat todennusverkkotunnukset, jotka jaetaan tässä luettelossa olevien uusien ja vanhojen sovelluksien välillä.
+
+Isäntänimen osat: Anna joko kokonaiset verkkotunnuksen nimet kuten www.example.com tai niiden osat kuten example.com: tai example. Jokerimerkkejä ei vielä tueta.
+URL-osoitteen etuliitteet: Käytä vain kelvollisia URL-osoitteiden etuliitteitä. Voit lisätä tarvittaessa protokollan ja portin. Esim. http://login.example.com tai https://www.example.com:8080/login/.
+
+Jos käytäntöä ei ole määritetty tai jos se on tyhjä, kaikki verkkotunnukset, joita ei ole Vaihtoehtoisessa selaimessa avattavat verkkotunnukset ‑luettelossa, käynnistävät siirtymän takaisin Chromeen(*).
+
+*: Tällä hetkellä vain Internet Explorer tukee automaattista Chromeen palaamista.</string>
+      <string id="ChromePath_Part">Chromen polku</string>
+</stringTable>
+  <presentationTable>
+    <presentation id="AlternativeBrowserPath">
+      <textBox refId="AlternativeBrowserPath_Part">
+        <label>Vaihtoehtoinen selaimen polku</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="AlternativeBrowserArguments">
+      <textBox refId="AlternativeBrowserArguments_Part">
+        <label>Vaihtoehtoisten selaimien argumentit</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="ChromePath">
+      <textBox refId="ChromePath_Part">
+        <label>Chromen polku</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="ChromeArguments">
+      <textBox refId="ChromeArguments_Part">
+        <label>Chromen argumentit</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="URLList_Policy">
+      <listBox refId="URLList_Part">Vaihtoehtoisessa selaimessa avattavat verkkotunnukset</listBox>
+    </presentation>
+    <presentation id="URLGreyList_Policy">
+      <listBox refId="URLGreyList_Part">Verkkotunnukset, joiden ei tule käynnistää siirtymää kummassakaan selaimessa</listBox>
+    </presentation>
+    <presentation id="KeepLastChromeTab_Policy"/>
+    <presentation id="ShowTransitionScreen_Policy">
+      <decimalTextBox refId="ShowTransitionScreen_Part">Siirtymänäytön näyttäminen Chromessa jonkin aikaa</decimalTextBox>
+    </presentation>
+    <presentation id="UseIeSiteList_Policy"/>
+  </presentationTable>
+</resources>
+</policyDefinitionResources>

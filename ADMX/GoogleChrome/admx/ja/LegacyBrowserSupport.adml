@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<policyDefinitionResources revision="1.0" schemaVersion="1.0">
+  <displayName>
+  </displayName>
+  <description>
+  </description>
+  <resources>
+    <stringTable>
+      <string id="KeepLastChromeTab_Policy">切り替え時に最後の Chrome タブを保持する</string>
+      <string id="ShowTransitionScreen_Policy">Chrome に、切り替えに関する画面をしばらく表示する</string>
+      <string id="ChromeArguments_Explain">Chrome の実行時、Chrome に渡す引数を指定できます。
+
+このポリシーが有効な場合、指定したパラメータが Chrome の呼び出し時に使用されます。
+
+コマンドラインでの URL の位置を指定するために、特殊なプレースホルダ ${url} を使用することもできます。たとえば、「--url=${url} --kiosk」のように指定できます。
+URL が末尾に付く場合や唯一の引数の場合、このプレースホルダを指定する必要はなく、ポリシーを空白のままにできます。
+
+このポリシーが無効または空白のままの場合、URL のみがパラメータとしてブラウザに渡されます。</string>
+      <string id="AlternativeBrowserArguments">代替ブラウザの引数</string>
+      <string id="ChromeArguments">Chrome の引数</string>
+      <string id="AlternativeBrowserPath_Part">代替ブラウザのパス</string>
+      <string id="URLList_Part">代替ブラウザで開くホスト</string>
+      <string id="KeepLastChromeTab_Explain">代替ブラウザに切り替えたときに、Chrome で最後に開いたタブをどう処理するかを指定します。
+
+このポリシーが有効または未設定の場合は、切り替え後も最後のタブは開いたままとなり、新しいタブページが表示されます。このポリシーが無効に設定されている場合、最後のタブは閉じられ、Chrome は他に開いている Chrome ウィンドウがなければ終了します。</string>
+      <string id="UseIeSiteList_Part">IE エンタープライズ モードのサイト一覧のポリシーを使用する</string>
+      <string id="SUPPORTED_WINXPSP2">Microsoft Windows XP SP2 以降</string>
+      <string id="AlternativeBrowserPath">代替ブラウザのパス</string>
+      <string id="UseIeSiteList_Explain">このポリシーが有効な場合は、Internet Explorer のサイト一覧ポリシーの指定によってもブラウザの切り替えが行われます（サイト一覧ポリシーについては https://technet.microsoft.com/itpro/internet-explorer/ie11-deploy-guide/turn-on-enterprise-mode-and-use-a-site-list をご覧ください）。
+
+このポリシーが未設定または無効な場合は、拡張ポリシーで指定された URL のみが使用されます。</string>
+      <string id="AlternativeBrowserPath_Explain">代替ブラウザの実行ファイルを指定します。
+代替ブラウザとして使用するプログラムを指定できます。
+
+このポリシーが有効な場合、ポリシーで絶対パスを指定するか、以下のいずれかの変数を使用できます。
+
+${ie} - Internet Explorer のデフォルトのインストール場所
+この場合、ブラウザの場所の取得には HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\IEXPLORE.EXE が使用されます。
+${firefox} - Firefox のデフォルトのインストール場所
+この場合、ブラウザの場所の取得には HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\FIREFOX.EXE が使用されます。
+${safari} - Safari のデフォルトのインストール場所
+この場合、ブラウザの場所の取得には HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\SAFARI.EXE が使用されます。
+
+このポリシーが有効でないか空白のままの場合、デフォルトの代替ブラウザが使用されます。デフォルトの代替ブラウザは Internet Explorer です。これは ${ie} 値が使用された場合と同じ結果になります。</string>
+      <string id="ShowTransitionScreen_Part">Chrome に、切り替えに関する画面をしばらく表示する</string>
+      <string id="URLList_Explain">代替ブラウザで開くホストドメイン名のリストを指定できます。
+
+このポリシーが有効な場合は、代替ブラウザへの切り替えを判定するフィルタのリストを指定する必要があります。リストの各項目は次の 4 つのうちいずれかで指定します。
+
+ホスト名部分: 「www.example.com」のようなドメイン名全体、または「example.com」や「example」のようなドメイン名の一部を指定します。ワイルドカード文字はサポートされていません。
+URL プレフィックス: プロトコルとポート（必要な場合）を含む、適切な URL プレフィックスで始まるページのみが一致対象となります。たとえば、「http://login.example.com」や「https://www.example.com:8080/login/」と指定します。
+除外指定: 先頭に「!」を指定し、続けて上記のホスト名部分または URL プレフィックスを指定します。除外指定したページは常に Chrome で開かれます。たとえば、「!example.com」や「!file:///c:/localapp/」と指定します。
+ワイルドカード指定: 「*」文字を 1 つだけ指定します。この場合、あらゆる URL が一致対象となります。ほとんどの URL を代替ブラウザで開き、少数の URL のみを Chrome で開く場合に、除外指定と組み合わせて指定します。
+
+除外指定は通常の指定よりも優先されます。これにより、ドメインの大半を許可し、残りの少数の URL を Chrome で開くようにすることができます。
+ワイルドカード指定がある場合は、他のすべてのルールの確認後に適用されます。
+
+http: と https: についてはリダイレクトの有無がチェックされます。
+
+このポリシーが未指定または空白のままの場合、代替ブラウザへの切り替えは行われません。</string>
+      <string id="ChromePath_Explain">代替ブラウザ（*）からの復帰時に Chrome の実行ファイルを起動するように指定できます。
+
+このポリシーが有効な場合、ポリシーで絶対パスを指定するか、次の変数を使用できます。
+
+${chrome} - Chrome のデフォルトのインストール場所
+この場合、ブラウザの場所の取得には HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\Chrome.EXE が使用されます。
+
+このポリシーが無効または空白のままの場合、Chrome のデフォルトのインストールが使用されます。これは ${chrome} 値が使用された場合と同じ結果になります。
+
+*: 現在のところ、Chrome への自動復帰がサポートされているのは Internet Explorer のみです。</string>
+      <string id="Cat_LegacyBrowserSupport">従来のブラウザのサポート</string>
+      <string id="AlternativeBrowserArguments_Part">代替ブラウザの引数</string>
+      <string id="URLGreyList_Part">どのブラウザにも切り替えないホスト</string>
+      <string id="UseIeSiteList_Policy">IE エンタープライズ モードのサイト一覧のポリシーを使用する</string>
+      <string id="URLGreyList_Policy">どのブラウザにも切り替えないホスト</string>
+      <string id="ShowTransitionScreen_Explain">別のブラウザに切り替える前に、Chrome のタブ上に切り替えに関するメッセージを表示する時間を指定できます。これにより、切り替えが行われることを視覚的に知らせることができます。このポリシーは秒単位で指定します。
+
+このポリシーが未設定の場合は、切り替えが完了する時点で直ちにタブが閉じられます。</string>
+      <string id="URLList_Policy">代替ブラウザで開くホスト</string>
+      <string id="ChromePath">Chrome のパス</string>
+      <string id="ChromeArguments_Part">Chrome の引数</string>
+      <string id="KeepLastChromeTab_Part">切り替え時に最後の Chrome タブを保持する</string>
+      <string id="AlternativeBrowserArguments_Explain">代替ブラウザの実行ファイルに渡す引数を指定できます。
+
+このポリシーが有効な場合、指定したパラメータが代替ブラウザの呼び出し時に使用されます。
+
+コマンドラインでの URL の位置を指定するために、特殊なプレースホルダ ${url} を使用することもできます。たとえば、「--url=${url} --kiosk」のように指定できます。
+URL が末尾に付く場合や唯一の引数の場合、このプレースホルダを指定する必要はなく、ポリシーを空白のままにできます。
+
+このポリシーが無効または空白のままの場合、URL のみがパラメータとしてブラウザに渡されます。</string>
+      <string id="URLGreyList_Explain">どのブラウザでも開くことができるホストドメイン名のリストを指定できます。
+
+このポリシーが有効な場合、このリストにあるドメインはどのブラウザでも開くことができ、ブラウザの切り替えは行われません。
+
+たとえば、新旧両方のアプリで共有される認証ドメインなどをこのリストに指定します。
+
+ホスト名部分: 「www.example.com」のようなドメイン名全体、または「example.com」や「example」のようなドメイン名の一部を指定します。ワイルドカード文字はサポートされていません。
+URL プレフィックス: プロトコルとポート（必要な場合）を含む、適切な URL プレフィックスで始まるページのみが一致対象となります。たとえば、「http://login.example.com」や「https://www.example.com:8080/login/」と指定します。
+
+このポリシーが未指定または空白のままの場合、「代替ブラウザで開くホスト」リストにないドメインは、Chrome（*）に切り替えられます。
+
+*: 現在のところ、Chrome への自動切り替えがサポートされているのは Internet Explorer のみです。</string>
+      <string id="ChromePath_Part">Chrome のパス</string>
+</stringTable>
+  <presentationTable>
+    <presentation id="AlternativeBrowserPath">
+      <textBox refId="AlternativeBrowserPath_Part">
+        <label>代替ブラウザのパス</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="AlternativeBrowserArguments">
+      <textBox refId="AlternativeBrowserArguments_Part">
+        <label>代替ブラウザの引数</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="ChromePath">
+      <textBox refId="ChromePath_Part">
+        <label>Chrome のパス</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="ChromeArguments">
+      <textBox refId="ChromeArguments_Part">
+        <label>Chrome の引数</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="URLList_Policy">
+      <listBox refId="URLList_Part">代替ブラウザで開くホスト</listBox>
+    </presentation>
+    <presentation id="URLGreyList_Policy">
+      <listBox refId="URLGreyList_Part">どのブラウザにも切り替えないホスト</listBox>
+    </presentation>
+    <presentation id="KeepLastChromeTab_Policy"/>
+    <presentation id="ShowTransitionScreen_Policy">
+      <decimalTextBox refId="ShowTransitionScreen_Part">Chrome に、切り替えに関する画面をしばらく表示する</decimalTextBox>
+    </presentation>
+    <presentation id="UseIeSiteList_Policy"/>
+  </presentationTable>
+</resources>
+</policyDefinitionResources>

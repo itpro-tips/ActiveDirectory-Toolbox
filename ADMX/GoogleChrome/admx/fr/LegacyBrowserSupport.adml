@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<policyDefinitionResources revision="1.0" schemaVersion="1.0">
+  <displayName>
+  </displayName>
+  <description>
+  </description>
+  <resources>
+    <stringTable>
+      <string id="KeepLastChromeTab_Policy">Conserver le dernier onglet de Chrome lors de la transition</string>
+      <string id="ShowTransitionScreen_Policy">Afficher l'écran de transition dans Chrome pendant un certain temps</string>
+      <string id="ChromeArguments_Explain">Cette règle vous permet d'indiquer les arguments à transmettre à Google Chrome lors de son exécution.
+
+Si cette règle est activée, les paramètres indiqués sont utilisés lors de l'utilisation de Google Chrome.
+
+Vous pouvez également utiliser la variable spéciale ${url} afin de spécifier l'endroit où l'URL doit apparaître dans la ligne de commande ("--url=${url} --kiosk", par exemple).
+Vous n'avez pas besoin d'indiquer la variable si elle doit être ajoutée en tant que suffixe. S'il s'agit du seul argument, vous pouvez ne pas renseigner cette règle.
+
+Si cette règle est désactivée ou non renseignée, seule l'URL sera transmise au navigateur.</string>
+      <string id="AlternativeBrowserArguments">Arguments du navigateur secondaire</string>
+      <string id="ChromeArguments">Arguments Google Chrome</string>
+      <string id="AlternativeBrowserPath_Part">Chemin d'accès au navigateur secondaire</string>
+      <string id="URLList_Part">Hôtes à ouvrir dans le navigateur secondaire</string>
+      <string id="KeepLastChromeTab_Explain">Cette règle vous permet d'indiquer ce qui se passe lorsque le dernier onglet ouvert dans Chrome est redirigé vers le navigateur secondaire.
+
+Lorsque cette règle est activée ou non définie, le dernier onglet reste ouvert et renvoie vers la page "Nouvel onglet" après la transition. Si cette règle est désactivée, le dernier onglet est fermé, ce qui conduit à la fermeture de Chrome si aucune autre fenêtre Chrome n'est ouverte.</string>
+      <string id="UseIeSiteList_Part">Utiliser la règle relative à la liste des sites avec le mode Entreprise d'Internet Explorer</string>
+      <string id="SUPPORTED_WINXPSP2">Microsoft Windows XP SP2 ou version ultérieure</string>
+      <string id="AlternativeBrowserPath">Chemin d'accès au navigateur secondaire</string>
+      <string id="UseIeSiteList_Explain">Lorsque cette règle est activée, les transitions entre navigateurs sont également déclenchées par les entrées de la règle relative à la liste des sites pour Internet Explorer, tel que défini à l'adresse https://technet.microsoft.com/itpro/internet-explorer/ie11-deploy-guide/turn-on-enterprise-mode-and-use-a-site-list.
+
+Si cette règle est désactivée ou non configurée, seules les URL de la règle relative aux extensions sont utilisées.</string>
+      <string id="AlternativeBrowserPath_Explain">Indiquez le fichier exécutable du navigateur secondaire.
+Cette règle vous permet d'indiquer le programme à utiliser comme navigateur secondaire.
+
+Si cette règle est activée, vous pouvez indiquer un chemin d'accès absolu ou utiliser l'une des variables suivantes :
+
+${ie} – Dans ce cas, l'emplacement d'installation par défaut d'Internet Explorer
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\IEXPLORE.EXE est utilisé pour choisir l'emplacement du navigateur.
+${firefox} – Dans ce cas, l'emplacement d'installation par défaut de Firefox
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\FIREFOX.EXE est utilisé pour choisir l'emplacement du navigateur.
+${safari} – Dans ce cas, l'emplacement d'installation par défaut de Safari
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\SAFARI.EXE est utilisé pour choisir l'emplacement du navigateur.
+
+Si cette règle est désactivée ou non renseignée, le navigateur secondaire par défaut (Internet Explorer) est exécuté, comme si la valeur ${ie} avait été utilisée.</string>
+      <string id="ShowTransitionScreen_Part">Afficher l'écran de transition dans Chrome pendant un certain temps</string>
+      <string id="URLList_Explain">Cette règle vous permet d'indiquer la liste des noms de domaine hôtes à ouvrir dans le navigateur secondaire.
+
+Si cette règle est activée, vous devez fournir une liste de filtres qui déclencheront la transition vers le navigateur secondaire. Chaque entrée doit faire partie de l'une des quatre catégories suivantes :
+
+Noms d'hôtes : il peut s'agir de noms de domaine complets, tels que "www.example.com", ou partiels, tels que "example.com" ou même "example". Les caractères génériques ne sont pas encore acceptés.
+Préfixes d'URL : seuls les préfixes d'URL corrects sont mis en correspondance avec un protocole et un port, si nécessaire (par exemple, "http://login.example.com" ou "https://www.example.com:8080/login/").
+Entrées négatives : les entrées négatives commencent par "!" et se composent ensuite du nom d'hôte ou du préfixe d'URL comme décrit ci-dessus. Les entrées négatives sont toujours ouvertes dans Chrome (par exemple, "!example.com" ou "!file:///c:localapp/").
+Entrées de caractères génériques : ces entrées ne contiennent qu'un seul caractère "*". Ce caractère correspond à n'importe quelle URL. Ces entrées peuvent être utilisées avec des entrées négatives lorsque la plupart des URL doivent s'ouvrir dans le navigateur secondaire et que seule une petite sélection d'URL doit s'ouvrir dans Chrome.
+
+Les entrées négatives ont des priorités plus élevées que les entrées positives, ce qui permet d'ajouter des parties importantes d'un domaine à la liste blanche tout en conservant des sections plus petites à ouvrir dans Chrome.
+L'entrée de caractères génériques, le cas échéant, est uniquement utilisée lorsque toutes les autres règles ont été vérifiées.
+
+Les protocoles suivants sont contrôlés pour la redirection : http:, https:.
+
+Si aucune valeur n'est associée à cette règle ou si celle-ci n'est pas spécifiée, aucune transition vers le navigateur secondaire n'est déclenchée.</string>
+      <string id="ChromePath_Explain">Cette règle vous permet d'indiquer le fichier exécutable de Google Chrome à lancer lorsque vous quittez le navigateur secondaire(*).
+
+Lorsque cette règle est activée, vous pouvez indiquer un chemin d'accès absolu ou utiliser la variable suivante :
+
+${chrome} – Dans ce cas, l'emplacement d'installation par défaut de Google Chrome
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\Chrome.EXE est utilisé pour choisir l'emplacement du navigateur.
+
+Si cette règle est désactivée ou non renseignée, l'installation par défaut de Google Chrome est exécutée, comme si la valeur ${chrome} avait été utilisée.
+
+* Actuellement, seul Internet Explorer est compatible avec un retour automatique à Google Chrome.</string>
+      <string id="Cat_LegacyBrowserSupport">Compatibilité avec les anciens navigateurs</string>
+      <string id="AlternativeBrowserArguments_Part">Arguments du navigateur secondaire</string>
+      <string id="URLGreyList_Part">Hôtes ne devant pas déclencher la transition vers l'un des navigateurs</string>
+      <string id="UseIeSiteList_Policy">Utiliser la règle relative à la liste des sites avec le mode Entreprise d'Internet Explorer</string>
+      <string id="URLGreyList_Policy">Hôtes ne devant pas déclencher la transition vers l'un des navigateurs</string>
+      <string id="ShowTransitionScreen_Explain">Cette règle vous permet d'indiquer la durée, en secondes, pendant laquelle le message de transition dans l'onglet sera visible dans Chrome avant d'effectuer la transition vers l'autre navigateur. Cela permet notamment de mieux visualiser la transition.
+
+Si cette règle n'est pas configurée, l'onglet se ferme immédiatement dès que la transition peut être effectuée.</string>
+      <string id="URLList_Policy">Hôtes à ouvrir dans le navigateur secondaire</string>
+      <string id="ChromePath">Chemin d'accès à Google Chrome</string>
+      <string id="ChromeArguments_Part">Arguments Google Chrome</string>
+      <string id="KeepLastChromeTab_Part">Conserver le dernier onglet de Chrome lors de la transition</string>
+      <string id="AlternativeBrowserArguments_Explain">Cette règle vous permet d'indiquer les arguments à transmettre au fichier exécutable du navigateur secondaire.
+
+Si cette règle est activée, les paramètres indiqués sont utilisés lors de l'utilisation du navigateur secondaire.
+
+Vous pouvez également utiliser la variable spéciale ${url} afin de spécifier l'endroit où l'URL doit apparaître dans la ligne de commande ("--url=${url} --kiosk", par exemple).
+Vous n'avez pas besoin d'indiquer la variable si elle doit être ajoutée en tant que suffixe. S'il s'agit du seul argument, vous pouvez ne pas renseigner cette règle.
+
+Si cette règle est désactivée ou non renseignée, seule l'URL sera transmise au navigateur.</string>
+      <string id="URLGreyList_Explain">Cette règle vous permet d'indiquer la liste des noms de domaine hôtes à ouvrir dans l'un ou l'autre des navigateurs.
+
+Lorsque cette règle est activée, les domaines de la liste sont accessibles dans les deux navigateurs et ne déclenchent aucune transition vers l'un ou l'autre.
+
+Cette règle peut être utilisée pour les noms de domaine avec authentification partagés entre les nouvelles et les anciennes applications de cette liste.
+
+Noms d'hôtes : il peut s'agir de noms de domaine complets, tels que "www.example.com", ou partiels, tels que "example.com" ou même "example". Les caractères génériques ne sont pas encore acceptés.
+Préfixes d'URL : seuls les préfixes d'URL corrects sont mis en correspondance avec un protocole et un port, si nécessaire (par exemple, "http://login.example.com" ou "https://www.example.com:8080/login/").
+
+Si aucune valeur n'est associée à cette règle ou si celle-ci n'est pas spécifiée, tout domaine ne figurant pas dans la liste "Hôtes à ouvrir dans le navigateur secondaire" déclenchera une transition vers Chrome(*).
+
+* Actuellement, seul Internet Explorer est compatible avec un retour automatique à Google Chrome.</string>
+      <string id="ChromePath_Part">Chemin d'accès à Google Chrome</string>
+</stringTable>
+  <presentationTable>
+    <presentation id="AlternativeBrowserPath">
+      <textBox refId="AlternativeBrowserPath_Part">
+        <label>Chemin d'accès au navigateur secondaire</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="AlternativeBrowserArguments">
+      <textBox refId="AlternativeBrowserArguments_Part">
+        <label>Arguments du navigateur secondaire</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="ChromePath">
+      <textBox refId="ChromePath_Part">
+        <label>Chemin d'accès à Google Chrome</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="ChromeArguments">
+      <textBox refId="ChromeArguments_Part">
+        <label>Arguments Google Chrome</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="URLList_Policy">
+      <listBox refId="URLList_Part">Hôtes à ouvrir dans le navigateur secondaire</listBox>
+    </presentation>
+    <presentation id="URLGreyList_Policy">
+      <listBox refId="URLGreyList_Part">Hôtes ne devant pas déclencher la transition vers l'un des navigateurs</listBox>
+    </presentation>
+    <presentation id="KeepLastChromeTab_Policy"/>
+    <presentation id="ShowTransitionScreen_Policy">
+      <decimalTextBox refId="ShowTransitionScreen_Part">Afficher l'écran de transition dans Chrome pendant un certain temps</decimalTextBox>
+    </presentation>
+    <presentation id="UseIeSiteList_Policy"/>
+  </presentationTable>
+</resources>
+</policyDefinitionResources>

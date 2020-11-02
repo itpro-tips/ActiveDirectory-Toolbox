@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<policyDefinitionResources revision="1.0" schemaVersion="1.0">
+  <displayName>
+  </displayName>
+  <description>
+  </description>
+  <resources>
+    <stringTable>
+      <string id="KeepLastChromeTab_Policy">ಹಿಂದಿನ Chrome ಟ್ಯಾಬ್ ಅನ್ನು ಪರಿವರ್ತನೆಯಲ್ಲಿಡಿ</string>
+      <string id="ShowTransitionScreen_Policy">ಕೆಲವು ಸಮಯಕ್ಕಾಗಿ ಪರಿವರ್ತನೆ ಪರದೆಯನ್ನು Chrome ನಲ್ಲಿ ತೋರಿಸಿ</string>
+      <string id="ChromeArguments_Explain">ಅದನ್ನು ಕಾರ್ಯಸಾಧ್ಯಗೊಳಿಸಿದಾಗ Chrome ಗೆ ರವಾನಿಸಬೇಕೆಂದಿರುವ ವಾದಗಳನ್ನು ನಿರ್ದಿಷ್ಟಪಡಿಸಲು ನಿಮಗೆ ಅನುಮತಿ ನೀಡುತ್ತದೆ.
+
+ನೀತಿಯನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿದರೆ ಒದಗಿಸಲಾದ ಪ್ಯಾರಾಮೀಟರ್‌ಗಳನ್ನು Chrome ಆಹ್ವಾನಿಸಿದಾಗ ಬಳಸಲಾಗುವುದು.
+
+ಆದೇಶ ಸಾಲಿನಲ್ಲಿ url ಎಲ್ಲಿ ಗೋಚರಿಸಬೇಕು ಎಂಬುದನ್ನು ನಿರ್ದಿಷ್ಟಪಡಿಸಲು ನೀವು ವಿಶೇಷ ಪ್ಲೇಸ್‌ಹೋಲ್ಡರ್ ${url} ಅನ್ನು ಸಹ ಬಳಸಿಕೊಳ್ಳಬಹುದು. ಉದಾ. "--url=${url} --kiosk".
+ಅಂತ್ಯಕ್ಕೆಅದನ್ನು ಅನುಬಂಧಿಸಿದರೆ ನೀವು ಪ್ಲೇಸ್‌ಹೋಲ್ಡರ್ ಅನ್ನು ನಿರ್ದಿಷ್ಟಪಡಿಸಬೇಕಾಗಿಲ್ಲ 
+ಅಥವಾ ಅದು ವಾದ ಮಾತ್ರ ಆಗಿದ್ದರೆ ನೀವು ಆ ನೀತಿಯನ್ನು ಖಾಲಿ ಬಿಡಬಹುದು.
+
+ನೀತಿಯನ್ನು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಿದರೆ ಅಥವಾ ಖಾಲಿ ಬಿಟ್ಟರೆ ಪ್ಯಾರಾಮೀಟರ್‌ನಂತೆ ಬ್ರೌಸರ್‌ಗೆ url ಅನ್ನು ಮಾತ್ರ ರವಾನಿಸಲಾಗುವುದು.</string>
+      <string id="AlternativeBrowserArguments">ಪರ್ಯಾಯ ಬ್ರೌಸರ್ ವಾದಗಳು</string>
+      <string id="ChromeArguments">Chrome ವಾದಗಳು</string>
+      <string id="AlternativeBrowserPath_Part">ಪರ್ಯಾಯ ಬ್ರೌಸರ್ ಹಾದಿ</string>
+      <string id="URLList_Part">ಪರ್ಯಾಯ ಬ್ರೌಸರ್‌‌ನಲ್ಲಿ ತೆರೆಯಲು ಹೋಸ್ಟ್‌ ಮಾಡುತ್ತದೆ</string>
+      <string id="KeepLastChromeTab_Explain">Chrome ನಲ್ಲಿ ಕೊನೆಯದಾಗಿ ತೆರೆದ ಟ್ಯಾಬ್ ಅನ್ನು ಪರ್ಯಾಯ ಬ್ರೌಸರ್‌ಗೆ ಮರುನಿರ್ದೇಶಿಸುವಾಗ ಏನಾಗುತ್ತದೆ ಎಂಬುದನ್ನು ನಿರ್ದಿಷ್ಟಪಡಿಸಲು ನಿಮಗೆ ಅನುಮತಿಸುತ್ತದೆ.
+
+ಈ ನೀತಿಯನ್ನು ಸಕ್ರಿಯಗೊಳಸಿದಾಗ ಅಥವಾ ಹೊಂದಿಸದಿರುವಾಗ ಕೊನೆಯ ಟ್ಯಾಬ್ ಅನ್ನು ತೆರೆಯಲಾಗುತ್ತದೆ ಮತ್ತು ಪರಿವರ್ತನೆಯ ನಂತರ ಹೊಸ ಟ್ಯಾಬ್ ಪುಟಕ್ಕೆ ಗುರುತಿಸಲಾಗುತ್ತದೆ. ಅದನ್ನು ನಿಷ್ಕ್ರಿಯವಾಗಿ ಹೊಂದಿಸಲಾಗಿದ್ದರೆ ಕೊನೆಯ ಟ್ಯಾಬ್ ಅನ್ನು ಮುಚ್ಚಲಾಗುತ್ತದೆ ಅದು Chrome ನ ಬೇರೆ ವಿಂಡೋಗಳು ತೆರೆದಿರಲ್ಲದಿದ್ದರೆ Chrome ಅನ್ನು ಮುಚ್ಚಲು ಕಾರಣವಾಗುತ್ತದೆ.</string>
+      <string id="UseIeSiteList_Part">IE ಎಂಟರ್‌ಪ್ರೈಸ್ ಮೋಡ್ ಸೈಟ್ ಪಟ್ಟಿ ನೀತಿಯನ್ನು ಬಳಸಿ</string>
+      <string id="SUPPORTED_WINXPSP2">Microsoft Windows XP SP2 ಅಥವಾ ಆ ನಂತರದ ಆವೃತ್ತಿ</string>
+      <string id="AlternativeBrowserPath">ಪರ್ಯಾಯ ಬ್ರೌಸರ್ ಹಾದಿ</string>
+      <string id="UseIeSiteList_Explain">ಸಕ್ರಿಯಗೊಂಡಾಗ, ಬ್ರೌಸರ್‌ಗಳ ನಡುವಿನ ಪರಿವರ್ತನೆಗಳನ್ನು (https://technet.microsoft.com/itpro/internet-explorer/ie11-deploy-guide/turn-on-enterprise-mode-and-use-a-site-list) ನಲ್ಲಿ ವಿವರಿಸಿದಂತೆ Internet Explorer ಗಾಗಿ ಸೈಟ್‌ಪಟ್ಟಿ ನೀತಿಯಲ್ಲಿರುವ ನಮೂದುಗಳಿಂದ ಸಹ ಟ್ರಿಗ್ಗರ್ ಮಾಡಬಹುದಾಗಿದೆ.
+
+ಸೆಟ್ ಆಗದಿದ್ದರೆ ಅಥವಾ ನಿಷ್ಕ್ರಿಯಗೊಂಡಾಗ ಮಾತ್ರ ವಿಸ್ತರಣೆ ನೀತಿಯಲ್ಲಿರುವ url ಗಳನ್ನು ಬಳಸಬಹುದಾಗಿದೆ.</string>
+      <string id="AlternativeBrowserPath_Explain">ಪರ್ಯಾಯ ಬ್ರೌಸರ್‌ನ ಕಾರ್ಯಸಾಧ್ಯತೆಗಳನ್ನು ನಿರ್ದಿಷ್ಟಪಡಿಸಿ.
+ಪರ್ಯಾಯ ಬ್ರೌಸರ್‌ನಂತೆ ಬಳಸಬೇಕೆಂದಿರುವ ಪ್ರೋಗ್ರಾಮ್ ಅನ್ನು ನಿರ್ದಿಷ್ಟಪಡಿಸಲು ನಿಮಗೆ ಅನುಮತಿ ನೀಡುತ್ತದೆ.
+
+ಸಕ್ರಿಯಗೊಂಡಲ್ಲಿ ನೀವು ನೀತಿಯಲ್ಲಿರುವ ಪೂರ್ಣ ಮಾರ್ಗವನ್ನು ನಿರ್ದಿಷ್ಟಪಡಿಸಬಹುದು ಅಥವಾ ಕೆಳಗಿನ ವೇರಿಯಬಲ್‌ಗಳಲ್ಲಿ ಒಂದನ್ನು ಬಳಸಿಕೊಳ್ಳಬಹುದು:
+
+${ie} - Internet Explorer ನ ಡೀಫಾಲ್ಟ್ ಸ್ಥಾಪನೆಯ ಸ್ಥಾನ
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\IEXPLORE.EXE ಬಳಸಿಕೊಳ್ಳಲಾಗಿದೆ.
+${firefox} - Firefox ನ ಡೀಫಾಲ್ಟ್ ಸ್ಥಾಪನೆಯ ಸ್ಥಾನ 
+${safari} - Safari ನ ಡೀಫಾಲ್ಟ್ ಸ್ಥಾಪನೆಯ ಸ್ಥಾನ
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\SAFARI.EXE ಬಳಸಿಕೊಳ್ಳಲಾಗಿದೆ.
+
+ನೀತಿಯನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿದರೆ ಅಥವಾ ಖಾಲಿ ಬಿಟ್ಟರೆ Internet Explorer ಗುರುತಿಸಿರುವ ${ಅಂದರೆ} ಮೌಲ್ಯವನ್ನು ಬಳಸಿದಂತೆ ಪರಿಗಣಿಸಿ ಡೀಫಾಲ್ಟ್ ಪರ್ಯಾಯ ಬ್ರೌಸರ್ ಅನ್ನು ಬಳಸಲಾಗುವುದು.</string>
+      <string id="ShowTransitionScreen_Part">ಕೆಲವು ಸಮಯಕ್ಕಾಗಿ ಪರಿವರ್ತನೆ ಪರದೆಯನ್ನು Chrome ನಲ್ಲಿ ತೋರಿಸಿ</string>
+      <string id="URLList_Explain">ಪರ್ಯಾಯ ಬ್ರೌಸರ್‌ನಲ್ಲಿ ತೆರೆಯಲು ಹೋಸ್ಟ್ ಡೊಮೇನ್ ಹೆಸರುಗಳ ಪಟ್ಟಿಯನ್ನು ನಿರ್ದಿಷ್ಟಪಡಿಸಲು ನಿಮಗೆ ಅನುಮತಿಸುತ್ತದೆ.
+
+ನೀತಿಯನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿದರೆ ನೀವು ಫಿಲ್ಟರ್‌ಗಳ ಪಟ್ಟಿಯನ್ನು ಒದಗಿಸಬೇಕಾಗುತ್ತದೆ ಅದು ಪರಿವರ್ತನೆಯನ್ನು ಪರ್ಯಾಯ ಬ್ರೌಸರ್‌ಗೆ ಟ್ರಿಗ್ಗರ್ ಮಾಡುತ್ತದೆ. ಪ್ರತಿ ನಮೂದು ಕೆಳಗಿನ ನಾಲ್ಕು ಪ್ರಕಾರಗಳಲ್ಲಿ ಒಂದು ಆಗಿರಬೇಕು:
+
+ಹೋಸ್ಟ್-ಹೆಸರು ಭಾಗ: "www.example.com" ನಂತಹ ಪೂರ್ಣ ಡೊಮೇನ್ ಹೆಸರುಗಳು ಅಥವಾ "example.com" ಅಥವಾ "example" ನಂತಹದಾದರೂ ನಿರ್ದಿಷ್ಟಪಡಿಸಬೇಕು. ವೈಲ್ಡ್‌ಕಾರ್ಡ್‌ಗಳು ಇನ್ನೂ ಬೆಂಬಲಿತವಾಗಿಲ್ಲ.
+URL ಪೂರ್ವಪ್ರತ್ಯಯ: ಅಗತ್ಯವಿದ್ದಲ್ಲಿ ಸೂಕ್ತವಾದURL ಪೂರ್ವಪ್ರತ್ಯಯಗಳನ್ನು ಮಾತ್ರ ಪ್ರೊಟೋಕಾಲ್ ಮತ್ತು ಪೋರ್ಟ್‌ನೊಂದಿಗೆ ಸಂಪೂರ್ಣವಾಗಿ ಹೊಂದಾಣಿಕೆ ಮಾಡಲಾಗುತ್ತದೆ. ಉದಾ. "http://login.example.com" ಅಥವಾ "https://www.example.com:8080/login/".
+ನಕಾರಾತ್ಮಕ ನಮೂದು: "!" ದೊಂದಿಗೆ ಪ್ರಾರಂಭವಾಗುತ್ತದೆ ಮತ್ತು ಹೋಸ್ಟ್-ಹೆಸರು ಭಾಗವಾಗಿ ಅಥವಾ ಮೇಲೆ ವಿವರಿಸಲಾದ URL ಪೂರ್ವಪ್ರತ್ಯಯದಂತೆ ಮುಂದುವರಿಯುತ್ತದೆ. ಯಾವಾಗಲೂ ನಕಾರಾತ್ಮಕ ನಮೂದುಗಳನ್ನು Chrome ನಲ್ಲಿ ತೆರೆಯಲಾಗುತ್ತದೆ. ಉದಾ. "!example.com" ಅಥವಾ "!file:///c:/localapp/".
+ವೈಲ್ಡ್‌ಕಾರ್ಡ್ ನಮೂದು: "*" ಒಂದು ಅಕ್ಷರವನ್ನು ಮಾತ್ರ ಹೊಂದಿರುತ್ತದೆ. ಯಾವುದೇ URL ಗೆ ಹೊಂದಾಣಿಕೆಯಾಗುತ್ತದೆ. ಹೆಚ್ಚು URL ಗಳು ಪರ್ಯಾಯ ಬ್ರೌಸರ್‌ನಲ್ಲಿ ತೆರೆಯಬೇಕಿದ್ದರೆ ಮತ್ತು  URL ಗಳ ಸಣ್ಣ ಆಯ್ಕೆಯನ್ನು ಮಾತ್ರ Chrome ನಲ್ಲಿ ತೆರೆಯಬೇಕಿದ್ದರೆ, ನಕಾರಾತ್ಮಕ ನಮೂದುಗಳೊಂದಿಗೆ ಪರಸ್ಪರವಾಗಿ ಬಳಸಲು ಉದ್ದೇಶಿಸಲಾಗಿದೆ.
+
+ಧನಾತ್ಮಕ ನಮೂದುಗಳಿಗಿಂತ ಋಣಾತ್ಮಕ ನಮೂದುಗಳಿಗಿಂತಲೂ ಹೆಚ್ಚಿನ ಪ್ರಾಶಸ್ತ್ಯಗಳನ್ನು ಹೊಂದಿರುತ್ತವೆ ಇದು ದೊಡ್ಡ ಗಾತ್ರದ ಡೊಮೇನ್‌ನ ಭಾಗಗಳನ್ನು ಶ್ವೇತಪಟ್ಟಿಗೊಳಿಸಲು ಅನುಮತಿಸುತ್ತದೆ ಅದೇ ಸಮಯದಲ್ಲಿ ಸಣ್ಣ ವಿಭಾಗಗಳನ್ನು Chrome ನಲ್ಲಿ ತೆರೆಯಬೇಕಾಗುತ್ತದೆ. ವೈಲ್ಡ್‌ಕಾರ್ಡ್ ನಮೂದು ಅಸ್ತಿತ್ವದಲ್ಲಿದ್ದರೆ ಇತರ ಎಲ್ಲ ನಿಯಮಗಳನ್ನು ಪರಿಶೀಲಿಸಿದ ನಂತರವೇ ಅನ್ವಯಿಸಲಾಗುತ್ತದೆ.
+
+ಈ ಕೆಳಗಿನ ಪ್ರೊಟೋಕಾಲ್‌ಗಳನ್ನು ಇದನ್ನು ಮರುನಿರ್ದೇಶಿಸಲು ಮಾನಿಟರ್ ಮಾಡಲಾಗುತ್ತದೆ: http:, https:.
+
+ನಿರ್ದಿಷ್ಟಪಡಿಸದಿದ್ದರೆ ಅಥವಾ ಖಾಲಿ ಬಿಟ್ಟರೆ - ಪರ್ಯಾಯ ಬ್ರೌಸರ್‌ಗೆ ಯಾವುದೇ ಪರಿವರ್ತನೆಯನ್ನು ಟ್ರಿಗ್ಗರ್ ಮಾಡಲಾಗುವುದಿಲ್ಲ.</string>
+      <string id="ChromePath_Explain">ನೀವು ಪರ್ಯಾಯ ಬ್ರೌಸರ್‌ನಿಂದ ಮರಳುತ್ತಿರುವಾಗ ಸ್ಥಾಪಿಸಬೇಕೆಂದಿರುವ Chrome ನ ಕಾರ್ಯಸಾಧ್ಯತೆಯನ್ನು ನಿರ್ದಿಷ್ಟಪಡಿಸಲು ನಿಮಗೆ ಅನುಮತಿ ನೀಡುತ್ತದೆ(*).
+
+ನೀತಿಯನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿದಾಗ ನೀತಿಯಲ್ಲಿ ಸಂಪೂರ್ಣ ಮಾರ್ಗವನ್ನು ನೀವು ನಿರ್ದಿಷ್ಟಪಡಿಸಬಹುದು ಅಥವಾ ಕೆಳಗಿನ ವೇರಿಯಬಲ್‌ ಅನ್ನು ಬಳಸಿಕೊಳ್ಳಬಹುದು:
+
+${chrome} - Chrome ನಗಾಗಿ ಡೀಫಾಲ್ಟ್ ಸ್ಥಾಪನೆಯ ಸ್ಥಾನ
+ಈ ಸಂದರ್ಭದಲ್ಲಿ ಬ್ರೌಸರ್‌ನ ಸ್ಥಾನವನ್ನು ಆರಿಸಲು HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\Chrome.EXE ಬಳಸಿಕೊಳ್ಳಲಾಗಿದೆ. 
+
+ನೀತಿಯನ್ನು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಿದರೆ ಅಥವಾ ಖಾಲಿ ಬಿಟ್ಟರೆ Chrome ನ ಡೀಫಾಲ್ಟ್ ಸ್ಥಾಪನೆಯನ್ನು ${chrome} ಮೌಲ್ಯವನ್ನು ಬಳಸಿದಂತೆ ಪರಿಗಣಿಸಿ ಬಳಸಿಕೊಳ್ಳಲಾಗುವುದು.
+
+*: ಪ್ರಸ್ತುತ Internet Explorer ಮಾತ್ರ Chrome ಗೆ ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಹಿಂತಿರುಗುವುದನ್ನು ಬೆಂಬಲಿಸುತ್ತದೆ.</string>
+      <string id="Cat_LegacyBrowserSupport">ಪಾರಂಪರಿಕ ಬ್ರೌಸರ್ ಬೆಂಬಲ</string>
+      <string id="AlternativeBrowserArguments_Part">ಪರ್ಯಾಯ ಬ್ರೌಸರ್ ವಾದಗಳು</string>
+      <string id="URLGreyList_Part">ಎರಡೂ ಬ್ರೌಸರ್‌ನಲ್ಲಿ ಪರಿವರ್ತನೆಯನ್ನು ಟ್ರಿಗ್ಗರ್ ಮಾಡಬಾರದೆಂದು ಹೋಸ್ಟ್ ಮಾಡುತ್ತದೆ</string>
+      <string id="UseIeSiteList_Policy">IE ಎಂಟರ್‌ಪ್ರೈಸ್ ಮೋಡ್ ಸೈಟ್ ಪಟ್ಟಿ ನೀತಿಯನ್ನು ಬಳಸಿ</string>
+      <string id="URLGreyList_Policy">ಎರಡೂ ಬ್ರೌಸರ್‌ನಲ್ಲಿ ಪರಿವರ್ತನೆಯನ್ನು ಟ್ರಿಗ್ಗರ್ ಮಾಡಬಾರದೆಂದು ಹೋಸ್ಟ್ ಮಾಡುತ್ತದೆ</string>
+      <string id="ShowTransitionScreen_Explain">ಇನ್ನೊಂದು ಬ್ರೌಸರ್‌ಗೆ ಪರಿವರ್ತಿಸುವುದಕ್ಕೆ ಮುನ್ನ ಪರಿವರ್ತನೆ ಸಂದೇಶವು ಟ್ಯಾಬ್‌ನಲ್ಲಿ ಎಷ್ಟು ಸಮಯದವರೆಗೆ ಇರುತ್ತದೆ ಎಂಬುದನ್ನು ನಿರ್ದಿಷ್ಟಪಡಿಸಲು ನಿಮ್ಮನ್ನು ಅನುಮತಿಸುತ್ತದೆ. ಇದು ಪರಿವರ್ತನೆಯನ್ನು ದೃಶ್ಯೀಕರಿಸಲು ಸಹಾಯ ಮಾಡುತ್ತದೆ. ನೀತಿಯನ್ನು ಸೆಕೆಂಡ್‌ಗಳಲ್ಲಿ ನಿರ್ದಿಷ್ಟಪಡಿಸಲಾಗುತ್ತದೆ.
+
+ಸೆಟ್ ಆಗದಿದ್ದರೆ ಪರಿವರ್ತನೆಯು ಸಂಪೂರ್ಣಗೊಂಡಾಗ ಟ್ಯಾಬ್ ಕೂಡಲೇ ಮುಚ್ಚುತ್ತದೆ.</string>
+      <string id="URLList_Policy">ಪರ್ಯಾಯ ಬ್ರೌಸರ್‌‌ನಲ್ಲಿ ತೆರೆಯಲು ಹೋಸ್ಟ್‌ ಮಾಡುತ್ತದೆ</string>
+      <string id="ChromePath">Chrome ಹಾದಿ</string>
+      <string id="ChromeArguments_Part">Chrome ವಾದಗಳು</string>
+      <string id="KeepLastChromeTab_Part">ಹಿಂದಿನ Chrome ಟ್ಯಾಬ್ ಅನ್ನು ಪರಿವರ್ತನೆಯಲ್ಲಿಡಿ</string>
+      <string id="AlternativeBrowserArguments_Explain">ಪರ್ಯಾಯ ಬ್ರೌಸರ್‌ನ ಕಾರ್ಯಸಾಧ್ಯತೆಗೆ ರವಾನಿಸಬೇಕೆಂದಿರುವ ವಾದಗಳನ್ನು ನಿರ್ದಿಷ್ಟಪಡಿಸಲು ನಿಮಗೆ ಅನುಮತಿ ನೀಡುತ್ತದೆ.
+
+ನೀತಿಯನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿದರೆ ಒದಗಿಸಲಾದ ಪ್ಯಾರಾಮೀಟರ್‌ಗಳನ್ನು ಪರ್ಯಾಯ ಬ್ರೌಸರ್ ಆಹ್ವಾನಿಸಿದಾಗ ಬಳಸಿಕೊಳ್ಳಲಾಗುವುದು.
+
+ಆದೇಶ ಸಾಲಿನಲ್ಲಿ url ಎಲ್ಲಿ ಗೋಚರಿಸಬೇಕು ಎಂಬುದನ್ನು ನಿರ್ದಿಷ್ಟಪಡಿಸಲು ನೀವು ವಿಶೇಷ placeholder ${url} ಅನ್ನು ಸಹ ಬಳಸಿಕೊಳ್ಳಬಹುದು. ಉದಾ. "--url=${url} --kiosk" ಅಂತ್ಯಕ್ಕೆ ಅದನ್ನು ಅನುಬಂಧಿಸಿದರೆ ನೀವು ಪ್ಲೇಸ್‌ಹೋಲ್ಡರ್ ಅನ್ನು ನಿರ್ದಿಷ್ಟಪಡಿಸಬೇಕಾಗಿಲ್ಲ ಅಥವಾ ಅದು ವಾದ ಮಾತ್ರ ಆಗಿದ್ದರೆ ನೀವು ಆ ನೀತಿಯನ್ನು ಖಾಲಿ ಬಿಡಬಹುದು.
+
+ನೀತಿಯನ್ನು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಿದರೆ ಅಥವಾ ಖಾಲಿ ಬಿಟ್ಟರೆ ಬ್ರೌಸರ್‌ಗೆ url ಅನ್ನು ಮಾತ್ರ ಪ್ಯಾರಾಮೀಟರ್‌ನಂತೆ ರವಾನಿಸಲಾಗುವುದು.</string>
+      <string id="URLGreyList_Explain">ಎರಡೂ ಬ್ರೌಸರ್‌ಗಳಲ್ಲಿ ತೆರೆಯಬೇಕೆಂದಿರುವ ಹೋಸ್ಟ್ ಡೊಮೇನ್ ಹೆಸರುಗಳನ್ನು ನಿರ್ದಿಷ್ಟಪಡಿಸಲು ನಿಮಗೆ ಅನುಮತಿ ನೀಡುತ್ತದೆ.
+
+ಈ ನೀತಿಯನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿದಾಗ, ಈ ಪಟ್ಟಿಯಲ್ಲಿರುವ ಡೊಮೇನ್‌ಗಳು ಎರಡೂ 
+ಬ್ರೌಸರ್‌ಗಳಲ್ಲಿ ಲಭ್ಯವಾಗುತ್ತದೆ ಮತ್ತು ಯಾವುದೇ ರೀತಿಯಲ್ಲಿ ಪರಿವರ್ತನೆಯನ್ನು 
+ಟ್ರಿಗ್ಗರ್ ಮಾಡಲಾಗುವುದಿಲ್ಲ.
+
+ಸಂಭಾವ್ಯ ಬಳಕೆ ಸಂದರ್ಭದಲ್ಲಿ ಯಾವುದೇ ದೃಢೀಕರಣ ಡೊಮೇನ್‌ಗಳನ್ನು ಈ ಪಟ್ಟಿಯಲ್ಲಿ ಹೊಸ ಹಾಗೂ ಪಾರಂಪರಿಕ ಅಪ್ಲಿಕೇಶನ್‌ಗಳ ನಡುವೆ ಹಂಚಿಕೊಳ್ಳಲಾಗಿದೆ.
+
+ಹೋಸ್ಟ್-ಹೆಸರು ಭಾಗಗಳು: "www.example.com" ನಂತಹ ಸಂಪೂರ್ಣ ಡೊಮೇನ್ ಹೆಸರುಗಳು ಇಲ್ಲವೇ "example.com: ನಂತಹ ಅವುಗಳ ಭಾಗಗಳು ಅಥವಾ "ಉದಾಹರಣೆ" ಅನ್ನು ನಿರ್ದಿಷ್ಟಪಡಿಸಬೇಕು. ವೈಲ್ಡ್‌ಕಾರ್ಡ್‌ಗಳನ್ನು ಇನ್ನೂ ಬೆಂಬಲಿಸಲಾಗಿಲ್ಲ.
+URL ಪೂರ್ವಪ್ರತ್ಯಯಗಳು: ಆವಶ್ಯವಿದ್ದಲ್ಲಿ ಮಾತ್ರ ಸೂಕ್ತವಾದ URL 
+ಪೂರ್ವಪ್ರತ್ಯಯಗಳನ್ನು ಪ್ರೊಟೋಕಾಲ್‌ ಮತ್ತು ಪೋರ್ಟ್‌ನೊಂದಿಗೆ ಸಂಪೂರ್ಣವಾಗಿ 
+ಹೊಂದಿಸಲಾಗುತ್ತದೆ. ಉದಾ. "http://login.example.com" ಅಥವಾ 
+"https://www.example.com:8080/login/".
+
+ನಿರ್ದಿಷ್ಟಪಡಿಸದಿದ್ದರೆ ಅಥವಾ ಖಾಲಿ ಬಿಟ್ಟರೆ - "ಪರ್ಯಾಯ ಬ್ರೌಸರ್‌ನಲ್ಲಿ ತೆರೆಯಲು ಹೋಸ್ಟ್ ಮಾಡುತ್ತದೆ" ಪಟ್ಟಿಯಲ್ಲಿಲ್ಲದ ಯಾವುದೇ ಡೊಮೇನ್ ಪರಿವರ್ತನೆಯನ್ನು Chrome(*) ಗೆ ಮರಳಿ ಟ್ರಿಗ್ಗರ್ ಮಾಡುತ್ತದೆ.
+
+*: ಪ್ರಸ್ತುತ Internet Explorer ಮಾತ್ರ Chrome ಗೆ ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಹಿಂತಿರುಗುವುದನ್ನು ಬೆಂಬಲಿಸುತ್ತದೆ.</string>
+      <string id="ChromePath_Part">Chrome ಹಾದಿ</string>
+</stringTable>
+  <presentationTable>
+    <presentation id="AlternativeBrowserPath">
+      <textBox refId="AlternativeBrowserPath_Part">
+        <label>ಪರ್ಯಾಯ ಬ್ರೌಸರ್ ಹಾದಿ</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="AlternativeBrowserArguments">
+      <textBox refId="AlternativeBrowserArguments_Part">
+        <label>ಪರ್ಯಾಯ ಬ್ರೌಸರ್ ವಾದಗಳು</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="ChromePath">
+      <textBox refId="ChromePath_Part">
+        <label>Chrome ಹಾದಿ</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="ChromeArguments">
+      <textBox refId="ChromeArguments_Part">
+        <label>Chrome ವಾದಗಳು</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="URLList_Policy">
+      <listBox refId="URLList_Part">ಪರ್ಯಾಯ ಬ್ರೌಸರ್‌‌ನಲ್ಲಿ ತೆರೆಯಲು ಹೋಸ್ಟ್‌ ಮಾಡುತ್ತದೆ</listBox>
+    </presentation>
+    <presentation id="URLGreyList_Policy">
+      <listBox refId="URLGreyList_Part">ಎರಡೂ ಬ್ರೌಸರ್‌ನಲ್ಲಿ ಪರಿವರ್ತನೆಯನ್ನು ಟ್ರಿಗ್ಗರ್ ಮಾಡಬಾರದೆಂದು ಹೋಸ್ಟ್ ಮಾಡುತ್ತದೆ</listBox>
+    </presentation>
+    <presentation id="KeepLastChromeTab_Policy"/>
+    <presentation id="ShowTransitionScreen_Policy">
+      <decimalTextBox refId="ShowTransitionScreen_Part">ಕೆಲವು ಸಮಯಕ್ಕಾಗಿ ಪರಿವರ್ತನೆ ಪರದೆಯನ್ನು Chrome ನಲ್ಲಿ ತೋರಿಸಿ</decimalTextBox>
+    </presentation>
+    <presentation id="UseIeSiteList_Policy"/>
+  </presentationTable>
+</resources>
+</policyDefinitionResources>

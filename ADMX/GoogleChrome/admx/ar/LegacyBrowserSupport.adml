@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<policyDefinitionResources revision="1.0" schemaVersion="1.0">
+  <displayName>
+  </displayName>
+  <description>
+  </description>
+  <resources>
+    <stringTable>
+      <string id="KeepLastChromeTab_Policy">الاحتفاظ بآخر علامة تبويب في Chrome عند الانتقال</string>
+      <string id="ShowTransitionScreen_Policy">عرض شاشة الانتقال في Chrome لفترة من الوقت</string>
+      <string id="ChromeArguments_Explain">تتيح لك تحديد الوسيطات التي سيتم تمريرها إلى Chrome عند تنفيذها.
+
+وفي حال تمكين السياسة، سيتم استخدام المعلّمات المقدَّمة عند استدعاء Chrome.
+
+يمكنك استخدام العنصر النائب الخاص ${url} لتحديد مكان ظهور عنوان URL في سطر الأوامر. على سبيل المثال. "--url=${url} --kiosk".
+ولا يلزمك تحديد العنصر النائب في حال إضافته في النهاية. وإذا كان يُمثّل الوسيطة الوحيدة، يمكنك ترك السياسة فارغة.
+
+وفي حالة تعطيل السياسة أو تركها فارغة، سيتم تمرير عنوان URL فقط كمعلّمة إلى المتصفح.</string>
+      <string id="AlternativeBrowserArguments">وسيطات المتصفح البديل</string>
+      <string id="ChromeArguments">وسيطات Chrome</string>
+      <string id="AlternativeBrowserPath_Part">مسار المتصفح البديل</string>
+      <string id="URLList_Part">المضيفات المراد فتحها في المتصفح البديل</string>
+      <string id="KeepLastChromeTab_Explain">تتيح لك تحديد ما يحدث عند إعادة توجيه آخر علامة تبويب مفتوحة في Chrome إلى المتصفح البديل.
+
+عند تمكين هذه السياسة أو لا، سيتم ترك آخر علامة تبويب مفتوحة مع الإشارة إلى صفحة علامة التبويب الجديدة بعد إتمام عملية الانتقال. وفي حال تعطيل السياسة، سيتم عندها إغلاق آخر علامة تبويب بما سيؤدي إلى إغلاق المتصفح Chrome في حال عدم وجود أي نوافذ Chrome أخرى مفتوحة.</string>
+      <string id="UseIeSiteList_Part">استخدام سياسة قائمة المواقع لوضع IE Enterprise</string>
+      <string id="SUPPORTED_WINXPSP2">إصدار Microsoft Windows XP SP2 أو الإصدارات الأحدث</string>
+      <string id="AlternativeBrowserPath">مسار المتصفح البديل</string>
+      <string id="UseIeSiteList_Explain">عند تمكين السياسة، سيتم تفعيل عمليات الانتقال بين المتصفحات من خلال الإدخالات في سياسة SiteList لـ Internet Explorer كما هو محدَّد في (https://technet.microsoft.com/itpro/internet-explorer/ie11-deploy-guide/turn-on-enterprise-mode-and-use-a-site-list).
+
+وفي حال عدم إعداد السياسة أو تعطيلها، سيتم استخدام عناوين URL في سياسة الإضافة فقط.</string>
+      <string id="AlternativeBrowserPath_Explain">تحديد الملف التنفيذي للمتصفح البديل.
+تتيح لك تحديد البرنامج المطلوب استخدامه كمتصفح بديل.
+
+وفي حال تمكينها، يمكنك إما تحديد مسار مطلق في السياسة أو استخدام أحد المتغيرات التالية:
+
+${ie} - يتم استخدام موقع التثبيت الافتراضي في Internet Explorer
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\IEXPLORE.EXE لتحديد موقع المتصفح في هذه الحالة.
+${firefox} - يتم استخدام موقع التثبيت الافتراضي في Firefox 
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\FIREFOX.EXE لتحديد موقع المتصفح في هذه الحالة.
+${safari} - يتم استخدام موقع التثبيت الافتراضي في Safari 
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\SAFARI.EXE لتحديد موقع المتصفح في هذه الحالة.
+
+وفي حال عدم تمكين السياسة أو تركها فارغة، سيتم استخدام المتصفح الافتراضي البديل Internet Explorer كما لو أنّ القيمة ${ie} مستخدمة.</string>
+      <string id="ShowTransitionScreen_Part">عرض شاشة الانتقال في Chrome لفترة من الوقت</string>
+      <string id="URLList_Explain">تتيح لك تحديد قائمة بأسماء النطاقات المستضافة المراد فتحها في المتصفح البديل.
+
+في حال تمكين السياسة، يتعيّن عليك تقديم قائمة من الفلاتر التي ستفعّل عملية الانتقال إلى المتصفح البديل. ويجب أن يمثّل كل من الإدخالات أحد الأنواع الأربعة التالية:
+
+جزء من اسم المضيف: يجب تحديد إما أسماء النطاقات الكاملة، مثل "www.example.com" أو أجزاء منها، مثل "example.com" أو حتى "example"، مع العلم أن أحرف البدل‬‏‫ غير معتمدة حتى الآن.
+‏‫بادئة عنوان URL: فقط بادئات عناوين URL الصحيحة يتم مطابقتها بالكامل مع البروتوكول والمنفذ إذا لزم الأمر. على سبيل المثال، "http://login.example.com" أو "https://www.example.com:8080/login/".
+الإدخال السلبي: يبدأ بـ "!" ويستمر كجزء من اسم المضيف‬ أو ‏‫بادئة عنوان URL كما هو موضح أعلاه. ويتم دائماً فتح الإدخالات السلبية في Chrome. على سبيل المثال، "!example.com" أو "!file:///c:/localapp/".
+إدخال أحرف البدل: يحتوي على حرف واحد "*"، ويتوافق مع أي عنوان URL، ويُهدف إلى استخدامه مع الإدخالات السلبية في حال توجّب فتح معظم عناوين URL في المتصفح البديل وفتح مجموعة صغيرة فقط من عناوين URL في Chrome.
+
+تتضمّن الإدخالات السلبية أولويات أعلى من الإدخالات الإيجابية التي تسمح بإدراج أجزاء كبيرة من أي نطاق ضمن القائمة البيضاء أثناء حفظ أقسام أصغر ليتم فتحها في Chrome.
+ويتم تطبيق إدخال أحرف البدل - إن وجد - فقط بعد إتمام التحقق من كل القواعد الأخرى.
+
+يتم مراقبة البروتوكولات التالية لإعادة التوجيه: http:, https:.
+
+في حال عدم تحديد السياسة أو تركها فارغة، لن يتم إجراء أي انتقال إلى المتصفح البديل.</string>
+      <string id="ChromePath_Explain">تتيح لك تحديد الملف التنفيذي لـ Chrome الذي سيتم تشغيله عند العودة من المتصفح البديل(*).
+
+عند تمكين السياسة، يمكنك إما تحديد مسار مطلق في السياسة أو استخدام المتغير التالي:
+
+${chrome} - 
+يتم استخدام موقع التثبيت الافتراضي لـ Chrome 
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\Chrome.EXE لتحديد موقع المتصفح في هذه الحالة.
+
+في حال تعطيل السياسة أو تركها فارغة، سيتم استخدام التثبيت الافتراضي لـ Chrome كما لو تم استخدام القيمة ${chrome} .
+
+*: في الوقت الحالي تتوفر إمكانية الرجوع إلى Chrome تلقائيًا فقط في Internet Explorer.</string>
+      <string id="Cat_LegacyBrowserSupport">دعم المتصفحات القديمة</string>
+      <string id="AlternativeBrowserArguments_Part">وسيطات المتصفح البديل</string>
+      <string id="URLGreyList_Part">المضيفات الواجب أن لا تفعّل عملية النقل في أي متصفح</string>
+      <string id="UseIeSiteList_Policy">استخدام سياسة قائمة المواقع لوضع IE Enterprise</string>
+      <string id="URLGreyList_Policy">المضيفات الواجب أن لا تفعّل عملية النقل في أي متصفح</string>
+      <string id="ShowTransitionScreen_Explain">تتيح لك تحديد مدّة ظهور رسالة الانتقال في علامة التبويب في Chrome قبل الانتقال إلى المتصفح الآخر، بما من شأنه أن يساعد في تصوّر عملية الانتقال. ويتم تحديد السياسة خلال ثوانٍ.
+
+وفي حال عدم إعداد السياسة، سيتم إغلاق علامة التبويب على الفور عند إمكانية إكمال عملية الانتقال.</string>
+      <string id="URLList_Policy">المضيفات المراد فتحها في المتصفح البديل</string>
+      <string id="ChromePath">مسار Chrome</string>
+      <string id="ChromeArguments_Part">وسيطات Chrome</string>
+      <string id="KeepLastChromeTab_Part">الاحتفاظ بآخر علامة تبويب في Chrome عند الانتقال</string>
+      <string id="AlternativeBrowserArguments_Explain">تتيح لك تحديد الوسيطات التي سيتم تمريرها إلى الملف التنفيذي للمتصفح البديل القابل للتنفيذ.
+
+وفي حال تمكين هذه السياسة، سيتم استخدام المعلّمات المقدَّمة عند استدعاء المتصفح البديل.
+
+كما يمكنك استخدام العنصر النائب الخاص ${url} لتحديد مكان ظهور عنوان URL في سطر الأوامر. على سبيل المثال، "--url=${url} --kiosk".
+ولا يلزمك تحديد العنصر النائب في حال إضافته في النهاية. وإذا كان يُمثّل الوسيطة الوحيدة، يمكنك ترك السياسة فارغة.
+
+وفي حالة تعطيل السياسة أو تركها فارغة، سيتم تمرير عنوان URL فقط كمعلّمة إلى المتصفح.</string>
+      <string id="URLGreyList_Explain">تتيح لك تحديد قائمة بأسماء النطاقات المستضافة المراد فتحها في أي متصفح.
+
+وعند تمكين هذه السياسة، ستتوفّر النطاقات المدرجة ضمن هذه القائمة في المتصفحين ولن يتم تفعيل عملية الانتقال في كلا الحالتين.
+
+ومن المحتمل وجود أي من نطاقات المصادقة المشارَكة بين التطبيقين الجديد والقديم في هذه القائمة.
+
+أجزاء الأسماء المضيفة: يجب تحديد إما أسماء نطاقات كاملة مثل "www.example.com" أو أجزاء منها مثل "example.com: أو حتى "example"، مع العلم أن أحرف البدل غير معتمدة حتى الآن.
+بادئات عناوين URL: فقط بادئات عناوين URL الصحيحة يتم مطابقتها بالكامل مع البروتوكول والمنفذ إذا لزم الأمر. على سبيل المثال "http://login.example.com" أو "https://www.example.com:8080/login/". 
+
+وفي حال عدم تحديد السياسة أو تركها فارغة، سيتولى أي نطاق غير مدرج ضمن قائمة "المضيفات المراد فتحها في المتصفح البديل" بتفعيل عملية الرجوع إلى Chrome(*).
+
+*: في الوقت الحالي، تتوفر إمكانية الرجوع إلى Chrome تلقائيًا فقط في Internet Explorer.</string>
+      <string id="ChromePath_Part">مسار Chrome</string>
+</stringTable>
+  <presentationTable>
+    <presentation id="AlternativeBrowserPath">
+      <textBox refId="AlternativeBrowserPath_Part">
+        <label>مسار المتصفح البديل</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="AlternativeBrowserArguments">
+      <textBox refId="AlternativeBrowserArguments_Part">
+        <label>وسيطات المتصفح البديل</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="ChromePath">
+      <textBox refId="ChromePath_Part">
+        <label>مسار Chrome</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="ChromeArguments">
+      <textBox refId="ChromeArguments_Part">
+        <label>وسيطات Chrome</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="URLList_Policy">
+      <listBox refId="URLList_Part">المضيفات المراد فتحها في المتصفح البديل</listBox>
+    </presentation>
+    <presentation id="URLGreyList_Policy">
+      <listBox refId="URLGreyList_Part">المضيفات الواجب أن لا تفعّل عملية النقل في أي متصفح</listBox>
+    </presentation>
+    <presentation id="KeepLastChromeTab_Policy"/>
+    <presentation id="ShowTransitionScreen_Policy">
+      <decimalTextBox refId="ShowTransitionScreen_Part">عرض شاشة الانتقال في Chrome لفترة من الوقت</decimalTextBox>
+    </presentation>
+    <presentation id="UseIeSiteList_Policy"/>
+  </presentationTable>
+</resources>
+</policyDefinitionResources>

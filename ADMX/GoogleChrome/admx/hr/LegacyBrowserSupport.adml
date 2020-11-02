@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<policyDefinitionResources revision="1.0" schemaVersion="1.0">
+  <displayName>
+  </displayName>
+  <description>
+  </description>
+  <resources>
+    <stringTable>
+      <string id="KeepLastChromeTab_Policy">Zadržavanje posljednje Chromeove kartice po prijelazu</string>
+      <string id="ShowTransitionScreen_Policy">Prikazivanje prijelaznog zaslona u Chromeu neko vrijeme</string>
+      <string id="ChromeArguments_Explain">Tim pravilom možete odrediti argumente koji će se proslijediti pregledniku Chrome nakon izvršenja.
+
+Ako je pravilo omogućeno, pruženi parametri upotrijebit će se pri pozivanju preglednika Chrome.
+
+Možete također upotrijebiti posebno rezervirano mjesto ${url} da biste odredili gdje se URL treba prikazivati u naredbenom retku. Na primjer, "--url=${url} --kiosk".
+Ne morate odrediti rezervirano mjesto ako se nadodaje na kraj ili pravilo možete ostaviti prazno ako bi to trebao biti jedini argument
+
+Ako je pravilo onemogućeno ili ostavljeno prazno, URL će se prosljeđivati pregledniku kao parametar.</string>
+      <string id="AlternativeBrowserArguments">Argumenti zamjenskog preglednika</string>
+      <string id="ChromeArguments">Argumenti Chromea</string>
+      <string id="AlternativeBrowserPath_Part">Put zamjenskog preglednika</string>
+      <string id="URLList_Part">Hostovi koji se otvaraju u zamjenskom pregledniku</string>
+      <string id="KeepLastChromeTab_Explain">Tim pravilom možete odrediti što se događa kada se posljednja otvorena kartica u Chromeu preusmjeri na zamjenski preglednik.
+
+Kada je to pravilo omogućeno ili nije postavljeno, posljednja kartica ostat će otvorena i po prijelazu usmjeriti na web-stranicu nove kartice. Ako je onemogućeno, posljednja će se kartica zatvoriti, čime će se zatvoriti i Chrome ako nije otvoren nijedan drugi Chromeov prozor.</string>
+      <string id="UseIeSiteList_Part">Upotrijebi pravilo o popisu web-lokacija za korporacijski način rada IE-a</string>
+      <string id="SUPPORTED_WINXPSP2">Microsoft Windows XP SP2 ili noviji</string>
+      <string id="AlternativeBrowserPath">Put zamjenskog preglednika</string>
+      <string id="UseIeSiteList_Explain">Kada je to omogućeno, prijelazi između preglednika pokretat će se i unosima u pravilu SiteList za Internet Explorer kao što je definirano na stranici (https://technet.microsoft.com/itpro/internet-explorer/ie11-deploy-guide/turn-on-enterprise-mode-and-use-a-site-list).
+
+Ako se to ne postavi ili se onemogući, upotrebljavat će se samo URL-ovi u pravilu za proširenje.</string>
+      <string id="AlternativeBrowserPath_Explain">Definirajte izvršnu datoteku zamjenskog preglednika.
+Tim pravilom možete odrediti koji će se program upotrebljavati kao zamjenski preglednik.
+
+Ako je omogućeno, u pravilu možete navesti apsolutni put ili upotrijebiti jednu od sljedećih varijabli:
+
+${ie} – zadana lokacija za instaliranje preglednika Internet Explorer
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\IEXPLORE.EXE upotrebljava se za odabir lokacije preglednika u ovom slučaju.
+${firefox} – zadana lokacija za instaliranje preglednika Firefox
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\FIREFOX.EXE upotrebljava se za odabir lokacije preglednika u ovom slučaju.
+${safari} – zadana lokacija za instalaciju preglednika Safari
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\SAFARI.EXE upotrebljava se za odabir lokacije preglednika u ovom slučaju.
+
+Ako pravilo nije omogućeno ili je ostavljeno prazno, upotrijebit će se zadani zamjenski preglednik koji određuje Internet Explorer kao da je upotrijebljena vrijednost ${ie}.</string>
+      <string id="ShowTransitionScreen_Part">Prikazivanje prijelaznog zaslona u Chromeu neko vrijeme</string>
+      <string id="URLList_Explain">Tim pravilom možete odrediti popis naziva domena hostova koji se otvaraju u zamjenskom pregledniku.
+
+Ako je pravilo omogućeno, trebate navesti popis filtara koji će pokrenuti prijelaz na zamjenski preglednik. Svaki unos treba pripadati nekoj od sljedeće četiri vrste:
+
+Dio naziva hosta: trebaju se navesti potpuni nazivi domena, npr. "www.example.com", ili njihovi dijelovi, npr. "example.com" ili čak "example". Zamjenski znakovi još nisu podržani.
+Prefiks URL-a: uspoređuju se samo pravi prefiksi URL-a i po potrebi dopunjuju protokolom i priključkom. Na primjer, "http://login.example.com" ili "https://www.example.com:8080/login/".
+Negativan unos: počinje znakom "!" za kojim slijedi dio naziva hosta ili prefiks URL-a kako je gore opisano. Negativni unosi uvijek se otvaraju u Chromeu. Na primjer, "!example.com" ili "!file:///c:/localapp/".
+Unos zamjenskog znaka: sadrži samo jedan znak "*". Uspoređuje se bilo koji URL. Upotrebljava se s negativnim unosima ako se većina URL-ova treba otvarati u zamjenskom pregledniku, a samo mali dio URL-ova u Chromeu.
+
+Negativni unosi imaju viši prioritet od pozitivnih, a to omogućuje stavljanje velikih dijelova domene na popis dopuštenih, dok se manji dijelovi spremaju za otvaranje u Chromeu.
+Ako je prisutan, unos sa zamjenskim znakom primjenjuje se tek nakon provjere ostalih pravila.
+
+Sljedeći se protokoli prate radi preusmjeravanja: http:, https:.
+
+Ako pravilo nije određeno ili je ostavljeno prazno, prijelaz na zamjenski preglednik neće se pokrenuti.</string>
+      <string id="ChromePath_Explain">Tim pravilom možete odrediti pokretanje izvršne datoteke preglednika Chrome pri vraćanju iz zamjenskog preglednika(*).
+
+Kada je pravilo omogućeno, u njemu možete odrediti apsolutnu putanju ili upotrijebiti sljedeću varijablu:
+
+${chrome} – zadana lokacija za instaliranje preglednika Chrome
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\Chrome.EXE upotrebljava se za odabir lokacije preglednika u ovom slučaju.
+
+Ako je pravilo onemogućeno ili ostavljeno prazno, upotrijebit će se zadana instalacija preglednika Chrome kao da je upotrijebljena vrijednost ${chrome}.
+
+*: trenutačno samo Internet Explorer podržava automatsko vraćanje na Chrome.</string>
+      <string id="Cat_LegacyBrowserSupport">Podrška za stare preglednike</string>
+      <string id="AlternativeBrowserArguments_Part">Argumenti zamjenskog preglednika</string>
+      <string id="URLGreyList_Part">Hostovi koji ne bi smjeli pokrenuti prijelaz u bilo kojem pregledniku</string>
+      <string id="UseIeSiteList_Policy">Upotrijebi pravilo o popisu web-lokacija za korporacijski način rada IE-a</string>
+      <string id="URLGreyList_Policy">Hostovi koji ne bi smjeli pokrenuti prijelaz u bilo kojem pregledniku</string>
+      <string id="ShowTransitionScreen_Explain">Omogućuje vam da odredite koliko će dugo poruka o prijelazu na kartici biti vidljiva u Chromeu prije prijelaza na drugi preglednik. To olakšava vizualizaciju prijelaza. Pravilo se navodi u sekundama.
+
+Ako se ne postavi, kartica će se zatvoriti odmah kada se prijelaz može izvršiti.</string>
+      <string id="URLList_Policy">Hostovi koji se otvaraju u zamjenskom pregledniku</string>
+      <string id="ChromePath">Put Chromea</string>
+      <string id="ChromeArguments_Part">Argumenti preglednika Chrome</string>
+      <string id="KeepLastChromeTab_Part">Zadržavanje posljednje Chromeove kartice po prijelazu</string>
+      <string id="AlternativeBrowserArguments_Explain">Tim pravilom možete odrediti argumente koji će se proslijediti izvršnoj datoteci zamjenskog preglednika.
+
+Ako je pravilo omogućeno, pruženi parametri upotrijebit će se pri pozivanju zamjenskog preglednika.
+
+Možete također upotrijebiti posebno rezervirano mjesto ${url} da biste odredili gdje se URL treba prikazivati u naredbenom retku. Na primjer, "--url=${url} --kiosk".
+Ne morate odrediti rezervirano mjesto ako se nadodaje na kraj ili pravilo možete ostaviti prazno ako bi to trebao biti jedini argument.
+
+Ako je pravilo onemogućeno ili ostavljeno prazno, URL će se prosljeđivati pregledniku kao parametar.</string>
+      <string id="URLGreyList_Explain">Tim pravilom možete odrediti popis naziva domena hostova koji se trebaju otvoriti u bilo kojem pregledniku.
+
+Kad je to pravilo omogućeno, domene na tom popisu bit će dostupne u oba preglednika i neće pokrenuti prijelaz ni u jednom smjeru.
+
+Mogući slučaj upotrebe su domene za autentifikaciju koje se dijele između novih i starih aplikacija na tom popisu.
+
+Dijelovi naziva hostova: trebaju se navesti potpuni nazivi domena, npr. "www.example.com", ili njihovi dijelovi, npr. "example.com:, ili čak "example". Zamjenski znakovi još nisu podržani.
+Prefiksi URL-ova: uspoređuju se samo pravi prefiksi URL-ova i po potrebi dopunjuju protokolom i priključkom. Na primjer, "http://login.example.com" ili "https://www.example.com:8080/login/".
+
+Ako nije navedeno ili je ostavljeno prazno, bilo koja domena koja nije na popisu "Hostovi koji se otvaraju u zamjenskom pregledniku" pokrenut će vraćanje na Chrome(*).
+
+*: Trenutačno samo Internet Explorer podržava automatsko vraćanje na Chrome.</string>
+      <string id="ChromePath_Part">Put Chromea</string>
+</stringTable>
+  <presentationTable>
+    <presentation id="AlternativeBrowserPath">
+      <textBox refId="AlternativeBrowserPath_Part">
+        <label>Put zamjenskog preglednika</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="AlternativeBrowserArguments">
+      <textBox refId="AlternativeBrowserArguments_Part">
+        <label>Argumenti zamjenskog preglednika</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="ChromePath">
+      <textBox refId="ChromePath_Part">
+        <label>Put Chromea</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="ChromeArguments">
+      <textBox refId="ChromeArguments_Part">
+        <label>Argumenti Chromea</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="URLList_Policy">
+      <listBox refId="URLList_Part">Hostovi koji se otvaraju u zamjenskom pregledniku</listBox>
+    </presentation>
+    <presentation id="URLGreyList_Policy">
+      <listBox refId="URLGreyList_Part">Hostovi koji ne bi smjeli pokrenuti prijelaz u bilo kojem pregledniku</listBox>
+    </presentation>
+    <presentation id="KeepLastChromeTab_Policy"/>
+    <presentation id="ShowTransitionScreen_Policy">
+      <decimalTextBox refId="ShowTransitionScreen_Part">Prikazivanje prijelaznog zaslona u Chromeu neko vrijeme</decimalTextBox>
+    </presentation>
+    <presentation id="UseIeSiteList_Policy"/>
+  </presentationTable>
+</resources>
+</policyDefinitionResources>

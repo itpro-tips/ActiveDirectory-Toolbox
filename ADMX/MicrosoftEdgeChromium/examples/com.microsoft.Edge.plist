@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>FavoritesBarEnabled</key>
+  <false/>
+  <key>AudioCaptureAllowed</key>
+  <true/>
+  <key>AudioCaptureAllowedUrls</key>
+  <array>
+    <string>https://www.contoso.com/</string>
+    <string>https://[*.]contoso.edu/</string>
+  </array>
+  <key>DefaultCookiesSetting</key>
+  <integer>1</integer>
+  <key>HomepageLocation</key>
+  <string>https://www.contoso.com</string>
+  <key>ManagedFavorites</key>
+  <array>
+    <dict>
+      <key>toplevel_name</key>
+      <string>My managed favorites folder</string>
+    </dict>
+    <dict>
+      <key>name</key>
+      <string>Microsoft</string>
+      <key>url</key>
+      <string>microsoft.com</string>
+    </dict>
+    <dict>
+      <key>name</key>
+      <string>Bing</string>
+      <key>url</key>
+      <string>bing.com</string>
+    </dict>
+    <dict>
+      <key>children</key>
+      <array>
+        <dict>
+          <key>name</key>
+          <string>Microsoft Edge Insiders</string>
+          <key>url</key>
+          <string>www.microsoftedgeinsider.com</string>
+        </dict>
+        <dict>
+          <key>name</key>
+          <string>Microsoft Edge</string>
+          <key>url</key>
+          <string>www.microsoft.com/windows/microsoft-edge</string>
+        </dict>
+      </array>
+      <key>name</key>
+      <string>Microsoft Edge links</string>
+    </dict>
+  </array>	
+
+</dict>
+</plist>

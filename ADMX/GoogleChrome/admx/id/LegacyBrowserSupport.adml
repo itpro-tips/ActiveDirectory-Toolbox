@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<policyDefinitionResources revision="1.0" schemaVersion="1.0">
+  <displayName>
+  </displayName>
+  <description>
+  </description>
+  <resources>
+    <stringTable>
+      <string id="KeepLastChromeTab_Policy">Tetap Aktifkan Tab Chrome Terakhir Dalam Transisi</string>
+      <string id="ShowTransitionScreen_Policy">Menampilkan Layar Transisi di Chrome untuk Beberapa Saat</string>
+      <string id="ChromeArguments_Explain">Memungkinkan Anda menentukan argumen yang akan diteruskan ke Chrome ketika dijalankan.
+
+Dengan mengaktifkan kebijakan ini, parameter yang disediakan akan digunakan saat Chrome dijalankan.
+
+Anda juga dapat menggunakan placeholder khusus ${url} untuk menentukan di mana url seharusnya muncul di baris perintah. Mis. "--url=${url} --kiosk".
+Anda tidak harus menentukan placeholder jika placeholder harus ditambahkan ke akhir, atau jika itu satu-satunya argumen yang kebijakannya dapat Anda biarkan kosong.
+
+Jika kebijakan dinonaktifkan atau dibiarkan kosong maka hanya url yang akan diteruskan sebagai parameter untuk browser.</string>
+      <string id="AlternativeBrowserArguments">Argumen Browser Alternatif</string>
+      <string id="ChromeArguments">Argumen Chrome</string>
+      <string id="AlternativeBrowserPath_Part">Path Browser Alternatif</string>
+      <string id="URLList_Part">Host untuk Dibuka di Browser Alternatif</string>
+      <string id="KeepLastChromeTab_Explain">Memungkinkan Anda menentukan keadaan yang terjadi saat tab yang terakhir terbuka di Chrome dialihkan ke browser alternatif.
+
+Saat kebijakan ini diaktifkan atau tidak disetel, tab terakhir akan dibiarkan terbuka dan mengarah ke halaman tab baru setelah transisi. Jika dinonaktifkan, tab terakhir akan ditutup, yang akan menyebabkan ditutupnya Chrome jika tidak ada jendela Chrome lain yang terbuka.</string>
+      <string id="UseIeSiteList_Part">Menggunakan Kebijakan Daftar Situs Mode Perusahaan IE</string>
+      <string id="SUPPORTED_WINXPSP2">Microsoft Windows XP SP2 atau yang lebih baru</string>
+      <string id="AlternativeBrowserPath">Path Browser Alternatif</string>
+      <string id="UseIeSiteList_Explain">Saat diaktifkan, transisi antar-browser juga akan dipicu oleh entri di kebijakan SiteList untuk Internet Explorer, seperti yang ditetapkan dalam (https://technet.microsoft.com/itpro/internet-explorer/ie11-deploy-guide/turn-on-enterprise-mode-and-use-a-site-list).
+
+Jika tidak ditetapkan atau dinonaktifkan, hanya url di kebijakan ekstensi yang akan digunakan.</string>
+      <string id="AlternativeBrowserPath_Explain">Menentukan cara menjalankan browser alternatif.
+Memungkinkan Anda menentukan program yang digunakan sebagai browser alternatif.
+
+Jika diaktifkan, Anda juga dapat menentukan path absolut pada kebijakan atau menggunakan variabel berikut:
+
+${ie} - Lokasi penginstalan default untuk Internet Explorer
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\IEXPLORE.EXE digunakan untuk mengambil lokasi browser dalam kasus ini.
+${firefox} - Lokasi penginstalan default untuk Firefox
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\FIREFOX.EXE digunakan untuk mengambil lokasi browser dalam kasus ini.
+${safari} - Lokasi penginstalan default untuk Safari
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\SAFARI.EXE digunakan untuk mengambil lokasi browser dalam kasus ini.
+
+Jika kebijakan dinonaktifkan atau dibiarkan kosong, browser alternatif default yang akan digunakan adalah Internet Explorer, dengan ketentuan yang sama dengan jika nilai ${ie} digunakan.</string>
+      <string id="ShowTransitionScreen_Part">Menampilkan Layar Transisi di Chrome untuk Beberapa Saat</string>
+      <string id="URLList_Explain">Memungkinkan Anda menentukan daftar nama domain host yang akan dibuka di browser Alternatif.
+
+Jika kebijakan tersebut diaktifkan, Anda harus memberikan daftar filter yang akan memicu transisi ke browser alternatif. Setiap entri harus berupa salah satu dari 4 jenis berikut:
+
+Bagian nama host: Nama domain lengkap seperti "www.contoh.com" harus ditentukan, atau bagiannya seperti "contoh.com", atau bahkan "contoh". Karakter pengganti belum didukung.
+Awalan URL: Jika dibutuhkan, hanya awalan URL yang benar yang akan dicocokkan secara lengkap dengan protokol dan port. Misalnya, "http://login.contoh.com" atau "https://www.contoh.com:8080/login/".
+Entri negatif: Dimulai dengan "!" dan dilanjutkan sebagai bagian nama host atau awalan URL seperti yang dijelaskan di atas. Entri negatif selalu terbuka di Chrome. Misalnya, "!contoh.com" atau "!file:///c:/localapp/".
+Entri karakter pengganti: Hanya berisi satu karakter "*". Cocok dengan URL apa pun. Ditujukan untuk digunakan bersama entri negatif, jika sebagian besar URL harus dibuka di browser alternatif dan hanya sedikit URL pilihan yang harus dibuka di Chrome.
+
+Entri negatif memiliki prioritas yang lebih tinggi daripada entri positif, yang memungkinkan pemberian akses pada sebagian besar domain, sambil menyimpan bagian yang lebih kecil, untuk dibuka di Chrome.
+Jika ada, entri karakter pengganti hanya diterapkan setelah semua aturan lainnya diperiksa.
+
+Protokol berikut akan dipantau untuk pengalihan: http:, https:.
+
+Jika tidak ditentukan atau dibiarkan kosong - tidak ada transisi yang akan dipicu ke browser alternatif.</string>
+      <string id="ChromePath_Explain">Memungkinkan Anda menentukan cara menjalankan Chrome untuk diluncurkan saat dikembalikan dari browser alternatif(*).
+
+Dengan mengaktifkan kebijakan ini, Anda juga dapat menentukan path absolut pada kebijakan atau menggunakan variabel berikut:
+
+${chrome} - Lokasi penginstalan default untuk Chrome
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\Chrome.EXE digunakan untuk mengambil lokasi browser dalam kasus ini.
+
+Jika kebijakan dinonaktifkan atau dibiarkan kosong, penginstalan default Chrome akan digunakan, dengan ketentuan yang sama dengan apabila nilai ${chrome} digunakan.
+
+*: Saat ini hanya Internet Explorer yang mendukung pengembalian ke Chrome secara otomatis.</string>
+      <string id="Cat_LegacyBrowserSupport">Dukungan Browser Lama</string>
+      <string id="AlternativeBrowserArguments_Part">Argumen Browser Alternatif</string>
+      <string id="URLGreyList_Part">Host yang Seharusnya Tidak Memicu Transisi di Salah Satu Browser</string>
+      <string id="UseIeSiteList_Policy">Menggunakan Kebijakan Daftar Situs Mode Perusahaan IE</string>
+      <string id="URLGreyList_Policy">Host yang Seharusnya Tidak Memicu Transisi di Salah Satu Browser</string>
+      <string id="ShowTransitionScreen_Explain">Memungkinkan Anda menentukan berapa lama pesan transisi di tab akan terlihat di Chrome sebelum melakukan transisi ke browser lain. Hal ini membantu memvisualkan transisi. Kebijakan ini ditentukan dalam hitungan detik.
+
+Jika tidak ditetapkan, tab akan segera ditutup saat transisi dapat diselesaikan.</string>
+      <string id="URLList_Policy">Host untuk Dibuka di Browser Alternatif</string>
+      <string id="ChromePath">Path Chrome</string>
+      <string id="ChromeArguments_Part">Argumen Chrome</string>
+      <string id="KeepLastChromeTab_Part">Tetap Aktifkan Tab Chrome Terakhir Dalam Transisi</string>
+      <string id="AlternativeBrowserArguments_Explain">Memungkinkan Anda menentukan argumen yang diberikan untuk menjalankan browser alternatif.
+
+Dengan mengaktifkan kebijakan ini, parameter yang diberikan akan digunakan saat browser alternatif dijalankan.
+
+Anda juga dapat menggunakan placeholder khusus ${url} untuk menentukan di mana url seharusnya muncul di baris perintah. Mis. "--url=${url} --kiosk".
+Anda tidak harus menentukan placeholder jika placeholder harus ditambahkan ke akhir, atau jika itu satu-satunya argumen yang kebijakannya dapat Anda biarkan kosong.
+
+Jika kebijakan dinonaktifkan atau dibiarkan kosong, hanya url yang akan diteruskan sebagai parameter untuk browser.</string>
+      <string id="URLGreyList_Explain">Memungkinkan Anda menentukan daftar nama domain host untuk dibuka di browser.
+
+Ketika kebijakan ini diaktifkan, domain di daftar ini akan tersedia di kedua browser dan tidak akan memicu transisi.
+
+Kemungkinan kasus penggunaannya adalah untuk domain autentikasi apa pun, yang dibagikan antara aplikasi baru dan lama dalam daftar ini.
+
+Bagian nama host: Nama domain lengkap seperti "www.contoh.com" harus ditentukan, atau salah satu bagian darinya seperti "contoh.com", atau bahkan "contoh". Karakter pengganti belum didukung.
+Awalan URL: Jika dibutuhkan, hanya awalan URL yang benar yang akan dicocokkan secara lengkap dengan protokol dan port. Misalnya, "http://login.contoh.com" atau "https://www.contoh.com:8080/login/".
+
+Jika tidak ditentukan atau dibiarkan kosong - domain apa pun yang tidak ada dalam daftar "Host untuk Dibuka Di Browser Alternatif" akan memicu transisi kembali ke Chrome(*).
+
+*: Saat ini hanya Internet Explorer yang mendukung pengembalian ke Chrome secara otomatis.</string>
+      <string id="ChromePath_Part">Path Chrome</string>
+</stringTable>
+  <presentationTable>
+    <presentation id="AlternativeBrowserPath">
+      <textBox refId="AlternativeBrowserPath_Part">
+        <label>Path Browser Alternatif</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="AlternativeBrowserArguments">
+      <textBox refId="AlternativeBrowserArguments_Part">
+        <label>Argumen Browser Alternatif</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="ChromePath">
+      <textBox refId="ChromePath_Part">
+        <label>Path Chrome</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="ChromeArguments">
+      <textBox refId="ChromeArguments_Part">
+        <label>Argumen Chrome</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="URLList_Policy">
+      <listBox refId="URLList_Part">Host untuk Dibuka di Browser Alternatif</listBox>
+    </presentation>
+    <presentation id="URLGreyList_Policy">
+      <listBox refId="URLGreyList_Part">Host yang Seharusnya Tidak Memicu Transisi di Salah Satu Browser</listBox>
+    </presentation>
+    <presentation id="KeepLastChromeTab_Policy"/>
+    <presentation id="ShowTransitionScreen_Policy">
+      <decimalTextBox refId="ShowTransitionScreen_Part">Menampilkan Layar Transisi di Chrome untuk Beberapa Saat</decimalTextBox>
+    </presentation>
+    <presentation id="UseIeSiteList_Policy"/>
+  </presentationTable>
+</resources>
+</policyDefinitionResources>

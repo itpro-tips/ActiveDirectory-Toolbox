@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<policyDefinitionResources revision="1.0" schemaVersion="1.0">
+  <displayName>
+  </displayName>
+  <description>
+  </description>
+  <resources>
+    <stringTable>
+      <string id="KeepLastChromeTab_Policy">Letzten Chrome-Tab bei Wechsel geöffnet lassen</string>
+      <string id="ShowTransitionScreen_Policy">Wechselbildschirm für einige Zeit in Chrome anzeigen</string>
+      <string id="ChromeArguments_Explain">Ermöglicht Ihnen, Argumente festzulegen, die bei der Ausführung an Chrome übergeben werden
+
+Wenn die Richtlinie aktiviert ist, werden die angegebenen Parameter zum Aufrufen von Chrome genutzt.
+
+Sie können auch den speziellen Platzhalter ${url} verwenden, um die Position der URL in der Befehlszeile festzulegen. Beispiel: "--url=${url} --kiosk"
+Wenn der Platzhalter ans Ende angefügt werden soll oder es nur ein Argument gibt, brauchen Sie keinen Platzhalter anzugeben und können die Richtlinie leer lassen.
+
+Ist die Richtlinie leer oder deaktiviert, wird nur die URL als Parameter an den Browser übergeben.</string>
+      <string id="AlternativeBrowserArguments">Argumente für alternative Browser</string>
+      <string id="ChromeArguments">Argumente für Chrome</string>
+      <string id="AlternativeBrowserPath_Part">Pfad für alternativen Browser</string>
+      <string id="URLList_Part">Hosts im alternativen Browser öffnen</string>
+      <string id="KeepLastChromeTab_Explain">Ermöglicht Ihnen festzulegen, was passieren soll, wenn der letzte geöffnete Tab in Chrome zum alternativen Browser weitergeleitet wird.
+
+Wenn diese Richtlinie aktiviert oder nicht festgelegt ist, bleibt der letzte Tab geöffnet und verweist nach dem Wechsel auf die Seite "Neuer Tab". Wenn die Richtlinie deaktiviert ist, wird der letzte Tab geschlossen, sodass Chrome geschlossen wird, wenn keine weiteren Chrome-Fenster geöffnet sind.</string>
+      <string id="UseIeSiteList_Part">Richtlinie "IE Unternehmensmodus Websiteliste" verwenden</string>
+      <string id="SUPPORTED_WINXPSP2">Microsoft Windows XP SP2 oder höher</string>
+      <string id="AlternativeBrowserPath">Pfad für alternativen Browser</string>
+      <string id="UseIeSiteList_Explain">Ist diese Richtlinie aktiviert, werden Wechsel zwischen Browsern auch durch Einträge in der Websitelisten-Richtlinie für Internet Explorer ausgelöst, wie unter folgendem Link beschrieben: https://technet.microsoft.com/itpro/internet-explorer/ie11-deploy-guide/turn-on-enterprise-mode-and-use-a-site-list.
+
+Wenn diese Richtlinie nicht festgelegt oder deaktiviert ist, werden nur die URLs der Erweiterungsrichtlinie verwendet.</string>
+      <string id="AlternativeBrowserPath_Explain">Gibt die ausführbare Datei des alternativen Browsers an
+Ermöglicht Ihnen, das Programm festzulegen, das als alternativer Browser genutzt werden soll
+
+Wenn diese Richtlinie aktiviert ist, können Sie dort entweder einen absoluten Pfad angeben oder eine der folgenden Variablen verwenden:
+
+${ie} – Standardinstallationspfad für Internet Explorer
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\IEXPLORE.EXE legt in diesem Fall den Speicherort des Browsers fest.
+${firefox} – Standardinstallationspfad für Firefox
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\FIREFOX.EXE legt in diesem Fall den Speicherort des Browsers fest.
+${safari} – Standardinstallationspfad für Safari
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\SAFARI.EXE legt in diesem Fall den Speicherort des Browsers fest.
+
+Ist die Richtlinie deaktiviert oder leer, wird der alternative Standardbrowser verwendet, in diesem Fall Internet Explorer, als wäre der Wert ${ie} festgelegt worden.</string>
+      <string id="ShowTransitionScreen_Part">Wechselbildschirm für einige Zeit in Chrome anzeigen</string>
+      <string id="URLList_Explain">Ermöglicht Ihnen, eine Liste an Host-Domainnamen festzulegen, die im alternativen Browser geöffnet werden sollen.
+
+Wenn die Richtlinie aktiviert ist, müssen Sie eine Liste mit Filtern angeben, die den Wechsel zum alternativen Browser auslösen. Im Folgenden finden Sie vier Optionen für die Einträge:
+
+Teile von Hostnamen: Geben Sie entweder einen vollständigen Domainnamen wie "www.ihrebeispielurl.de" oder Teile davon an, z. B. "ihrebeispielurl.de" oder sogar "ihrebeispielurl". Platzhalter werden noch nicht unterstützt.
+URL-Präfixe: Nur korrekte URL-Präfixe werden mit Protokoll und Port abgestimmt, sofern notwendig. Beispiel: "http://login.ihrebeispielurl.de" oder "https://www.ihrebeispielurl.de:8080/login/".
+Negativer Eintrag: Beginnt mit einem "!", danach folgt wie oben beschrieben der Teil des Hostnamens oder ein URL-Präfix. Negative Einträge werden immer in Chrome geöffnet. Beispiel: "!ihrebeispielurl.de" oder "!file:///c:/localapp/".
+Platzhalter-Eintrag: Enthält nur das Zeichen "*". Kann für jede URL verwendet werden. Ist eigentlich für negative Einträge vorgesehen, wenn die meisten URLs in einem alternativen Browser und nur wenige der URLs in Chrome geöffnet werden sollen.
+
+Negative Einträge haben eine höhere Priorität als positive Einträge, sodass größere Teile einer Domain auf die weiße Liste gesetzt werden können und nur kleinere Bereiche in Chrome geöffnet werden müssen.
+Der Platzhalter-Eintrag wird, falls vorhanden, nur dann verwendet, wenn alle anderen Regeln bereits überprüft wurden.
+
+Folgende Protokolle werden für die Weiterleitung kontrolliert: http:, https:.
+
+Falls es keine genauen Angaben gibt oder das Feld leer ist, wird kein Wechsel zum alternativen Browser ausgelöst.</string>
+      <string id="ChromePath_Explain">Ermöglicht Ihnen festzulegen, dass die ausführbare Datei von Chrome gestartet werden soll, wenn Sie vom alternativen Browser zurückkehren(*)
+
+Wenn die Richtlinie aktiviert ist, können Sie dort entweder einen absoluten Pfad festlegen oder eine der folgenden Variablen verwenden:
+
+${chrome} – Standardinstallationspfad für Chrome
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\Chrome.EXE legt in diesem Fall den Speicherort des Browsers fest.
+
+Ist die Richtlinie deaktiviert oder leer, wird die Standardinstallation von Chrome genutzt, als wäre der Wert ${chrome} festgelegt worden.
+
+* Momentan unterstützt nur Internet Explorer die automatische Rückkehr zu Chrome.</string>
+      <string id="Cat_LegacyBrowserSupport">Unterstützung für ältere Browser</string>
+      <string id="AlternativeBrowserArguments_Part">Argumente für alternative Browser</string>
+      <string id="URLGreyList_Part">Hosts, die in keinem Browser einen Wechsel auslösen sollen</string>
+      <string id="UseIeSiteList_Policy">Richtlinie "IE Unternehmensmodus Websiteliste" verwenden</string>
+      <string id="URLGreyList_Policy">Hosts, die in keinem Browser einen Wechsel auslösen sollen</string>
+      <string id="ShowTransitionScreen_Explain">Ermöglicht Ihnen festzulegen, wie lange die Wechselnachricht auf dem Tab in Chrome vor dem Wechsel zum anderen Browser angezeigt werden soll, um den Nutzer über den Wechsel zu informieren. Für diese Richtlinie werden Sekundenangaben benötigt.
+
+Wenn keine Angaben gemacht werden, wird der Tab sofort geschlossen, sobald der Wechsel abgeschlossen werden kann.</string>
+      <string id="URLList_Policy">Hosts im alternativen Browser öffnen</string>
+      <string id="ChromePath">Pfad zu Chrome</string>
+      <string id="ChromeArguments_Part">Argumente für Chrome</string>
+      <string id="KeepLastChromeTab_Part">Letzten Chrome-Tab bei Wechsel geöffnet lassen</string>
+      <string id="AlternativeBrowserArguments_Explain">Ermöglicht Ihnen, die Argumente festzulegen, die an die ausführbare Datei des alternativen Browsers übergeben werden sollen
+
+Wenn die Richtlinie aktiviert ist, werden die angegebenen Parameter zum Aufrufen des alternativen Browsers genutzt.
+
+Sie können auch den speziellen Platzhalter ${url} verwenden, um die Position der URL in der Befehlszeile festzulegen. Beispiel: "--url=${url} --kiosk"
+Wenn der Platzhalter ans Ende angefügt werden soll oder es nur ein Argument gibt, brauchen Sie keinen Platzhalter anzugeben und können die Richtlinie leer lassen.
+
+Ist die Richtlinie leer oder deaktiviert, wird nur die URL als Parameter an den Browser übergeben.</string>
+      <string id="URLGreyList_Explain">Ermöglicht Ihnen, eine Liste mit Host-Domainnamen festzulegen, die in beiden Browsern geöffnet werden dürfen.
+
+Wenn diese Richtlinie aktiviert ist, sind die in der Liste angegebenen Domains in beiden Browsern verfügbar und lösen keinen Wechsel aus.
+
+Mögliche Verwendungszwecke sind Authentifizierungsdomains, die sowohl von neuen als auch von alten Apps in dieser Liste verwendet werden.
+
+Teile von Hostnamen: Geben Sie entweder einen vollständigen Domainnamen wie "www.ihrebeispielurl.de" oder Teile davon an, z. B. "ihrebeispielurl.de" oder sogar "ihrebeispielurl". Platzhalter werden noch nicht unterstützt.
+URL-Präfixe: Nur korrekte URL-Präfixe werden mit Protokoll und Port abgestimmt, sofern notwendig. Beispiel: "http://login.ihrebeispielurl.de" oder "https://www.ihrebeispielurl.de:8080/login/".
+
+Wird die Richtlinie nicht festgelegt oder ist sie leer, löst jede Domain, die nicht in der Liste "Hosts im alternativen Browser öffnen" aufgeführt ist, die Rückkehr zu Chrome aus(*).
+
+* Momentan unterstützt nur Internet Explorer die automatische Rückkehr zu Chrome.</string>
+      <string id="ChromePath_Part">Pfad zu Chrome</string>
+</stringTable>
+  <presentationTable>
+    <presentation id="AlternativeBrowserPath">
+      <textBox refId="AlternativeBrowserPath_Part">
+        <label>Pfad für alternativen Browser</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="AlternativeBrowserArguments">
+      <textBox refId="AlternativeBrowserArguments_Part">
+        <label>Argumente für alternative Browser</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="ChromePath">
+      <textBox refId="ChromePath_Part">
+        <label>Pfad zu Chrome</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="ChromeArguments">
+      <textBox refId="ChromeArguments_Part">
+        <label>Argumente für Chrome</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="URLList_Policy">
+      <listBox refId="URLList_Part">Hosts im alternativen Browser öffnen</listBox>
+    </presentation>
+    <presentation id="URLGreyList_Policy">
+      <listBox refId="URLGreyList_Part">Hosts, die in keinem Browser einen Wechsel auslösen sollen</listBox>
+    </presentation>
+    <presentation id="KeepLastChromeTab_Policy"/>
+    <presentation id="ShowTransitionScreen_Policy">
+      <decimalTextBox refId="ShowTransitionScreen_Part">Wechselbildschirm für einige Zeit in Chrome anzeigen</decimalTextBox>
+    </presentation>
+    <presentation id="UseIeSiteList_Policy"/>
+  </presentationTable>
+</resources>
+</policyDefinitionResources>

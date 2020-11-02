@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<policyDefinitionResources revision="1.0" schemaVersion="1.0">
+  <displayName>
+  </displayName>
+  <description>
+  </description>
+  <resources>
+    <stringTable>
+      <string id="KeepLastChromeTab_Policy">Kekalkan Tab Chrome Terakhir Pada Peralihan</string>
+      <string id="ShowTransitionScreen_Policy">Tunjukkan Skrin Peralihan dalam Chrome Selama Beberapa Ketika</string>
+      <string id="ChromeArguments_Explain">Membolehkan anda menentukan argumen yang perlu dihantar kepada Chrome apabila Chrome dilaksanakan.
+
+Jika dasar didayakan, parameter yang diberikan akan digunakan apabila penyemak imbas alternatif dirujuk.
+
+Anda turut boleh menggunakan pemegang tempat khas ${url} untuk menentukan tempat url tersebut harus dipaparkan dalam baris arahan. Cth. "--url=${url} --kiosk".
+Pemegang tempat tidak perlu dinyatakan jika anda perlu melampirkannya di penghujung atau jika harus dijadikan satu-satunya argumen, anda boleh membiarkan dasar tersebut kosong.
+
+Jika dasar ini dilumpuhkan atau dibiarkan kosong, hanya url akan dihantar sebagai parameter kepada penyemak imbas.</string>
+      <string id="AlternativeBrowserArguments">Argumen Penyemak Imbas Alternatif</string>
+      <string id="ChromeArguments">Argumen Chrome</string>
+      <string id="AlternativeBrowserPath_Part">Laluan Penyemak Imbas Alternatif</string>
+      <string id="URLList_Part">Hos untuk Dibuka Dalam Penyemak Imbas Alternatif</string>
+      <string id="KeepLastChromeTab_Explain">Membenarkan anda menentukan perkara yang berlaku apabila tab terbuka terakhir dalam Chrome diubah hala ke penyemak imbas altenatif.
+
+Apabila dasar ini didayakan atau tidak ditetapkan, tab terakhir akan dibiarkan terbuka dan mengarah ke halaman yang baharu selepas peralihan. Jika ditetapkan kepada dilumpuhkan, maka tab terakhir akan ditutup yang akan membawa kepada penutupan Chrome jika tiada tetingkap Chrome lain yang terbuka.</string>
+      <string id="UseIeSiteList_Part">Gunakan Dasar IE Enterprise Mode Site List</string>
+      <string id="SUPPORTED_WINXPSP2">Microsoft Windows XP SP2 atau lebih baharu</string>
+      <string id="AlternativeBrowserPath">Laluan Penyemak Imbas Alternatif</string>
+      <string id="UseIeSiteList_Explain">Apabila didayakan, peralihan antara penyemak imbas turut akan dicetus oleh entri dalam dasar SiteList untuk Internet Explorer sebagaimana yang ditakrifkan dalam (https://technet.microsoft.com/itpro/internet-explorer/ie11-deploy-guide/turn-on-enterprise-mode-and-use-a-site-list).
+
+Jika tidak ditetapkan atau dilumpuhkan, maka hanya url dalam dasar sambungan akan digunakan.</string>
+      <string id="AlternativeBrowserPath_Explain">Menentukan fail boleh laku penyemak imbas alternatif.
+Membenarkan anda menentukan program untuk digunakan sebagai penyemak imbas alternatif.
+
+Jika didayakan, anda boleh menentukan laluan yang muktamad dalam dasar atau menggunakan pemboleh ubah berikut:
+
+${ie} - Lokasi pemasangan lalai untuk Internet Explorer
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\IEXPLORE.EXE digunakan untuk memilih lokasi penyemak imbas dalam kes ini.
+${firefox} - Lokasi pemasangan lalai untuk Firefox
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\FIREFOX.EXE digunakan untuk memilih lokasi penyemak imbas dalam kes ini.
+${safari} - Lokasi pemasangan lalai untuk Safari
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\SAFARI.EXE digunakan untuk memilih lokasi penyemak imbas dalam kes ini.
+
+Jika dasar tidak didayakan atau dibiarkan kosong, penyemak imbas alternatif lalai akan digunakan, iaitu Internet Explorer dan ditentukan seolah-olah nilai ${ie} digunakan.</string>
+      <string id="ShowTransitionScreen_Part">Tunjukkan Skrin Peralihan dalam Chrome Selama Beberapa Ketika</string>
+      <string id="URLList_Explain">Membenarkan anda menentukan senarai nama domain hos untuk dibuka dalam penyemak imbas Alternatif.
+
+Jika dasar didayakan, anda perlu menyediakan senarai penapis yang akan mencetuskan peralihan ke penyemak imbas alternatif. Setiap entri mestilah salah satu daripada empat jenis berikut:
+
+Bahagian nama hos: Sama ada nama domain lengkap seperti "www.example.com" mesti dinyatakan atau sebahagian daripadanya seperti "example.com" atau "example" sekalipun. Kad bebas belum disokong lagi.
+Awalan URL: Hanya awalan URL yang sesuai dipadankan lengkap dengan protokol dan port jika perlu. Cth. "http://login.example.com" atau "https://www.example.com:8080/login/".
+Entri negatif: Bermula dengan "!" dan berterusan sebagai bahagian nama hos atau awalan URL seperti diterangkan di atas. Entri negatif sentiasa dibuka dalam Chrome. Cth. "!example.com" atau "!file:///c:/localapp/".
+Entri kad bebas: Mengandungi hanya aksara "*" tunggal. Sepadan dengan mana-mana URL. Bertujuan untuk digunakan bersama-sama dengan entri negatif, jika kebanyakan URL harus dibuka dalam penyemak imbas alternatif dan hanya sejumlah kecil URL harus dibuka dalam Chrome.
+
+Entri negatif mempunyai keutamaan lebih tinggi berbanding entri positif yang membenarkan untuk membuat senarai putih bahagian besar domain sambil menyimpan bahagian yang lebih kecil untuk dibuka dalam Chrome.
+Entri kad bebas jika ada dipakai hanya selepas semua peraturan lain telah diperiksa.
+
+Protokol berikut dipantau untuk diubah hala: http:, https:.
+
+Jika tidak dinyatakan atau dibiarkan kosong - tiada peralihan ke penyemak imbas alternatif akan dicetuskan.</string>
+      <string id="ChromePath_Explain">Membolehkan anda menentukan fail boleh laku Chrome untuk dilancarkan apabila kembali dari penyemak imbas alternatif(*).
+
+Apabila dasar didayakan, anda boleh sama ada menentukan laluan yang muktamad dalam dasar atau menggunakan pemboleh ubah berikut:
+
+${chrome} - Lokasi pemasangan lalai untuk Chrome
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\Chrome.EXE digunakan untuk memilih lokasi penyemak imbas dalam kes ini.
+
+Jika dasar dilumpuhkan atau dibiarkan kosong, pemasangan lalai Chrome akan digunakan seolah-olah nilai ${chrome} telah digunakan.
+
+*: Pada masa ini hanya Internet Explorer menyokong tindakan kembali ke Chrome secara automatik.</string>
+      <string id="Cat_LegacyBrowserSupport">Sokongan Penyemak Imbas Lama</string>
+      <string id="AlternativeBrowserArguments_Part">Argumen Penyemak Imbas Alternatif</string>
+      <string id="URLGreyList_Part">Hos yang Tidak Harus Mencetuskan Peralihan dalam Mana-mana Penyemak Imbas</string>
+      <string id="UseIeSiteList_Policy">Gunakan Dasar IE Enterprise Mode Site List</string>
+      <string id="URLGreyList_Policy">Hos yang Tidak Harus Mencetuskan Peralihan dalam Mana-mana Penyemak Imbas</string>
+      <string id="ShowTransitionScreen_Explain">Membolehkan anda menentukan tempoh mesej peralihan dalam tab akan dapat dilihat dalam Chrome sebelum beralih ke penyemak imbas lain. Ciri ini membantu menggambarkan peralihan. Dasar ini ditetapkan dalam saat.
+
+Jika tidak ditetapkan, maka tab akan ditutup serta-merta apabila peralihan dapat diselesaikan.</string>
+      <string id="URLList_Policy">Hos untuk Dibuka Dalam Penyemak Imbas Alternatif</string>
+      <string id="ChromePath">Laluan Chrome</string>
+      <string id="ChromeArguments_Part">Argumen Chrome</string>
+      <string id="KeepLastChromeTab_Part">Kekalkan Tab Chrome Terakhir Pada Peralihan</string>
+      <string id="AlternativeBrowserArguments_Explain">Membenarkan anda menentukan argumen yang perlu dihantar kepada fail boleh laku penyemak imbas alternatif.
+
+Jika dasar ini didayakan, parameter yang diberikan akan digunakan apabila penyemak imbas alternatif dirujuk.
+
+Anda turut boleh menggunakan pemegang tempat khas ${url} untuk menentukan tempat url tersebut harus dipaparkan dalam baris perintah. Cth. "--url=${url} --kiosk".
+Pemegang tempat tidak perlu dinyatakan jika anda perlu melampirkannya di penghujung atau jika harus dijadikan satu-satunya argumen, anda boleh membiarkan dasar tersebut kosong.
+
+Jika dasar ini dilumpuhkan atau dibiarkan kosong, hanya url akan dihantar sebagai parameter kepada penyemak imbas.</string>
+      <string id="URLGreyList_Explain">Membolehkan anda menentukan senarai nama domain hos untuk dibuka dalam mana-mana penyemak imbas.
+
+Jika dasar ini didayakan, domain dalam senarai ini akan tersedia dalam kedua-dua penyemak imbas dan tidak akan mencetuskan peralihan dengan mana-mana cara.
+
+Keadaan yang mungkin bagi kejadian ini ialah sebarang domain pengesahan yang dikongsi antara apl baharu dan lama dalam senarai ini.
+
+Bahagian nama hos: Sama ada nama domain lengkap seperti "www.example.com" harus dinyatakan atau sebahagian daripadanya seperti "example.com: malah "example". Kad bebas masih belum disokong.
+Awalan URL: Hanya awalan URL yang betul akan dipadankan lengkap dengan protokol dan port jika diperlukan. Cth. "http://login.example.com" atau "https://www.example.com:8080/login/".
+
+Jika tidak ditentukan atau dibiarkan kosong - mana-mana domain yang tidak terdapat dalam senarai "Hos untuk Dibuka Dalam Penyemak Imbas Alternatif" akan mencetuskan peralihan kembali ke Chrome(*).
+
+*: Pada masa ini hanya Internet Explorer menyokong tindakan kembali ke Chrome secara automatik.</string>
+      <string id="ChromePath_Part">Laluan Chrome</string>
+</stringTable>
+  <presentationTable>
+    <presentation id="AlternativeBrowserPath">
+      <textBox refId="AlternativeBrowserPath_Part">
+        <label>Laluan Penyemak Imbas Alternatif</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="AlternativeBrowserArguments">
+      <textBox refId="AlternativeBrowserArguments_Part">
+        <label>Argumen Penyemak Imbas Alternatif</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="ChromePath">
+      <textBox refId="ChromePath_Part">
+        <label>Laluan Chrome</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="ChromeArguments">
+      <textBox refId="ChromeArguments_Part">
+        <label>Argumen Chrome</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="URLList_Policy">
+      <listBox refId="URLList_Part">Hos untuk Dibuka Dalam Penyemak Imbas Alternatif</listBox>
+    </presentation>
+    <presentation id="URLGreyList_Policy">
+      <listBox refId="URLGreyList_Part">Hos yang Tidak Harus Mencetuskan Peralihan dalam Mana-mana Penyemak Imbas</listBox>
+    </presentation>
+    <presentation id="KeepLastChromeTab_Policy"/>
+    <presentation id="ShowTransitionScreen_Policy">
+      <decimalTextBox refId="ShowTransitionScreen_Part">Tunjukkan Skrin Peralihan dalam Chrome Selama Beberapa Ketika</decimalTextBox>
+    </presentation>
+    <presentation id="UseIeSiteList_Policy"/>
+  </presentationTable>
+</resources>
+</policyDefinitionResources>

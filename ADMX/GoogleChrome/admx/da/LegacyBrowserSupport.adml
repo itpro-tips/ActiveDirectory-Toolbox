@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<policyDefinitionResources revision="1.0" schemaVersion="1.0">
+  <displayName>
+  </displayName>
+  <description>
+  </description>
+  <resources>
+    <stringTable>
+      <string id="KeepLastChromeTab_Policy">Fasthold den seneste Chrome-fane i overgangen</string>
+      <string id="ShowTransitionScreen_Policy">Vis overgangskærm i Chrome i længere tid</string>
+      <string id="ChromeArguments_Explain">Giver dig mulighed for at angive de argumenter, der skal sendes til Chrome, når browseren køres.
+
+Hvis politikken er aktiveret, anvendes de tilgængelige parametre, når Chrome startes.
+
+Du kan også bruge den særlige pladsholder ${url} til at angive, hvor webadressen skal vises i kommandolinjen. F.eks. "--url={url} --kiosk".
+Du behøver ikke at angive pladsholderen. Hvis den skal tilføjes i slutningen, eller hvis den skal være det eneste argument, kan du lade politikken være tom.
+
+Hvis politikken er deaktiveret eller tom, er det kun webadressen, der bliver sendt som parameter til browseren.</string>
+      <string id="AlternativeBrowserArguments">Argumenter for alternativ browser</string>
+      <string id="ChromeArguments">Chrome-argumenter</string>
+      <string id="AlternativeBrowserPath_Part">Sti til alternativ browser</string>
+      <string id="URLList_Part">Hosts, der skal åbnes i den alternative browser</string>
+      <string id="KeepLastChromeTab_Explain">Giver dig mulighed for at angive, hvad der sker, når den seneste åbne fane i Chrome omdirigeres til den alternative browser.
+
+Når denne politik er aktiveret eller ikke er angivet, forbliver den seneste fane åben og henviser til siden Ny fane efter overgangen. Hvis den er deaktiveret, lukkes den seneste fane, hvilket medfører, at Chrome lukkes, såfremt der ikke er andre åbne Chrome-vinduer.</string>
+      <string id="UseIeSiteList_Part">Brug politikken Enterprise Mode Site List for Internet Explorer</string>
+      <string id="SUPPORTED_WINXPSP2">Microsoft Windows XP SP2 eller nyere</string>
+      <string id="AlternativeBrowserPath">Sti til alternativ browser</string>
+      <string id="UseIeSiteList_Explain">Når politikken er aktiveret, udløses overgange mellem browsere også af angivelser i politikken SiteList for Internet Explorer, som angivet på https://technet.microsoft.com/itpro/internet-explorer/ie11-deploy-guide/turn-on-enterprise-mode-and-use-a-site-list.
+
+Hvis politikken ikke er angivet eller er deaktiveret, er det kun webadresserne i udvidelsespolitikken, der anvendes.</string>
+      <string id="AlternativeBrowserPath_Explain">Angiv den eksekverbare fil til den alternative browser.
+Her kan du angive det program, der skal bruges som alternativ browser.
+
+Hvis funktionen er aktiveret, kan du enten angive en absolut sti i politikken eller bruge en af følgende variabler:
+
+${ie} – Standardinstallationsplacering for Internet Explorer
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\IEXPLORE.EXE bruges til at vælge placeringen for browseren i dette tilfælde.
+${firefox} – Standardinstallationsplacering for Firefox
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\firefox.exe bruges til at vælge placeringen for browseren i dette tilfælde.
+${safari} – Standardinstallationsplacering for Safari
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\SAFARI.EXE bruges til at vælge placeringen for browseren i dette tilfælde.
+
+Hvis politikken ikke er aktiveret eller tom, bruges den alternative standardbrowser, der er angivet som Internet Explorer, som hvis værdien ${ie} blev brugt.</string>
+      <string id="ShowTransitionScreen_Part">Vis overgangskærm i Chrome i længere tid</string>
+      <string id="URLList_Explain">Giver dig mulighed for at angive en liste over hostdomænenavne, der kan åbnes i den alternative browser.
+
+Når denne politik er aktiveret, skal du angive en liste over filtre, som udløser overgangen til den alternative browser. Angivelserne skal være en af følgende fire typer:
+
+Dele af hostnavne: Du skal enten angive komplette domænenavne, f.eks. "www.eksempel.dk", eller dele af dem, f.eks. "eksempel.dk" eller "eksempel". Jokertegn understøttes endnu ikke.
+Webadressepræfikser: Det er kun korrekte webadressepræfikser, der om nødvendigt matches med protokol og port, f.eks. "http://login.eksempel.dk" eller "https://www.eksempel.dk:8080/login/".
+Negativ angivelse: Denne type angivelse begynder med "!" og fortsætter som en del af hostnavnet eller som webadressepræfiks som beskrevet ovenfor. Negative angivelser åbnes altid i Chrome, f.eks. "!eksempel.com" eller "!file:///c:/localapp/".
+Angivelse af jokertegn: Denne type angivelse indeholder kun et enkelt "*"-tegn. Den matcher enhver webadresse og er beregnet til brug sammen med negative angivelser, hvis de fleste webadresser skal åbnes i den alternative browser, og kun en mindre andel af webadresserne skal åbnes i Chrome.
+
+Negative angivelser har højere prioritet end positive angivelser, hvilket gør det muligt at tillade store dele af et domæne, mens mindre dele åbnes i Chrome.
+Angivelsen af eventuelle jokertegn anvendes først, når alle andre regler er tilvalgt.
+
+Følgende protokoller overvåges til omdirigering: http:, https:.
+
+Hvis politikken ikke er angivet, udløses der ingen overgang til den alternative browser.</string>
+      <string id="ChromePath_Explain">Giver dig mulighed for at angive den eksekverbare fil til Chrome, som skal startes, når den returneres fra den alternative browser(*).
+
+Når politikken er aktiveret, kan du enten angive en absolut sti i politikken eller bruge følgende variabel:
+
+${chrome} – Standardinstallationsplaceringen for Chrome
+
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\Chrome.EXE bruges til at vælge placeringen for browseren i dette tilfælde.
+
+Hvis politikken er deaktiveret eller tom, bruges standardinstallationen af Chrome, som hvis værdien ${chrome} blev brugt.
+
+*: Det er på nuværende tidspunkt kun Internet Explorer, der understøtter automatisk returnering til Chrome.</string>
+      <string id="Cat_LegacyBrowserSupport">Understøttelse af ældre browsere</string>
+      <string id="AlternativeBrowserArguments_Part">Argumenter for alternativ browser</string>
+      <string id="URLGreyList_Part">Hosts, der ikke skal udløse en overgang i en browser</string>
+      <string id="UseIeSiteList_Policy">Brug politikken Enterprise Mode Site List for Internet Explorer</string>
+      <string id="URLGreyList_Policy">Hosts, der ikke skal udløse en overgang i en browser</string>
+      <string id="ShowTransitionScreen_Explain">Giver dig mulighed for at angive, hvor lang tid overgangsmeddelelsen på fanen skal vises i Chrome, inden overgangen til den anden browser. Dette giver en tydeligere overgang. Politikken angives i sekunder.
+
+Hvis politikken ikke er angivet, lukkes fanen med det samme, når overgangen kan gennemføres</string>
+      <string id="URLList_Policy">Hosts, der skal åbnes i den alternative browser</string>
+      <string id="ChromePath">Chrome-sti</string>
+      <string id="ChromeArguments_Part">Chrome-argumenter</string>
+      <string id="KeepLastChromeTab_Part">Fasthold den seneste Chrome-fane i overgangen</string>
+      <string id="AlternativeBrowserArguments_Explain">Giver dig mulighed for at angive de argumenter, der skal sendes til den alternative browsers eksekverbare fil.
+
+Hvis politikken er aktiveret, anvendes de tilgængelige parametre, når den alternative browser startes.
+
+Du kan også bruge den særlige pladsholder ${url} til at angive, hvor webadressen skal vises i kommandolinjen. F.eks. "--url=${url} --kiosk".
+Du behøver ikke at specificere pladsholderen. Hvis den skal tilføjes i slutningen, eller hvis den skal være det eneste argument, kan du lade politikken være tom.
+
+Hvis politikken er deaktiveret eller tom, er det kun webadressen, der bliver sendt som parameter til browseren.</string>
+      <string id="URLGreyList_Explain">Giver dig mulighed for at angive en liste over hostdomænenavne, der kan åbnes i alle browsere.
+
+Når denne politik er aktiveret, er domænerne på denne liste tilgængelige i begge browsere, og de udløser ikke overgange til hinanden.
+
+Et muligt tilfælde, hvor denne politik kan anvendes, er alle godkendelsesdomæner, som deles mellem nye og ældre apps på denne liste.
+
+Dele af hostnavne: Du skal enten angive komplette domænenavne, f.eks. "www.eksempel.dk", eller dele af dem, f.eks. "eksempel.dk" eller "eksempel". Jokertegn understøttes endnu ikke.
+Webadressepræfikser: Det er kun korrekte webadressepræfikser, der om nødvendigt matches med protokol og port, f.eks. "http://login.eksempel.com" eller "https://www.eksempel.com:8080/login/".
+
+Hvis politikken ikke er angivet, udløser ethvert domæne, som ikke er på listen "Hosts, der skal åbnes i den alternative browser", en overgang tilbage til Chrome(*).
+
+*: Det er på nuværende tidspunkt kun Internet Explorer, der understøtter automatisk returnering til Chrome.</string>
+      <string id="ChromePath_Part">Chrome-sti</string>
+</stringTable>
+  <presentationTable>
+    <presentation id="AlternativeBrowserPath">
+      <textBox refId="AlternativeBrowserPath_Part">
+        <label>Sti til alternativ browser</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="AlternativeBrowserArguments">
+      <textBox refId="AlternativeBrowserArguments_Part">
+        <label>Argumenter for alternativ browser</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="ChromePath">
+      <textBox refId="ChromePath_Part">
+        <label>Chrome-sti</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="ChromeArguments">
+      <textBox refId="ChromeArguments_Part">
+        <label>Chrome-argumenter</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="URLList_Policy">
+      <listBox refId="URLList_Part">Hosts, der skal åbnes i den alternative browser</listBox>
+    </presentation>
+    <presentation id="URLGreyList_Policy">
+      <listBox refId="URLGreyList_Part">Hosts, der ikke skal udløse en overgang i en browser</listBox>
+    </presentation>
+    <presentation id="KeepLastChromeTab_Policy"/>
+    <presentation id="ShowTransitionScreen_Policy">
+      <decimalTextBox refId="ShowTransitionScreen_Part">Vis overgangskærm i Chrome i længere tid</decimalTextBox>
+    </presentation>
+    <presentation id="UseIeSiteList_Policy"/>
+  </presentationTable>
+</resources>
+</policyDefinitionResources>

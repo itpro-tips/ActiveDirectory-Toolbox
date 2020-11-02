@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<policyDefinitionResources revision="1.0" schemaVersion="1.0">
+  <displayName>
+  </displayName>
+  <description>
+  </description>
+  <resources>
+    <stringTable>
+      <string id="KeepLastChromeTab_Policy">A Chrome utolsó lapjának megtartása átváltáskor</string>
+      <string id="ShowTransitionScreen_Policy">Átváltási képernyő bizonyos ideig való megjelenítése a Chrome-ban</string>
+      <string id="ChromeArguments_Explain">Lehetővé teszi a Chrome-nak átadandó argumentumok megadását annak elindításakor.
+
+Ha a házirend engedélyezve van, akkor a Chrome meghívásakor a rendszer a megadott paramétereket használja.
+
+Használhatja a következő speciális helyőrzőt is ${url}, hogy megadja az URL megjelenési helyét a parancssorban – például: „--url=${url} --kiosk”.
+A helyőrzőt nem kell megadnia, ha azt a végéhez kell hozzáfűzni, illetve üresen hagyhatja a házirendet, ha ez lenne az egyetlen argumentum.
+
+Ha a házirend le van tiltva vagy üres, akkor csak az URL lesz átadva paraméterként a böngészőnek.</string>
+      <string id="AlternativeBrowserArguments">Alternatív böngésző argumentumai</string>
+      <string id="ChromeArguments">A Chrome argumentumai</string>
+      <string id="AlternativeBrowserPath_Part">Alternatív böngésző elérési útja</string>
+      <string id="URLList_Part">Az alternatív böngészőben megnyitni kívánt gazdagépek</string>
+      <string id="KeepLastChromeTab_Explain">Lehetővé teszi annak megadását, hogy mi történjen, ha a házirend átirányítja a Chrome utolsó lapját az alternatív böngészőbe.
+
+Ha a házirend engedélyezve van, vagy ha nincs beállítva, akkor az átváltás után az utolsó lapon megnyitva marad majd az új lap oldal. Ha ki van kapcsolva, akkor az utolsó lap, és ezzel együtt a Chrome is bezáródik majd, ha nincs megnyitva több Chrome-ablak.</string>
+      <string id="UseIeSiteList_Part">Az IE Vállalati mód webhelylistára vonatkozó házirendjének használata</string>
+      <string id="SUPPORTED_WINXPSP2">Microsoft Windows XP SP2 vagy újabb</string>
+      <string id="AlternativeBrowserPath">Alternatív böngésző elérési útja</string>
+      <string id="UseIeSiteList_Explain">Ha engedélyezve van, a böngészők közötti átváltásokat az Internet Explorer webhelylistára vonatkozó házirendjében található bejegyzések is aktiválják majd a (https://technet.microsoft.com/itpro/internet-explorer/ie11-deploy-guide/turn-on-enterprise-mode-and-use-a-site-list) című cikkben meghatározottak szerint.
+
+Ha a házirend nincs beállítva, vagy ha le van tiltva, akkor a rendszer csak a bővítményekre vonatkozó házirendben szereplő URL-eket használja majd.</string>
+      <string id="AlternativeBrowserPath_Explain">A másik böngésző végrehajtható fájljának megadása.
+Lehetővé teszi az alternatív böngészőként használni kívánt program megadását.
+
+Ha engedélyezi, akkor a házirendben megadhatja az abszolút elérési utat, illetve használhatja a következő változók valamelyikét:
+
+${ie} - Az Internet Explorer alapértelmezett telepítési helye
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\IEXPLORE.EXE szolgál a böngésző helyének kiválasztására ebben az esetben.
+${firefox} - A Firefox alapértelmezett telepítési helye
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\FIREFOX.EXE szolgál a böngésző helyének kiválasztására ebben az esetben.
+${safari} - A Safari alapértelmezett telepítési helye
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\SAFARI.EXE szolgál a böngésző helyének kiválasztására ebben az esetben.
+
+Ha a házirend nincs engedélyezve vagy üres, az alapértelmezett alternatív böngésző lesz használva; ez az Internet Explorer, amely úgy van meghatározva, mintha a(z) ${ie} érték lenne használatban.</string>
+      <string id="ShowTransitionScreen_Part">Átváltási képernyő bizonyos ideig való megjelenítése a Chrome-ban</string>
+      <string id="URLList_Explain">Lehetővé teszi az alternatív böngészőben megnyitni kívánt gazdagépekhez tartozó domainnevek listájának megadását.
+
+Ha a házirend engedélyezve van, akkor meg kell adnia az alternatív böngészőre való átváltást kiváltó szűrők listáját. Minden bejegyzésnek a következő négy típus egyikének kell lennie:
+
+Gazdagépnévrészek: Vagy a teljes domainneveket (például „www.example.com”), vagy egy részüket (például „example.com” vagy akár „example”) kell megadni. A helyettesítő karaktereket a házirend még nem támogatja.
+URL-előtagok: Csak a helyesen megadott URL-előtagokat figyeli a rendszer, szükség esetén protokollal és porttal kiegészítve. Például: „http://login.example.com” vagy „https://www.example.com:8080/login/”.
+Negatív bejegyzés: „!” karakterrel kezdődik, majd gazdagépnévrésszel vagy URL-előtaggal folytatódik (a fent leírtak szerint). A negatív bejegyzések mindig a Chrome-ban nyílnak meg. Például: „!example.com” vagy „!file:///c:/localapp/”.
+Helyettesítő karakter bejegyzés: Egyetlen „*” karaktert tartalmaz. Bármilyen URL lehet. A negatív bejegyzésekkel együtt célszerű használni, amennyiben a legtöbb URL-t az alternatív böngészőben kell megnyitni, és csak az URL-ek kis részét kell a Chrome-ban megjeleníteni.
+
+A negatív bejegyzések magasabb prioritásúak, mint a pozitívak, ami lehetővé teszi, hogy egy adott domain nagy részét engedélyezőlistára tegye, míg a maradék oldalak a Chrome-ban nyílnak meg.
+Ha megadott helyettesítő karakter bejegyzést, akkor a böngésző csak az összes többi szabály ellenőrzése után veszi figyelembe.
+
+A következő protokollok átirányítása áll felügyelet alatt: http:, https:.
+
+Ha nincs megadva, vagy ha üresen marad, akkor nem történik majd átváltás az alternatív böngészőre.</string>
+      <string id="ChromePath_Explain">Lehetővé teszi a Chrome végrehajtható fájljának megadását, amelyet az alternatív böngészőtől való visszatéréskor kell elindítani(*).
+
+Ha engedélyezi a házirendet, megadhat benne egy abszolút elérési utat, vagy használhatja a következő változót:
+
+${chrome} - A Chrome alapértelmezett telepítési helye
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\Chrome.EXE szolgál a böngésző helyének kiválasztására ebben az esetben.
+
+Ha a házirendy le van tiltva vagy üres, a Chrome alapértelmezett telepítése lesz használva, mintha a(z) ${chrome} érték lenne használatban.
+
+*: Jelenleg csak az Internet Explorer támogatja az automatikus visszatérést a Chrome-hoz.</string>
+      <string id="Cat_LegacyBrowserSupport">Régi böngészők támogatása</string>
+      <string id="AlternativeBrowserArguments_Part">Alternatív böngésző argumentumai</string>
+      <string id="URLGreyList_Part">Gazdagépek, amelyek nem váltanak ki átváltást egyik böngésző esetében sem</string>
+      <string id="UseIeSiteList_Policy">Az IE Vállalati mód webhelylistára vonatkozó házirendjének használata</string>
+      <string id="URLGreyList_Policy">Gazdagépek, amelyek nem váltanak ki átváltást egyik böngésző esetében sem</string>
+      <string id="ShowTransitionScreen_Explain">Lehetővé teszi annak megadását, hogy a lapon megjelenő áttérésről szóló üzenet mennyi ideig maradjon látható a Chrome-ban, mielőtt másik böngészőre vált át. Ennek segítségével megjeleníthető az átváltás. A házirend másodpercekben határozza meg az időtartamot.
+
+Ha a házirend nincs beállítva, akkor a lap azonnal bezárul, amikor lehetővé válik az átváltás befejezése.</string>
+      <string id="URLList_Policy">Az alternatív böngészőben megnyitni kívánt gazdagépek</string>
+      <string id="ChromePath">A Chrome elérési útja</string>
+      <string id="ChromeArguments_Part">A Chrome argumentumai</string>
+      <string id="KeepLastChromeTab_Part">A Chrome utolsó lapjának megtartása átváltáskor</string>
+      <string id="AlternativeBrowserArguments_Explain">Lehetővé teszi az alternatív böngésző végrehajtható fájljának átadandó argumentumok megadását.
+
+Ha a házirend engedélyezve van, akkor a másik böngésző meghívásakor a rendszer a megadott paramétereket használja.
+
+Használhatja a következő speciális helyőrzőt is: ${url}, hogy megadja az URL megjelenési helyét a parancssorban – például: „--url=${url} --kiosk”.
+A helyőrzőt nem kell megadnia, ha azt a végéhez kell hozzáfűzni, illetve üresen hagyhatja a házirendet, ha ez lenne az egyetlen argumentum.
+
+Ha a házirend le van tiltva vagy üres, akkor csak az URL lesz átadva paraméterként a böngészőnek.</string>
+      <string id="URLGreyList_Explain">Lehetővé teszi olyan gazdagépekhez tartozó domainnevek listájának a megadását, amelyek bármelyik böngészőben megnyithatók.
+
+Ha engedélyezve van ez a házirend, akkor a listán szereplő domainek mindkét böngésző számára hozzáférhetők lesznek, és a házirend egyik esetében sem vált ki átváltást.
+
+Lehetséges felhasználási eset bármely olyan hitelesítő domain, amely közös a listában szereplő új és régi alkalmazások esetében.
+
+Gazdagépnévrészek: Vagy a teljes domainneveket (például „www.example.com”), vagy egy részüket (például „example.com” vagy akár „example”) kell megadni. A helyettesítő karaktereket a házirend még nem támogatja.
+URL-előtagok: Csak a helyesen megadott URL-előtagokat figyeli a rendszer, szükség esetén protokollal és porttal kiegészítve. Például: „http://login.example.com” vagy „https://www.example.com:8080/login/”.
+
+Ha nincs megadva, vagy ha üres, akkor „Az alternatív böngészőben megnyitni kívánt gazdagépek” listában nem szereplő összes domain megnyitása aktiválja majd a visszaváltást a Chrome-ra(*).
+
+*: Jelenleg csak az Internet Explorer támogatja az automatikus visszatérést a Chrome-hoz.</string>
+      <string id="ChromePath_Part">A Chrome elérési útja</string>
+</stringTable>
+  <presentationTable>
+    <presentation id="AlternativeBrowserPath">
+      <textBox refId="AlternativeBrowserPath_Part">
+        <label>Alternatív böngésző elérési útja</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="AlternativeBrowserArguments">
+      <textBox refId="AlternativeBrowserArguments_Part">
+        <label>Alternatív böngésző argumentumai</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="ChromePath">
+      <textBox refId="ChromePath_Part">
+        <label>A Chrome elérési útja</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="ChromeArguments">
+      <textBox refId="ChromeArguments_Part">
+        <label>A Chrome argumentumai</label>
+        <defaultValue></defaultValue>
+      </textBox>
+    </presentation>
+    <presentation id="URLList_Policy">
+      <listBox refId="URLList_Part">Az alternatív böngészőben megnyitni kívánt gazdagépek</listBox>
+    </presentation>
+    <presentation id="URLGreyList_Policy">
+      <listBox refId="URLGreyList_Part">Gazdagépek, amelyek nem váltanak ki átváltást egyik böngésző esetében sem</listBox>
+    </presentation>
+    <presentation id="KeepLastChromeTab_Policy"/>
+    <presentation id="ShowTransitionScreen_Policy">
+      <decimalTextBox refId="ShowTransitionScreen_Part">Átváltási képernyő bizonyos ideig való megjelenítése a Chrome-ban</decimalTextBox>
+    </presentation>
+    <presentation id="UseIeSiteList_Policy"/>
+  </presentationTable>
+</resources>
+</policyDefinitionResources>
