@@ -15,9 +15,8 @@ A PSObject array
     Author : Bastien Perez - ITPro-Tips (https://itpro-tips.com)
 .LINK
 https://itpro-tips.com
-If you have any problem, any bug, please tell me :
-Technet Scriptcenter : https://gallery.technet.microsoft.com/scriptcenter/Get-computers-added-by-0449e96a
-Github : https://github.com/itpro-tips/Powershell/blob/master/ActiveDirectory-Toolbox/Get-ComputersAddedByUsers.ps1
+If you have any problem, any bug, please tell me.
+Github : https://github.com/itpro-tips/ActiveDirectory-Toolbox/blob/master/Computers/Get-ComputersAddedByUsers.ps1
 #>
 
 Function Get-ComputersAddedByUsers {
