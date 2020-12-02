@@ -1,5 +1,5 @@
 Function Get-GPOMissingOrUnknownPermissions {
-    $authenticatedUsersSID = "S-1-5-11"
+    $authenticatedUsersSID = 'S-1-5-11'
     $authenticatedUsersGroupName = New-Object System.Security.Principal.SecurityIdentifier ($authenticatedUsersSID)
     $authenticatedUsersGroupName = ($authenticatedUsersGroupName.Translate([System.Security.Principal.NTAccount])).Value
   
@@ -20,7 +20,7 @@ Function Get-GPOMissingOrUnknownPermissions {
         
             $problem = $null
         
-            if ($GPOPermission.Trustee.SidType -eq "Unknown") {
+            if ($GPOPermission.Trustee.SidType -eq 'Unknown') {
                 $unknownSID = $GPOPermission.Trustee.Sid
             }
             # Read in AD instead of Get-GPPermission because Permission returned does not present Read Permission if many permission exist
@@ -37,10 +37,10 @@ Function Get-GPOMissingOrUnknownPermissions {
 
         if ($unknownSID) {
             if ($problem) {
-                $problem += "|Unknown SID object"
+                $problem += '|Unknown SID object'
             }
             else {
-                $problem = "Unknown SID object"
+                $problem = 'Unknown SID object'
             }
         }
         if ($problem) {
