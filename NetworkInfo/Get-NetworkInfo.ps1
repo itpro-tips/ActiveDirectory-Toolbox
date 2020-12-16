@@ -3,31 +3,41 @@
 Function Get-NetworkInfo {
     Param
     (
-        [string[]]$ComputerName = ([System.DirectoryServices.ActiveDirectory.Domain]::GetCurrentDomain().DomainControllers).Name
+        [boolean] $DomainControllers,
+        [string[]] $ComputerName 
     )
+
+    if ($DomainControllers) {
+        $ComputerName = ([System.DirectoryServices.ActiveDirectory.Domain]::GetCurrentDomain().DomainControllers).Name
+    }
+    elseif(-not $ComputerName){
+        $ComputerName = $env:COMPUTERNAME
+    }
 
     $collection = New-Object System.Collections.ArrayList
 
     foreach ($computer in $ComputerName) {
-
+    
+        Write-Host "Processing $computer" -ForegroundColor Cyan
+        
         $networks = $null
 
         try {
             $networks = Get-WmiObject Win32_NetworkAdapterConfiguration -ComputerName $computer -ErrorAction Stop | Where-Object { $_.IPEnabled }
         }
         catch {
-            Write-Warning $_.Exception.Message
+            Write-Warning "$computer $($_.Exception.Message)"
         }
 
         if ($networks) {
             foreach ($network in $networks) {
                 $isDHCPEnabled = $false
                 
-                If ($network.DHCPEnabled) {
+                if ($network.DHCPEnabled) {
                     $isDHCPEnabled = $true
                 }
 
-                $obj = New-Object -TypeName PSObject -Property ([ordered]@{
+                $object = New-Object -TypeName PSObject -Property ([ordered]@{
                         ComputerName        = $Computer.ToUpper()
                         NetworkCard         = $network.Description
                         IPAddress           = $network.IpAddress[0]
@@ -38,10 +48,10 @@ Function Get-NetworkInfo {
                         WINSPrimaryserver   = $networks.WINSPrimaryServer
                         WINSSecondaryserver = $networks.WINSSecondaryserver
                     })
-                $null = $collection.Add($obj)
+
+                $null = $collection.Add($object)
             }
         }
-          
-        return $collection
     }
+    return $collection
 }
