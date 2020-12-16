@@ -5,13 +5,14 @@ Get the computers added by regular user in the current domain
 Get the list of computers added by regular user.
 By default, each user can join up to 10 computers to an Active Directory domain.
 This setting is set in the 'ms-DS-MachineAccountQuota' attribute (https://support.microsoft.com/en-us/help/243327/default-limit-to-number-of-workstations-a-user-can-join-to-the-domain)
-If a computer object is added to a domain by an user, the 'ms-DS-CreatorSID' attribute is set with the SID of the creator.
-This attribute is not set if the user has Domain Admin permissions or has been delegated the permission to create computers objects.
+If a computer object is added to a domain by a regular user, the 'ms-DS-CreatorSID' attribute is set with the SID of the creator.
+This attribute is not set if the user has Domain Admin permissions or has been delegated the permission to create computers objects at the computers creation time.
+
 .OUTPUTS
-A PSObject array
+A System.Collections.ArrayList with all computrs added by non admin users
  
 .NOTES
-    Version : 1.01 - August 10 2019
+    Version : 1.02 - September 2020
     Author : Bastien Perez - ITPro-Tips (https://itpro-tips.com)
 .LINK
 https://itpro-tips.com
@@ -22,35 +23,41 @@ Github : https://github.com/itpro-tips/ActiveDirectory-Toolbox/blob/master/Compu
 Function Get-ComputersAddedByUsers {
 
     Import-Module ActiveDirectory
-    
-    $computersAddedByUsers = New-Object System.Collections.ArrayList
 
-    $msDSCreatorsSID = Get-ADComputer -Filter { ms-DS-CreatorSID -like '*' } -Properties ms-DS-CreatorSID, whenCreated | Group-Object ms-DS-CreatorSID 
+    $ComputersAddedByUsers = New-Object -TypeName "System.Collections.ArrayList"
+
+    Write-Host 'Search objects with Filter ms-DS-CreatorSID=*' -ForegroundColor Cyan
+    try {
+        $computersFound = Get-ADObject -LDAPFilter 'ms-DS-CreatorSID=*' -Properties ms-DS-CreatorSID, WhenCreated
+    }
+    catch {
+        Write-Warning "$_.Exception.Message"
+        exit
+    }
+
+    foreach ($computerFound in $computersFound) {
     
-    foreach ($msDSCreatorSID in $msDSCreatorsSID) {
-        
         $objUser = $null
         
-        # Try to resolve the SID to an account
-        try {   
-            $objSID = New-Object System.Security.Principal.SecurityIdentifier ($msDSCreatorSID.Name)
-            $objUser = $objSID.Translate([System.Security.Principal.NTAccount]).Value
+        # Try to resolve the SID into an account
+        try {
+            $objSID = New-Object System.Security.Principal.SecurityIdentifier ($computerFound.'ms-DS-CreatorSID')
+            $objUser = $objSID.Translate([System.Security.Principal.NTAccount])
         }
         catch {
             $objUser = 'Unknown (maybe user deleted from AD)'
         }
-        
-        $outputObject = New-Object PSObject -Property ([Ordered]@{
-                ComputerName = ($msDSCreatorSID.Group | Select-Object -ExpandProperty Name) -join '|'
-                ComputerDN   = ($msDSCreatorSID.Group | Select-Object -ExpandProperty DistinguishedName) -join '|' 
-                ComputerGUID = ($msDSCreatorSID.Group | Select-Object -ExpandProperty ObjectGUID) -join '|' 
-                UserDN       = $objUser
-                UserSID      = $msDSCreatorSID.Name
-                WhenAdded    = ($msDSCreatorSID.Group | Select-Object -ExpandProperty whenCreated) -join '|'				
-            })
-    
-        $null = $computersAddedByUsers.Add($outputObject)
+            
+        $object = New-Object -TypeName PSObject -Property ([ordered] @{
+            ComputerName = $computerFound.Name
+            ComputerDN   = $computerFound.DistinguishedName
+            UserName     = $objUser
+            UserSID      = $objSID
+            WhenCreated  = $computerFound.WhenCreated
+        })
+
+        $null = $ComputersAddedByUsers.Add($object)
     }
 
-    return $computersAddedByUsers
+    return $ComputersAddedByUsers
 }
