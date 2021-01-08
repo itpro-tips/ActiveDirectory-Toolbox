@@ -9,9 +9,18 @@ Function Get-GPOMissingOrUnknownPermissions {
   
     $MissingPermissionsGPOArray = New-Object System.Collections.ArrayList
     
+    Write-Host 'Get all Group Policy Objects' -ForegroundColor Cyan
+
     $GPOs = Get-GPO -All
   
+    Write-Host 'Get all Group Policy Objects permmissions' -ForegroundColor Cyan
+    
+    $i = 0
+    
     foreach ($GPO in $GPOs) {
+        $i++
+
+        Write-Host "$i/$($GPOS.count) Processing GPO '$($GPO.DisplayName)'" -ForegroundColor Cyan
         $GPOPermissions = Get-GPPermission -Guid $GPO.Id -All #| Select-Object -ExpandProperty Trustee | Where-Object { $_.SID -eq $AuthenticatedUsersSID }
         
         $readPermission = $false
@@ -67,7 +76,7 @@ Function Get-GPOMissingOrUnknownPermissions {
     $GPOinAD = Get-ADObject -SearchBase "CN=Policies,CN=System,$((Get-ADRootDSE).defaultNamingContext)" -SearchScope OneLevel -Filter * 
     
     # If we cannot get the Name, it probalby means User Authenticated has Deny permission
-    $GPOinAD | Where-Object { $_.Name -eq $null } | ForEach-Object {
+    $GPOinAD | Where-Object { $null -eq $_.Name } | ForEach-Object {
   
         $Obj = New-Object -TypeName PSObject -Property ([ordered]@{
                 Problem          = 'Policy object not readable in Active Directory'      
@@ -92,6 +101,6 @@ Function Get-GPOMissingOrUnknownPermissions {
         return $MissingPermissionsGPOArray
     }
     else {
-        Write-Host "All Group Policy Objects grant required permissions. No issues were found." -ForegroundColor Green
+        Write-Host 'All Group Policy Objects grant required permissions. No issues were found.' -ForegroundColor Green
     }
 }
