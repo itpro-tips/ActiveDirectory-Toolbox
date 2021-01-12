@@ -9,7 +9,7 @@ If a computer object is added to a domain by a regular user, the 'ms-DS-CreatorS
 This attribute is not set if the user has Domain Admin permissions or has been delegated the permission to create computers objects at the computers creation time.
 
 .OUTPUTS
-A System.Collections.ArrayList with all computrs added by non admin users
+A System.Collections.ArrayList with all computers added by non admin users
  
 .NOTES
     Version : 1.02 - September 2020
