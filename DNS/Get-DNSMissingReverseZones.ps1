@@ -3,7 +3,6 @@
 
 function Get-DNSMissingReverseZones {
 	Param(
-		# Parameter help description
 		[Parameter(Mandatory)]
 		[String]$DNSServer
 	)
