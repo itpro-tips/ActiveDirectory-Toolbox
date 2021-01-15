@@ -69,41 +69,10 @@ Function Get-NTPConfiguration {
     Param(
 
         [Parameter(Position = 0, ValueFromPipeline = $True,
-            HelpMessage = 'An array (coma separated) of computer names. The default is the local computer.')]
+            HelpMessage = 'An array (comma separated) of computer names. The default is the local computer.')]
         [alias("CN")]
         [string[]]$computers = $Env:COMPUTERNAME,
         [switch]$DomainControllers
-    )
-
-    $currentPrincipal = New-Object Security.Principal.WindowsPrincipal([Security.Principal.WindowsIdentity]::GetCurrent())
-    if (-not $currentPrincipal.IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
-        Write-Warning "Please run PowerShell as administrator"
-        exit
-    }
-
-    Function Get-RemoteTime {
-
-        [CmdletBinding()]
-        [OutputType([datetime])]
-        param (
-            $server
-        )
-	
-        Process {
-            $remoteOSInfo = Get-WmiObject win32_OperatingSystem -computername $server   
-            [datetime]$remoteDateTime = $remoteOSInfo.convertToDatetime($remoteOSInfo.LocalDateTime)    
-            return $remoteDateTime
-        }
-    }
-
-
-    Param(
-
-        [Parameter(Position = 0, ValueFromPipeline = $True,
-            HelpMessage = 'An array of computer names. The default is the local computer.')]
-        [alias("CN")]
-        [string[]]$computers
-    
     )
 
     BEGIN {
@@ -111,6 +80,11 @@ Function Get-NTPConfiguration {
         Set-StrictMode -Version Latest
         ${CmdletName} = $Pscmdlet.MyInvocation.MyCommand.Name
 
+        $currentPrincipal = New-Object Security.Principal.WindowsPrincipal([Security.Principal.WindowsIdentity]::GetCurrent())
+        if (-not $currentPrincipal.IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
+            Write-Warning "Please run PowerShell as administrator"
+            exit
+        }
 
         $command = 'w32tm.exe'
         Try { Get-Command -Name $command -ErrorAction stop | Out-Null }
@@ -135,6 +109,22 @@ Function Get-NTPConfiguration {
 
             return $AnnounceFlagsValue
         } 
+
+        Function Get-RemoteTime {
+
+            [CmdletBinding()]
+            [OutputType([datetime])]
+            param (
+                $server
+            )
+        
+            Process {
+                $remoteOSInfo = Get-WmiObject win32_OperatingSystem -computername $server   
+                [datetime]$remoteDateTime = $remoteOSInfo.convertToDatetime($remoteOSInfo.LocalDateTime)    
+                return $remoteDateTime
+            }
+        }
+
     } # end BEGIN
 
     PROCESS {
