@@ -36,7 +36,7 @@ function Invoke-BestPracticeAnalyzer {
     foreach ($computer in $computers) {
 
         foreach ($BPAService in $BPAServices) {
-            Write-Host "Processing $computer Best Practice Analyser $BPAService" -ForegroundColor cyan
+            Write-Host "$computer Invoke Best Practice Analyser $BPAService" -ForegroundColor cyan
             #$null = Invoke-BpaModel -ModelId $BPAService -ComputerName $computer
 
             $null = Invoke-Command -ComputerName $computer -ScriptBlock { Invoke-BpaModel -ModelId $using:BPAService } 
