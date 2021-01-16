@@ -128,7 +128,6 @@ Function Get-NTPConfiguration {
     } # end BEGIN
 
     PROCESS {
-        Write-Host "PDC Emulator :" ([System.DirectoryServices.ActiveDirectory.Domain]::GetCurrentDomain()).PdcRoleOwner.Name
         $NTPConfigurations = New-Object System.Collections.ArrayList
 	
         if ($domainControllers) {
