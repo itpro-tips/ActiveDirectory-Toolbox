@@ -22,7 +22,7 @@ function Invoke-BestPracticeAnalyzer {
 
     if ($domainControllers) {
         $computers = ([System.DirectoryServices.ActiveDirectory.Domain]::GetCurrentDomain().DomainControllers).Name
-    }
+    } 
 
     $BPAServices = @(
         'Microsoft/Windows/CertificateServices',
@@ -34,14 +34,17 @@ function Invoke-BestPracticeAnalyzer {
     $BPAResults = New-Object System.Collections.ArrayList
 
     foreach ($computer in $computers) {
-
+        # the data consolidation can take time, so we launch the BPA first then we take info.
         foreach ($BPAService in $BPAServices) {
             Write-Host "$computer Invoke Best Practice Analyser $BPAService" -ForegroundColor cyan
             #$null = Invoke-BpaModel -ModelId $BPAService -ComputerName $computer
+            # Used Invoke-Command in order to keep results files remotely
+            $null = Invoke-Command -ComputerName $computer -ScriptBlock { Invoke-BpaModel -ModelId $args[0] -WarningAction SilentlyContinue } -ArgumentList $BPAService
+        }
 
-            $null = Invoke-Command -ComputerName $computer -ScriptBlock { Invoke-BpaModel -ModelId $using:BPAService } 
-
-            $results = Invoke-Command -ComputerName $computer -ScriptBlock { Get-BpaResult -ModelId $using:BPAService } 
+        foreach ($BPAService in $BPAServices) {
+            Write-Host "$computer Get Best Practice Analyser results $BPAService" -ForegroundColor cyan
+            $results = Invoke-Command -ComputerName $computer -ScriptBlock { Get-BpaResult -ModelId $args[0] -ErrorAction SilentlyContinue } -ArgumentList $BPAService
 
             foreach ($result in $results) {
                 $object = [PSCustomObject][ordered]@{
