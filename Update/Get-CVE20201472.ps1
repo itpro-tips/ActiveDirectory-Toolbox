@@ -1,6 +1,7 @@
 # Assessment scanner for CVE-2020-1472
 # See https://support.microsoft.com/en-us/help/4557222/how-to-manage-the-changes-in-netlogon-secure-channel-connections-assoc
 # Note hotfix list will become out of date quickly
+# ZeroLogon
 # Loosely based on CISA validation script: https://github.com/cisagov/cyber.dhs.gov/tree/master/assets/report/ed-20-04_script
 # technion@lolware.net
 
