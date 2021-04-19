@@ -1,13 +1,11 @@
 #requires -version 2
 # Source https://stackoverflow.com/questions/45089582/using-get-childitem-at-root-of-unc-path-servername
-Function Get-NetShare {
+Function Get-NetShares {
 
     param(
         [String] $ComputerName
     )
-  
-
-  
+    
     Add-Type @'
 using System;
 using System.Runtime.InteropServices;
@@ -55,9 +53,14 @@ public static class NetApi32
             $pEntry = New-Object IntPtr($offset)
             $shareInfo = [Runtime.InteropServices.Marshal]::PtrToStructure($pEntry, [Type] [SHARE_INFO_1])
         
+            if ([string]::IsNullOrEmpty($ComputerName)) {
+                $ComputerName = 'localhost'
+            }
+
             $object = New-Object -TypeName PSObject -Property @{
-                Name = $shareInfo.shi1_netname
-                Type = $shareInfo.shi1_remark
+                ComputerName = $ComputerName
+                Name         = $shareInfo.shi1_netname
+                Type         = $shareInfo.shi1_remark
             }
   
             $null = $shares.Add($object)
