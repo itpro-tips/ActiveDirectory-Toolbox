@@ -3,7 +3,7 @@ function Invoke-BestPracticeAnalyzer {
     Param(
         # Parameter help description
         [Parameter(Mandatory)]
-        [string[]]$Computers,
+        [string[]]$ComputerName,
         [switch]$DomainControllers)
 
     $currentPrincipal = New-Object Security.Principal.WindowsPrincipal([Security.Principal.WindowsIdentity]::GetCurrent())
@@ -21,7 +21,7 @@ function Invoke-BestPracticeAnalyzer {
     }
 
     if ($domainControllers) {
-        $computers = ([System.DirectoryServices.ActiveDirectory.Domain]::GetCurrentDomain().DomainControllers).Name
+        $ComputerName = ([System.DirectoryServices.ActiveDirectory.Domain]::GetCurrentDomain().DomainControllers).Name
     } 
 
     $BPAServices = @(
@@ -33,7 +33,7 @@ function Invoke-BestPracticeAnalyzer {
 
     $BPAResults = New-Object System.Collections.ArrayList
 
-    foreach ($computer in $computers) {
+    foreach ($computer in $ComputerName) {
         # the data consolidation can take time, so we launch the BPA first then we take info.
         foreach ($BPAService in $BPAServices) {
             Write-Host "$computer Invoke Best Practice Analyser $BPAService" -ForegroundColor cyan

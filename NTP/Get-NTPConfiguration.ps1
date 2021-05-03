@@ -71,7 +71,7 @@ Function Get-NTPConfiguration {
         [Parameter(Position = 0, ValueFromPipeline = $True,
             HelpMessage = 'An array (comma separated) of computer names. The default is the local computer.')]
         [alias("CN")]
-        [string[]]$computers = $Env:COMPUTERNAME,
+        [string[]]$ComputerName = $Env:COMPUTERNAME,
         [switch]$DomainControllers
     )
 
@@ -131,9 +131,9 @@ Function Get-NTPConfiguration {
         $NTPConfigurations = New-Object System.Collections.ArrayList
 	
         if ($domainControllers) {
-            $computers = ([System.DirectoryServices.ActiveDirectory.Domain]::GetCurrentDomain().DomainControllers).Name
+            $ComputerName = ([System.DirectoryServices.ActiveDirectory.Domain]::GetCurrentDomain().DomainControllers).Name
         }
-        foreach ($computer in $computers) {
+        foreach ($computer in $ComputerName) {
             Write-Verbose "Processing $computer"
             if (Test-Connection -ComputerName $computer -count 1 -quiet) {
                 $parametersSubkeyArguments = '/dumpreg', "/computer:$computer", '/subkey:parameters' 
