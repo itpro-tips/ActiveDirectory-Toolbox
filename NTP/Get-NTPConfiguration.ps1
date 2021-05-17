@@ -15,7 +15,7 @@
  
 	AllSync:Uses all synchronization mechanisms available.
 
-.PARAMETER Computers
+.PARAMETER ComputerName
     The computer name(s) to retrieve the info from. 
     Default to local Computer
 
@@ -23,7 +23,7 @@
 	Switch to query all doman controllers in the current domain
 	
 .EXAMPLE
-    Get-NTPConfiguration -Computers Server1
+    Get-NTPConfiguration -ComputerName Server1
 
     ComputerName : Server1
     Type         : NT5DS
@@ -33,7 +33,7 @@
     Get-NTPConfiguration -DomainControllers
 	
 .EXAMPLE
-    Get-NTPConfiguration -Computers DC1
+    Get-NTPConfiguration -ComputerName DC1
 
     ComputerName : DC1
     Type         : NTP
@@ -43,7 +43,7 @@
     DC1 is a Root Domain Controller PDC that synchronize to an external source
   
 .EXAMPLE
-    Get-NTPConfiguration -Computers DC1,DC2
+    Get-NTPConfiguration -ComputerName DC1,DC2
   
 .INPUTS
     System.String, you can pipe ComputerNames to this Function
