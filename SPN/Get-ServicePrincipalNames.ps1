@@ -10,21 +10,22 @@
 #$search.filter = "(&(servicePrincipalName=*)(objectCategory=user))"
 #$results = $search.Findall()
 
-Get-ADObject -LDAPFilter "(servicePrincipalName=*)"
+$usersWithSPN = Get-ADObject -LDAPFilter "(&(servicePrincipalName=*)(objectCategory=user))" -Properties UserPrincipalName, ObjectCategory, SamAccountName, ServicePrincipalName, AdminCount
 
 $SPNObjects = New-Object 'System.Collections.Generic.List[System.Object]'
 
 
-foreach ($result in $results) {
-      
-    $userEntry = $result.GetDirectoryEntry()
-    $outputObject = New-Object PSObject -Property ([ordered]@{
-            Name              = $userEntry.name
-            DistinguishedName = $userEntry.distinguishedName
-            UserPrincipalName = $userEntry.servicePrincipalName -join '|'
-            ObjectCategory    = $userEntry.objectCategory
+foreach ($userWithSPN in $usersWithSPN) {
+    $object = New-Object PSObject -Property ([ordered]@{
+            Name                = $userWithSPN.Name
+            SamAccountName      = $userWithSPN.SamAccountName
+            DistinguishedName   = $userWithSPN.distinguishedName
+            ServicePrincipalName = $userWithSPN.ServicePrincipalName -join '|'
+            ObjectCategory      = $userWithSPN.ObjectCategory
+            AdminCount          = if($userWithSPN.adminCount -ne 1) {'null'}else{$userWithSPN.admincount}
         })
-    $null = $SPNObjects.Add($outputObject) 
+    
+    $SPNObjects.Add($object) 
 }
 
 return $SPNObjects
