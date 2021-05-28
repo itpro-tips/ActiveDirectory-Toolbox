@@ -7,8 +7,8 @@
     #space or no space \s*
     $stringSearched = @(
         'password\s?=',
-        'password\s:',
-        'passwd\s=',
+        'password\s?:',
+        'passwd\s?=',
         'passwd\s?:',
         'pass\s?=',
         'pass\s?:',
