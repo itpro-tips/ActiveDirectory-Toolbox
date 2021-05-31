@@ -27,12 +27,12 @@ function Get-TCPUDPByProcess {
         $TCPPorts = Get-NetTCPConnection |
         Select-Object LocalAddress,
         RemoteAddress,
-        @{Name = "Proto"; Expression = { "TCP" } },
+        @{Name = 'Protocol'; Expression = { 'TCP' } },
         LocalPort, RemotePort, State,
-        @{Name = "PID"; Expression = { $_.OwningProcess } },
-        @{Name = "UserName"; Expression = { $processes[[int]$_.OwningProcess].UserName } },
-        @{Name = "ProcessName"; Expression = { $processes[[int]$_.OwningProcess].ProcessName } },
-        @{Name = "Path"; Expression = { $processes[[int]$_.OwningProcess].Path } } |
+        @{Name = 'PID'; Expression = { $_.OwningProcess } },
+        @{Name = 'UserName'; Expression = { $processes[[int]$_.OwningProcess].UserName } },
+        @{Name = 'ProcessName'; Expression = { $processes[[int]$_.OwningProcess].ProcessName } },
+        @{Name = 'Path'; Expression = { $processes[[int]$_.OwningProcess].Path } } |
         Sort-Object -Property LocalPort, UserName
     
         $TCPPorts | ForEach-Object { $null = $portsArray.Add($_) }
@@ -40,12 +40,12 @@ function Get-TCPUDPByProcess {
         # Query Listening UDP Ports (No Connections in UDP)
         $UDPPorts = Get-NetUDPEndpoint |
         Select-Object LocalAddress, RemoteAddress,
-        @{Name = "Proto"; Expression = { "UDP" } },
+        @{Name = 'Protocol'; Expression = { 'UDP' } },
         LocalPort, RemotePort, State,
-        @{Name = "PID"; Expression = { $_.OwningProcess } },
-        @{Name = "UserName"; Expression = { $processes[[int]$_.OwningProcess].UserName } },
-        @{Name = "ProcessName"; Expression = { $processes[[int]$_.OwningProcess].ProcessName } },
-        @{Name = "Path"; Expression = { $processes[[int]$_.OwningProcess].Path } } |
+        @{Name = 'PID'; Expression = { $_.OwningProcess } },
+        @{Name = 'UserName'; Expression = { $processes[[int]$_.OwningProcess].UserName } },
+        @{Name = 'ProcessName'; Expression = { $processes[[int]$_.OwningProcess].ProcessName } },
+        @{Name = 'Path'; Expression = { $processes[[int]$_.OwningProcess].Path } } |
         Sort-Object -Property LocalPort, UserName
         foreach ($UDPPort in $UDPPorts) {
             if ( $UDPPort.LocalAddress -eq '0.0.0.0') { $UDPPort.State = 'Listen' } 
