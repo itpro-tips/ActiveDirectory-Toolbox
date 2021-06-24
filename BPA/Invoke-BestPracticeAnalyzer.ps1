@@ -4,11 +4,13 @@ function Invoke-BestPracticeAnalyzer {
         # Parameter help description
         [Parameter(Mandatory)]
         [string[]]$ComputerName,
-        [switch]$DomainControllers)
+        [switch]$DomainControllers,
+        [string[]]$BPAServices
+    )
 
     $currentPrincipal = New-Object Security.Principal.WindowsPrincipal([Security.Principal.WindowsIdentity]::GetCurrent())
     if (-not $currentPrincipal.IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
-        Write-Warning "Please run PowerShell as administrator"
+        Write-Warning 'Please run PowerShell as administrator'
         exit
     }
 
@@ -24,12 +26,15 @@ function Invoke-BestPracticeAnalyzer {
         $ComputerName = ([System.DirectoryServices.ActiveDirectory.Domain]::GetCurrentDomain().DomainControllers).Name
     } 
 
-    $BPAServices = @(
-        'Microsoft/Windows/CertificateServices',
-        'Microsoft/Windows/DHCPServer',
-        'Microsoft/Windows/DirectoryServices',  
-        'Microsoft/Windows/DNSServer'
-    )
+    # if null, we take some services
+    if ($null -eq $BPAServices) {
+        $BPAServices = @(
+            'Microsoft/Windows/DirectoryServices',
+            'Microsoft/Windows/DNSServer'
+            'Microsoft/Windows/DHCPServer',
+            'Microsoft/Windows/CertificateServices'
+        )
+    }
 
     $BPAResults = New-Object System.Collections.ArrayList
 
