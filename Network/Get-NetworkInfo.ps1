@@ -16,10 +16,7 @@ Function Get-NetworkInfo {
 
     $collection = New-Object System.Collections.ArrayList
 
-    foreach ($computer in $ComputerName) {
-    
-        Write-Host "Processing $computer" -ForegroundColor Cyan
-        
+    foreach ($computer in $ComputerName) {        
         $networks = $null
 
         try {
