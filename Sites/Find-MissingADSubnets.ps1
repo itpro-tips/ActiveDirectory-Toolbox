@@ -21,6 +21,7 @@
 	Author 		: Bastien Perez (itpro-tips.com)
 	File Name	: Find-MissingADSubnets.ps1 (former Collect-MissingADSubnets.ps1)
 	
+	Update - 08/02/2021 : Bastien Perez - improve performance
 	Update - 12/01/2021 : Bastien Perez - export all missing IP and names
 	Update - 04/22/2014 : New field 'Computers' added in the export (list of computers concerned by each missing subnet).
 	Update - 06/16/2013 : Fixed issues related to existing subnets.
@@ -40,8 +41,6 @@
 .EXAMPLE
 	.\Find-MissingADSubnets.ps1 -Path C:\Temp -ExistingData c:\CollectedData
 
-
-	
 .PARAMETER Domain
 	Collect data from domain controllers of a specific AD domain. If this parameter, the parameters 'Server'
 	and 'ExistingData' are not specified, the script is collecting data of all domain controllers of the forest.
@@ -68,13 +67,13 @@
 Function Find-MissingADSubnets {
 	param
 	(	
-		[Parameter(ParameterSetName = "Domain")]
+		[Parameter(ParameterSetName = 'Domain')]
 		[String] $Domain,
 	
-		[Parameter(ParameterSetName = "Server", Mandatory = $true)]
+		[Parameter(ParameterSetName = 'Server', Mandatory = $true)]
 		[String[]] $Server,
 	
-		[Parameter(ParameterSetName = "Data", Mandatory = $true)]
+		[Parameter(ParameterSetName = 'Data', Mandatory = $true)]
 		[ValidateScript( { Test-Path $_ -PathType Container })]
 		[String] $ExistingData,
 	
@@ -82,8 +81,8 @@ Function Find-MissingADSubnets {
 		[ValidateScript( { Test-Path $_ -PathType Container })]
 		[String] $Path,
 	
-		[parameter(ParameterSetName = "Domain")]
-		[parameter(ParameterSetName = "Server")]
+		[parameter(ParameterSetName = 'Domain')]
+		[parameter(ParameterSetName = 'Server')]
 		[Switch]
 		$CollectOnly,
 	
@@ -104,8 +103,8 @@ Function Find-MissingADSubnets {
 	#---------------------------------------------------
 	# Create the IPv4 object
 	#---------------------------------------------------
-	function Compute-IPv4 ( $Obj, $ObjInputAddress, $IPv4Mask ) {
-		$Obj | Add-Member -type NoteProperty -name Type -value "IPv4"
+	function Compute-IPv4 ( $object, $ObjInputAddress, $IPv4Mask ) {
+		$object | Add-Member -type NoteProperty -name Type -value 'IPv4'
 	
 		# Compute IP length
 		[int] $IntIPLength = 32 - $IPv4Mask
@@ -116,8 +115,8 @@ Function Find-MissingADSubnets {
 		$NumberOfIPs = ([System.Math]::Pow(2, $IntIPLength)) - 1
 
 		$IpStart = Compute-IPv4NetworkAddress $ObjInputAddress $BlockBytes $IPv4Mask
-		$Obj | Add-Member -type NoteProperty -name Subnet -value "$($IpStart)/$($IPv4Mask)"
-		$Obj | Add-Member -type NoteProperty -name IpStart -value $IpStart
+		$object | Add-Member -type NoteProperty -name Subnet -value "$($IpStart)/$($IPv4Mask)"
+		$object | Add-Member -type NoteProperty -name IpStart -value $IpStart
 
 		$ArrBytesIpStart = $IpStart.GetAddressBytes()
 		[array]::Reverse($ArrBytesIpStart)
@@ -125,20 +124,20 @@ Function Find-MissingADSubnets {
 
 		$IpEnd = $RangeStart + $NumberOfIPs
 
-		If (($IpEnd.Gettype()).Name -ine "double") {
+		If (($IpEnd.Gettype()).Name -ine 'double') {
 			$IpEnd = [Convert]::ToDouble($IpEnd)
 		}
 
 		$IpEnd = [System.Net.IPAddress] $IpEnd
-		$Obj | Add-Member -type NoteProperty -name IpEnd -value $IpEnd
+		$object | Add-Member -type NoteProperty -name IpEnd -value $IpEnd
 
-		$Obj | Add-Member -type NoteProperty -name RangeStart -value $RangeStart
+		$object | Add-Member -type NoteProperty -name RangeStart -value $RangeStart
 	
 		$ArrBytesIpEnd = $IpEnd.GetAddressBytes()
 		[array]::Reverse($ArrBytesIpEnd)
-		$Obj | Add-Member -type NoteProperty -name RangeEnd -value ([system.bitconverter]::ToUInt32($ArrBytesIpEnd, 0))
+		$object | Add-Member -type NoteProperty -name RangeEnd -value ([system.bitconverter]::ToUInt32($ArrBytesIpEnd, 0))
 	
-		Return $Obj
+		return $object
 	}
 
 	#---------------------------------------------------
@@ -154,7 +153,7 @@ Function Find-MissingADSubnets {
 		}
 	
 		# Returns the remaining bits of the prefix
-		$Remaining = $obj.Prefix % 8
+		$Remaining = $object.Prefix % 8
 	
 		if ( $Remaining -gt 0 ) {
 			$Mask = ([Math]::Pow(2, $Remaining) - 1) * ([Math]::Pow(2, 8 - $Remaining))
@@ -163,9 +162,9 @@ Function Find-MissingADSubnets {
 		}
 
 		[array]::Reverse($ArrBytesAddress)
-		$NetworkAddress = [System.Net.IPAddress] $ArrBytesAddress
+		$networkAddress = [System.Net.IPAddress] $ArrBytesAddress
 	
-		Return $NetworkAddress
+		return $networkAddress
 	}
 
 	#---------------------------------------------------
@@ -176,26 +175,26 @@ Function Find-MissingADSubnets {
 	
 		try {
 			$OSVersion = ([System.directoryServices.ActiveDirectory.DomainController]::GetDomainController($context)).OSVersion
-			Return $OSVersion
+			return $OSVersion
 		}
 		catch {
 			Write-Host 'Unable to contact the domain controller' -ForegroundColor Red
-			Return $null
+			return $null
 		}
 	}
 
 	#---------------------------------------------------
 	# Construct and return the netlogon.log path
 	#---------------------------------------------------
-	function Get-NetlogonPath ( $hostname ) {
+	function Get-NetlogonPath ($ComputerName) {
 		try {
-			$WMIObj = Get-WmiObject Win32_OperatingSystem -Property systemDirectory
-			$Path = "\\" + $hostname + "\" + ((split-path $WMIObj.SystemDirectory -Parent) -replace ':', '$') + "\debug\netlogon.log"
-			Return $Path
+			$WMIObj = Get-WmiObject Win32_OperatingSystem -Property systemDirectory -ComputerName $ComputerName
+			$Path = '\\' + $ComputerName + '\' + ((split-path $WMIObj.SystemDirectory -Parent) -replace ':', '$') + '\debug\netlogon.log'
+			return $Path
 		}
 		catch {
 			Write-Host 'Unable to retrieve netlogon.log path with WMI' -ForegroundColor Red
-			Return $null
+			return $null
 		}
 	}
 
@@ -207,17 +206,19 @@ Function Find-MissingADSubnets {
 	# Main
 	####################################################
 
-	# Connect to Active Directory
-	$objRootDSE = [System.DirectoryServices.DirectoryEntry] "LDAP://rootDSE"
-	$DCs = @()
-	$LogEntries = @()
+	# Initialize variables
+	[System.Collections.Generic.List[PSObject]]$DCs = @()
+	[System.Collections.Generic.List[PSObject]]$logEntries = @()
 
+	# Connect to Active Directory
+	$objRootDSE = [System.DirectoryServices.DirectoryEntry] 'LDAP://rootDSE'
+	
 	# Construct the list of domain controllers to be treated by the script
-	if ( $PSCmdlet.ParameterSetName -eq "Server" ) {
+	if ( $PSCmdlet.ParameterSetName -eq 'Server' ) {
 		$DCs = $Server
 	}
-	elseif ( $PSCmdlet.ParameterSetName -eq "Data" ) {
-		$CollectedFiles = Get-ChildItem -Path $ExistingData -Filter "*-Netlogon.log"
+	elseif ( $PSCmdlet.ParameterSetName -eq 'Data' ) {
+		$CollectedFiles = Get-ChildItem -Path $ExistingData -Filter '*-Netlogon.log'
 		Write-Host "`nNumber of files found: " -NoNewline
 	
 		if ( $CollectedFiles.Count -gt 0 ) {
@@ -237,13 +238,14 @@ Function Find-MissingADSubnets {
 			Write-host "$($File.FullName)" -ForegroundColor Green 
 		
 			# Search the NO_CLIENT_SITE entries in the netlogon log file and capture the IP address of each entry (only IPv4)
-			Foreach ( $Line in $Content ) {
-				if ( $Line -match 'NO_CLIENT_SITE:\s*(.*?)\s*(\d*\.\d*\.\d*\.\d*)' ) {				
-					$Obj = New-Object -TypeName PsObject
-					$Obj | Add-Member -type NoteProperty -name Computer -value ($matches[1])
-					$Obj | Add-Member -type NoteProperty -name IpAddress -value ($matches[2])
-					$LogEntries += $Obj
-						
+			foreach ( $Line in $Content ) {
+				if ( $Line -match 'NO_CLIENT_SITE:\s*(.*?)\s*(\d*\.\d*\.\d*\.\d*)' ) {					
+					$object = New-Object -TypeName PSObject -Property ([ordered] @{
+							Computer  = $matches[1]
+							IpAddress = $matches[2]
+						})   
+
+					$LogEntries.Add($object)
 				}
 			}
 		
@@ -270,22 +272,26 @@ Function Find-MissingADSubnets {
 			
 				# Retrieve the list of all DCs within the forest
 				foreach ( $ADSIDomain in $ADSIForest.Domains ) {
-					$DCs += $ADSIDomain.DomainControllers
+					$ADSIDomain.DomainControllers | ForEach-Object {
+						$DCs.Add($_.Name)
+					}
 				}
 			}
 		}
 		else {
 			# Connect to the specified domain and retrieve the list of all dcs within this domain
-			$DomainContext = new-object System.directoryServices.ActiveDirectory.DirectoryContext("Domain", $Domain)
+			$DomainContext = New-Object System.directoryServices.ActiveDirectory.DirectoryContext('Domain', $Domain)
 			$ADSIDomain = [System.DirectoryServices.ActiveDirectory.Domain]::GetDomain($DomainContext)
-			$DCs += $ADSIDomain.DomainControllers
+			$ADSIDomain.DomainControllers | ForEach-Object {
+				$DCs.Add($_.Name)
+			}
 		}
 	}
 
 	# Treat list of domain controllers if existing data are not used
-	if ( $PSCmdlet.ParameterSetName -ne "Data" ) {
+	if ( $PSCmdlet.ParameterSetName -ne 'Data' ) {
 		# Treatment of each domain controller
-		Write-Host "`nNumber of Domain Controllers to treat: " -NoNewline
+		Write-Host "`nNumber of Domain Controllers: " -NoNewline
 
 		if ( $DCs.Count -gt 0 ) {
 
@@ -302,15 +308,15 @@ Function Find-MissingADSubnets {
 						Write-Host "$($DCVersion) not supported by the script." -ForegroundColor Red
 					}
 					else {
-						Write-Host "Connection established." -ForegroundColor Green
+						Write-Host 'Connection established.' -ForegroundColor Green
 						Write-Host "$($DC): " -NoNewline
 					
-						# Retrieve the netlogon file path for the specified DC
-						$NetLogonPath = Get-NetlogonPath $DC
-					
+
+						$NetLogonPath = Get-NetlogonPath -ComputerName $DC
+
 						if ( -not([string]::IsNullOrEmpty($NetLogonPath)) ) {
 							if ( Test-Path $NetLogonPath -ErrorAction SilentlyContinue ) {
-								Write-Host "Retrieving NO_CLIENT_SITE entries from logs..." -ForegroundColor Green
+								Write-Host 'Retrieving NO_CLIENT_SITE entries from logs...' -ForegroundColor Green
 							
 								$Content = Get-Content -Path $NetLogonPath -Tail $nbLines
 							
@@ -319,12 +325,14 @@ Function Find-MissingADSubnets {
 							
 								# Search the NO_CLIENT_SITE entries in the netlogon log file
 								# Capture the IP address of each entry (only IPv4)
-								Foreach ( $Line in $Content ) {
-									if ( $Line -match 'NO_CLIENT_SITE:\s*(.*?)\s*(\d*\.\d*\.\d*\.\d*)' ) {				
-										$Obj = New-Object -TypeName PsObject
-										$Obj | Add-Member -type NoteProperty -name Computer -value ($matches[1])
-										$Obj | Add-Member -type NoteProperty -name IpAddress -value ($matches[2])
-										$LogEntries += $Obj
+								foreach ( $Line in $Content ) {
+									if ( $Line -match 'NO_CLIENT_SITE:\s*(.*?)\s*(\d*\.\d*\.\d*\.\d*)' ) {		
+										$object = New-Object -TypeName PSObject -Property ([ordered] @{
+												Computer  = $matches[1]
+												IpAddress = $matches[2]
+											})   
+
+										$logEntries.Add($object)
 									}
 								}
 							}
@@ -345,21 +353,21 @@ Function Find-MissingADSubnets {
 	# If data collected the script start to compute the list of missing subnets
 	if ( ($LogEntries.Count -gt 0) -and ($CollectOnly -eq $false) ) {
 		# Remove duplicated IP addresses
-		$LogEntries = $LogEntries | Select * -Unique
+		$LogEntries = $LogEntries | Select-Object * -Unique
 
 		$LogEntries | Export-Csv "$($Path)\ADSubnets-AllMissingIP.csv" -Delimiter ";" -NoTypeInformation -Force
-		$ArrIPs = @()
-
+		[System.Collections.Generic.List[PSObject]]$ArrIPs = @()
+		
 		# Each IP is converted to a subnet based on the IPv4Mask argument (24 bits by default)
 		foreach ( $Entry in $LogEntries ) {
 			$ObjIP = [System.Net.IPAddress] $Entry.IpAddress
 		
 			$SubnetObj = New-Object -TypeName PsObject
 		
-			if ( $ObjIP.AddressFamily -match "InterNetwork" ) {
+			if ( $ObjIP.AddressFamily -match 'InterNetwork') {
 				$SubnetObj = Compute-IPv4 $SubnetObj $ObjIP $IPv4Mask
 				$SubnetObj | Add-Member -MemberType NoteProperty -Name Computer -Value $Entry.Computer
-				$ArrIPs += $SubnetObj
+				$ArrIPs.Add($SubnetObj)
 			}
 		}
 
@@ -368,13 +376,14 @@ Function Find-MissingADSubnets {
 	
 		# Create only one entry per subnet with the list of computers associated to this subnet 
 		$Subnets = $ArrIPs | Select-Object Type, Subnet, IpStart, IpEnd, RangeStart, RangeEnd | Sort-Object Subnet -Unique
-		$TempArray = @()
-	
+
+		[System.Collections.Generic.List[PSObject]]$TempArray = @()
+
 		foreach ( $Subnet in $Subnets ) {
 			$ArrComputers = @()
-			$ArrIPs | Where-Object { $_.Subnet -eq $Subnet.Subnet } | % { $ArrComputers += $_.Computer }
-			$Subnet | Add-Member -MemberType NoteProperty -Name Computers -Value ($ArrComputers -join " ")
-			$TempArray += $Subnet
+			$ArrIPs | Where-Object { $_.Subnet -eq $Subnet.Subnet } | foreach-Object { $ArrComputers += $_.Computer }
+			$Subnet | Add-Member -MemberType NoteProperty -Name Computers -Value ($ArrComputers -join ' ')
+			$TempArray.Add($Subnet)
 		}
 	
 		$ArrIPs = $TempArray | Sort-Object RangeStart
@@ -383,25 +392,25 @@ Function Find-MissingADSubnets {
 		Write-Host "`nRetrieving AD subnets: " -NoNewline
 	
 		$Searcher = New-Object System.DirectoryServices.DirectorySearcher
-		$Searcher.SearchRoot = New-Object System.DirectoryServices.DirectoryEntry("LDAP://cn=subnets,cn=sites," + $objRootDSE.ConfigurationNamingContext)
+		$Searcher.SearchRoot = New-Object System.DirectoryServices.DirectoryEntry("LDAP://cn=subnets,cn=sites,$($objRootDSE.ConfigurationNamingContext)")
 		$Searcher.PageSize = 10000
-		$Searcher.SearchScope = "Subtree"
-		$Searcher.Filter = "(objectClass=subnet)"
+		$Searcher.SearchScope = 'Subtree'
+		$Searcher.Filter = '(objectClass=subnet)'
 
-		$Properties = @("cn", "location", "siteobject")
+		$Properties = @('cn', 'location', 'siteobject')
 		$Searcher.PropertiesToLoad.AddRange(@($Properties))
 		$Subnets = $Searcher.FindAll()
 
-		$selectedProperties = $Properties | ForEach-Object { @{name = "$_"; expression = $ExecutionContext.InvokeCommand.NewScriptBlock("`$_['$_']") } }
-		[Regex] $RegexCN = "CN=(.*?),.*"
-		$SubnetsArray = @()
-
+		$selectedProperties = $Properties | foreach-Object { @{name = "$_"; expression = $ExecutionContext.InvokeCommand.NewScriptBlock("`$_['$_']") } }
+		[Regex] $RegexCN = 'CN=(.*?),.*'
+		[System.Collections.Generic.List[PSObject]]$SubnetsArray = @()
 		foreach ( $Subnet in $Subnets ) {
 			# Construct the subnet object
-			$SubnetObj = New-Object -TypeName PsObject
-			$SubnetObj | Add-Member -type NoteProperty -name Name -value ([string] $Subnet.Properties['cn'])
-			$SubnetObj | Add-Member -type NoteProperty -name Location -value ([string] $Subnet.Properties['location'])
-			$SubnetObj | Add-Member -type NoteProperty -name Site -value ([string] $RegexCN.Match( $Subnet.Properties['siteobject']).Groups[1].Value)
+			$SubnetObj = New-Object -TypeName PSObject -Property ([ordered] @{
+					Name     = [string] $Subnet.Properties['cn']
+					Location	= [string] $Subnet.Properties['location']
+					Site     = [string] $RegexCN.Match( $Subnet.Properties['siteobject']).Groups[1].Value
+				})   
 	     
 			$InputAddress = (($SubnetObj.Name).Split("/"))[0]
 			$ADSubnetPrefix = (($SubnetObj.Name).Split("/"))[1]
@@ -412,7 +421,7 @@ Function Find-MissingADSubnets {
 			# Check if IP is a IPv4 (IPv6 not collected)
 			if ( $ObjInputAddress.AddressFamily -eq "InterNetwork" ) {
 				$SubnetObj = Compute-IPv4 $SubnetObj $ObjInputAddress $ADSubnetPrefix
-				$SubnetsArray += $SubnetObj
+				$SubnetsArray.Add($SubnetObj)
 			}
 		}
 
@@ -422,7 +431,7 @@ Function Find-MissingADSubnets {
 			Write-Host "$($Path)\ADSubnets-Export.csv" -ForegroundColor Green
 		}
 		else {
-			Write-Host "Error while exporting result to file." -ForegroundColor Yellow
+			Write-Host 'Error while exporting result to file.' -ForegroundColor Yellow
 		}
 	
 		$Subnets = $SubnetsArray | Sort-Object -Property RangeStart
@@ -438,7 +447,7 @@ Function Find-MissingADSubnets {
 
 		# Export Missing subnets
 		if ( $ArrIPs ) {
-			$ArrIPs | ? Type -ne $null | Export-Csv "$($Path)\ADSubnets-MissingSubnets.csv" -Delimiter ";" -NoTypeInformation -Force
+			$ArrIPs | Where-Object Type -ne $null | Export-Csv "$($Path)\ADSubnets-MissingSubnets.csv" -Delimiter ';' -NoTypeInformation -Force
 	
 			if ( Test-Path "$($Path)\ADSubnets-MissingSubnets.csv" ) {
 				Write-Host "`nList of missing subnets: " -NoNewline
@@ -452,6 +461,5 @@ Function Find-MissingADSubnets {
 			Write-Host "`nNo Missing subnet found. Try with a greater netmask." -ForegroundColor Yellow
 		}
 	}
-
 	#EndRegion
 }

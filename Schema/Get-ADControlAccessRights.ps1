@@ -28,7 +28,6 @@ param([string]$CAR = "*",
     [switch]$SkipProperty,
     [string]$Attribute = "",
     [switch]$help)
-    
 $strScriptName = $($MyInvocation.MyCommand.Name)
 
 function funHelp() {
@@ -450,7 +449,7 @@ Switch ($Type) {
     "SELF"
     { $intType = 8 }
     default
-    { }
+    {}
 }
  
 if ($CAR.Length -gt 0) {
@@ -459,4 +458,3 @@ if ($CAR.Length -gt 0) {
 else {
 
 }
-
