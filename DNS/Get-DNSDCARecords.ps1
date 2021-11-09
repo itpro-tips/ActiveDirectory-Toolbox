@@ -1,5 +1,5 @@
 # Get the record A (host type) which are not domain controller on the root domain
-function Get-DNSDomainControllersRecords {
+function Get-DNSDCRecords {
     Param(
         [Parameter(Mandatory)]
         [String]$DNSServer,
@@ -9,12 +9,13 @@ function Get-DNSDomainControllersRecords {
     )
 	
     $dnsCmdLet = $true
-    $allDCIP = New-Object System.Collections.ArrayList
-    $recordsNotCompliant = New-Object System.Collections.ArrayList
+
+    [System.Collections.Generic.List[PSObject]]$allDCIP = @()
+    [System.Collections.Generic.List[PSObject]]$records = @()
 
     # Works with all Windows version (2012+ can use Resolve-DNSName)
-    Get-ADDomainController -Filter {Domain -eq $Domain}  | ForEach-Object {
-        $null = $allDCIP.Add($_.Ipv4Address)
+    Get-ADDomainController -Filter { Domain -eq $Domain }  | ForEach-Object {
+        $allDCIP.Add($_.Ipv4Address)
     }
 
     try {
@@ -24,7 +25,7 @@ function Get-DNSDomainControllersRecords {
         $dnsCmdLet = $false
     }
 
-    foreach($zone in $zones){
+    foreach ($zone in $zones) {
         # Resolve-DNS does not exist on older PowerShell version (2.0 and less)
         if ($dnsCmdLet) {
             $IPAddresses = (Resolve-DnsName $zone).IpAddress
@@ -36,13 +37,19 @@ function Get-DNSDomainControllersRecords {
         # Test DC not present in A records on the root domain (same as parent folder)
         $allDCIP | ForEach-Object {
             if (-not($IPAddresses -contains $_)) {
-                $object = New-Object -TypeName PSObject -Property ([ordered]@{
-                    IP          = $_
-                    ErrorType   = "IP record Domain Controller Missing on $zone"
-                })
-
-                $null = $recordsNotCompliant.Add($object)
+                $object = [PSCustomObject][ordered]@{
+                    IP      = $_
+                    Type    = "IP record Domain Controller Missing on $zone"
+                }
             }
+            else {
+                $object = [PSCustomObject][ordered]@{
+                    IP      = $_
+                    Type    = "A record"
+                }
+            }
+            
+            $records.Add($object)
         }
 
         # Test not DC address present in A records on the root domain (same as parent folder)
@@ -72,15 +79,15 @@ function Get-DNSDomainControllersRecords {
                     }
                 }
                 
-                $object = New-Object -TypeName PSObject -Property ([ordered]@{
-                    IP          = $return
-                    ErrorType   = "Not an Domain controller IP on $zone"
-                })
+                $object = [PSCustomObject][ordered]@{
+                    IP        = $return
+                    Type = "Not an Domain controller IP on $zone"
+                }
 
-                $null = $recordsNotCompliant.Add($object)
+                $records.Add($object)
             }
         }
     }
 
-    return $recordsNotCompliant
+    return $records
 }
