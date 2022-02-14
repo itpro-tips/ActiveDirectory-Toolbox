@@ -17,7 +17,8 @@ function Get-ServicePrincipalNames {
     Param(
         [Parameter(Mandatory = $false)]
         [ValidateSet('Users', 'Computers')]
-        [String[]]$ObjectType
+        [String]$ObjectType,
+        [boolean[]]$GroupSPNByObject
     )
 
     if ($ObjectType -eq 'Users' ) {
@@ -34,17 +35,47 @@ function Get-ServicePrincipalNames {
 
     [System.Collections.Generic.List[PSObject]]$SPNObjects = @()
 
-    foreach ($userWithSPN in $objectsWithSPN) {
-        $object = [PSCustomObject][ordered]@{
-            Name                 = $userWithSPN.Name
-            SamAccountName       = $userWithSPN.SamAccountName
-            DistinguishedName    = $userWithSPN.distinguishedName
-            ServicePrincipalName = $userWithSPN.ServicePrincipalName -join '|'
-            ObjectCategory       = $userWithSPN.ObjectCategory
-            AdminCount           = if ($userWithSPN.adminCount -ne 1) { 'null' }else { $userWithSPN.admincount }
+    foreach ($objectWithSPN in $objectsWithSPN) {
+        if ($GroupSPNByObject) {
+            $object = [PSCustomObject][ordered]@{
+                ServicePrincipalName = $objectWithSPN.ServicePrincipalName -join '|'
+                Name                 = $objectWithSPN.Name
+                SamAccountName       = $objectWithSPN.SamAccountName
+                DistinguishedName    = $objectWithSPN.distinguishedName
+                ObjectCategory       = $objectWithSPN.ObjectCategory
+                AdminCount           = if ($objectWithSPN.adminCount -ne 1) { 'null' }else { $objectWithSPN.admincount }
+            }
+
+            $SPNObjects.Add($object) 
         }
-    
-        $SPNObjects.Add($object) 
+        else {
+            if ($objectWithSPN.ServicePrincipalName -gt 1) {
+                foreach ($spn in $objectWithSPN.ServicePrincipalName) {
+                    $object = [PSCustomObject][ordered]@{
+                        ServicePrincipalName = $spn
+                        Name                 = $objectWithSPN.Name
+                        SamAccountName       = $objectWithSPN.SamAccountName
+                        DistinguishedName    = $objectWithSPN.distinguishedName
+                        ObjectCategory       = $objectWithSPN.ObjectCategory
+                        AdminCount           = if ($objectWithSPN.adminCount -ne 1) { 'null' }else { $objectWithSPN.admincount }
+                    }
+
+                    $SPNObjects.Add($object) 
+                }
+            }
+            else {
+                $object = [PSCustomObject][ordered]@{
+                    ServicePrincipalName = $objectWithSPN.ServicePrincipalName
+                    Name                 = $objectWithSPN.Name
+                    SamAccountName       = $objectWithSPN.SamAccountName
+                    DistinguishedName    = $objectWithSPN.distinguishedName
+                    ObjectCategory       = $objectWithSPN.ObjectCategory
+                    AdminCount           = if ($objectWithSPN.adminCount -ne 1) { 'null' }else { $objectWithSPN.admincount }
+                }
+
+                $SPNObjects.Add($object) 
+            }
+        }
     }
 
     return $SPNObjects
