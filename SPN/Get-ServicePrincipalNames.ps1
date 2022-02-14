@@ -10,6 +10,9 @@
 #$search.filter = "(&(servicePrincipalName=*)(objectCategory=user))"
 #$results = $search.Findall()
 
+#or builitin :
+#setspn -T medin -Q */*
+
 function Get-ServicePrincipalNames {
     Param(
         [Parameter(Mandatory = $false)]
