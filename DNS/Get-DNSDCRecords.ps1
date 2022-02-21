@@ -14,8 +14,15 @@ function Get-DNSDCRecords {
     [System.Collections.Generic.List[PSObject]]$records = @()
 
     # Works with all Windows version (2012+ can use Resolve-DNSName)
-    Get-ADDomainController -Filter { Domain -eq $Domain }  | ForEach-Object {
-        $allDCIP.Add($_.Ipv4Address)
+    
+    try {
+        Get-ADDomainController -Filter {Domain -eq $Domain} -ErrorAction Stop| ForEach-Object {
+            $allDCIP.Add($_.Ipv4Address)
+        }
+    }
+    catch {
+        Write-Warning "$($_.Exception.Message)"
+        return
     }
 
     try {
@@ -38,14 +45,14 @@ function Get-DNSDCRecords {
         $allDCIP | ForEach-Object {
             if (-not($IPAddresses -contains $_)) {
                 $object = [PSCustomObject][ordered]@{
-                    IP      = $_
-                    Type    = "IP record Domain Controller Missing on $zone"
+                    IP   = $_
+                    Type = "IP record Domain Controller Missing on $zone"
                 }
             }
             else {
                 $object = [PSCustomObject][ordered]@{
-                    IP      = $_
-                    Type    = "A record"
+                    IP   = $_
+                    Type = "A record"
                 }
             }
             
@@ -80,7 +87,7 @@ function Get-DNSDCRecords {
                 }
                 
                 $object = [PSCustomObject][ordered]@{
-                    IP        = $return
+                    IP   = $return
                     Type = "Not an Domain controller IP on $zone"
                 }
 
