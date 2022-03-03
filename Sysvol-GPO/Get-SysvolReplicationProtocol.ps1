@@ -31,8 +31,8 @@ function Get-SysvolReplicationProtocol {
         $dfsObjects = 0
     }
     
-    Write-Host -ForegroundColor Cyan "FRS objects: $frs"
-    Write-Host -ForegroundColor Cyan "DFS objects: $dfs"
+    Write-Host -ForegroundColor Cyan "FRS objects: $frsObjects"
+    Write-Host -ForegroundColor Cyan "DFS objects: $dfsObjects"
     
     foreach ($computer in $computers) {
         Write-Host "Processing $computer" -ForegroundColor Cyan
