@@ -9,26 +9,28 @@ function Get-SysvolReplicationProtocol {
         '5' = 'In Error'
     }
     
-    $collection = New-Object System.Collections.ArrayList
+    [System.Collections.Generic.List[PSObject]]$sysvolReplicationProtocolArray = @()
     
     $computers = ([System.DirectoryServices.ActiveDirectory.Domain]::GetCurrentDomain().DomainControllers).Name
     
     $domainRoot = (Get-ADDomain).DistinguishedName
     
     try {
-        $frs = (Get-ADObject -SearchBase "CN=Domain System Volume (SYSVOL share),CN=File Replication Service,CN=System,$domainRoot" -SearchScope OneLevel -Filter * ).count 
+        # cast in array in case of only one DC
+        $frsObjects = @((Get-ADObject -SearchBase "CN=Domain System Volume (SYSVOL share),CN=File Replication Service,CN=System,$domainRoot" -SearchScope OneLevel -Filter *)).count 
     }
     catch {
-        $frs = 0
+        $frsObjects = 0
     }
 
     try {
-        $dfs = (Get-ADObject -SearchBase "CN=Topology,CN=Domain System Volume,CN=DFSR-GlobalSettings,CN=System,$domainRoot" -Filter * -SearchScope OneLevel).count
+        # cast in array in case of only one DC
+        $dfsObjects = @((Get-ADObject -SearchBase "CN=Topology,CN=Domain System Volume,CN=DFSR-GlobalSettings,CN=System,$domainRoot" -SearchScope OneLevel -Filter *)).count
     }
     catch {
-        $dfs = 0
+        $dfsObjects = 0
     }
-
+    
     Write-Host -ForegroundColor Cyan "FRS objects: $frs"
     Write-Host -ForegroundColor Cyan "DFS objects: $dfs"
     
@@ -36,17 +38,20 @@ function Get-SysvolReplicationProtocol {
         Write-Host "Processing $computer" -ForegroundColor Cyan
         $DFS = Get-WmiObject -Namespace "root\MicrosoftDFS" -Class DfsrReplicatedFolderInfo -ComputerName $computer | Where-Object { $_.ReplicatedFolderName -eq 'SYSVOL Share' } | Select-Object ReplicatedFolderName, ReplicationGroupName, State
     
-    
-        $dfsrservice = Get-Service dfsr -ComputerName $computer
-    
+        $dfsrService = Get-Service dfsr -ComputerName $computer
+        $ntfrsService = Get-Service ntfrs -ComputerName $computer
+
         $object = New-Object -TypeName PSObject -Property ([ordered]@{
-                ComputerName     = $computer.ToUpper()
-                DFSState         = $DFSStateHash[$DFS.State.ToString()]
-                DFSRServiceState = $dfsrservice.Status
+                ComputerName         = $computer.ToUpper()
+                DFSState             = $DFSStateHash[$DFS.State.ToString()]
+                DFSRServiceState     = $dfsrService.Status
+                DFSRServiceStartType = $dfsrService.StartType
+                NTFRSState           = $ntfrsService.Status
+                NTFRSStartType       = $ntfrsService.StartType  
             })
     
-        $null = $collection.Add($object)
+        $sysvolReplicationProtocolArray.Add($object)
     }
     
-    return $collection    
+    return $sysvolReplicationProtocolArray    
 }
