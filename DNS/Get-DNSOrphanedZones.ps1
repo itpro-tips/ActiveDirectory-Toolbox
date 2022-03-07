@@ -1,4 +1,5 @@
 function Get-DNSOrphanedZones {
+    [CmdletBinding()]
     param(
         # Parameter help description
         [Parameter(Mandatory)]

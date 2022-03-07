@@ -1,9 +1,10 @@
 #requires -version 2
 # Source https://stackoverflow.com/questions/45089582/using-get-childitem-at-root-of-unc-path-servername
 Function Get-NetShares {
-
+    [CmdletBinding()]
     param(
-        [String] $ComputerName
+        [Parameter(Mandatory)]
+        [String] $ComputerName = $env:COMPUTERNAME
     )
     
     Add-Type @'
@@ -57,7 +58,7 @@ public static class NetApi32
                 $ComputerName = 'localhost'
             }
 
-            $object = New-Object -TypeName PSObject -Property @{
+            $object = [PSCustomObject][ordered] @{
                 ComputerName = $ComputerName
                 Name         = $shareInfo.shi1_netname
                 Type         = $shareInfo.shi1_remark

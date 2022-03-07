@@ -1,6 +1,7 @@
 #Requires -Version 3.0
 
 Function Get-NetworkInfo {
+    [CmdletBinding()]
     Param
     (
         [boolean] $DomainControllers,
@@ -10,7 +11,7 @@ Function Get-NetworkInfo {
     if ($DomainControllers) {
         $ComputerName = ([System.DirectoryServices.ActiveDirectory.Domain]::GetCurrentDomain().DomainControllers).Name
     }
-    elseif(-not $ComputerName){
+    elseif (-not $ComputerName) {
         $ComputerName = $env:COMPUTERNAME
     }
 

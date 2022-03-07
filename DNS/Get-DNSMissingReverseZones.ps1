@@ -2,7 +2,8 @@
 # Modified by Bastien Perez (15 january 2021)
 
 function Get-DNSMissingReverseZones {
-	Param(
+	[CmdletBinding()]
+	param(
 		[Parameter(Mandatory)]
 		[String]$DNSServer
 	)
