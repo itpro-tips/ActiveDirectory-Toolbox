@@ -2,7 +2,6 @@ function Get-TCPUDPByProcess {
 
     Param(
         [CmdletBinding()]
-        [Parameter(Mandatory)]
         [String]$ComputerName = $env:COMPUTERNAME
     )
 

@@ -1,7 +1,6 @@
 function Get-WindowsFirewallStatus {
     [CmdletBinding()]
     param(
-        [Parameter(Mandatory)]
         [String]$ComputerName = $env:COMPUTERNAME
     )
 

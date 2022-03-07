@@ -3,7 +3,6 @@
 Function Get-NetShares {
     [CmdletBinding()]
     param(
-        [Parameter(Mandatory)]
         [String] $ComputerName = $env:COMPUTERNAME
     )
     
