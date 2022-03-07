@@ -2,12 +2,13 @@ function Get-TCPUDPByProcess {
 
     Param(
         [Parameter(Mandatory)]
-        $ComputerName
+        $ComputerName = $env:COMPUTERNAME
     )
 
-    function RemoteTCPUDPByProcess {
-        $portsArray = New-Object System.Collections.ArrayList
-        
+    function Get-TCPUDP {
+        #$portsArray = New-Object System.Collections.ArrayList
+        [System.Collections.Generic.List[PSObject]]$portsArray = @()
+
         $processes = @{}
     
         if ((New-Object Security.Principal.WindowsPrincipal([Security.Principal.WindowsIdentity]::GetCurrent())).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
@@ -35,7 +36,9 @@ function Get-TCPUDPByProcess {
         @{Name = 'Path'; Expression = { $processes[[int]$_.OwningProcess].Path } } |
         Sort-Object -Property LocalPort, UserName
     
-        $TCPPorts | ForEach-Object { $null = $portsArray.Add($_) }
+        $TCPPorts | ForEach-Object {
+            $null = $portsArray.Add($_)
+        }
 
         # Query Listening UDP Ports (No Connections in UDP)
         $UDPPorts = Get-NetUDPEndpoint |
@@ -48,15 +51,25 @@ function Get-TCPUDPByProcess {
         @{Name = 'Path'; Expression = { $processes[[int]$_.OwningProcess].Path } } |
         Sort-Object -Property LocalPort, UserName
         foreach ($UDPPort in $UDPPorts) {
-            if ( $UDPPort.LocalAddress -eq '0.0.0.0') { $UDPPort.State = 'Listen' } 
+            if ( $UDPPort.LocalAddress -eq '0.0.0.0') {
+                $UDPPort.State = 'Listen'
+            } 
         }
 
-        $UDPPorts | ForEach-Object { $null = $portsArray.Add($_) }
+        $UDPPorts | ForEach-Object {
+            $null = $portsArray.Add($_)
+        }
 
         return $portsArray
     }
 
-    $TCPUDP = Invoke-Command -ComputerName $ComputerName ${function:RemoteTCPUDPByProcess}
+    # Remote Computer
+    if ($ComputerName -ne 'localhost' -and $ComputerName -ne $env:COMPUTERNAME) {
+        $TCPUDP = Invoke-Command -ComputerName $ComputerName ${function:Get-TCPUDP}
+    }
+    else {
+        $TCPUDP = Get-TCPUDP
+    }
 
     return $TCPUDP
 }
