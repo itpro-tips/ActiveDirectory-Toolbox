@@ -14,7 +14,7 @@ function Get-DNSMissingReverseZones {
 	$reverseResult = New-Object System.Collections.ArrayList
 	$dnsResult = New-Object System.Collections.ArrayList
 
-	$dnsDirectZones = Get-DnsServerZone -ComputerName $DNSServer | Where-Object { $_.ISReverseLookupZone -eq $false }
+	$dnsDirectZones = @(Get-DnsServerZone -ComputerName $DNSServer | Where-Object { $_.ISReverseLookupZone -eq $false })
 	$dnsReverseZones = @(Get-DnsServerZone -ComputerName $DNSServer | Where-Object { $_.IsReverseLookupZone -eq $true })
 
 	foreach ($dnsDirectZone in $dnsDirectZones) {
