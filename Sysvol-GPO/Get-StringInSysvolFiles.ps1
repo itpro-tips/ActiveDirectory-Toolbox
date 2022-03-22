@@ -30,7 +30,7 @@
     
     foreach ($string in $stringSearched) {
         Write-Host -ForegroundColor Cyan "\\$dnsDomain\sysvol - Search pattern '$string' in all sub files..."
-        $found = $sysvolFolders | Select-String -Pattern $string
+        $found = $sysvolFolders | Select-String -Pattern $string -AllMatches
         
         $found | ForEach-Object {
             $object = New-Object -TypeName PSObject -Property ([ordered]@{
