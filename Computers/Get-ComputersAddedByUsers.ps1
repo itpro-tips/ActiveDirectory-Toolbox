@@ -12,7 +12,7 @@ This attribute is not set if the user has Domain Admin permissions or has been d
 A System.Collections.ArrayList with all computers added by non admin users
  
 .NOTES
-    Version : 1.02 - September 2020
+    Version : 1.03 - May 2022
     Author : Bastien Perez - ITPro-Tips (https://itpro-tips.com)
 .LINK
 https://itpro-tips.com
@@ -24,7 +24,7 @@ Function Get-ComputersAddedByUsers {
 
     Import-Module ActiveDirectory
 
-    $ComputersAddedByUsers = New-Object -TypeName "System.Collections.ArrayList"
+    [System.Collections.Generic.List[PSObject]]$ComputersAddedByUsers = @()
 
     Write-Host 'Search objects with Filter ms-DS-CreatorSID=*' -ForegroundColor Cyan
     try {
@@ -32,7 +32,7 @@ Function Get-ComputersAddedByUsers {
     }
     catch {
         Write-Warning "$_.Exception.Message"
-        exit
+        return
     }
 
     foreach ($computerFound in $computersFound) {
@@ -48,15 +48,15 @@ Function Get-ComputersAddedByUsers {
             $objUser = 'Unknown (maybe user deleted from AD)'
         }
             
-        $object = New-Object -TypeName PSObject -Property ([ordered] @{
+        $object = [PSCustomObject][ordered]@{
             ComputerName = $computerFound.Name
             ComputerDN   = $computerFound.DistinguishedName
             UserName     = $objUser
             UserSID      = $objSID
-            WhenCreated  = $computerFound.WhenCreated
-        })
+            WhenCreated  = $computerFound.WhenCreated.ToString('yyyyMMdd-hh:mm:ss')
+        }
 
-        $null = $ComputersAddedByUsers.Add($object)
+        $ComputersAddedByUsers.Add($object)
     }
 
     return $ComputersAddedByUsers
