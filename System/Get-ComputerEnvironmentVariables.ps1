@@ -1,4 +1,4 @@
-function Get-EnvironmentVariables {
+function Get-ComputerEnvironmentVariables {
     [CmdletBinding()]
     param (
         [Parameter()]
