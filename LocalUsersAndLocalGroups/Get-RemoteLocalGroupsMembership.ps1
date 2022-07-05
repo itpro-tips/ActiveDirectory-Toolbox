@@ -10,7 +10,28 @@ function Get-RemoteLocalGroupsMembership {
     foreach ($computer in $computerName) {
     
         $adsi = [ADSI]"WinNT://$Computer,computer"
-                        
+
+        try {
+            # Test ADSI
+            [void]$adsi.Tostring()
+        }
+        catch {
+            Write-Warning $_.Exception.Message
+            $object = [PSCustomObject][ordered]@{
+                Computername     = $Computer
+                GroupName        = $_.Exception.Message
+                GroupDescription = $_.Exception.Message
+                MemberName       = $_.Exception.Message
+                MemberPath       = $_.Exception.Message
+                MemberType       = $_.Exception.Message
+                isGroupMember    = $_.Exception.Message
+            }
+
+            $remoteLocalGroupsMembershipArray.Add($object)
+
+            continue
+        }
+                
         foreach ($adsiObj in $adsi.psbase.children) {
             switch -regex($adsiObj.psbase.SchemaClassName) {
                 "group" {
