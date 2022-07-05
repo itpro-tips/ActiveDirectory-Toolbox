@@ -37,7 +37,8 @@ function Get-RemoteLocalUsers {
                 MinPasswordLength          = $_.Exception.Message
                 ObjectSid                  = $_.Exception.Message
                 Parameters                 = $_.Exception.Message
-                PasswordAge                = $_.Exception.Message
+                PasswordLastSet            = $_.Exception.Message
+                PasswordAgeInDays          = $_.Exception.Message
                 PasswordExpired            = $_.Exception.Message
                 PasswordHistoryLength      = $_.Exception.Message
                 PrimaryGroupID             = $_.Exception.Message
@@ -73,7 +74,8 @@ function Get-RemoteLocalUsers {
                 MinPasswordLength          = $($localUser.MinPasswordLength)
                 ObjectSid                  = $((New-Object System.Security.Principal.SecurityIdentifier($($localUser.ObjectSID), 0))).Value
                 Parameters                 = $($localUser.Parameters)
-                PasswordAge                = $($localUser.PasswordAge)
+                PasswordLastSet            = (Get-Date).AddSeconds( - [int]($($localUser.PasswordAge)))
+                PasswordAgeInDays          = $($localUser.PasswordAge) / 86400
                 PasswordExpired            = $($localUser.PasswordExpired)
                 PasswordHistoryLength      = $($localUser.PasswordHistoryLength)
                 PrimaryGroupID             = $($localUser.PrimaryGroupID)
