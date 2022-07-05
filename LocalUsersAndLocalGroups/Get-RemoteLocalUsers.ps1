@@ -16,7 +16,6 @@ function Get-RemoteLocalUsers {
             [void]$adsi.Tostring()
         }
         catch {
-            Write-Warning $_.Exception.Message
             $object = [PSCustomObject][ordered]@{
                 Computername               = $Computer
                 Name                       = $_.Exception.Message
