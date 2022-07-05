@@ -31,7 +31,7 @@ function Get-ServicePrincipalNames {
         $filter = '(servicePrincipalName=*)'
     }
 
-    $objectsWithSPN = Get-ADObject -LDAPFilter $filter -Properties UserPrincipalName, ObjectCategory, SamAccountName, ServicePrincipalName, AdminCount
+    $objectsWithSPN = Get-ADObject -LDAPFilter $filter -Properties UserPrincipalName, ObjectCategory, SamAccountName, ServicePrincipalName, AdminCount, pwdLastSet
 
     [System.Collections.Generic.List[PSObject]]$SPNObjects = @()
 
@@ -42,35 +42,28 @@ function Get-ServicePrincipalNames {
                 Name                 = $objectWithSPN.Name
                 SamAccountName       = $objectWithSPN.SamAccountName
                 DistinguishedName    = $objectWithSPN.distinguishedName
-                ObjectCategory       = $objectWithSPN.ObjectCategory
-                AdminCount           = if ($objectWithSPN.adminCount -ne 1) { 'null' }else { $objectWithSPN.admincount }
+                ObjectCategory       = $objectWithSPN.ObjectClass
+                LastLogonDate        = if ($objectWithSPN.ObjectClass -eq 'Computer') { (Get-ADComputer $objectWithSPN.distinguishedName -Properties LastLogonDate).LastLogonDate }elseif ($objectWithSPN.ObjectClass -eq 'User') { (Get-ADUser $objectWithSPN.distinguishedName -Properties LastLogonDate).LastLogonDate }else { 'Unknown' }
+                PasswordLastSet      = [datetime]::FromFileTime($objectWithSPN.pwdLastSet)
+                AdminCount           = if ($objectWithSPN.adminCount -ne 1) { '-' }else { $objectWithSPN.admincount }
             }
 
             $SPNObjects.Add($object) 
         }
         else {
-            if ($objectWithSPN.ServicePrincipalName -gt 1) {
-                foreach ($spn in $objectWithSPN.ServicePrincipalName) {
-                    $object = [PSCustomObject][ordered]@{
-                        ServicePrincipalName = $spn
-                        Name                 = $objectWithSPN.Name
-                        SamAccountName       = $objectWithSPN.SamAccountName
-                        DistinguishedName    = $objectWithSPN.distinguishedName
-                        ObjectCategory       = $objectWithSPN.ObjectCategory
-                        AdminCount           = if ($objectWithSPN.adminCount -ne 1) { 'null' }else { $objectWithSPN.admincount }
-                    }
-
-                    $SPNObjects.Add($object) 
-                }
-            }
-            else {
+            foreach ($spn in $objectWithSPN.ServicePrincipalName) {
                 $object = [PSCustomObject][ordered]@{
-                    ServicePrincipalName = $objectWithSPN.ServicePrincipalName
+                    ServicePrincipalName = $spn
                     Name                 = $objectWithSPN.Name
                     SamAccountName       = $objectWithSPN.SamAccountName
                     DistinguishedName    = $objectWithSPN.distinguishedName
-                    ObjectCategory       = $objectWithSPN.ObjectCategory
-                    AdminCount           = if ($objectWithSPN.adminCount -ne 1) { 'null' }else { $objectWithSPN.admincount }
+                    ObjectCategory       = $objectWithSPN.ObjectClass
+                    LastLogonDate        = if ($objectWithSPN.ObjectClass -eq 'Computer') { (Get-ADComputer $objectWithSPN.distinguishedName -Properties LastLogonDate).LastLogonDate }elseif ($objectWithSPN.ObjectClass -eq 'User') { (Get-ADUser $objectWithSPN.distinguishedName -Properties LastLogonDate).LastLogonDate }else { 'Unknown' }
+                    AdminCount           = if ($objectWithSPN.adminCount -ne 1) { '-' }else { $objectWithSPN.admincount }
+                    PasswordLastSet      = [datetime]::FromFileTime($objectWithSPN.pwdLastSet)
+                    SPNService           = $spn.Split('/')[0]
+                    SPNComputer          = $spn.split('/')[1].split(':')[0]
+                    SPNPort              = $spn.Split(':')[1]
                 }
 
                 $SPNObjects.Add($object) 
