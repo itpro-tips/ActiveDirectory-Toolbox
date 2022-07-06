@@ -31,7 +31,7 @@ function Get-ServicePrincipalNames {
         $filter = '(servicePrincipalName=*)'
     }
 
-    $objectsWithSPN = Get-ADObject -LDAPFilter $filter -Properties UserPrincipalName, ObjectCategory, SamAccountName, ServicePrincipalName, AdminCount, pwdLastSet
+    $objectsWithSPN = Get-ADObject -LDAPFilter $filter -Properties UserPrincipalName, ObjectCategory, SamAccountName, ServicePrincipalName, AdminCount, pwdLastSet, lastLogonTimestamp
 
     [System.Collections.Generic.List[PSObject]]$SPNObjects = @()
 
@@ -43,7 +43,7 @@ function Get-ServicePrincipalNames {
                 SamAccountName       = $objectWithSPN.SamAccountName
                 DistinguishedName    = $objectWithSPN.distinguishedName
                 ObjectCategory       = $objectWithSPN.ObjectClass
-                LastLogonDate        = if ($objectWithSPN.ObjectClass -eq 'Computer') { (Get-ADComputer $objectWithSPN.distinguishedName -Properties LastLogonDate).LastLogonDate }elseif ($objectWithSPN.ObjectClass -eq 'User') { (Get-ADUser $objectWithSPN.distinguishedName -Properties LastLogonDate).LastLogonDate }else { 'Unknown' }
+                LastLogonDate        = [datetime]::FromFileTime($objectWithSPN.lastLogonTimestamp)
                 PasswordLastSet      = [datetime]::FromFileTime($objectWithSPN.pwdLastSet)
                 AdminCount           = if ($objectWithSPN.adminCount -ne 1) { '-' }else { $objectWithSPN.admincount }
             }
@@ -58,7 +58,7 @@ function Get-ServicePrincipalNames {
                     SamAccountName       = $objectWithSPN.SamAccountName
                     DistinguishedName    = $objectWithSPN.distinguishedName
                     ObjectCategory       = $objectWithSPN.ObjectClass
-                    LastLogonDate        = if ($objectWithSPN.ObjectClass -eq 'Computer') { (Get-ADComputer $objectWithSPN.distinguishedName -Properties LastLogonDate).LastLogonDate }elseif ($objectWithSPN.ObjectClass -eq 'User') { (Get-ADUser $objectWithSPN.distinguishedName -Properties LastLogonDate).LastLogonDate }else { 'Unknown' }
+                    LastLogonDate        = [datetime]::FromFileTime($objectWithSPN.lastLogonTimestamp)
                     AdminCount           = if ($objectWithSPN.adminCount -ne 1) { '-' }else { $objectWithSPN.admincount }
                     PasswordLastSet      = [datetime]::FromFileTime($objectWithSPN.pwdLastSet)
                     SPNService           = $spn.Split('/')[0]
