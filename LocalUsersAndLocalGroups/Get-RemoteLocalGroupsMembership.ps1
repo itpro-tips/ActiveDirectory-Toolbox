@@ -22,9 +22,8 @@ function Get-RemoteLocalGroupsMembership {
                 GroupDescription = $_.Exception.Message
                 MemberName       = $_.Exception.Message
                 MemberPath       = $_.Exception.Message
-                MemberType       = $_.Exception.Message
                 PrincipalSource  = $_.Exception.Message
-                isGroupMember    = $_.Exception.Message
+                MemberIsAGroup   = $_.Exception.Message
             }
 
             $remoteLocalGroupsMembershipArray.Add($object)
@@ -60,9 +59,8 @@ function Get-RemoteLocalGroupsMembership {
                                 GroupDescription = $($localGroup.Description)
                                 MemberName       = $name
                                 MemberPath       = $path
-                                MemberType       = $type
                                 PrincipalSource  = $principalSource
-                                isGroupMember    = $isGroup
+                                MemberIsAGroup   = $isGroup
                             }
                             $remoteLocalGroupsMembershipArray.Add($object)
                         }
@@ -76,7 +74,7 @@ function Get-RemoteLocalGroupsMembership {
                             MemberPath       = '-'
                             MemberType       = '-'
                             PrincipalSource  = '-'
-                            isGroupMember    = '-'
+                            MemberIsAGroup   = '-'
                         }
                         $remoteLocalGroupsMembershipArray.Add($object)
                     }
