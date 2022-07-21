@@ -226,7 +226,7 @@ Function Find-MissingADSubnets {
 		}
 		else {
 			Write-Host 0 -ForegroundColor Red
-			Exit
+			return
 		}
 	
 		$i = 1
@@ -264,7 +264,7 @@ Function Find-MissingADSubnets {
 			}
 		
 			if ( $Confirm -like "n*" ) {
-				Exit
+				return
 			}
 			else {
 				# Connect to the current forest
@@ -346,7 +346,7 @@ Function Find-MissingADSubnets {
 		}
 		else {
 			Write-Host 0 -ForegroundColor Red
-			Exit
+			return
 		}
 	}
 

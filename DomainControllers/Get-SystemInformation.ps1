@@ -60,7 +60,7 @@ Function Get-SystemInformation {
 
     if (-not (Get-InstalledModule GetSystemInfo -ErrorAction SilentlyContinue)) {
         Write-Warning 'Please install GetSystemInfo first: Install-Module GetSystemInfo'
-        exit 1
+        return
     }
 
     if ($DomainControllers) {

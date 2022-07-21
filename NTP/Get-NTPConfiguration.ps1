@@ -83,7 +83,7 @@ Function Get-NTPConfiguration {
         $currentPrincipal = New-Object Security.Principal.WindowsPrincipal([Security.Principal.WindowsIdentity]::GetCurrent())
         if (-not $currentPrincipal.IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
             Write-Warning "Please run PowerShell as administrator"
-            exit
+            return
         }
 
         $command = 'w32tm.exe'
