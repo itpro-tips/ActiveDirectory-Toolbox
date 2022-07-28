@@ -43,8 +43,8 @@ Function Get-NetworkInfo {
                         Gateway             = $network.DefaultIPGateway -join '|'
                         IsDHCPEnabled       = $isDHCPEnabled
                         DNSServersSearch    = $network.DNSServerSearchOrder -join '|'
-                        WINSPrimaryserver   = $networks.WINSPrimaryServer
-                        WINSSecondaryserver = $networks.WINSSecondaryserver
+                        WINSPrimaryserver   = $network.WINSPrimaryServer
+                        WINSSecondaryserver = $network.WINSSecondaryserver
                     })
 
                 $null = $collection.Add($object)
