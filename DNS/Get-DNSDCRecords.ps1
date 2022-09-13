@@ -1,22 +1,24 @@
 # Get the record A (host type) which are not domain controller on the root domain
 function Get-DNSDCRecords {
     Param(
-        [Parameter(Mandatory)]
-        [String]$DNSServer,
-        [Parameter(Mandatory)]
+        [Parameter(Mandatory = $false)]
         [String]$Domain,
-        [string[]]$Zones = $domain
+        [string[]]$Zones
     )
 	
-    $dnsCmdLet = $true
-
     [System.Collections.Generic.List[PSObject]]$allDCIP = @()
     [System.Collections.Generic.List[PSObject]]$records = @()
+
+    if (-not $domain) {
+        $domain = [System.DirectoryServices.ActiveDirectory.Domain]::GetCurrentDomain().Name
+    }
+
+    $dnsCmdLet = $true
 
     # Works with all Windows version (2012+ can use Resolve-DNSName)
     
     try {
-        Get-ADDomainController -Filter {Domain -eq $Domain} -ErrorAction Stop| ForEach-Object {
+        Get-ADDomainController -Filter { Domain -eq $Domain } -ErrorAction Stop | ForEach-Object {
             $allDCIP.Add($_.Ipv4Address)
         }
     }

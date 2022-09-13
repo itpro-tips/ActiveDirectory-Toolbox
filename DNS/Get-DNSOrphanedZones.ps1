@@ -1,19 +1,23 @@
 function Get-DNSOrphanedZones {
     [CmdletBinding()]
     param(
-        # Parameter help description
-        [Parameter(Mandatory)]
-        [String]$DomainNamingContext
     )
-    $DNSOrphanedZones = New-Object System.Collections.ArrayList
+    
+    [System.Collections.Generic.List[PSObject]]$DNSOrphanedZones = @()
+    
+    $domainNamingContext = (Get-ADRootDSE).defaultnamingcontext
 
-    Get-ADObject -SearchBase "CN=MicrosoftDNS,DC=DomainDnsZones,$DomainNamingContext" -SearchScope OneLevel -Filter { Name -like '*CNF:*' } | ForEach-Object {
-        $null = $DNSOrphanedZones.Add($_.DistinguishedName)
+    Get-ADObject -SearchBase "CN=MicrosoftDNS,DC=DomainDnsZones,$domainNamingContext" -SearchScope OneLevel -Filter { Name -like '*CNF:*' } | ForEach-Object {
+        $DNSOrphanedZones.Add($_.DistinguishedName)
     }
     
-    Get-ADObject -SearchBase "CN=MicrosoftDNS,DC=ForestDnsZones,$DomainNamingContext" -SearchScope OneLevel -Filter { Name -like '*CNF:*' } | ForEach-Object {
-        $null = $DNSOrphanedZones.Add($_.DistinguishedName)
+    Get-ADObject -SearchBase "CN=MicrosoftDNS,DC=ForestDnsZones,$domainNamingContext" -SearchScope OneLevel -Filter { Name -like '*CNF:*' } | ForEach-Object {
+        $DNSOrphanedZones.Add($_.DistinguishedName)
     }
     
+    if (-not $DNSOrphanedZones) {
+        Write-Host -ForegroundColor Green 'No DNS Orphaned Zones'
+    }
+
     return $DNSOrphanedZones
 }
