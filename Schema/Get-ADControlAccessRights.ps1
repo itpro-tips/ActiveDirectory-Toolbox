@@ -21,7 +21,7 @@
 
 
 param([string]$CAR = "*",
-    [ValidateSet(“CONTROL”, ”PROP”, ”SELF”)] 
+    [ValidateSet("CONTROL", "PROP", "SELF")] 
     [String] 
     $Type = "" ,
     [string]$ApplyTo,
