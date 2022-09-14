@@ -8,8 +8,7 @@ $results = @()
 [System.Collections.Generic.List[PSObject]] $non_orphan_results = @()
 
 $flagged_object = foreach ($domain in (Get-ADForest).domains) {
-    Get-ADObject -Filter 'admincount -eq 1 -and iscriticalsystemobject -notlike "*"' 
-        -Server $domain `
+    Get-ADObject -Filter 'admincount -eq 1 -and iscriticalsystemobject -notlike "*"' -Server $domain `
         -Properties whenchanged, whencreated, admincount, isCriticalSystemObject, "msDS-ReplAttributeMetaData", samaccountname |`
         Select-Object @{name = 'Domain'; expression = { $domain } }, distinguishedname, whenchanged, whencreated, admincount, `
         SamAccountName, objectclass, isCriticalSystemObject, @{name = 'adminCountDate'; expression = { ($_ | `
