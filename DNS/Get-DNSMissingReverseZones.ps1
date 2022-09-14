@@ -4,7 +4,7 @@
 function Get-DNSMissingReverseZones {
 	[CmdletBinding()]
 	param(
-		[Parameter(Mandatory)]
+		[Parameter(Mandatory = $false)]
 		[String]$DNSServer
 	)
 
@@ -14,11 +14,23 @@ function Get-DNSMissingReverseZones {
 	[System.Collections.Generic.List[PSCustomObject]]$reverseResult = @()
 	[System.Collections.Generic.List[PSCustomObject]]$dnsResult = @()
 
-	$dnsDirectZones = @(Get-DnsServerZone -ComputerName $DNSServer | Where-Object { $_.ISReverseLookupZone -eq $false })
-	$dnsReverseZones = @(Get-DnsServerZone -ComputerName $DNSServer | Where-Object { $_.IsReverseLookupZone })
+	if ($DNSServer) {
+		$dnsDirectZones = @(Get-DnsServerZone -ComputerName $DNSServer | Where-Object { $_.ISReverseLookupZone -eq $false })
+		$dnsReverseZones = @(Get-DnsServerZone -ComputerName $DNSServer | Where-Object { $_.IsReverseLookupZone })
+	}
+	else {
+		$dnsDirectZones = @(Get-DnsServerZone | Where-Object { $_.ISReverseLookupZone -eq $false })
+		$dnsReverseZones = @(Get-DnsServerZone  | Where-Object { $_.IsReverseLookupZone })
+	}
 
 	foreach ($dnsDirectZone in $dnsDirectZones) {
-		$ips = Get-DnsServerResourceRecord -ComputerName $DNSServer -ZoneName $dnsDirectZone.ZoneName | Select-Object HostName, @{n = 'RecordData'; e = { if ($_.RecordData.IPv4Address.IPAddressToString) { $_.RecordData.IPv4Address.IPAddressToString } else { "" } } }
+		if ($DNSServer) {
+			$ips = Get-DnsServerResourceRecord -ComputerName $DNSServer -ZoneName $dnsDirectZone.ZoneName | Select-Object HostName, @{n = 'RecordData'; e = { if ($_.RecordData.IPv4Address.IPAddressToString) { $_.RecordData.IPv4Address.IPAddressToString } else { "" } } }
+		}
+		else {
+			$ips = Get-DnsServerResourceRecord -ZoneName $dnsDirectZone.ZoneName | Select-Object HostName, @{n = 'RecordData'; e = { if ($_.RecordData.IPv4Address.IPAddressToString) { $_.RecordData.IPv4Address.IPAddressToString } else { "" } } }
+		}
+		
 		#Where-Object {($_.RecordData -ne '') -and ($_.RecordType -eq 'A' -or $_.RecordType -eq 'AAAA')}).RecordData.IPV4Address.IPAddressToString
 		
 		$ips | ForEach-Object {

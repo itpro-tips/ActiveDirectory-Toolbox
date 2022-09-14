@@ -6,14 +6,18 @@ Function Get-GPOMissingOrUnknownPermissions {
     $domainComputersSID = [string](Get-ADDomain).DomainSID + '-515'
     $domainComputersSID = New-Object System.Security.Principal.SecurityIdentifier ($domainComputersSID)
     $domainComputersGroupName = ($domainComputersSID.Translate([System.Security.Principal.NTAccount])).Value
+
+    $domainUsersSID = [string](Get-ADDomain).DomainSID + '-513'
+    $domainUsersSID = New-Object System.Security.Principal.SecurityIdentifier ($domainUsersSID)
+    $domainUsersSIDGroupName = ($domainUsersSID.Translate([System.Security.Principal.NTAccount])).Value
   
-    $MissingPermissionsGPOArray = New-Object System.Collections.ArrayList
+    [System.Collections.Generic.List[PSCustomObject]]$missingPermissionsGPOArray = @()
     
     Write-Host 'Get all Group Policy Objects' -ForegroundColor Cyan
 
     $GPOs = Get-GPO -All
   
-    Write-Host 'Get all Group Policy Objects permmissions' -ForegroundColor Cyan
+    Write-Host 'Get all Group Policy Objects permissions' -ForegroundColor Cyan
     
     $i = 0
     
@@ -33,7 +37,7 @@ Function Get-GPOMissingOrUnknownPermissions {
                 $unknownSID = $GPOPermission.Trustee.Sid
             }
             # Read in AD instead of Get-GPPermission because Permission returned does not present Read Permission if many permission exist
-            $read = ((Get-Acl "AD:\$($GPO.Path)").Access | Where-Object { ($_.IdentityReference -eq "$domainComputersGroupName" -or $_.IdentityReference -eq "$authenticatedUsersGroupName") -and $_.ActiveDirectoryRights -match 'Read' }).AccessControlType
+            $read = ((Get-Acl "AD:\$($GPO.Path)").Access | Where-Object { ($_.IdentityReference -eq "$domainComputersGroupName" -or $_.IdentityReference -eq "$domainUsersSIDGroupName" -or $_.IdentityReference -eq "$authenticatedUsersGroupName") -and $_.ActiveDirectoryRights -match 'Read' }).AccessControlType
             
             if ($read -eq 'Allow') {
                 $readPermission = $true
@@ -41,7 +45,7 @@ Function Get-GPOMissingOrUnknownPermissions {
         }
   
         if (-not $readPermission) {
-            $problem = "None 'Read' permissions for Domain Computers or Authenticated users"
+            $problem = "None 'Read' permissions for Domain Users/Computers or Authenticated users (maybe you use a group instead?)"
         }
 
         if ($unknownSID) {
@@ -68,14 +72,14 @@ Function Get-GPOMissingOrUnknownPermissions {
                     WmiFilter        = $gpo.WmiFilter
                 })
   
-            $null = $MissingPermissionsGPOArray.Add($obj)
+            $missingPermissionsGPOArray.Add($obj)
         }
     }
   
     # We also search in AD because if Authenticated Users are 'Deny' rights, the Get-GPO cmdlet does not return this GPO
     $GPOinAD = Get-ADObject -SearchBase "CN=Policies,CN=System,$((Get-ADRootDSE).defaultNamingContext)" -SearchScope OneLevel -Filter * 
     
-    # If we cannot get the Name, it probalby means User Authenticated has Deny permission
+    # If we cannot get the Name, it probably means User Authenticated has Deny permission
     $GPOinAD | Where-Object { $null -eq $_.Name } | ForEach-Object {
   
         $Obj = New-Object -TypeName PSObject -Property ([ordered]@{
@@ -93,12 +97,12 @@ Function Get-GPOMissingOrUnknownPermissions {
                 WmiFilter        = '-'
             })
   
-        $null = $MissingPermissionsGPOArray.Add($obj)
+        $missingPermissionsGPOArray.Add($obj)
     }
   
-    if ($MissingPermissionsGPOArray.Count -ne 0) {
-        Write-Warning  "$($MissingPermissionsGPOArray.Count) Group Policy Objects do not grant any read permissions to the 'Authenticated Users' or 'Domain Computers' groups."
-        return $MissingPermissionsGPOArray
+    if ($missingPermissionsGPOArray.Count -ne 0) {
+        Write-Warning  "$($missingPermissionsGPOArray.Count) Group Policy Objectswith some issues."
+        return $missingPermissionsGPOArray
     }
     else {
         Write-Host 'All Group Policy Objects grant required permissions. No issues were found.' -ForegroundColor Green
