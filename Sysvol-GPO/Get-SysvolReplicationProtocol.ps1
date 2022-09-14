@@ -36,19 +36,21 @@ function Get-SysvolReplicationProtocol {
     
     foreach ($computer in $computers) {
         Write-Host "Processing $computer" -ForegroundColor Cyan
-        $DFS = Get-WmiObject -Namespace "root\MicrosoftDFS" -Class DfsrReplicatedFolderInfo -ComputerName $computer | Where-Object { $_.ReplicatedFolderName -eq 'SYSVOL Share' } | Select-Object ReplicatedFolderName, ReplicationGroupName, State
-    
+        if ($dfsObjects -ne 0) {
+            $DFS = Get-WmiObject -Namespace "root\MicrosoftDFS" -Class DfsrReplicatedFolderInfo -ComputerName $computer | Where-Object { $_.ReplicatedFolderName -eq 'SYSVOL Share' } | Select-Object ReplicatedFolderName, ReplicationGroupName, State
+        }
+        
         $dfsrService = Get-Service dfsr -ComputerName $computer
         $ntfrsService = Get-Service ntfrs -ComputerName $computer
 
-        $object = New-Object -TypeName PSObject -Property ([ordered]@{
+        $object = [PSCustomObject][ordered]@{
                 ComputerName         = $computer.ToUpper()
-                DFSState             = $DFSStateHash[$DFS.State.ToString()]
+                DFSState             = if ($DFS) { $DFSStateHash[$DFS.State.ToString()] } else { 'NotEnabled' }
                 DFSRServiceState     = $dfsrService.Status
                 DFSRServiceStartType = $dfsrService.StartType
                 NTFRSState           = $ntfrsService.Status
                 NTFRSStartType       = $ntfrsService.StartType  
-            })
+            }
     
         $sysvolReplicationProtocolArray.Add($object)
     }
