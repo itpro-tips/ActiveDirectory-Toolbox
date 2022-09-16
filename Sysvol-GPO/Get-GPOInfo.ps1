@@ -72,7 +72,7 @@ Function Get-GPOInfo {
         [System.Collections.Generic.List[PSCustomObject]]$gpoACLsArray = @()
 
         $XmlGPReport.gpo.SecurityDescriptor.Permissions.TrusteePermissions | ForEach-Object -Process {
-            $gpoPerms = "$($_.trustee.name.'#Text')~$($_.Standard.GPOGroupedAccessEnum)~$($_.type.PermissionType)~$($_.Inherited)"
+            $gpoPerms = "$($_.trustee.name.'#Text')#$($_.Standard.GPOGroupedAccessEnum)#$($_.type.PermissionType)#$($_.Inherited)"
             <#$gpoPerms = [PSCustomObject][ordered]@{
                 'User'           = $_.trustee.name.'#Text'
                 'PermissionType' = $_.type.PermissionType
@@ -84,30 +84,51 @@ Function Get-GPOInfo {
             $gpoACLsArray.add($gpoPerms)
         }
 
-        #Output
+        [System.Collections.Generic.List[PSCustomObject]]$linksToArray = @()
+
+        if ($null -ne $XmlGPReport.GPO.LinksTo) {
+            $XmlGPReport.GPO.LinksTo | ForEach-Object {
+                $enforced = $false
+                $enabled = $false
+
+                if ($_.NoOverride -eq 'true') {
+                    $enforced = $true
+                }
+
+                if ($_.Enabled -eq 'true') {
+                    $enabled = $true
+                }
+            
+                $linksTo = "$($_.SOMPath)#Enabled=$enabled#Enforced=$enforced"
+
+                $linksToArray.add($linksTo)
+            }
+        }
+
         $object = [PSCustomObject][ordered]@{
-            'Name'                                = $XmlGPReport.GPO.Name
-            'LinksTo'                             = if ($null -ne $XmlGPReport.GPO.LinksTo) { ($XmlGPReport.GPO.LinksTo | Select-Object -ExpandProperty SOMPath) -join '|' }else { 'Unlinked' }
-            'Description'                         = $GPO.Description -replace "`t|`n|`r", "\n" # remove return char
-            'GpoStatus'                           = $GPO.GpoStatus
-            'UserSettingsEnabled'                 = $XmlGPReport.GPO.User.Enabled
-            'ComputerSettingsEnabled'             = $XmlGPReport.GPO.Computer.Enabled
-            'UserSettingsVersionDirectory'        = $XmlGPReport.GPO.User.VersionDirectory
-            'UserSettingsVersionSysvol'           = $XmlGPReport.GPO.User.VersionSysvol
-            'ComputerSettingsVersionDirectory'    = $XmlGPReport.GPO.Computer.VersionDirectory
-            'ComputerSettingsVersionSysvol'       = $XmlGPReport.GPO.Computer.VersionSysvol
-            'DirectoryAndSysvolVersionMatch'      = if ($XmlGPReport.GPO.User.VersionDirectory -eq $XmlGPReport.GPO.User.VersionSysvol -and $XmlGPReport.GPO.Computer.VersionDirectory -eq $XmlGPReport.GPO.Computer.VersionSysvol) { $true }else { $false }
-            'HasComputerSettings'                 = if ($null -eq $XmlGPReport.GPO.Computer.ExtensionData) { $false }else { $true }
-            'HasUserSettings'                     = if ($null -eq $XmlGPReport.GPO.User.ExtensionData) { $false }else { $true }
-            'CreationTime'                        = $GPO.CreationTime
-            'ModificationTime'                    = $GPO.ModificationTime
-            'GUID'                                = $GPO.Id
-            'WMIFilter'                           = $GPO.WmiFilter.name
-            'WMIFilterDescription'                = $GPO.WmiFilter.Description
-            'Path'                                = $GPO.Path
-            'Id'                                  = $GPO.Id
-            'User~Perms~PermissionType~Inherited' = $gpoACLsArray -join '|'
-            'SDDL'                                = $XmlGPReport.GPO.SecurityDescriptor.SDDL.'#text'
+            'Name'                             = $XmlGPReport.GPO.Name
+            'LinksTo'                          = if ($null -ne $XmlGPReport.GPO.LinksTo) { (($XmlGPReport.GPO.LinksTo).SOMPath) -join '|' }else { 'Unlinked' }
+            'Description'                      = $GPO.Description -replace "`t|`n|`r", "\n" # remove return char
+            'GpoStatus'                        = $GPO.GpoStatus
+            'UserSettingsEnabled'              = $XmlGPReport.GPO.User.Enabled
+            'ComputerSettingsEnabled'          = $XmlGPReport.GPO.Computer.Enabled
+            'UserSettingsVersionDirectory'     = $XmlGPReport.GPO.User.VersionDirectory
+            'UserSettingsVersionSysvol'        = $XmlGPReport.GPO.User.VersionSysvol
+            'ComputerSettingsVersionDirectory' = $XmlGPReport.GPO.Computer.VersionDirectory
+            'ComputerSettingsVersionSysvol'    = $XmlGPReport.GPO.Computer.VersionSysvol
+            'DirectoryAndSysvolVersionMatch'   = if ($XmlGPReport.GPO.User.VersionDirectory -eq $XmlGPReport.GPO.User.VersionSysvol -and $XmlGPReport.GPO.Computer.VersionDirectory -eq $XmlGPReport.GPO.Computer.VersionSysvol) { $true }else { $false }
+            'HasComputerSettings'              = if ($null -eq $XmlGPReport.GPO.Computer.ExtensionData) { $false }else { $true }
+            'HasUserSettings'                  = if ($null -eq $XmlGPReport.GPO.User.ExtensionData) { $false }else { $true }
+            'CreationTime'                     = $GPO.CreationTime
+            'ModificationTime'                 = $GPO.ModificationTime
+            'GUID'                             = $GPO.Id
+            'WMIFilter'                        = $GPO.WmiFilter.name
+            'WMIFilterDescription'             = $GPO.WmiFilter.Description
+            'Path'                             = $GPO.Path
+            'Id'                               = $GPO.Id
+            'LinksToDetails'                   = $linksToArray -join '|'
+            'ACLs'                             = $gpoACLsArray -join '|'
+            'SDDL'                             = $XmlGPReport.GPO.SecurityDescriptor.SDDL.'#text'
         }
 
         $gpoInfoArray.Add($object)
