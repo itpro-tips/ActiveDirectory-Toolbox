@@ -1,9 +1,14 @@
-﻿function Get-StringInSysvolFiles {    
-    $filesFound = New-Object System.Collections.ArrayList
-    
-    $dnsDomain = $env:USERDNSDOMAIN
-    $netbiosDomain = $env:userdomain
-    
+﻿function Get-StringInSysvolFiles {
+    [CmdletBinding()]
+    Param(
+        [Parameter(Mandatory = $false)]
+        [String]$dnsDomain = $env:USERDNSDOMAIN,
+        [Parameter(Mandatory = $false)]
+        [String]   $netbiosDomain = $env:userdomain
+    )    
+
+    [System.Collections.Generic.List[PSCustomObject]]$filesFound = @()
+        
     #space or no space \s*
     $stringSearched = @(
         'password\s?=',
@@ -33,13 +38,13 @@
         $found = $sysvolFolders | Select-String -Pattern $string -AllMatches
         
         $found | ForEach-Object {
-            $object = New-Object -TypeName PSObject -Property ([ordered]@{
-                    Path       = $_.Path
-                    LineNumber = $_.LineNumber
-                    Line       = $_.Line
-                })
+            $object = [PSCustomObject][ordered]@{
+                Path       = $_.Path
+                LineNumber = $_.LineNumber
+                Line       = $_.Line
+            }
     
-            $null = $filesFound.add($object)
+            $filesFound.add($object)
         }
     }
     

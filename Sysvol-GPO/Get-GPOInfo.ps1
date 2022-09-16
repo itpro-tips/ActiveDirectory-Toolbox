@@ -43,10 +43,9 @@ Function Get-GPOInfo {
     Unlinked GPO.
 
 #>
-    [cmdletbinding()]
+    [CmdletBinding()]
     Param(
         [Parameter(Mandatory = $false)]
-        [ValidateScript({ Test-Connection $_ -Count 1 -Quiet })]
         [String]$DomainName = $env:USERDNSDOMAIN
     )
 

@@ -1,4 +1,7 @@
 Function Get-GPOMissingOrUnknownPermissions {
+    
+    [System.Collections.Generic.List[PSCustomObject]]$missingPermissionsGPOArray = @()
+
     $authenticatedUsersSID = 'S-1-5-11'
     $authenticatedUsersGroupName = New-Object System.Security.Principal.SecurityIdentifier ($authenticatedUsersSID)
     $authenticatedUsersGroupName = ($authenticatedUsersGroupName.Translate([System.Security.Principal.NTAccount])).Value
@@ -6,8 +9,6 @@ Function Get-GPOMissingOrUnknownPermissions {
     $domainComputersSID = [string](Get-ADDomain).DomainSID + '-515'
     $domainComputersSID = New-Object System.Security.Principal.SecurityIdentifier ($domainComputersSID)
     $domainComputersGroupName = ($domainComputersSID.Translate([System.Security.Principal.NTAccount])).Value
-  
-    [System.Collections.Generic.List[PSCustomObject]]$missingPermissionsGPOArray = @()
     
     Write-Host 'Get all Group Policy Objects' -ForegroundColor Cyan
 
