@@ -6,10 +6,6 @@ Function Get-GPOMissingOrUnknownPermissions {
     $domainComputersSID = [string](Get-ADDomain).DomainSID + '-515'
     $domainComputersSID = New-Object System.Security.Principal.SecurityIdentifier ($domainComputersSID)
     $domainComputersGroupName = ($domainComputersSID.Translate([System.Security.Principal.NTAccount])).Value
-
-    $domainUsersSID = [string](Get-ADDomain).DomainSID + '-513'
-    $domainUsersSID = New-Object System.Security.Principal.SecurityIdentifier ($domainUsersSID)
-    $domainUsersSIDGroupName = ($domainUsersSID.Translate([System.Security.Principal.NTAccount])).Value
   
     [System.Collections.Generic.List[PSCustomObject]]$missingPermissionsGPOArray = @()
     
@@ -37,7 +33,7 @@ Function Get-GPOMissingOrUnknownPermissions {
                 $unknownSID = $GPOPermission.Trustee.Sid
             }
             # Read in AD instead of Get-GPPermission because Permission returned does not present Read Permission if many permission exist
-            $read = ((Get-Acl "AD:\$($GPO.Path)").Access | Where-Object { ($_.IdentityReference -eq "$domainComputersGroupName" -or $_.IdentityReference -eq "$domainUsersSIDGroupName" -or $_.IdentityReference -eq "$authenticatedUsersGroupName") -and $_.ActiveDirectoryRights -match 'Read' }).AccessControlType
+            $read = ((Get-Acl "AD:\$($GPO.Path)").Access | Where-Object { ($_.IdentityReference -eq "$domainComputersGroupName" -or -or $_.IdentityReference -eq "$authenticatedUsersGroupName") -and $_.ActiveDirectoryRights -match 'Read' }).AccessControlType
             
             if ($read -eq 'Allow') {
                 $readPermission = $true
