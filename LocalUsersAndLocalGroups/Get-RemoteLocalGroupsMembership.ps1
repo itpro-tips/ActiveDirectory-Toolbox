@@ -8,7 +8,7 @@ function Get-RemoteLocalGroupsMembership {
     [System.Collections.Generic.List[PSObject]]$remoteLocalGroupsMembershipArray = @()
 
     foreach ($computer in $computerName) {
-    
+
         $adsi = [ADSI]"WinNT://$Computer,computer"
 
         try {
@@ -16,9 +16,12 @@ function Get-RemoteLocalGroupsMembership {
             [void]$adsi.Tostring()
         }
         catch {
-            # Try with invoke Command because sometimes the newtork path is not found
-            $adsi = Invoke-Command -ComputerName $computer -ScriptBlock {
-                [ADSI]"WinNT://$env:COMPUTERNAME,computer"
+            # Try with invoke-command if not the local computer and load the function because sometimes the network path is not found
+            if ($env:COMPUTERNAME -ne $computer) {
+            
+                $adsi = Invoke-Command -ComputerName $computer -ScriptBlock {
+                    [ADSI]"WinNT://$env:COMPUTERNAME,computer"
+                }
             }
 
             try {
