@@ -26,21 +26,25 @@ foreach ($group in $highPrivilegedGroups) {
         $object = [PSCustomObject][ordered]@{
             GroupName                                                                 = $group.Name
             SamAccountName                                                            = $member.SamAccountName
-            Enabled                                                                   = if ($member.Enabled) { 'Yes' }else { 'No' }
-            Active                                                                    = if ($(Get-Date).AddDays(-90) -lt $member.lastLogonDate ) { 'Yes' }else { 'No' }
-            'Pwd never Expired'                                                       = if ($member.PasswordNeverExpires) { 'Yes' }else { 'No' }
-            'Locked'                                                                  = if ($member.LockedOut) { 'Yes' }else { 'No' }
-            'Smart Card required'                                                     = if ($member.SmartcardLogonRequired) { 'Yes' }else { 'No' }
-            'Service account (has SPN attribute used now or in the past for service)' = if ($member.ServicePrincipalName -like '*') { 'Yes' }else { 'No' }
-            'Flag Cannot be delegated present'                                        = if ($member.AccountNotDelegated) { 'Yes' }else { 'No' }
+            Enabled                                                                   = if ($member.Enabled) { 'Yes' } else { 'No' }
+            Active                                                                    = if ($(Get-Date).AddDays(-90) -lt $member.lastLogonDate ) { 'Yes' } else { 'No' }
+            'Pwd never Expired'                                                       = if ($member.PasswordNeverExpires) { 'Yes' } else { 'No' }
+            'Locked'                                                                  = if ($member.LockedOut) { 'Yes' } else { 'No' }
+            'Smart Card required'                                                     = if ($member.SmartcardLogonRequired) { 'Yes' } else { 'No' }
+            'Service account (has SPN attribute used now or in the past for service)' = if ($member.ServicePrincipalName -like '*') { 'Yes' } else { 'No' }
+            'Flag Cannot be delegated present'                                        = if ($member.AccountNotDelegated) { 'Yes' } else { 'No' }
             'Creation date'                                                           = $member.whenCreated
-            'Last login'                                                              = if ($member.lastLogonDate) { $member.lastLogonDate }else { 'Never' }
+            'Last login'                                                              = if ($member.lastLogonDate) { $member.lastLogonDate } else { 'Never' }
             'Password last set'                                                       = $member.PasswordLastSet
-            'In Protected Users'                                                      = if ($protectedusers.DistinguishedName -contains $member.DistinguishedName) { 'Yes' }else { 'No' }
+            'In Protected Users'                                                      = if ($protectedusers.DistinguishedName -contains $member.DistinguishedName) { 'Yes' } else { 'No' }
             'Distinguished name'                                                      = $member.DistinguishedName
             DirectMember                                                              = $directMember
+            ObjectClass                                                               = $member.ObjectClass
+            OperatingSystem                                                           = if ($member.OperatingSystem) { $member.OperatingSystem } else { '-' }
         }
 
         $high.Add($object)
     }
 }
+
+return $high

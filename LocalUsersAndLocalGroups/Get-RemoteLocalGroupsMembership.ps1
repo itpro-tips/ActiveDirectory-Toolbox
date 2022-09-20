@@ -16,19 +16,29 @@ function Get-RemoteLocalGroupsMembership {
             [void]$adsi.Tostring()
         }
         catch {
-            $object = [PSCustomObject][ordered]@{
-                Computername     = $Computer
-                GroupName        = $_.Exception.Message
-                GroupDescription = $_.Exception.Message
-                MemberName       = $_.Exception.Message
-                MemberPath       = $_.Exception.Message
-                PrincipalSource  = $_.Exception.Message
-                MemberIsAGroup   = $_.Exception.Message
+            # Try with invoke Command because sometimes the newtork path is not found
+            $adsi = Invoke-Command -ComputerName $computer -ScriptBlock {
+                [ADSI]"WinNT://$env:COMPUTERNAME,computer"
             }
 
-            $remoteLocalGroupsMembershipArray.Add($object)
+            try {
+                [void]$adsi.Tostring()
+            }
+            catch {
+                $object = [PSCustomObject][ordered]@{
+                    Computername     = $Computer
+                    GroupName        = $_.Exception.Message
+                    GroupDescription = $_.Exception.Message
+                    MemberName       = $_.Exception.Message
+                    MemberPath       = $_.Exception.Message
+                    PrincipalSource  = $_.Exception.Message
+                    MemberIsAGroup   = $_.Exception.Message
+                }
 
-            continue
+                $remoteLocalGroupsMembershipArray.Add($object)
+
+                continue
+            }
         }
                 
         foreach ($adsiObj in $adsi.psbase.children) {
@@ -62,6 +72,7 @@ function Get-RemoteLocalGroupsMembership {
                                 PrincipalSource  = $principalSource
                                 MemberIsAGroup   = $isGroup
                             }
+
                             $remoteLocalGroupsMembershipArray.Add($object)
                         }
                     }
@@ -76,6 +87,7 @@ function Get-RemoteLocalGroupsMembership {
                             PrincipalSource  = '-'
                             MemberIsAGroup   = '-'
                         }
+
                         $remoteLocalGroupsMembershipArray.Add($object)
                     }
                 }
