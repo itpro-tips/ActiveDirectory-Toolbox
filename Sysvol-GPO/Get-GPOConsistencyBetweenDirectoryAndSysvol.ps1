@@ -1,5 +1,5 @@
 ﻿# Get GPO in Active Directory and Sysvol and compare if present
-function Get-GPOConsistencyArrayBetweenDirectoryAndSysvol {
+function Get-GPOConsistencyBetweenDirectoryAndSysvol {
     Param(
         [Parameter(Mandatory = $false)]
         [string[]]$DomainController,
