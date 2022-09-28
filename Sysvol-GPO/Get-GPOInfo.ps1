@@ -1,4 +1,4 @@
-Function Get-GPOInfo {
+function Get-GPOInfo {
     <#
 .SYNOPSIS
     This function retrieves some informations about all the GPO's in a given domain.
