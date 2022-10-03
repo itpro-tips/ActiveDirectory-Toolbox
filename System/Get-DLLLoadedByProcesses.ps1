@@ -4,7 +4,7 @@ function Get-DLLLoadedByProcesses {
         [Parameter(Mandatory = $false)]
         [String]$ComputerName,
         [Parameter(Mandatory = $false)]
-        [String[]]$ProcessName
+        [String]$ProcessName
     )
     
     [System.Collections.Generic.List[PSObject]]$dllArray = @()

@@ -2,13 +2,18 @@ function Get-ComputerEnvironmentVariables {
     [CmdletBinding()]
     param (
         [Parameter()]
-        [String[]]$ComputerName
+        [String]$ComputerName
     )
 
     [System.Collections.Generic.List[PSObject]]$environmentVariablesArray = @()
 
-    $environmentVariables = Invoke-Command -ComputerName $ComputerName { Get-ChildItem env: }
-  
+    if ($ComputerName) {
+        $environmentVariables = Invoke-Command -ComputerName $ComputerName { Get-ChildItem env: }
+    }
+    else {
+        $environmentVariables = Get-ChildItem env:
+    }
+    
     $defaultEnvironmentVariables = @(
         'ALLUSERSPROFILE',
         'APPDATA',
