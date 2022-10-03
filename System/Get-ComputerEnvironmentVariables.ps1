@@ -11,6 +11,7 @@ function Get-ComputerEnvironmentVariables {
         $environmentVariables = Invoke-Command -ComputerName $ComputerName { Get-ChildItem env: }
     }
     else {
+        $computerName = $env:COMPUTERNAME
         $environmentVariables = Get-ChildItem env:
     }
     
@@ -54,7 +55,7 @@ function Get-ComputerEnvironmentVariables {
   
     foreach ($environmentVariable in $environmentVariables) {
         $object = [PSCustomObject][ordered] @{
-            Computer                      = $Computer
+            ComputerName                  = $ComputerName
             EnvironmentVariable           = $environmentVariable.Name
             EnvironmentVariableValue      = $environmentVariable.Value
             IsADefaultEnvironmentVariable = if ($defaultEnvironmentVariables -contains $environmentVariable.Name) { $true }else { $false }

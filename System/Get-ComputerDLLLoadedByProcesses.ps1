@@ -1,4 +1,4 @@
-function Get-DLLLoadedByProcesses {
+function Get-ComputerDLLLoadedByProcesses {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory = $false)]
@@ -9,11 +9,12 @@ function Get-DLLLoadedByProcesses {
     
     [System.Collections.Generic.List[PSObject]]$dllArray = @()
 
-    if($ProcessName){
+    if ($ProcessName) {
         if ($computerName) {
             $allProcesses = Get-Process -ComputerName $ComputerName -ProcessName $ProcessName
         }
         else {
+            $computerName = $env:COMPUTERNAME
             $allProcesses = Get-Process -ProcessName $ProcessName
         }
     }
@@ -22,6 +23,7 @@ function Get-DLLLoadedByProcesses {
             $allProcesses = Get-Process -ComputerName $ComputerName
         }
         else {
+            $computerName = $env:COMPUTERNAME
             $allProcesses = Get-Process
         }
     }    
@@ -30,6 +32,7 @@ function Get-DLLLoadedByProcesses {
         foreach ($module in $process.modules) {
 
             $object = [PSCustomObject][ordered]@{
+                ComputerName         = $ComputerName
                 Process              = $process.Name
                 ProcessID            = $process.ID
                 ModuleName           = $module.ModuleName

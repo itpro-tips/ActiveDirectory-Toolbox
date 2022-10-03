@@ -24,6 +24,7 @@ function Get-ComputerPublicIPAddress {
         $ipAddress = Invoke-Command -ComputerName $ComputerName { Invoke-RestMethod -Method Get -Uri $args[0] } -ArgumentList $getIP
     }
     else {
+        $computerName = $env:COMPUTERNAME
         $ipAddress = Invoke-RestMethod -Method Get -Uri $getIP
     }
    
@@ -34,6 +35,7 @@ function Get-ComputerPublicIPAddress {
     }
 
     $object = [PSCustomObject][ordered] @{
+        ComputerName     = $computerName
         IP               = $ipAddress.ip
         Country          = $ipAddress.country
         City             = $ipAddress.city

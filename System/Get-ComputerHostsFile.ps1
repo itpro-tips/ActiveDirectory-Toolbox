@@ -35,6 +35,7 @@ function Get-ComputerHostsFile {
         $hostsFileContent = Invoke-Command -ComputerName $ComputerName { Get-Content $args[0] } -ArgumentList $HostsFilePath
     }
     else {
+        $computerName = $env:COMPUTERNAME
         $hostsFileContent = Get-Content $HostsFilePath -ErrorAction Stop
     }
 
@@ -56,6 +57,7 @@ function Get-ComputerHostsFile {
             }
     
             $object = [PSCustomObject][ordered] @{
+                Computer   = $env:COMPUTERNAME
                 IPAddress  = $IpAddress
                 Hostname   = $Matches['Hostname']
                 IsValidIP  = [Net.IPAddress]::TryParse($ipAddress, [Ref] $TestIP)
