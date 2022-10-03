@@ -39,7 +39,7 @@ function Get-ComputerPublicIPAddress {
         City             = $ipAddress.city
         Longitude        = $ipAddress.longitude
         Latitude         = $ipAddress.latitude
-        Blacklisted      = if (($ipAddress.blacklisted.results | Where-Object { $_.blacklisted}).count -gt 0) { $true } else { $false }
+        Blacklisted      = if (($ipAddress.blacklisted.results | Where-Object { $_.blacklisted }).count -gt 0) { $true } else { $false }
         BlacklistDetails = $blackListedArray -join '|'
         Organization     = $ipAddress.organization
         GMaps            = "https://maps.google.com/?q=$($ipAddress.latitude),$($ipAddress.longitude)"
