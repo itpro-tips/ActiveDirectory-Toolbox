@@ -34,7 +34,7 @@ function Get-ComputerHostsFile {
 
         if (-not $HostsFilePath) {
             $systemRoot = Invoke-Command -ComputerName $ComputerName { $env:SystemRoot }
-            $HostsFilePath = "SystemRoot\System32\Drivers\etc\hosts"
+            $HostsFilePath = "$SystemRoot\System32\Drivers\etc\hosts"
         }
 
         $hostsFileContent = Invoke-Command -ComputerName $ComputerName { Get-Content $args[0] } -ArgumentList $HostsFilePath
@@ -43,6 +43,7 @@ function Get-ComputerHostsFile {
         if (-not $HostsFilePath) {
             $HostsFilePath = "$env:SystemRoot\System32\Drivers\etc\hosts"
         }
+
         $computerName = $env:COMPUTERNAME
         $hostsFileContent = Get-Content $HostsFilePath -ErrorAction Stop
     }
