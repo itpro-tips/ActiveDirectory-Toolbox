@@ -21,7 +21,11 @@ function Get-ComputerPublicIPAddress {
     $getIP = 'https://am.i.mullvad.net/json'
 
     if ($ComputerName) {
-        $ipAddress = Invoke-Command -ComputerName $ComputerName { Invoke-RestMethod -Method Get -Uri $args[0] } -ArgumentList $getIP
+        $ipAddress = Invoke-Command -ComputerName $ComputerName -ScriptBlock {
+            Param($uri)
+            [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+            Invoke-RestMethod -Method Get -Uri $uri
+        } -ArgumentList $getIP
     }
     else {
         $computerName = $env:COMPUTERNAME
