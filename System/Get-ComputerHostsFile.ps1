@@ -21,7 +21,10 @@ function Get-ComputerHostsFile {
     #>
     
     Param (
+        # Parameter help description
+        [Parameter(Mandatory = $false)]
         [String]$HostsFilePath,
+        [Parameter(Mandatory = $false)]
         [String]$ComputerName
     )
     
@@ -57,7 +60,7 @@ function Get-ComputerHostsFile {
             }
     
             $object = [PSCustomObject][ordered] @{
-                Computer   = $env:COMPUTERNAME
+                Computer   = $ComputerName
                 IPAddress  = $IpAddress
                 Hostname   = $Matches['Hostname']
                 IsValidIP  = [Net.IPAddress]::TryParse($ipAddress, [Ref] $TestIP)
