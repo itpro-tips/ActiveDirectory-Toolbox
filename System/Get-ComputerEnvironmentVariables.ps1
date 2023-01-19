@@ -1,7 +1,7 @@
 function Get-ComputerEnvironmentVariables {
     [CmdletBinding()]
     param (
-        [Parameter()]
+        [Parameter(Mandatory = $false)]
         [String]$ComputerName
     )
 
