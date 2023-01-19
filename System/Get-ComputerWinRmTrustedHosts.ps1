@@ -38,7 +38,7 @@ function Get-ComputerWinRmTrustedHosts {
     if ([String]::IsNullOrEmpty($trustedHosts)) {            
         $object = [PSCustomObject][ordered]@{
             ComputerName = $ComputerName
-            TrustedHost  = 'Nothing'
+            TrustedHost  = '-'
         }
 
         $trustedHostsArray.Add($object)
