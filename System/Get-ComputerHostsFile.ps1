@@ -45,7 +45,7 @@ function Get-ComputerHostsFile {
     $lineNumber = 0
 
     foreach ($line in $hostsFileContent) {
-        $lineNum++
+        $lineNumber++
         $commentLine = '^\s*#'
         $hostLine = '^\s*(?<IPAddress>\S+)\s+(?<Hostname>\S+)(\s*|\s+#(?<Comment>.*))$'
     
