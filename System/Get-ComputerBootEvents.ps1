@@ -151,19 +151,19 @@ function Get-ComputerBootEvents {
         #>
             switch -regex ($bootEvent.message) {
                 '0x0' {
-                    $lastShutdownOrRebootType = 'Full shutdown or reboot (0x0)'
+                    $previousShutdownOrRebootType = 'Full shutdown or reboot (0x0)'
                     break
                 }
                 '0x1' {
-                    $lastShutdownOrRebootType = 'Shutdown with fast boot (0x1)'
+                    $previousShutdownOrRebootType = 'Shutdown with fast boot (0x1)'
                     break
                 }
                 '0x2' {
-                    $lastShutdownOrRebootType = 'Resume from hibernation (0x2)'
+                    $previousShutdownOrRebootType = 'Resume from hibernation (0x2)'
                     break
                 }
                 default {
-                    $lastShutdownOrRebootType = "Unknown $($bootEvent.message)"
+                    $previousShutdownOrRebootType = "Unknown $($bootEvent.message)"
                     break
                 }
             }
@@ -175,7 +175,7 @@ function Get-ComputerBootEvents {
                 BootTimeDifferenceRaw    = New-TimeSpan -Start $bootEvent.TimeCreated -End $now
                 IsLastBootTime           = $isLastBootTime
                 FastStartupEnabled       = $fastStartupEnabled
-                LastShutdownOrRebootType = $lastShutdownOrRebootType
+                PreviousShutdownOrRebootType = $previousShutdownOrRebootType
             }
 
             $startEventsArray.Add($object)
@@ -194,7 +194,7 @@ function Get-ComputerBootEvents {
             BootTimeDifferenceRaw    = New-TimeSpan -Start $bootEvent.TimeCreated -End $now
             IsLastBootTime           = $true
             FastStartupEnabled       = $fastStartupEnabled
-            LastShutdownOrRebootType = 'Unknown'
+            PreviousShutdownOrRebootType = 'Unknown'
         }
     }
 
