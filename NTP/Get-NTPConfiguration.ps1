@@ -52,7 +52,7 @@ function Get-NTPConfiguration {
 
         [Parameter(Position = 0, ValueFromPipeline = $True,
             HelpMessage = 'An array (comma separated) of computer names. The default is the local computer.')]
-        [string[]]$ComputerName = $env:COMPUTERNAME,
+        [string[]]$ComputerName,
         [switch]$DomainControllers
     )
 
@@ -87,32 +87,27 @@ function Get-NTPConfiguration {
     if ($domainControllers) {
         $ComputerName = ([System.DirectoryServices.ActiveDirectory.Domain]::GetCurrentDomain().DomainControllers).Name
     }
-
+    elseif ($computerName -eq $null) {
+        $computerName = 'localhost'
+    }
+    
     foreach ($computer in $ComputerName) {
         Write-Verbose "Processing $computer"
 
-        try {
-            $session = New-PSSession -ComputerName $computer -ErrorAction SilentlyContinue
-        }
-        catch {
-            Write-Warning "Unable to create a PSSession to $computer"
-            continue
-        }
-
-        $w32Info = Invoke-Command -Session $session -ScriptBlock {
+        if ($computer -eq 'localhost') {
             $w32timeService = Get-Service -Name w32time
             $w32tmDumpReg = w32tm /dumpreg /subkey:parameters
             $source = w32tm /query /source
             $timeZone = (Get-WmiObject win32_timeZone).Caption
-
+        
             $temp = w32tm /query /status | Select-Object -Skip 6
             $lastSync = (($temp | Select-Object -First 1) -Split ": ")[1]
             $pollInterval = $temp | Select-Object -Skip 2 -First 1
-
+        
             $rawLocalDateTime = Get-WmiObject win32_OperatingSystem -Property LocalDateTime
             [datetime]$remoteDateTime = $rawLocalDateTime.convertToDatetime($rawLocalDateTime.LocalDateTime)  
-        
-            $object = [PSObject][ordered]@{
+                
+            $w32Info = [PSObject][ordered]@{
                 Computer       = $env:COMPUTERNAME
                 w32timeService = $w32timeService
                 w32tmDumpReg   = $w32tmDumpReg
@@ -122,8 +117,43 @@ function Get-NTPConfiguration {
                 pollInterval   = $pollInterval
                 DateTime       = $remoteDateTime
             }
+        }
+        else {
+
+            try {
+                $session = New-PSSession -ComputerName $computer -ErrorAction SilentlyContinue
+            }
+            catch {
+                Write-Warning "Unable to create a PSSession to $computer"
+                continue
+            }
+
+            $w32Info = Invoke-Command -Session $session -ScriptBlock {
+                $w32timeService = Get-Service -Name w32time
+                $w32tmDumpReg = w32tm /dumpreg /subkey:parameters
+                $source = w32tm /query /source
+                $timeZone = (Get-WmiObject win32_timeZone).Caption
+
+                $temp = w32tm /query /status | Select-Object -Skip 6
+                $lastSync = (($temp | Select-Object -First 1) -Split ": ")[1]
+                $pollInterval = $temp | Select-Object -Skip 2 -First 1
+
+                $rawLocalDateTime = Get-WmiObject win32_OperatingSystem -Property LocalDateTime
+                [datetime]$remoteDateTime = $rawLocalDateTime.convertToDatetime($rawLocalDateTime.LocalDateTime)  
         
-            return $object
+                $object = [PSObject][ordered]@{
+                    Computer       = $env:COMPUTERNAME
+                    w32timeService = $w32timeService
+                    w32tmDumpReg   = $w32tmDumpReg
+                    source         = $source
+                    timeZone       = $timeZone
+                    lastSync       = $lastSync
+                    pollInterval   = $pollInterval
+                    DateTime       = $remoteDateTime
+                }
+        
+                return $object
+            }
         }
 
         $typeSync = $w32Info.w32tmDumpReg | Select-String -Pattern 'Type                       REG_SZ'
@@ -141,7 +171,7 @@ function Get-NTPConfiguration {
                 break
             }
             'NT5DS' {
-                $syncType = 'Time synchronization from the domain hierarchy. But please check the Source parameters, it MUST be the PDC Emulator.'
+                $syncType = 'Time synchronization from the domain hierarchy. Check the Source parameters. if the computer is a DC, the source MUST be the PDC Emulator. Otherwise it can be any DC.'
                 break
             }
             'AllSync' {
@@ -172,7 +202,7 @@ function Get-NTPConfiguration {
             Description      = $syncType
             Source           = $w32Info.source
             TimeZone         = $w32Info.timeZone
-            RemoteTime       = $w32Info.remoteDateTime
+            RemoteTime       = $w32Info.DateTime
             LastSync         = $w32Info.lastSync
             PollInterval     = $w32Info.pollInterval
             Win32TimeService = $w32Info.w32timeService.Status
