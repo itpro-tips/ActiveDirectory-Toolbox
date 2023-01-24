@@ -144,7 +144,7 @@ function Get-ComputerBootEvents {
         $isLastBootTime = $true
 
         foreach ($bootEvent in $bootEvents) {
-            <# eventID 27 message
+        <# eventID 27 message
         0x0: Full shutdown or reboot
         0x1: Shutdown with fast boot
         0x2: Resume from hibernation
