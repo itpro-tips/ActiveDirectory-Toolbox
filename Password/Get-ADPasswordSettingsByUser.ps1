@@ -2,14 +2,22 @@
     [CmdletBinding()]
     param (
         [Parameter(Mandatory = $false)]
-        [string[]]$SamAccountName
+        [string[]]$SamAccountName,
+        [Parameter(Mandatory = $false)]
+        [string]$DomainController
     )
     Import-Module ActiveDirectory
     
     [System.Collections.Generic.List[PSObject]]$passwordSettingsByUser = @()
     
     #$defautPasswordPolicyObject = (Get-GPInheritance -Target (Get-ADDomain).DistinguishedName).inheritedGpoLinks | Select-Object -First 1
-    $defautPasswordPolicyObject = Get-ADDefaultDomainPasswordPolicy
+    if (-not $DomainController) {
+        # choose PDC emulator
+        $domain = [System.DirectoryServices.ActiveDirectory.Domain]::GetCurrentDomain()
+        $DomainController = $domain.PdcRoleOwner.Name
+    }
+
+    $defautPasswordPolicyObject = Get-ADDefaultDomainPasswordPolicy -Server $DomainController
     $defautPasswordPolicyDays = $defautPasswordPolicyObject.MaxPasswordAge.Days
     
     if ($SamAccountName) {
@@ -17,7 +25,7 @@
 
         foreach ($sam in $SamAccountName) {
             try {
-                $u = Get-ADUser -Identity $sam -Properties DisplayName, msDS-UserPasswordExpiryTimeComputed, PasswordNeverExpires, pwdLastSet, Enabled -ErrorAction Stop
+                $u = Get-ADUser -Identity $sam -Properties DisplayName, msDS-UserPasswordExpiryTimeComputed, PasswordNeverExpires, pwdLastSet, Enabled, badPwdCount, badPasswordTime, LastLogonDate -ErrorAction Stop -Server $DomainController
             
                 $users.Add($u)
             }
@@ -29,7 +37,7 @@
     }
     else {
         try {
-            $users = Get-ADUser -Filter * -Properties DisplayName, msDS-UserPasswordExpiryTimeComputed, PasswordNeverExpires, pwdLastSet, Enabled -ErrorAction Stop
+            $users = Get-ADUser -Filter * -Properties DisplayName, msDS-UserPasswordExpiryTimeComputed, PasswordNeverExpires, pwdLastSet, Enabled, badPwdCount, badPasswordTime, LastLogonDate -ErrorAction Stop -Server $DomainController
         }
         catch {
             Write-Warning "$($_.Exception.Message)"
@@ -40,7 +48,7 @@
     foreach ($user in $users) {
         $passwordPolicyMaxPasswordAge = $null
 
-        $fineGrainedPassword = Get-ADUserResultantPasswordPolicy -Identity $user.SamAccountName
+        $fineGrainedPassword = Get-ADUserResultantPasswordPolicy -Identity $user.SamAccountName -Server $DomainController
         
         switch ($fineGrainedPassword.Name) {
             $null {
@@ -111,7 +119,10 @@
             LockoutDuration                                            = $lockoutDuration
             LockoutObservationWindow                                   = $lockoutDuration
             LockoutThreshold                                           = $lockoutThreshold
-
+            LastLogonDate                                              = if ($user.LastLogonDate) { $user.LastLogonDate }else { 'Never logged in' }
+            BadPwdCount                                                = $user.BadPwdCount
+            BadPasswordTime                                            = [datetime]::FromFileTimeUTC($user.BadPasswordTime) # is integer, convert to datetime
+            FromDomainController                                       = $DomainController
         }
     
         $passwordSettingsByUser.add($object)
