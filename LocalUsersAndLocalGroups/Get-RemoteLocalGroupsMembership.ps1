@@ -1,8 +1,10 @@
 function Get-RemoteLocalGroupsMembership {
     [CmdletBinding()]
     param (
-        [Parameter()]
-        [String[]]$ComputerName
+        [Parameter(Mandatory = $false)]
+        [String[]]$ComputerName,
+        [Parameter(Mandatory = $false)]
+        [String[]]$GroupName
     )
 
     [System.Collections.Generic.List[PSObject]]$remoteLocalGroupsMembershipArray = @()
@@ -13,7 +15,7 @@ function Get-RemoteLocalGroupsMembership {
 
         try {
             # Test ADSI
-            [void]$adsi.Tostring()
+            #[void]$adsi.Tostring()
         }
         catch {
             # Try with invoke-command if not the local computer and load the function because sometimes the network path is not found
@@ -25,17 +27,19 @@ function Get-RemoteLocalGroupsMembership {
             }
 
             try {
-                [void]$adsi.Tostring()
+                #[void]$adsi.Tostring()
             }
             catch {
+                $errorMessage = $_.Exception.Message
+
                 $object = [PSCustomObject][ordered]@{
-                    Computername     = $Computer
-                    GroupName        = $_.Exception.Message
-                    GroupDescription = $_.Exception.Message
-                    MemberName       = $_.Exception.Message
-                    MemberPath       = $_.Exception.Message
-                    PrincipalSource  = $_.Exception.Message
-                    MemberIsAGroup   = $_.Exception.Message
+                    Computername          = $Computer
+                    GroupName             = $errorMessage
+                    GroupDescription      = $errorMessage
+                    MemberName            = $errorMessage
+                    MemberType            = $errorMessage
+                    MemberPath            = $errorMessage
+                    MemberPrincipalSource = $errorMessage
                 }
 
                 $remoteLocalGroupsMembershipArray.Add($object)
@@ -43,57 +47,65 @@ function Get-RemoteLocalGroupsMembership {
                 continue
             }
         }
-                
-        foreach ($adsiObj in $adsi.psbase.children) {
-            switch -regex($adsiObj.psbase.SchemaClassName) {
-                "group" {
-                    $group = $adsiObj.name
-                    $localGroup = [ADSI]"WinNT://$computer/$group,group"
-                    $members = @($localgroup.psbase.Invoke("Members"))
-                        
-                    $GName = $group.tostring()
-                                    
-                    if ($members) {
-                        foreach ($member In $members) {
-                            $name = $member.GetType().InvokeMember("Name", "GetProperty", $Null, $Member, $Null)
-                            $path = $member.GetType().InvokeMember("ADsPath", "GetProperty", $Null, $Member, $Null)
-                        
-                            $isGroup = ($member.GetType().InvokeMember("Class", "GetProperty", $Null, $Member, $Null) -eq "group")
-                            if (($path -like "*/$computer/*") -Or ($path -like "WinNT://NT*")) {
-                                $principalSource = 'Local'
-                            }
-                            else { 
-                                $principalSource = 'ActiveDirectory'
-                            }
-                        
-                            $object = [PSCustomObject][ordered]@{
-                                Computername     = $Computer
-                                GroupName        = $GName
-                                GroupDescription = $($localGroup.Description)
-                                MemberName       = $name
-                                MemberPath       = $path
-                                PrincipalSource  = $principalSource
-                                MemberIsAGroup   = $isGroup
-                            }
+        
+        if ($GroupName) {
+            $adsi = [ADSI]"WinNT://$Computer/$GroupName,group"
+        }
 
-                            $remoteLocalGroupsMembershipArray.Add($object)
-                        }
+        $adsi.psbase.children |  Where-Object { $_.psbase.schemaClassName -eq 'group' } | ForEach-Object {
+
+            $group = $adsiObj.name
+            $localGroup = [ADSI]"WinNT://$computer/$group,group"
+            $members = @($localgroup.psbase.Invoke('Members'))
+                    
+            $GName = $group.tostring()
+                                    
+            if ($members) {
+                foreach ($member In $members) {
+                    $path = $null
+
+                    $name = $member.GetType().InvokeMember('Name', 'GetProperty', $null, $Member, $null)
+                    $path = $member.GetType().InvokeMember('ADsPath', 'GetProperty', $null, $Member, $null)
+                    $memberType = $member.GetType().InvokeMember('Class', 'GetProperty', $null, $Member, $null)
+                    
+                    if (($path -like "*/$computer/*") -Or ($path -like 'WinNT://NT*')) {
+                        $principalSource = 'Local'
+                    }
+                    elseif ($path -like 'WinNT://AzureAD/*') {
+                        $principalSource = 'AzureAD'
+                    }
+                    elseif ($path -like 'WinNT://S-1*') {
+                        $principalSource = 'Problably AzureAD'
                     }
                     else {
-                        $object = [PSCustomObject][ordered]@{
-                            Computername     = $Computer
-                            GroupName        = $GName
-                            GroupDescription = $($localGroup.Description)
-                            MemberName       = '-'
-                            MemberPath       = '-'
-                            MemberType       = '-'
-                            PrincipalSource  = '-'
-                            MemberIsAGroup   = '-'
-                        }
-
-                        $remoteLocalGroupsMembershipArray.Add($object)
+                        $principalSource = 'ActiveDirectory'
                     }
+                        
+                    $object = [PSCustomObject][ordered]@{
+                        Computername          = $Computer
+                        GroupName             = $GName
+                        GroupDescription      = $($localGroup.Description)
+                        MemberName            = $name
+                        MemberType            = $memberType
+                        MemberPath            = $path
+                        MemberPrincipalSource = $principalSource
+                    }
+
+                    $remoteLocalGroupsMembershipArray.Add($object)
                 }
+            }
+            else {
+                $object = [PSCustomObject][ordered]@{
+                    Computername          = $Computer
+                    GroupName             = $GName
+                    GroupDescription      = $($localGroup.Description)
+                    MemberName            = '-'
+                    MemberType            = '-'
+                    MemberPath            = '-'
+                    MemberPrincipalSource = '-'
+                }
+
+                $remoteLocalGroupsMembershipArray.Add($object)
             }
         }
     }
