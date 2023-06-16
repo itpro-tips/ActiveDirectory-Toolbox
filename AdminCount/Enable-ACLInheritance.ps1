@@ -21,39 +21,7 @@ Function Enable-ACLInheritance {
         Write-Warning "$DistinguishedName does not exist"
         return
     }
-
-    $obj = "AD:$DistinguishedName"
-    $acl = Get-ACL -Path $obj
-
-    if ($Simulation) {
-        Write-Host -ForegroundColor Cyan "[SIMULATION] $DistinguishedName - Enable inheritance"
-    }
-    else {
-        if ($acl.AreAccessRulesProtected) {
-            Write-Host -ForegroundColor Cyan "$DistinguishedName - Enable inheritance"
-            <# https://learn.microsoft.com/en-us/dotnet/api/system.security.accesscontrol.objectsecurity.setaccessruleprotection?view=net-7.0
-            AreAccessRulesProtected(bool isProtected, bool preserveInheritance);
-            - isProtected:
-                true to protect the access rules associated with this ObjectSecurity object from inheritance
-                false to allow inheritance
-            - preserveInheritance
-            true to preserve inherited access rules
-            false to remove inherited access rules. This parameter is ignored if isProtected is false.
-            #>
-            
-            $acl.SetAccessRuleProtection($False, $True)
-            try {
-                Set-Acl -Path $obj -AclObject $acl -ErrorAction Stop    
-            }
-            catch {
-                Write-Warning $_.Exception.Message
-            }
-        }
-        else {
-            Write-Host -ForegroundColor Green "$DistinguishedName - Inheritance already enabled"
-        }
-    }
-    
+        
     if ($currentObject.adminCount) {
         if ($Simulation) {
             Write-Host -ForegroundColor Cyan "[SIMULATION] $DistinguishedName - Clear admincount attribute"
@@ -74,6 +42,29 @@ Function Enable-ACLInheritance {
         }
         else {
             Write-Host -ForegroundColor Green "$DistinguishedName - admincount already cleared"
+        }
+    }
+
+    $obj = "AD:$DistinguishedName"
+    $acl = Get-ACL -Path $obj
+
+    if ($Simulation) {
+        Write-Host -ForegroundColor Cyan "[SIMULATION] $DistinguishedName - Enable inheritance"
+    }
+    else {
+        if ($acl.AreAccessRulesProtected) {
+            Write-Host -ForegroundColor Cyan "$DistinguishedName - Enable inheritance"
+            $acl.SetAccessRuleProtection($false, $true)
+
+            try {
+                Set-Acl -Path $obj -AclObject $acl -ErrorAction Stop    
+            }
+            catch {
+                Write-Warning $_.Exception.Message
+            }
+        }
+        else {
+            Write-Host -ForegroundColor Green "$DistinguishedName - Inheritance already enabled"
         }
     }
 }
