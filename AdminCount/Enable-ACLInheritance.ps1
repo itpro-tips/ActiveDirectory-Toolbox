@@ -11,7 +11,7 @@ Function Enable-ACLInheritance {
         [Parameter(Mandatory)]
         [String]$DistinguishedName,
         [Parameter(Mandatory = $false)]
-        [Boolean]$Simulation
+        [switch]$Simulation
     )
 
     try {
