@@ -1,6 +1,7 @@
 # Get-ADObjectMetadata 'DN' -Attributes ObjectClass,sn, cn
 # we can also use Get-ADReplicationAttributeMetadata 'xxxx' -Server xxx
 function Get-ADObjectMetadata {
+    [CmdletBinding()]
     Param(
         [Parameter(Mandatory = $true)]
         [String] $ObjectDN,

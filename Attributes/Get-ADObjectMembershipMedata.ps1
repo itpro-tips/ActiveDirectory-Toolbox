@@ -1,8 +1,9 @@
 # we can also use Get-ADReplicationAttributeMetadata 'dn' -Server VYGECOADY01PWV -ShowAllLinkedValues -Filter {isLinkValue -eq $true} | Out-GridView
 
 Function Get-ADGroupMembershipMetadata {
+    [CmdletBinding()]
     Param(
-        [Parameter(Mandatory = $true, Position = 1)]
+        [Parameter(Mandatory = $true)]
         [String] $GroupDN
     )
 
