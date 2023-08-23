@@ -9,10 +9,11 @@ If a computer object is added to a domain by a regular user, the 'ms-DS-CreatorS
 This attribute is not set if the user has Domain Admin permissions or has been delegated the permission to create computers objects at the computers creation time.
 
 .OUTPUTS
-A System.Collections.ArrayList with all computers added by non admin users
+A System.Collections.ArrayList with all computers added by regular users (ie. users without built-in Admin permissions).
+If you have some tiering in your domain, you will find some computers added by users with tiering permissions, it's not a problem.
  
 .NOTES
-    Version : 1.03 - May 2022
+    Version : 1.1 - August 2023
     Author : Bastien Perez - ITPro-Tips (https://itpro-tips.com)
 .LINK
 https://itpro-tips.com
@@ -20,13 +21,24 @@ If you have any problem, any bug, please tell me.
 Github : https://github.com/itpro-tips/ActiveDirectory-Toolbox/blob/master/Computers/Get-ComputersAddedByUsers.ps1
 #>
 
-Function Get-ComputersAddedByUsers {
+function Get-ComputersAddedByUsers {
 
-    Import-Module ActiveDirectory
+    # Import module if get-adobject is not recognized
+    if (-not(Get-Command Get-ADObject -ErrorAction SilentlyContinue)) {
+        try {
+            Import-Module ActiveDirectory -ErrorAction Stop
+        }
+        catch {
+            Write-Warning "Unable to import ActiveDirectory module : $($_.Exception.Message)"
+            return
+        }
+    }
+    
 
     [System.Collections.Generic.List[PSObject]]$ComputersAddedByUsers = @()
 
-    Write-Host 'Search objects with Filter ms-DS-CreatorSID=*' -ForegroundColor Cyan
+    Write-Host 'Search objects with ms-DS-CreatorSID not empty' -ForegroundColor Cyan
+
     try {
         $computersFound = Get-ADObject -LDAPFilter 'ms-DS-CreatorSID=*' -Properties ms-DS-CreatorSID, WhenCreated
     }
@@ -45,7 +57,7 @@ Function Get-ComputersAddedByUsers {
             $objUser = $objSID.Translate([System.Security.Principal.NTAccount])
         }
         catch {
-            $objUser = 'Unknown (maybe user deleted from AD)'
+            $objUser = 'Unknown user (maybe user deleted from AD)'
         }
             
         $object = [PSCustomObject][ordered]@{
