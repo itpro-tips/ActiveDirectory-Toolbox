@@ -8,7 +8,7 @@
 Add-Type -AssemblyName "System.DirectoryServices.Protocols"
 
 # Get domain details
-$rootDSE = Get-ADRootDSE
+$rootDSE = [ADSI]'LDAP://RootDSE'
 $domainDN = $rootDSE.defaultNamingContext
 $domainServer = ($rootDSE.dnsHostName)
 
