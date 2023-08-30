@@ -1,5 +1,3 @@
-#source https://itfordummies.net/2017/10/02/invoke-active-directory-sdprop-powershell/
-
 Function Invoke-ADSDPropagation{
     <#
     .SYNOPSIS
@@ -8,7 +6,7 @@ Function Invoke-ADSDPropagation{
         Make an LDAP call to trigger SDProp.
     .EXAMPLE
         Invoke-ADSDPropagation
-        By default, RunProtectAdminGroupsTask is used.
+        By default, RunProtectAdminGroupsTask is used for Windows Server 2008R2 and later.
     .EXAMPLE
         Invoke-ADSDPropagation -TaskName FixUpInheritance
         Use the legacy FixUpInheritance task name for Windows Server 2003 and earlier.
