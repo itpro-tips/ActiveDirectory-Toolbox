@@ -14,8 +14,8 @@ Function Invoke-ADSDPropagation{
         Use the legacy FixUpInheritance task name for Windows Server 2003 and earlier.
     .PARAMETER TaskName
         Name of the task to use.
-            - FixUpInheritance for legacy OS
-            - RunProtectAdminGroupsTask for recent OS
+            - FixUpInheritance for legacy OS (2008 or earlier)
+            - RunProtectAdminGroupsTask for recent OS (from 2008 R2)
     .INPUTS
     .OUTPUTS
     .NOTES
