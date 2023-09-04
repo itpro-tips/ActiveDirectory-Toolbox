@@ -53,3 +53,29 @@ else {
 }
 
 return $OrphanResults
+
+<#
+AdminSDProtectFrequency (DWORD) dans HKLM\SYSTEM\CurrentControlSet\Services\NTDS\Parameters
+
+Get this value in the registry and convert it to a readable format:
+#>
+# if null, it is because the value is not set and the default is 3600 seconds
+
+try {
+    $AdminSDProtectFrequency = (Get-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\NTDS\Parameters' -Name AdminSDProtectFrequency).AdminSDProtectFrequency
+}
+catch {
+    $AdminSDProtectFrequency = 3600
+}
+$AdminSDProtectFrequency
+
+# change it to 60 seconds with a DWORD
+Set-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\NTDS\Parameters' -Name AdminSDProtectFrequency -Value 60 -Type DWord
+
+try {
+    $AdminSDProtectFrequency = (Get-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\NTDS\Parameters' -Name AdminSDProtectFrequency).AdminSDProtectFrequency
+}
+catch {
+    $AdminSDProtectFrequency = 3600
+}
+$AdminSDProtectFrequency
