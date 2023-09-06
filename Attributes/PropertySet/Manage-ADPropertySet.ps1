@@ -74,11 +74,6 @@ function Get-ADPropertySet {
     # extendedRight is a controlAccessRight with validAccesses = 0x30 (48)
     $propertySets = @(Get-ADObject -Filter $filter -SearchBase "CN=Extended-Rights,$config" -Properties rightsGuid, validAccesses | Where-Object { $_.validAccesses -eq 48 })
 
-    if ($propertySets.Count -eq 0) {
-        Write-Warning "No Property Set $PropertySetName found"
-        return $null
-    }
-
     if ($DoNoIncludeAttributes) {
         foreach ($propertySet in $propertySets) {
             $object = [PSCustomObject][ordered]@{
@@ -92,26 +87,48 @@ function Get-ADPropertySet {
     }
     else {
         # get all AD attributes for each property set
-        foreach ($propertySet in $propertySets) {
+        if ($propertySets.Count -eq '0') {
+            Write-Warning "No Property Set $PropertySetName found"
+            
+        }
+        else {
+            foreach ($propertySet in $propertySets) {
 
-            $guid = [guid]$propertySet.rightsGuid
-            $guidByteArray = $guid.ToByteArray()
+                $guid = [guid]$propertySet.rightsGuid
+                $guidByteArray = $guid.ToByteArray()
 
-            $properties = Get-ADObject -Filter { attributeSecurityGUID -eq $guidByteArray } -SearchBase $schema -Properties *
+                $properties = Get-ADObject -Filter { attributeSecurityGUID -eq $guidByteArray } -SearchBase $schema -Properties *
 
-            foreach ($property in $properties) {
-                $object = [PSCustomObject][ordered]@{
-                    PropertySetName           = $propertySet.Name
-                    PropertySetDN             = $propertySet.DistinguishedName
-                    PropertySetGUID           = $propertySet.ObjectGUID
-                    AttributeName             = $property.Name
-                    AttributeLDAPDisplayName  = $property.lDAPDisplayName
-                    AttributeAdminDescription = $property.adminDescription
-                    AttributeAdminDisplayName = $property.adminDisplayName
-                    AttributeDN               = $property.DistinguishedName
+                if ($properties.Count -eq '0') {
+                    $object = [PSCustomObject][ordered]@{
+                        PropertySetName           = $propertySet.Name
+                        PropertySetDN             = $propertySet.DistinguishedName
+                        PropertySetGUID           = $propertySet.ObjectGUID
+                        AttributeName             = 'No attribute found'
+                        AttributeLDAPDisplayName  = 'No attribute found'
+                        AttributeAdminDescription = 'No attribute found'
+                        AttributeAdminDisplayName = 'No attribute found'
+                        AttributeDN               = 'No attribute found'
+                    }
+
+                    $propertySetArray.Add($object)
                 }
-
-                $propertySetArray.Add($object)
+                else {
+                    foreach ($property in $properties) {
+                        $object = [PSCustomObject][ordered]@{
+                            PropertySetName           = $propertySet.Name
+                            PropertySetDN             = $propertySet.DistinguishedName
+                            PropertySetGUID           = $propertySet.ObjectGUID
+                            AttributeName             = $property.Name
+                            AttributeLDAPDisplayName  = $property.lDAPDisplayName
+                            AttributeAdminDescription = $property.adminDescription
+                            AttributeAdminDisplayName = $property.adminDisplayName
+                            AttributeDN               = $property.DistinguishedName
+                        }
+    
+                        $propertySetArray.Add($object)
+                    }
+                }
             }
         }
     }
@@ -123,14 +140,14 @@ function Get-ADPropertySetForAttribute {
     Param
     (
         [Parameter(Mandatory = $true)]
-        [string]$ADAttribute
+        [string]$Attribute
     )
 
     $property = $null
     $propertySetName = $null
 
     try {
-        $property = Get-ADObject -Filter { Name -eq $ADAttribute -or lDAPDisplayName -eq $ADAttribute } -SearchBase $schema -Properties * -ErrorAction Stop
+        $property = Get-ADObject -Filter { Name -eq $Attribute -or lDAPDisplayName -eq $Attribute } -SearchBase $schema -Properties * -ErrorAction Stop
     }
     catch {
         Write-Warning $_.Exception.Message
@@ -174,20 +191,21 @@ function Remove-ADAttributeFromPropertySet {
     Param(
         [Parameter(Mandatory = $true)]
         [string[]]$ADProperties,
+        [Parameter(Mandatory = $false)]
         [switch]$Simulation
     )
 
     foreach ($ADProperty in $ADProperties) {
-        $attribute = Get-ADPropertySetForAttribute -ADattribute $ADProperty
+        $attribute = Get-ADPropertySetForAttribute -Attribute $ADProperty
 
         if ($null -ne $attribute) {
             if ($Simulation) {
-                Write-Host -ForegroundColor Green "SIMULATION: Remove attribute '$($attribute.Name)' from $($attribute.PropertySetDN) ($($attribute.PropertySetGuid))"
+                Write-Host -ForegroundColor Green "SIMULATION: Remove attribute '$($attribute.AttributeName)' from $($attribute.PropertySetDN) ($($attribute.PropertySetGuid))"
             }
             else {
                 try {
-                    Set-ADObject $attribute.AttributeDN -Clear attributeSecurityGUID -ErrorAction Stop
-                    Write-Host -ForegroundColor Green "Attribute '$($attribute.Name)' removed from $($attribute.PropertySetDN) ($($attribute.PropertySetGuid))"
+                    Set-ADObject -Identity $attribute.AttributeDN -Clear attributeSecurityGUID -ErrorAction Stop
+                    Write-Host -ForegroundColor Green "Attribute '$($attribute.AttributeName)' removed from $($attribute.PropertySetDN) ($($attribute.PropertySetGuid))"
                 }
                 catch {
                     Write-Warning $_.Exception.Message
