@@ -2,20 +2,22 @@ function Get-RemoteLocalGroupsMembership {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory = $false)]
-        [String[]]$ComputerName,
-        [Parameter(Mandatory = $false)]
-        [String[]]$GroupName
+        [String[]]$ComputerName
     )
 
     [System.Collections.Generic.List[PSObject]]$remoteLocalGroupsMembershipArray = @()
 
     foreach ($computer in $computerName) {
 
-        $adsi = [ADSI]"WinNT://$Computer,computer"
+        if($computer -eq 'localhost') {
+            $computer = $env:COMPUTERNAME
+        }
+        
+        $adsi = [ADSI]"WinNT://$computer,computer"
 
         try {
             # Test ADSI
-            #[void]$adsi.Tostring()
+            [void]$adsi.Tostring()
         }
         catch {
             # Try with invoke-command if not the local computer and load the function because sometimes the network path is not found
@@ -27,7 +29,7 @@ function Get-RemoteLocalGroupsMembership {
             }
 
             try {
-                #[void]$adsi.Tostring()
+                [void]$adsi.Tostring()
             }
             catch {
                 $errorMessage = $_.Exception.Message
@@ -48,17 +50,11 @@ function Get-RemoteLocalGroupsMembership {
             }
         }
         
-        if ($GroupName) {
-            $adsi = [ADSI]"WinNT://$Computer/$GroupName,group"
-        }
-
         $adsi.psbase.children |  Where-Object { $_.psbase.schemaClassName -eq 'group' } | ForEach-Object {
-
-            $group = $adsiObj.name
+            $group = $_.name
+            $groupName = $group.Tostring()
             $localGroup = [ADSI]"WinNT://$computer/$group,group"
             $members = @($localgroup.psbase.Invoke('Members'))
-                    
-            $GName = $group.tostring()
                                     
             if ($members) {
                 foreach ($member In $members) {
@@ -83,7 +79,7 @@ function Get-RemoteLocalGroupsMembership {
                         
                     $object = [PSCustomObject][ordered]@{
                         Computername          = $Computer
-                        GroupName             = $GName
+                        GroupName             = $groupName
                         GroupDescription      = $($localGroup.Description)
                         MemberName            = $name
                         MemberType            = $memberType
