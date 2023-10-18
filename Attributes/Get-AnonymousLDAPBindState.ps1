@@ -1,13 +1,9 @@
 function Get-AnonymousLDAPBindState {
-    [CmdletBinding()]
-    param (
-        [Parameter()]
-        [String]$DomainDN = $((Get-ADDomain).DistinguishedName)
-    )
+    $forestDN = $((Get-ADRootDSE).defaultNamingContext)
 
     $value = 'Unknown'
 
-    $directoryService = "CN=Directory Service,CN=Windows NT,CN=Services,CN=Configuration,$DomainDN"
+    $directoryService = "CN=Directory Service,CN=Windows NT,CN=Services,CN=Configuration,$forestDN"
 
     $dsHeuristics = (Get-ADObject -Identity $directoryService -Properties dsHeuristics).dsHeuristics
 
