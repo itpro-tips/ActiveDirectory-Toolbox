@@ -1,17 +1,22 @@
-# https://docs.microsoft.com/en-us/troubleshoot/windows-server/identity/anonymous-ldap-operations-active-directory-disabled
 function Get-AnonymousLDAPBindState {
-    $enable = 'UNKNOWN'
+    [CmdletBinding()]
+    param (
+        [Parameter()]
+        [String]$DomainDN = $((Get-ADDomain).DistinguishedName)
+    )
 
-    $directoryService = "CN=Directory Service,CN=Windows NT,CN=Services,CN=Configuration,$((Get-ADDomain).DistinguishedName)"
+    $value = 'Unknown'
+
+    $directoryService = "CN=Directory Service,CN=Windows NT,CN=Services,CN=Configuration,$DomainDN"
 
     $dsHeuristics = (Get-ADObject -Identity $directoryService -Properties dsHeuristics).dsHeuristics
 
     if (($dsHeuristics -eq '') -or ($dsHeuristics.Length -lt 7)) {  
-        $enable = $false
+        $value = 'Disabled'
     }
     elseif (($dsHeuristics.Length -ge 7) -and ($dsHeuristics[6] -eq "2")) {
-        $enable = $true
+        $value = 'Enabled'
     }
 
-    return $enable
+    return $value
 }
