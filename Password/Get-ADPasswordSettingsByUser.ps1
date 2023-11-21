@@ -15,17 +15,20 @@
         # choose PDC emulator
         $domain = [System.DirectoryServices.ActiveDirectory.Domain]::GetCurrentDomain()
         $DomainController = $domain.PdcRoleOwner.Name
+        Write-Host -ForegroundColor Cyan "For accurate results, the domain controller with the PDC emulator role will be used: $DomainController"
+
     }
 
     $defautPasswordPolicyObject = Get-ADDefaultDomainPasswordPolicy -Server $DomainController
     $defautPasswordPolicyDays = $defautPasswordPolicyObject.MaxPasswordAge.Days
-    
+    $attributes = 'DisplayName', 'msDS-UserPasswordExpiryTimeComputed', 'PasswordNeverExpires', 'pwdLastSet', 'Enabled', 'badPwdCount', 'badPasswordTime', 'LastLogonDate', 'PasswordNotRequired'
+
     if ($SamAccountName) {
-        [System.Collections.Generic.List[PSObject]]$Users = @()
+        [System.Collections.Generic.List[PSObject]]$users = @()
 
         foreach ($sam in $SamAccountName) {
             try {
-                $u = Get-ADUser -Identity $sam -Properties DisplayName, msDS-UserPasswordExpiryTimeComputed, PasswordNeverExpires, pwdLastSet, Enabled, badPwdCount, badPasswordTime, LastLogonDate -ErrorAction Stop -Server $DomainController
+                $u = Get-ADUser -Identity $sam -Properties $attributes -ErrorAction Stop -Server $DomainController
             
                 $users.Add($u)
             }
@@ -37,7 +40,7 @@
     }
     else {
         try {
-            $users = Get-ADUser -Filter * -Properties DisplayName, msDS-UserPasswordExpiryTimeComputed, PasswordNeverExpires, pwdLastSet, Enabled, badPwdCount, badPasswordTime, LastLogonDate -ErrorAction Stop -Server $DomainController
+            $users = Get-ADUser -Filter * -Properties $attributes -ErrorAction Stop -Server $DomainController
         }
         catch {
             Write-Warning "$($_.Exception.Message)"
@@ -69,6 +72,10 @@
             }
         }
         
+        if ($user.PasswordNotRequired) {
+            $policy = 'None - User has "PasswordNotRequired" flag set. This setting allows a user in AD to bypass any password policy and set a blank password if they want to.'
+        }
+
         if ($user.pwdLastSet -eq 0) {
             $pwdLastSet = 'Never'
         }
