@@ -27,18 +27,20 @@
         [System.Collections.Generic.List[PSObject]]$users = @()
 
         foreach ($sam in $SamAccountName) {
+            Write-Verbose "Processing user: $sam"
             try {
                 $u = Get-ADUser -Identity $sam -Properties $attributes -ErrorAction Stop -Server $DomainController
-            
-                $users.Add($u)
             }
             catch {
                 Write-Warning "$($_.Exception.Message)"
                 return
             }
+
+            $users.Add($u)
         }
     }
     else {
+        Write-Verbose "Processing all users"
         try {
             $users = Get-ADUser -Filter * -Properties $attributes -ErrorAction Stop -Server $DomainController
         }
@@ -47,10 +49,15 @@
             return
         }
     }
-    
+
+    $i = 0
     foreach ($user in $users) {
+        $i++
+        Write-Verbose "Processing user $i/$($users.Count): $($user.SamAccountName)"
+        $policy = $null
         $passwordPolicyMaxPasswordAge = $null
 
+        Write-Verbose "Getting password policy for $($user.SamAccountName)"
         $fineGrainedPassword = Get-ADUserResultantPasswordPolicy -Identity $user.SamAccountName -Server $DomainController
         
         switch ($fineGrainedPassword.Name) {
@@ -90,7 +97,6 @@
         elseif ($user.PasswordNeverExpires -and $user.'msDS-UserPasswordExpiryTimeComputed' -ne 0) {
             $expirationDate = "Never (configured as 'Never expires')"
             $daysLeft = '-'
-            
         }
         elseif ($user.'msDS-UserPasswordExpiryTimeComputed' -eq 0) {
             if ($defautPasswordPolicyDays -eq 0) {
@@ -99,6 +105,7 @@
             else {
                 $expirationDate = "Password is set to be changed at 'next logon' so no way to calculate the password expiration date"
             }
+
             $daysLeft = '-'
         }
         else {
