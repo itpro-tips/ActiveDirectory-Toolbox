@@ -35,6 +35,7 @@ Function Invoke-ADSDPropagation {
         
         Write-Verbose -Message "Detected PDCe is $($domainObject.PdcRoleOwner.Name)."
         $rootDSE = New-Object System.DirectoryServices.DirectoryEntry("LDAP://$($domainObject.PdcRoleOwner.Name)/RootDSE") 
+        Write-Host -ForegroundColor Cyan "Invoke $taskName on $($domainObject.PdcRoleOwner.Name)"
         $rootDSE.UsePropertyCache = $false 
         $rootDSE.Put($TaskName, "1") # RunProtectAdminGroupsTask & fixupinheritance
         $rootDSE.SetInfo()
