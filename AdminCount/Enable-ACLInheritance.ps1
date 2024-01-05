@@ -1,11 +1,17 @@
-<# example  :
+<# 
+- example  for simulation:
 $adminCount = . .\Find-ADObjectsWithStaleAdminSDHolder.ps1
 
 foreach ($obj in $admincount){
-    Enable-ACLInheritance -DistinguishedName $obj.DistinguishedName -Simulation $false
+    Enable-ACLInheritance -DistinguishedName $obj.DistinguishedName -Simulation
+}
+
+-example for real:
+foreach ($obj in $admincount){
+    Enable-ACLInheritance -DistinguishedName $obj.DistinguishedName
 }
 #>
-Function Enable-ACLInheritance {
+function Enable-ACLInheritance {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory)]
