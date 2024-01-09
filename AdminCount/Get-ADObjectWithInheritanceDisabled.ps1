@@ -7,7 +7,7 @@ foreach ($adObject in $adObjects) {
 }
 
 if ($adobjectWithInheritanceDisabled) {
-    Write-Host -ForegroundColor Yellow "Found $($adobjectWithInheritanceDisabled.count) object(s) that are no longer a member of a priviledged group but still has admincount attribute set to 1 and inheritance disabled."
+    Write-Host -ForegroundColor Yellow "In this forest, found $(($adobjectWithInheritanceDisabled | Measure-Object).count) object(s) that are no longer a member of a group protected by AdminSDHolder but still has admincount attribute set to 1 inheritance disabled."
     Write-Host -ForegroundColor Yellow "To re-enable inheritance and remove AdminAccount you can use https://l.itpro.tips/resetadmincount"
     Write-Host -ForegroundColor Yellow "Please review the following objects carefully to identify if you need to re-enable inheritance and remove AdminAccount:"
 

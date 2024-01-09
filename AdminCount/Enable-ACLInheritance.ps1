@@ -1,6 +1,9 @@
 <# 
 - example  for simulation:
 $adminCount = . .\Find-ADObjectsWithStaleAdminSDHolder.ps1
+    ### you can also use another script, more faster:
+    . .\Get-ADObjectWithStaleAdminSDHolder.ps1
+    $adminCount = Get-ADObjectWithStaleAdminSDHolder
 
 foreach ($obj in $admincount){
     Enable-ACLInheritance -DistinguishedName $obj.DistinguishedName -Simulation

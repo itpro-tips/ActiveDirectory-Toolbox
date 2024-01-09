@@ -1,3 +1,4 @@
+# only get from https://github.com/chadmcox/Active_Directory_Scripts/blob/master/Privileged%20Objects/FindandFixADObjectswithStaleAdminSDHolder.ps1
 #users with admincount = 1 but not member of privileged groups
  
 Write-Host 'Starting Function ADObjectswithStaleAdminCount' -ForegroundColor Cyan
