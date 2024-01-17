@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) Microsoft Corporation. All rights reserved.  -->
+<policyDefinitionResources xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
+  <displayName>entrer le nom complet ici</displayName>
+  <description>Entrer la description ici</description>
+  <resources>
+    <stringTable>
+      <string id="WindowsCopilot">Copilote Windows</string>
+      <string id="TurnOffWindowsCopilot">Désactiver Windows Copilot</string>
+      <string id="TurnOffWindowsCopilot_Help">
+        Ce paramètre de stratégie vous permet de désactiver Windows Copilot.
+
+        Si vous activez ce paramètre de stratégie, les utilisateurs ne pourront pas utiliser Copilot. L’icône Copilot n’apparaît pas non plus dans la barre des tâches.
+
+        Si vous désactivez ou ne configurez pas ce paramètre de stratégie, les utilisateurs pourront utiliser Copilot lorsqu’il sera disponible.
+      </string>
+    </stringTable>
+  </resources>
+</policyDefinitionResources>

@@ -1,0 +1,1 @@
+These files are get on Version 23H2 (OS build 22631.3007)
