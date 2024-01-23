@@ -24,7 +24,7 @@ groups protected by AdminSDHolder
 | Server Operators | Server Operators | Server Operators | Server Operators | 
 #>
 
-    # https://docs.microsoft.com/en-us/windows/security/identity-protection/access-control/security-identifiers
+    # https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/manage/understand-security-identifiers
     # https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/security-best-practices/appendix-c--protected-accounts-and-groups-in-active-directory#protected-accounts-and-groups-in-active-directory-by-operating-system
     # https://renenyffenegger.ch/notes/Microsoft/dot-net/namespaces-classes/System/Security/Principal/WellKnownSidType/index
     
