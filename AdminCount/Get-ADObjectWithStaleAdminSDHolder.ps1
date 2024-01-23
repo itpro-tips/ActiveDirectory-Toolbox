@@ -65,7 +65,7 @@ groups protected by AdminSDHolder
         foreach ($defaultGroup in $defaultProtectedGroupsSID.GetEnumerator()) {
             $group = Get-ADGroup -LDAPFilter "(objectSID=$($defaultGroup.Value))" -Server $domain | Select-Object Name, DistinguishedName, @{Name = 'Domain'; Expression = { $domain } }
 
-            # test group exist because some group exist only in parent domain
+            # test group exist because some group exist only in root domain
             if ($group) {
                 # get all recursive members of the group
                 Get-ADGroupMember -Identity $group.DistinguishedName -Recursive -Server $domain | ForEach-Object {
