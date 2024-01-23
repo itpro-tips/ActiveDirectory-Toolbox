@@ -28,8 +28,10 @@ groups protected by AdminSDHolder
     # https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/security-best-practices/appendix-c--protected-accounts-and-groups-in-active-directory#protected-accounts-and-groups-in-active-directory-by-operating-system
     # https://renenyffenegger.ch/notes/Microsoft/dot-net/namespaces-classes/System/Security/Principal/WellKnownSidType/index
     
-    [System.Collections.Generic.List[PSObject]]$defaultProtectedGroups = @()
-    
+    $forest = Get-ADForest
+    $rootDomain = $forest.RootDomain
+    $rootDomainSID = (Get-ADDomain -Identity $rootDomain).DomainSID
+
     foreach ($domain in (Get-ADForest).domains) {
 
         $currentDomainSID = (Get-ADDomain -Identity $domain).DomainSID
@@ -50,9 +52,9 @@ groups protected by AdminSDHolder
             # Domain Controllers "$currentDomainSID-516"
             'Domain Controllers'           = [string] (New-Object System.Security.Principal.SecurityIdentifier([System.Security.Principal.WellKnownSidType]::AccountControllersSid, $currentDomainSID))
             # Enterprise Admins "$currentDomainSID-519"
-            'Enterprise Admins'            = [string] (New-Object System.Security.Principal.SecurityIdentifier([System.Security.Principal.WellKnownSidType]::AccountEnterpriseAdminsSid, $currentDomainSID))
+            'Enterprise Admins'            = [string] (New-Object System.Security.Principal.SecurityIdentifier([System.Security.Principal.WellKnownSidType]::AccountEnterpriseAdminsSid, $rootDomainSID))
             # Schema Admins "$currentDomainSID-518"
-            'Schema Admins'                = [string] (New-Object System.Security.Principal.SecurityIdentifier([System.Security.Principal.WellKnownSidType]::AccountSchemaAdminsSid, $currentDomainSID))
+            'Schema Admins'                = [string] (New-Object System.Security.Principal.SecurityIdentifier([System.Security.Principal.WellKnownSidType]::AccountSchemaAdminsSid, $rootDomainSID))
             # Print Operators 'S-1-5-32-550'
             'Print Operators'              = [string] (New-Object System.Security.Principal.SecurityIdentifier([System.Security.Principal.WellKnownSidType]::BuiltinPrintOperatorsSid, $null))
             #Read-only Domain Controllers "$currentDomainSID-521"
