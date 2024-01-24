@@ -100,7 +100,7 @@ function Get-GPOConsistencyBetweenDirectoryAndSysvol {
                 }
 
                 catch {
-                    $Status = 'Phantom (Folder exist in GPO but not in AD)'
+                    $Status = 'Phantom (Folder exists in GPO but not in AD)'
                     $Name = 'N/A'
                 }
     
@@ -125,7 +125,7 @@ function Get-GPOConsistencyBetweenDirectoryAndSysvol {
                 }
 
                 else {
-                    $Status = 'Folder Missing'
+                    $Status = 'Folder missing'
                 }
 
                 $object = [PSCustomObject][ordered]@{
