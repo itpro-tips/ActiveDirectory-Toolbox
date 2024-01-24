@@ -1,0 +1,2 @@
+$domain = (Get-ADDomain).DistinguishedName
+Get-ADObject -SearchBase "CN=NetServices,CN=Services,CN=Configuration,$domain" -filter {ObjectClass -eq 'dHCPClass' -and Name -ne 'DHCPRoot'} -Properties * | Select-Object Name, whenCreated, distinguishedName
