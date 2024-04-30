@@ -57,5 +57,5 @@ function Get-DNSMissingReverseZones {
 		Write-Host -ForegroundColor Green 'No DNS Reverse zones missing'
 	}
 
-	return $missingZones
+	return $missingZones | Sort-Object
 }

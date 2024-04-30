@@ -1,4 +1,4 @@
-﻿Function Get-ADPasswordSettingsByUser {
+﻿function Get-ADPasswordSettingsByUser {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory = $false)]
