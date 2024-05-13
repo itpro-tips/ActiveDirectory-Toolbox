@@ -3,7 +3,7 @@
 [string]$LDAP_SERVER_LINK_TTL_OID = '1.2.840.113556.1.4.2309'
 
 # Uncomment the following line if you want to retrieve additional attributes for each member
- $MembersAttributes = @('DisplayName', 'Description', 'mail', 'telephoneNumber', 'mobile', 'title', 'department', 'company', 'physicalDeliveryOfficeName', 'streetAddress', 'l', 'st', 'postalCode', 'c', 'co', 'manager')
+# $MembersAttributes = @('DisplayName', 'Description', 'mail', 'telephoneNumber', 'mobile', 'title', 'department', 'company', 'physicalDeliveryOfficeName', 'streetAddress', 'l', 'st', 'postalCode', 'c', 'co', 'manager')
 
 [System.Collections.Generic.List[PSObject]]$groupsWithExpireLinks = @()
 
