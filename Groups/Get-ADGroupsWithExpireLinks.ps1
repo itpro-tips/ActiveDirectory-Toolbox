@@ -2,6 +2,9 @@
 # We need to use specific LDAP Control LDAP_SERVER_LINK_TTL_OID to get this information.
 [string]$LDAP_SERVER_LINK_TTL_OID = '1.2.840.113556.1.4.2309'
 
+# Uncomment the following line if you want to retrieve additional attributes for each member
+ $MembersAttributes = @('DisplayName', 'Description', 'mail', 'telephoneNumber', 'mobile', 'title', 'department', 'company', 'physicalDeliveryOfficeName', 'streetAddress', 'l', 'st', 'postalCode', 'c', 'co', 'manager')
+
 [System.Collections.Generic.List[PSObject]]$groupsWithExpireLinks = @()
 
 # Load required .NET assemblies
@@ -32,7 +35,6 @@ function Search-LDAPWitLDAPControl {
     )
 
     $searchRequest = New-Object System.DirectoryServices.Protocols.SearchRequest -ArgumentList $domainDN, $ldapFilter, $searchScope, $attributes
-
     
     # Add the LDAP control to the search request
     # By default we don't see if a member of a group has a TTL set on it.
@@ -98,9 +100,13 @@ foreach ($entry in $entries.Entries) {
                     # we need to use match to get the value between the '=' and '>' characters
                     $TTL = [regex]::Match($memberString, '<TTL=(\d+)>').Groups[1].Value
         
+                    if ($MembersAttributes) {
+                        Search-LDAPWitLDAPControl -DomainServer $domainServer -DomainDN $domainDN -LdapFilter (distinguishedName=*) -SearchScope $searchScope -LdapControlOID $LDAP_SERVER_LINK_TTL_OID -LdapConnection $ldapConnection
+                    }
+
                     $object = [PSCustomObject][ordered]@{
                         Group               = $entry.DistinguishedName
-                        Member              = [regex]::Match($memberString, ',(.+)').Groups[1].Value # supress TTL
+                        Member              = [regex]::Match($memberString, ',(.+)').Groups[1].Value # suppress the '<TTL=xxx>' part
                         # Get the TTL value from the member attribute
                         # we need to use match to get the value between the '=' and '>' characters
                         TTL                 = $TTL
@@ -154,6 +160,23 @@ foreach ($entry in $entries.Entries) {
             }
         }
     }
+}
+
+if (-not ([string]::IsNullOrWhitespace($MembersAttributes))) {
+    [System.Collections.Generic.List[PSObject]]$updatedGroupsWithExpireLinks = @()
+
+    foreach ($group in $groupsWithExpireLinks) {
+        $member = $group.Member
+        $object = Get-ADObject -Identity $member -Properties $MembersAttributes
+
+        foreach ($attribute in $MembersAttributes) {
+            $group | Add-Member -MemberType NoteProperty -Name $attribute -Value $object.$attribute
+        }
+        
+        $updatedGroupsWithExpireLinks.Add($group)
+    }
+
+    $groupsWithExpireLinks = $updatedGroupsWithExpireLinks
 }
 
 return $groupsWithExpireLinks
