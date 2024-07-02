@@ -3,7 +3,7 @@
 [string]$LDAP_SERVER_LINK_TTL_OID = '1.2.840.113556.1.4.2309'
 
 # Uncomment the following line if you want to retrieve additional attributes for each member
-# $membersAttributes = @('DisplayName', 'Description', 'mail', 'telephoneNumber', 'mobile', 'title', 'department', 'company', 'physicalDeliveryOfficeName', 'streetAddress', 'l', 'st', 'postalCode', 'c', 'co', 'manager')
+#$membersAttributes = @('DisplayName', 'Description', 'mail', 'telephoneNumber', 'mobile', 'title', 'department', 'company', 'physicalDeliveryOfficeName', 'streetAddress', 'l', 'st', 'postalCode', 'c', 'co', 'manager')
 
 # Uncomment the following line if you want to retrieve additional attributes for each group
 #$groupsAttributes = @('cn', 'samaccountname', 'Description')
@@ -170,10 +170,10 @@ if (-not ([string]::IsNullOrWhitespace($membersAttributes))) {
 
     foreach ($group in $groupsWithExpireLinks) {
         $member = $group.Member
-        $groupObject = Get-ADObject -Identity $group -Properties $groupsAttributes
+        $memberObject = Get-ADObject -Identity $member -Properties $membersAttributes
 
-        foreach ($attribute in $groupsAttributes) {
-            $group | Add-Member -MemberType NoteProperty -Name "Group$attribute" -Value $groupObject.$attribute
+        foreach ($attribute in $membersAttributes) {
+            $group | Add-Member -MemberType NoteProperty -Name "$attribute" -Value $memberObject.$attribute
         }
         
         $updatedGroupsWithExpireLinks.Add($group)
