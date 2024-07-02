@@ -3,7 +3,10 @@
 [string]$LDAP_SERVER_LINK_TTL_OID = '1.2.840.113556.1.4.2309'
 
 # Uncomment the following line if you want to retrieve additional attributes for each member
-# $MembersAttributes = @('DisplayName', 'Description', 'mail', 'telephoneNumber', 'mobile', 'title', 'department', 'company', 'physicalDeliveryOfficeName', 'streetAddress', 'l', 'st', 'postalCode', 'c', 'co', 'manager')
+# $membersAttributes = @('DisplayName', 'Description', 'mail', 'telephoneNumber', 'mobile', 'title', 'department', 'company', 'physicalDeliveryOfficeName', 'streetAddress', 'l', 'st', 'postalCode', 'c', 'co', 'manager')
+
+# Uncomment the following line if you want to retrieve additional attributes for each group
+#$groupsAttributes = @('cn', 'samaccountname', 'Description')
 
 [System.Collections.Generic.List[PSObject]]$groupsWithExpireLinks = @()
 
@@ -76,9 +79,9 @@ foreach ($entry in $entries.Entries) {
     [System.Collections.Generic.List[PSObject]]$allMembers = @()
 
     $isBigGroup = $false
-    #if group is tool large (ie. more than 1500 members by default in AD), member attribute will contains only a range of members
-    # As long as there are fewer than 1500 members in the group, they can be viewed in the "members" field of the AD.
-    #Above 1500 members, the "members" field is empty, and members can be viewed in the "member;range=0-1499" field.
+    # If the group is too large (i.e. more than 1500 members by default in AD), the member attribute will only contain a range of members.
+    # As long as there are less than 1500 members in the group, they can be viewed in the members field in AD.
+    #Above 1500 members, the "members" field is empty and members can be viewed in the "member;range=0-1499" field.
     $isBigGroup = [bool]($entry.Attributes.AttributeNames -like "member;range=*")
     
     # we need to loop through all ranges
@@ -100,7 +103,7 @@ foreach ($entry in $entries.Entries) {
                     # we need to use match to get the value between the '=' and '>' characters
                     $TTL = [regex]::Match($memberString, '<TTL=(\d+)>').Groups[1].Value
         
-                    if ($MembersAttributes) {
+                    if ($membersAttributes) {
                         Search-LDAPWitLDAPControl -DomainServer $domainServer -DomainDN $domainDN -LdapFilter (distinguishedName=*) -SearchScope $searchScope -LdapControlOID $LDAP_SERVER_LINK_TTL_OID -LdapConnection $ldapConnection
                     }
 
@@ -162,17 +165,35 @@ foreach ($entry in $entries.Entries) {
     }
 }
 
-if (-not ([string]::IsNullOrWhitespace($MembersAttributes))) {
+if (-not ([string]::IsNullOrWhitespace($membersAttributes))) {
     [System.Collections.Generic.List[PSObject]]$updatedGroupsWithExpireLinks = @()
 
     foreach ($group in $groupsWithExpireLinks) {
         $member = $group.Member
-        $object = Get-ADObject -Identity $member -Properties $MembersAttributes
+        $groupObject = Get-ADObject -Identity $group -Properties $groupsAttributes
 
-        foreach ($attribute in $MembersAttributes) {
-            $group | Add-Member -MemberType NoteProperty -Name $attribute -Value $object.$attribute
+        foreach ($attribute in $groupsAttributes) {
+            $group | Add-Member -MemberType NoteProperty -Name "Group$attribute" -Value $groupObject.$attribute
         }
         
+        $updatedGroupsWithExpireLinks.Add($group)
+    }
+
+    $groupsWithExpireLinks = $updatedGroupsWithExpireLinks
+}
+
+
+if (-not ([string]::IsNullOrWhitespace($groupsAttributes))) {
+    [System.Collections.Generic.List[PSObject]]$updatedGroupsWithExpireLinks = @()
+
+    foreach ($group in $groupsWithExpireLinks) {
+        $member = $group.Member
+        $groupObject = Get-ADObject -Identity $group.Group -Properties $groupsAttributes
+
+        foreach ($attribute in $groupsAttributes) {
+            $group | Add-Member -MemberType NoteProperty -Name "Group_$attribute" -Value $groupObject.$attribute
+        }
+
         $updatedGroupsWithExpireLinks.Add($group)
     }
 
