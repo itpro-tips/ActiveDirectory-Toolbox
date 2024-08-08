@@ -1,16 +1,9 @@
 function Get-LastFullShutdownOrReboot {
-
-    $lastRebootFromCim = (Get-CimInstance -ClassName Win32_OperatingSystem).LastBootUpTime
    
     $filterHashTable = @{
         LogName      = 'System'
         ProviderName = 'Microsoft-Windows-Kernel-Boot'
         ID           = 27
-    }
-
-    # we look for events according to the number of days without shutdown
-    if ($RebootNeededIfDaysWithoutShutdown) {
-        $filterHashTable.Add('StartTime', (Get-Date).AddDays(-$RebootNeededIfDaysWithoutShutdown))
     }
 
     # Checking last full shutdown or reboot (ignore hibernation or FastStartup)
@@ -30,6 +23,7 @@ function Get-LastFullShutdownOrReboot {
     }
     else {
         Write-Verbose 'No boot event found (i.e no event log with ID 27, either because not exist or newer event logs overwritten older event 27 logs), use last reboot time from Win32_OperatingSystem'
+        $lastRebootFromCim = (Get-CimInstance -ClassName Win32_OperatingSystem).LastBootUpTime
         $lastBootFromFullShutdownOrReboot = $lastRebootFromCim
     }
 
