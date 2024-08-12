@@ -18,7 +18,7 @@ groups protected by AdminSDHolder
 | Enterprise Admins | Enterprise Admins | Enterprise Admins | Enterprise Admins |
 | Krbtgt | Krbtgt | Krbtgt | Krbtgt |
 | Print Operators | Print Operators | Print Operators | Print Operators |
-|  |  | Read-only Domain Controllers | Read-only Domain Controllers |
+| <not present in this version> | <not present in this version> | Read-only Domain Controllers | Read-only Domain Controllers |
 | Replicator | Replicator | Replicator | Replicator |
 | Schema Admins | Schema Admins | Schema Admins | Schema Admins |
 | Server Operators | Server Operators | Server Operators | Server Operators | 
@@ -79,7 +79,6 @@ groups protected by AdminSDHolder
 
             }
             
-            
             # not useful but keep it for now
             # $defaultProtectedGroups.Add($group)
         }
@@ -111,8 +110,8 @@ groups protected by AdminSDHolder
     $objectsWithStaleAdminAccount = $objectsWithAdminCount | Where-Object { $_.DistinguishedName -notin $legitimateObjectsWithAdminCount.MemberDN }
 
     if ($objectsWithStaleAdminAccount) {
-        Write-Host -ForegroundColor Yellow "In this forest, found $(($objectsWithStaleAdminAccount | Measure-Object).count) object(s) that are no longer a member of a group protected by AdminSDHolder but still has admincount attribute set to 1 inheritance disabled."
-        Write-Host -ForegroundColor Yellow "To re-enable inheritance and remove AdminAccount you can use https://l.itpro.tips/resetadmincount"
+        Write-Host -ForegroundColor Yellow "In this forest, found $(($objectsWithStaleAdminAccount | Measure-Object).count) object(s) that are no longer a member of a group protected by AdminSDHolder but still have admincount attribute set to 1 inheritance disabled."
+        Write-Host -ForegroundColor Yellow "To re-enable inheritance and remove admincount=1 you can use https://l.itpro.tips/resetadmincount"
     }
     else {
         Write-Host -ForegroundColor Green 'in this AD forest, found 0 Objects with Stale Admin Count'
