@@ -36,15 +36,14 @@
         System.String, you can pipe ComputerNames to this function
 
 .OUTPUTS
-    Array of PSCustomObject
+    Array of Object
 
 .NOTES
-  
-    By: Bastien Perez (ITPro-Tips.com 24/01/2023) - Add w32time status (running, etc.) and AnnounceFlags value for domain controller
-    Use Invoke-Command to run w32tm.exe on remote computers, faster than using WMI andw32tm
-
-    Based on Pasquale Lantella's work (https://scriptingblog.com/2014/07/31/get-windows-time-settings-from-remote-servers/)
-
+    By Bastien Perez (ITPro-Tips.com)
+    2023-01-24: Use Invoke-Command to run w32tm.exe on remote computers, faster than using WMI and w32tm
+                Add w32time status (running, etc.) and AnnounceFlags value for domain controller*
+                Based on Pasquale Lantella's work (https://scriptingblog.com/2014/07/31/get-windows-time-settings-from-remote-servers/)
+    2024-08-22: Change some typos and variables names    
 #>
 
 function Get-NTPConfiguration {
@@ -57,6 +56,7 @@ function Get-NTPConfiguration {
     )
 
     $currentPrincipal = New-Object Security.Principal.WindowsPrincipal([Security.Principal.WindowsIdentity]::GetCurrent())
+
     if (-not $currentPrincipal.IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
         Write-Warning "Please run PowerShell as administrator"
         return
@@ -82,7 +82,7 @@ function Get-NTPConfiguration {
         return $AnnounceFlagsValue
     } 
  
-    [System.Collections.Generic.List[PSObject]]$NTPConfigurations = @()
+    [System.Collections.Generic.List[Object]]$NtpConfigurationArray = @()
 	
     if ($domainControllers) {
         $ComputerName = ([System.DirectoryServices.ActiveDirectory.Domain]::GetCurrentDomain().DomainControllers).Name
@@ -211,8 +211,8 @@ function Get-NTPConfiguration {
             AnnounceFlag     = $AnnounceFlagValue
         }
     
-        $NTPConfigurations.Add($object)
+        $NtpConfigurationArray.Add($object)
     }              
 
-    return $NTPConfigurations
+    return $NtpConfigurationArray
 }
