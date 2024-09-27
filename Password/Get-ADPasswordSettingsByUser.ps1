@@ -40,7 +40,7 @@
         }
     }
     else {
-        Write-Verbose "Processing all users"
+        Write-Verbose 'Processing all users'
         try {
             $users = Get-ADUser -Filter * -Properties $attributes -ErrorAction Stop -Server $DomainController
         }
@@ -70,7 +70,7 @@
                 break
             }
             default {
-                $policy = $fineGrainedPassword.Name + " (Fine Grained Password)"
+                $policy = $fineGrainedPassword.Name + ' (Fine Grained Password)'
                 $passwordPolicyMaxPasswordAge = $fineGrainedPassword.MaxPasswordAge.Days
                 $lockoutDuration = $fineGrainedPassword.LockoutDuration
                 $lockoutObservationWindow = $fineGrainedPassword.LockoutObservationWindow
@@ -91,7 +91,7 @@
         }
     
         if ($user.'msDS-UserPasswordExpiryTimeComputed' -eq 9223372036854775807 -and $user.PasswordNeverExpires -eq $false) {
-            $expirationDate = "Never (no password policy in GPO or never set)"
+            $expirationDate = 'Never (no password policy in GPO or never set)'
             $daysLeft = '-'
         }
         elseif ($user.PasswordNeverExpires -and $user.'msDS-UserPasswordExpiryTimeComputed' -ne 0) {
