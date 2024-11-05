@@ -110,7 +110,7 @@ groups protected by AdminSDHolder
     $objectsWithStaleAdminAccount = $objectsWithAdminCount | Where-Object { $_.DistinguishedName -notin $legitimateObjectsWithAdminCount.MemberDN }
 
     if ($objectsWithStaleAdminAccount) {
-        Write-Host -ForegroundColor Yellow "In this forest, found $(($objectsWithStaleAdminAccount | Measure-Object).count) object(s) that are no longer a member of a group protected by AdminSDHolder but still have admincount attribute set to 1 inheritance disabled."
+        Write-Host -ForegroundColor Yellow "In this forest, found $(($objectsWithStaleAdminAccount | Measure-Object).count) object(s) that are no member of a group protected by AdminSDHolder but still have adminCount attribute = 1. It means the inheritance is disabled on this object."
         Write-Host -ForegroundColor Yellow 'To re-enable inheritance and remove admincount=1 you can use https://l.itpro.tips/resetadmincount'
     }
     else {
