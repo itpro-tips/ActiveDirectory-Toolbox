@@ -85,7 +85,7 @@ groups protected by AdminSDHolder
 
         Get-ADObject -Filter 'admincount -eq 1 -and (iscriticalsystemobject -ne $TRUE -or iscriticalsystemobject -notlike "*")' -Server "$domain" -Properties whenchanged, whencreated, admincount, 'msDS-ReplAttributeMetaData', samaccountname, userAccountControl | ForEach-Object {
             $ftimeLastOriginatingChange = $null
-            $ftimeLastOriginatingChange = (($_.'msDS-ReplAttributeMetaData' | ForEach-Object { ([XML]$_.Replace("`0", "")).DS_REPL_ATTR_META_DATA | Where-Object { $_.pszAttributeName -eq "admincount" } }).ftimeLastOriginatingChange | Get-Date -Format MM/dd/yyyy)
+            $ftimeLastOriginatingChange = (($_.'msDS-ReplAttributeMetaData' | ForEach-Object { ([XML]$_.Replace("`0", '')).DS_REPL_ATTR_META_DATA | Where-Object { $_.pszAttributeName -eq 'admincount' } }).ftimeLastOriginatingChange | Get-Date -Format MM/dd/yyyy)
             
             $object = [PSCustomObject][ordered]@{
                 Domain            = "$domain"
@@ -99,7 +99,7 @@ groups protected by AdminSDHolder
                 adminCountDate    = $ftimeLastOriginatingChange
                 #adminCountDate    = if ($_.'msDS-ReplAttributeMetaData') { ($_.'msDS-ReplAttributeMetaData' | Where-Object { $_.pszAttributeName -eq 'adminCount' }).ftimeLastOriginatingChange | Get-Date -Format MM/dd/yyyy } else { $null }
                 # Enabled attribute is not an AD attribute (only calculate with Get-ADUser/Computer, so it does not exist with Get-ADObject, so we need to parse the userAccountControl attribute to determine if the account is enabled or not with [bool]($_.userAccountControl -band 2)
-                Enabled           = -not [bool]($_.userAccountControl -band 2)
+                Enabled           = if ($_.userAccountControl) { [bool]($_.userAccountControl -band 2) } else { 'NotApplicable' }
             }
 
             $objectsWithAdminCount.Add($object)
@@ -111,7 +111,7 @@ groups protected by AdminSDHolder
 
     if ($objectsWithStaleAdminAccount) {
         Write-Host -ForegroundColor Yellow "In this forest, found $(($objectsWithStaleAdminAccount | Measure-Object).count) object(s) that are no longer a member of a group protected by AdminSDHolder but still have admincount attribute set to 1 inheritance disabled."
-        Write-Host -ForegroundColor Yellow "To re-enable inheritance and remove admincount=1 you can use https://l.itpro.tips/resetadmincount"
+        Write-Host -ForegroundColor Yellow 'To re-enable inheritance and remove admincount=1 you can use https://l.itpro.tips/resetadmincount'
     }
     else {
         Write-Host -ForegroundColor Green 'in this AD forest, found 0 Objects with Stale Admin Count'
