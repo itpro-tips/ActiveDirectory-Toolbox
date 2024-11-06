@@ -173,7 +173,7 @@ function Get-NTPConfiguration {
                 break
             }
             'NT5DS' {
-                $syncType = "Time synchronization from the domain hierarchy. Check the Source parameters. if the computer is a DC, the source MUST be the PDC Emulator ($pdcEmulator). Otherwise it can be any DC."
+                $syncType = "Time synchronization from the domain hierarchy. Check the Source parameters, if the computer is a DC, the source MUST be the PDC Emulator ($pdcEmulator). Otherwise it can be any DC."
                 break
             }
             'AllSync' {
