@@ -1,5 +1,7 @@
 # Get-ADObjectMetadata 'DN' -Attributes ObjectClass,sn, cn
 # we can also use Get-ADReplicationAttributeMetadata 'xxxx' -Server xxx
+# TODO: test if recycle bin is enabled, otherwise LastTimeDeleted will 01/01/1601
+
 function Get-ADObjectMetadata {
     [CmdletBinding()]
     Param(
