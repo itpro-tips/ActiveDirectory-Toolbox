@@ -1,7 +1,7 @@
 function Get-ADObjectUserCertificate {
     [CmdletBinding()]
     param (
-        [Parameter(Mandatory = $false)]
+        [Parameter(Mandatory = $false, ValueFromPipeline = $true)]
         [String]$DistinguishedName,
         [Parameter(Mandatory = $false)]
         [String[]]$DomainController,
@@ -25,7 +25,7 @@ function Get-ADObjectUserCertificate {
             $adObjectsWithCertificate = Get-ADObject -Identity $DistinguishedName -Properties * -Server $DC
         }
         else {
-            $adObjectsWithCertificate = Get-ADObject -Filter { UserCertificate -like '*' -or userCert -like '*' -or UserSMIMECertificate -like '*' } -Properties *  -Server $DC
+            $adObjectsWithCertificate = Get-ADObject -Filter { UserCertificate -like '*' -or userCert -like '*' -or UserSMIMECertificate -like '*' } -Properties * -Server $DC
         }
 
         foreach ($adObject in $ADObjectsWithCertificate) {
