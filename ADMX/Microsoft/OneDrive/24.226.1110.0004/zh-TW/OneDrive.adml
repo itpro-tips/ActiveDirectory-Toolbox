@@ -1,0 +1,601 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- (c) 2016 Microsoft Corporation -->
+<policyDefinitionResources xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://www.microsoft.com/GroupPolicy/PolicyDefinitions">
+  <displayName>OneDrive 群組原則設定</displayName>
+  <description>OneDrive 同步處理應用程式 (OneDrive.exe) 的多種群組原則設定，特別是應用程式中企業功能的特有設定。</description>
+  <resources>
+    <stringTable>
+      <!-- general -->
+      <string id="OneDriveNGSCSettingCategory">OneDrive</string>
+      <string id="NucleusSettingCategory">清單同步</string>
+
+      <!-- block syncing personal OneDrive -->
+      <string id="DisablePersonalSync">防止使用者同步個人 OneDrive 帳戶</string>
+      <string id="DisablePersonalSync_help">此設定可讓您防止使用者使用 Microsoft 帳戶登入以同步其個人 OneDrive 檔案。
+
+如果啟用此設定，使用者將無法針對個人 OneDrive 帳戶設定同步關係。在您啟用此設定時已同步個人 OneDrive 的使用者將無法繼續同步 (系統會顯示同步已停止的訊息)，但已同步到電腦的所有檔案都將保留在電腦上。
+
+如果停用或不設定此設定，使用者就可以同步個人 OneDrive 帳戶。</string>
+
+      <!-- turn on GPOSetUpdateRing for app updates -->
+      <string id="GPOSetUpdateRing">設定同步處理應用程式更新通道</string>
+      <string id="GPOSetUpdateRing_help">OneDrive 同步處理應用程式 (OneDrive.exe) 的更新會透過三個通道公開發行。第一個通道對象是測試人員，然後是實際執行環境，最後是延期。此設定可讓您指定組織使用者的同步處理應用程式版本。當您啟用此設定並選取通道後，使用者將無法變更。
+
+測試人員通道使用者收到的組建可讓他們預覽 OneDrive 即將推出的新功能。
+
+實際執行通道使用者將在最新功能推出時取得最新功能。
+
+延期通道使用者是最後取得新功能、錯誤修正及效能改善的使用者。此通道可讓您部署來自內部網路位置的更新，並控制部署時間 (60 天內)。
+
+如果停用或不設定此設定，使用者將在實際執行通道取得 OneDrive 同步處理應用程式更新時取得更新。使用者可以加入 Office 或 Windows 測試人員計畫以取得測試人員通道上的更新。</string>
+
+      <string id="Enterprise">已延期</string>
+      <string id="Production">實際執行</string>
+      <string id="Insider">Office 測試人員</string>
+
+      <!-- set default location of the OneDrive folder -->
+      <string id="DefaultRootDir">設定 OneDrive 資料夾的預設位置</string>
+      <string id="DefaultRootDir_help">此設定可讓您將特定路徑設為使用者電腦上的 OneDrive 資料夾預設位置。根據預設，路徑位於 %userprofile% 底下。
+
+如果啟用此設定，[OneDrive - {organization name}] 資料夾預設位置會是您在 OneDrive.admx 檔案中指定的路徑。若要防止使用者變更您所指定的位置，請啟用 [防止使用者變更 OneDrive 資料夾的位置] 設定。
+
+如果您停用或不設定此設定，[OneDrive - {organization name}] 資料夾的預設位置將為 %userprofile%。</string>
+
+      <!-- disable changing the default location of the OneDrive folder -->
+      <string id="DisableCustomRoot">防止使用者變更 OneDrive 資料夾的位置</string>
+      <string id="DisableCustomRoot_help">此設定可讓您禁止使用者在設定 OneDrive 同步處理應用程式時變更 [OneDrive - {organization name}] 資料夾的位置。
+
+若啟用此設定，OneDrive 設定中會隱藏 [變更位置] 連結。將於預設位置建立 OneDrive 資料夾，或若您啟用 [設定 OneDrive 資料夾的預設位置] 設定，則將於您指定的自訂位置建立資料夾。
+
+若停用或未設定此設定，使用者可以按一下 [變更位置] 連結以在 OneDrive 設定中變更 OneDrive 資料夾位置。</string>
+
+      <!-- Enable Office Integration for coauthoring and in-app sharing -->
+      <string id="EnableAllOcsiClients">在 Office 傳統型應用程式中共同撰寫與共用</string>
+      <string id="EnableAllOcsiClients_help">此設定可讓多個使用者使用 Office 365 專業增強版、Office 2019 或 Office 2016 桌面應用程式，同時編輯儲存在 OneDrive 中的 Office 檔案。它也可讓使用者從 Office 桌面應用程式共用檔案。
+
+如果您啟用或不設定此設定，就會啟用 Office 桌面應用程式中的共同作者和共用。
+
+如果您停用此設定，就會停用 Office 桌面應用程式中的共同作者和共用。 「Office 檔案衝突」設定也會停用，當檔案的兩個版本發生衝突時，兩個複本都會保留。</string>
+
+      <!-- Enable hold the file for handling Office conflicts -->
+      <string id="EnableHoldTheFile">處理 Office 檔案同步衝突</string>
+      <string id="EnableHoldTheFile_help">此設定可指定在同步處理期間 Office 檔案版本之間發生衝突時會執行的動作。根據預設，使用者可以在 Office 中開啟檔案以合併變更。(此選項僅適用於 Office 2016 或更新版本。使用舊版 Office 時，一律保留兩份複本。)
+
+如果啟用或未設定此設定，使用者可以選擇在 Office 中開啟以合併變更的選項。
+
+如果停用此設定，則檔案的兩個複本都會保留。</string>
+        
+      <!-- Enable auto start for OneDrive -->
+      <string id="EnableAutoStart">登入 Windows 時自動啟動 OneDrive</string>
+      <string id="EnableAutoStart_help">此設定會覆寫使用者的選擇，確保 OneDrive 會在每次登入 Windows 時自動啟動。
+      
+如果您設定這個設定，OneDrive 會在使用者登入 Windows 時自動啟動。啟用此設定後，必須重新啟動 OneDrive 同步處理 應用程式，設定才會生效。
+
+如果您未設定或將此設定設為 1 以外的任何值，使用者可以選擇自動啟動 OneDrive (預設選擇) 或停用 OneDrive 在 OneDrive 同步處理 應用程式設定中啟動。</string>
+
+      <!-- Enable Automatic Upload Bandwidth Limiting -->
+      <string id="AutomaticUploadBandwidthPercentage">將同步處理應用程式的上傳速率限制為輸送量的百分比</string>
+      <string id="AutomaticUploadBandwidthPercentage_help">此設定可讓您透過指定 OneDrive 同步處理應用程式 (OneDrive.exe) 可用來上傳檔案的電腦傳輸送量的百分比，來平衡電腦上不同上傳工作的效能。將此選項設定為百分比，可讓同步處理應用程式回應輸送量的增加和降低。設定的百分比越低，檔案上傳的速度越慢。建議使用 50% 或更高的值。同步處理應用程式將會定期在沒有速率限制的情況下上傳一分鐘的時間，然後再將速率減緩到您設定的上傳百分比。這使得小型檔案可快速上傳，同時防止大型上傳佔據電腦的上傳輸送量。
+
+如果您啟用此設定，電腦將使用您在將檔案上傳至 OneDrive 時指定的上傳輸送量百分比，使用者將無法變更它。
+
+如果停用或未設定此設定，使用者可以選擇將上傳速率限制為固定值 (KB/秒)，或者將其設定為 [自動調整]，這將使用 70% 的上傳輸送量來回應輸送量的增加和减少。
+
+重要: 如果啟用或停用此設定，並將其變更回 [未設定]，則最後一個設定仍會繼續生效。建議您啟用此設定，而非 [將同步處理應用程式的上傳速度限制為固定速率]，以限制上傳速率。您不應同時啟用這兩個設定。</string>
+      <!-- Enable Upload Bandwidth Limiting -->
+      <string id="UploadBandwidthLimit">將同步處理應用程式的上傳速度限制為固定速率</string>
+      <string id="UploadBandwidthLimit_help">此設定可讓您設定 OneDrive 同步處理應用程式 (OneDrive.exe) 上傳檔案的速度上限。此速率是以 KB/秒為單位的固定值。速率越低，電腦上傳檔案的速度越慢。可以設定的速率下限為 1 KB/秒，而速率上限為 100000 KB/秒。若輸入的值低於 50 KB/秒，則會將限制設為 50 KB/秒，不管 UI 所顯示的輸入速率為何。
+
+若啟用此設定，電腦會使用您指定的上傳速率上限，且使用者將無法在 OneDrive 設定中進行變更。
+
+若停用或未設定此設定，使用者可以選擇將上傳速率限制為固定值 (以 KB/秒為單位)，或將它設定為 [自動調整]。這會使用 70% 的上傳輸送量以回應增加及減少的輸送量。
+
+建議您不要使用此設定來限制上傳速率，請改為使用 [將同步處理應用程式的上傳速率限制為輸送量的百分比] 以根據改變的條件調整限制。您不應該同時啟用這兩個設定。</string>
+
+      <!-- Enable Download Bandwidth Limiting -->
+      <string id="DownloadBandwidthLimit">將同步處理應用程式的下載速度限制為固定速率</string>
+      <string id="DownloadBandwidthLimit_help">此設定可讓您設定 OneDrive 同步處理應用程式 (OneDrive.exe) 下載檔案的速度上限。此速率是以 KB/秒為單位的固定值，僅適用於同步處理，而不適用於下載更新。速率越低，檔案下載越慢。您可以設定的速率下限為 1 KB/秒，而速率上限為 100000 KB/秒。若輸入的值低於 50 KB/秒，則會將限制設為 50 KB/秒，不管 UI 所顯示的輸入速率為何。
+若啟用此設定，電腦將使用您指定的下載速率上限，且使用者無法變更此設定。
+
+若停用或未設定此設定，使用者可以選擇在 OneDrive 同步處理應用程式設定中限制下載速率。</string>
+
+      <!-- prevent OneDrive sync app (OneDrive.exe) from generating network traffic (checking for updates, etc.) until the user signs in to OneDrive -->
+      <string id="PreventNetworkTrafficPreUserSignIn">在使用者登入前防止同步處理應用程式產生網路流量</string>
+      <string id="PreventNetworkTrafficPreUserSignIn_help">此設定可讓您防止 OneDrive 同步處理應用程式 (OneDrive.exe) 在使用者登入同步處理應用程式或開始將檔案同步到電腦之前產生網路流量 (檢查更新等)。
+
+若啟用此設定，使用者必須在電腦上登入 OneDrive 同步處理應用程式或選擇在電腦上同步 OneDrive 或 SharePoint 檔案，同步處理應用程式才會自動啟動。
+
+若停用或未設定此設定，OneDrive 同步處理應用程式會在使用者登入 Windows 時自動啟動。
+
+重要: 若啟用或停用此設定，然後將設定變更回 [未設定]，則仍將使用上次的設定。</string>
+
+      <!-- Silent Account Config -->
+      <string id="SilentAccountConfig">使用 Windows 認證以無訊息方式將使用者登入 OneDrive 同步處理應用程式</string>
+      <string id="SilentAccountConfig_help">此設定可讓您使用使用者的 Windows 認證以無訊息方式將使用者登入 OneDrive 同步處理應用程式 (OneDrive.exe)。
+
+若啟用此設定，使用主要 Windows 帳戶 (將電腦加入網域時使用的帳戶) 登入電腦的使用者不需輸入帳戶認證，即可設定同步處理應用程式。使用者仍然會看到 OneDrive 設定，因此使用者可以選取資料夾以同步及變更 OneDrive 資料夾的位置。若使用者使用舊版商務用 OneDrive 同步處理應用程式 (Groove.exe)，則新的同步處理應用程式將嘗試從舊版應用程式接管使用者的 OneDrive 同步處理作業，並保留使用者的同步設定。此設定通常與電腦上未啟用檔案隨選的 [設定可以自動下載的使用者 OneDrive 大小上限] 以及 [設定 OneDrive 資料夾的預設位置] 搭配使用。
+
+若停用或未設定此設定，使用者必須使用其公司或學校帳戶登入，以設定同步處理。
+
+</string>
+
+      <!-- DiskSpaceCheckThresholdMB -->
+      <string id="DiskSpaceCheckThresholdMB">設定可以自動下載的使用者 OneDrive 大小上限</string>
+      <string id="DiskSpaceCheckThresholdMB_help">此設定可與 [使用 Windows 認證以無訊息方式將使用者登入 OneDrive 同步處理應用程式] 搭配使用。此設定可讓您提示 OneDrive 內容超過指定數量的使用者在設定 OneDrive 同步處理應用程式 (OneDrive.exe) 時，選擇要同步的資料夾。
+
+若啟用此設定，擁有內容數量超過指定值的使用者預設將在 OneDrive 設定中看到 [選擇資料夾] 對話方塊。
+
+若停用或未設定此設定，當使用者設定同步處理應用程式時，將選取並同步所有檔案。</string>
+
+      <!-- Settings below control behavior of Files-On-Demand (Cloud Files) -->
+      <string id="FilesOnDemandEnabled">使用 OneDrive 檔案隨選</string>
+      <string id="FilesOnDemandEnabled_help">此設定可讓您控制是否要為貴組織啟用「OneDrive 檔案隨選」。
+
+b若啟用此設定，預設將開啟「OneDrive 檔案隨選」。
+
+若停用此設定，將明確停用「OneDrive 檔案隨選」，且使用者將無法開啟它。
+
+若未設定此設定，則使用者可以開啟或關閉「OneDrive 檔案隨選」。  </string>
+
+      <string id="DehydrateSyncedTeamSites">將已同步的小組網站檔案轉換成僅限線上存取檔案</string>
+      <string id="DehydrateSyncedTeamSites_help">此設定可與「OneDrive 檔案隨選」搭配使用。當許多使用者同步相同的小組網站時，此設定可讓您將已同步的小組網站檔案變成僅限線上存取的檔案，藉此節省頻寬並跨裝置釋出空間。
+
+如果啟用此設定，則在「OneDrive 檔案隨選」啟用前已同步的小組網站檔案將轉換為僅限線上存取檔案 (一次性動作)。
+
+如果停用或不設定此設定，除非使用者選擇將檔案設為僅限線上存取，否則小組網站檔案仍將維持為本機可用檔案。</string>
+
+      <!-- Restrict syncing with other organizations -->
+      <string id="AllowTenantList">只允許同步處理特定組織的 OneDrive 帳戶</string>
+      <string id="AllowTenantList_help">此設定可讓您指定允許的租用戶識別碼清單，以防止使用者輕易上傳檔案到其組織。
+
+如果啟用此設定，使用者嘗試新增來自不允許之組織的帳戶時會收到錯誤。如果使用者已新增帳戶，檔案將會停止同步。
+
+如果停用或未設定此設定，使用者可以新增來自任何組織的帳戶。
+
+若要改為封鎖特定組織，請使用 [封鎖同步處理特定組織的 OneDrive 帳戶]。
+
+此設定優先於「封鎖同步處理特定組織的 OneDrive 帳戶」。請勿同時啟用這兩個原則。</string>
+
+      <string id="BlockTenantList">封鎖同步處理特定組織的 OneDrive 帳戶</string>
+      <string id="BlockTenantList_help">此設定可讓您透過指定封鎖的租用戶識別碼清單，以防止使用者輕鬆上傳檔案到另一個組織。
+
+若啟用此設定，使用者嘗試新增已封鎖之組織的帳戶時會收到錯誤。若使用者已新增帳戶，檔案將會停止同步。
+
+若停用或未設定此設定，使用者可以新增任何組織的帳戶。
+
+若要改為指定允許組織的清單，請使用 [只允許同步處理特定組織的 OneDrive 帳戶]。
+
+若您已啟用「只允許同步處理特定組織的 OneDrive 帳戶」，此設定將沒有作用。請勿同時啟用這兩個原則。  </string>
+
+      <!-- SharePoint Server 2019 settings -->
+      <string id="SharePointOnPremFrontDoorUrl">指定 SharePoint 伺服器 URL 和組織名稱</string>
+      <string id="SharePointOnPremFrontDoorUrl_help">此設定可讓您允許使用者在 SharePoint Server 2019 中使用 OneDrive 同步處理應用程式 (OneDrive.exe) 同步檔案。URL 會定義 SharePoint Server 位置並允許同步處理應用程式驗證及設定同步。組織名稱可讓您指定將在檔案總管中建立的 OneDrive 與 SharePoint 資料夾名稱。組織名稱可省略。若未提供，同步處理應用程式將使用 URL 的第一個區段做為名稱。例如 office.sharepoint.com 會變成 Office，而 OneDrive 資料夾名稱會是 [OneDrive - Office]。
+
+若啟用此設定並提供 SharePoint Server URL，使用者將能夠在 SharePoint Server 2019 中同步檔案。
+
+若停用或未設定此設定，或未提供 SharePoint Server URL，使用者將無法在 SharePoint Server 2019 中同步檔案。</string>
+
+      <string id="SharePointOnPremPrioritization">在混合式環境中指定 OneDrive 位置</string>
+      <string id="SharePointOnPremPrioritization_help">此設定會定義若身分識別同時存在於 SharePoint Online 與 SharePoint Server 2019 身分識別提供者時，OneDrive 同步處理應用程式 (OneDrive.exe) 要向 SharePoint Online 或 SharePoint Server 2019 進行驗證。若要使用此設定，您必須同時啟用 [指定 SharePoint Server URL 與組織名稱]。此設定只會影響商務用 OneDrive 同步功能。它不會影響 SharePoint Online 或 SharePoint Server 2019 的小組網站同步。
+
+若啟用此設定，您可以在兩個選項中選取其中一個選項:
+
+SharePoint Online: 同步處理應用程式會先在 SharePoint Online 尋找使用者的 OneDrive。若同步處理應用程式已在 SharePoint Online 設定使用者，則它會針對該使用者嘗試在 SharePoint Server 2019 上設定商務用 OneDrive 執行個體。
+
+SharePoint Server 2019: 同步處理應用程式會先在 SharePoint Server 2019 尋找使用者的 OneDrive。若同步處理應用程式已在 SharePoint Server 2019 設定使用者，則它會針對該使用者嘗試在 SharePoint Online 上設定商務用 OneDrive 執行個體。
+
+若停用或未設定此設定，同步處理應用程式會先在 SharePoint Online 尋找使用者的 OneDrive。</string>
+
+      <string id="PrioritizeSPO">SharePoint Online</string>
+      <string id="PrioritizeSharePointOnPrem">SharePoint Server 2019</string>
+
+      <!-- Disable tutorial in the FRE -->
+      <string id="DisableFRETutorial">OneDrive 設定結束時不顯示教學課程</string>
+      <string id="DisableFRETutorial_help">此設定可讓您在 OneDrive 設定結束時防止網頁瀏覽器啟動教學課程。
+
+如果啟用此設定，使用者將不會在 OneDrive 設定完成時看到教學課程。
+
+如果停用或不設定此設定，教學課程將在 OneDrive 設定結束時顯示。</string>
+
+      <!-- Disable Animation in the FRE-->
+      <string id="DisableFREAnimation">停用在 OneDrive 設定期間顯示的動畫</string>
+      <string id="DisableFREAnimation_help">此設定可讓您防止在 OneDrive 設定期間顯示動畫。</string>
+
+      <!-- Block KFM -->
+      <string id="BlockKnownFolderMove">防止使用者將其 Windows 已知資料夾移至 OneDrive</string>
+      <string id="BlockKnownFolderMove_help">此設定會防止使用者將文件、圖片和桌面資料夾移至任何商務用 OneDrive 帳戶。
+
+注意: 將已知資料夾移至個人 OneDrive 帳戶已在加入網域的電腦上進行封鎖。
+
+如果啟用此設定，則不會提示使用者「設定重要資料夾的保護」視窗，並且將停用「啟動保護」命令。如果使用者已經移動了其已知資料夾，那麼那些資料夾中的檔案將保留在 OneDrive 中。若要將已知資料夾重新導向轉接回使用者的裝置，請選取 [否]。如果啟用「提示使用者將 Windows 已知資料夾移動至 OneDrive」或「無訊息將 Windows 已知資料夾移動至 OneDrive」，此設定將不會生效。
+
+如果您停用或不設定此設定，則使用者可以選擇移動其已知資料夾。</string>
+
+      <string id="BlockKnownFolderMoveDefaultOption">是</string>
+      <string id="BlockKnownFolderMoveRestoreFolder">否</string>
+
+      <!-- KFMOptInWithWizard -->
+      <string id="KFMOptInWithWizard">提示使用者將 Windows 已知資料夾移至 OneDrive</string>
+      <string id="KFMOptInWithWizard_help">此設定會顯示 [您的 IT 部門希望您保護您的重要資料夾] 視窗以提示使用者將其 [文件]、[圖片] 與 [桌面] 資料夾移至 OneDrive。內部部署 SharePoint 未啟用此功能。
+
+如果啟用此設定並提供您的租用戶識別碼，正在同步其 OneDrive 的使用者會在登入時看到 [您的 IT 部門希望您保護您的重要資料夾] 視窗。如果關閉此視窗，系統將在活動中心顯示提醒通知，直到使用者將這三個已知資料夾全部移動為止。如果使用者已將其已知資料夾重新導向至其他 OneDrive 帳戶，系統將提示使用者將資料夾導向至貴組織中的帳戶 (不會移動現有的檔案)。
+
+如果停用或不設定此設定，不會自動顯示 [您的 IT 部門希望您保護您的重要資料夾] 視窗。</string>
+
+      <!-- KFMOptInNoWizard -->
+      <string id="KFMOptInNoWizard">以無訊息模式將 Windows 已知資料夾移動到 OneDrive</string>
+      <string id="KFMOptInNoWizard_help">此設定可讓您在沒有使用者互動的情況下將已知資料夾重新導向到 OneDrive。在組建 18.171.0823.0001 之前的同步處理應用程式中，此設定只會將空的已知資料夾重新導向到 OneDrive (或已知資料夾已重新導向到其他 OneDrive 帳戶)。在較新的組建中，它會將包含內容的已知資料夾重新導向並將內容移到 OneDrive。建議將此設定搭配 [提示使用者將 Windows 已知資料夾移至 OneDrive] 使用。如果無法以無訊息方式成功移動已知資料夾，系統將提示使用者更正錯誤並繼續。
+
+如果啟用此設定並提供租用戶識別碼，您可以選擇是否要在資料夾重新導向後向使用者顯示通知。
+
+您可以一次移動所有資料夾或選取您要移動的資料夾。移動資料夾後，此原則將不會再次影響該資料夾，即使您清除該資料夾的核取方塊亦然。
+
+如果停用或不設定此設定，您使用者的已知資料夾將不會以無訊息方式重新導向和/或移到 OneDrive。
+
+    </string>
+      <string id="KFMOptInNoWizardToast">是</string>
+      <string id="KFMOptInNoWizardNoToast">否</string>
+
+      <!-- Block KFM Opt Out -->
+      <string id="KFMBlockOptOut">防止使用者將其 Windows 已知資料夾重新導向到其電腦</string>
+      <string id="KFMBlockOptOut_help">此設定會強制使用者將其 [文件]、[圖片] 與 [桌面] 資料夾導向到 OneDrive。
+
+如果啟用此設定，將停用 [您的 IT 部門希望您保護您的重要資料夾] 視窗中的 [停止保護] 按鈕，使用者會在嘗試停止同步已知資料夾時收到錯誤訊息。
+
+如果停用或不設定此設定，使用者可以選擇將其已知的資料夾重新導向回其電腦。</string>
+
+      <!-- KFMForceWindowsDisplayLanguage -->
+      <string id="KFMForceWindowsDisplayLanguage">在 OneDrive 中佈建已知資料夾時，一律使用使用者的 Windows 顯示語言</string>
+      <string id="KFMForceWindowsDisplayLanguage_help">當您將 Windows 已知資料夾移至 OneDrive 時，預設會根據使用者的 Windows 顯示語言布建，除非使用者設定不同的慣用語言。此設定可讓您覆寫使用者慣用的語言設定。它同時適用于已知資料夾移動設定 ( [無訊息將 Windows 已知資料夾移至 OneDrive] 及 [提示使用者將 Windows 已知資料夾移至 OneDrive] ) 。
+
+如果您啟用這個設定，即使使用者設定不同的慣用語言，也會使用使用者的 Windows 顯示語言布建已知的資料夾。
+
+如果您停用或未設定這個設定，且使用者設定了慣用的語言，則會使用該語言在 OneDrive 中布建其已知的資料夾。電腦上的已知資料夾將會以其慣用的語言顯示。</string>
+
+      <!-- AutoMountTeamSites -->
+      <string id="AutoMountTeamSites">設定自動同步小組網站文件庫</string>
+      <string id="AutoMountTeamSites_help">此設定可讓您指定使用者下次登入 OneDrive 同步處理應用程式 (OneDrive.exe) 時要自動同步的 SharePoint 小組網站文件庫。最晚可能要在使用者登入的 8 小時後才能開始同步文件庫。若要使用此設定，您必須啟用 OneDrive 檔案隨選，且此設定僅適用於執行 Windows 10 (1709) Fall Creators Update 或更新版本之電腦的使用者。請勿針對相同文件庫的此設定啟用到 1000 台以上的裝置。為了確保良好的同步處理體驗，請避免在大型文件庫集合上啟用此功能 (如需最新的指引，請參閱 https://learn.microsoft.com/en-us/sharepoint/use-group-policy#AutoMountTeamSites)。此功能未對內部部署的 SharePoint 網站啟用。
+
+如果啟用此設定，OneDrive 同步處理應用程式將在使用者下次登入時自動下載您指定為僅線上檔案之文件庫的內容。使用者將無法停止同步文件庫。
+
+如果您停用此設定，您所指定的小組網站文件庫將不會自動同步新的使用者。現有使用者可以選擇停止同步文件庫，但文件庫不會停止自動同步。</string>
+
+      <!-- Disable Pause On Battery Saver  -->
+      <string id="DisablePauseOnBatterySaver">裝置開啟省電模式時繼續同步處理</string>
+      <string id="DisablePauseOnBatterySaver_help">此設定可讓您針對已開啟省電模式的裝置關閉自動暫停功能。 
+
+如果啟用此設定，則系統將在使用者開啟省電模式時繼續同步處理。OneDrive 不會自動暫停同步處理。
+
+如果停用或不設定此設定，系統將在偵測到省電模式時自動暫停同步處理並顯示通知，使用者可以按一下通知中的 [仍要同步] 以選擇不暫停同步處理。當同步處理暫停時，使用者可以在工作列的通知區域按一下 OneDrive 雲端圖示，然後按一下活動中心頂端的警示以繼續同步處理。</string>
+
+      <!-- Disable Pause On Metered Network -->
+      <string id="DisablePauseOnMeteredNetwork">連線到計量付費網路時繼續同步處理</string>
+      <string id="DisablePauseOnMeteredNetwork_help">此設定可讓您在裝置連線到計量付費網路時關閉自動暫停功能。
+
+如果啟用此設定，則系統將在裝置連線到計量付費網路時繼續同步處理。OneDrive 不會自動暫停同步處理。
+
+如果停用或不設定此設定，系統將在偵測到計量付費網路時自動暫停同步處理，且使用者將收到通知。使用者可以按一下通知中的 [仍要同步] 以選擇不暫停同步處理。當同步處理暫停時，使用者可以在工作列的通知區域按一下 OneDrive 雲端圖示，然後在活動中心頂端按一下警示。</string>
+
+      <!-- Local Mass Delete Threshold -->
+      <string id="LocalMassDeleteFileDeleteThreshold">當使用者刪除本機電腦上的多個 OneDrive 檔案時提示他們</string>
+      <string id="LocalMassDeleteFileDeleteThreshold_help">此原則會設定在通知使用者檔案也會從雲端刪除之前，使用者可從本機 OneDrive 資料夾刪除多少檔案數的臨界值。
+
+如果您啟用這項原則，使用者在從其本機電腦上的 OneDrive 刪除超過指定數量的檔案時，就會看到通知。使用者可以選擇繼續移除雲端檔案，或還原本機檔案。
+
+注意: 即使您啟用這項原則，如果使用者已在先前的通知中選取 [一律移除檔案] 核取方塊，或他們清除了 OneDrive 同步處理應用程式設定中的 [在雲端刪除許多檔案時通知我] 核取方塊，使用者就不會收到通知。
+
+如果您停用此原則，使用者在其本機電腦上刪除許多 OneDrive 檔案時，並不會收到通知。
+
+如果您未設定此原則，使用者會在短期內刪除超過 200 個檔案時看到通知。</string>
+
+
+      <!-- Forced local mass delete prompt -->
+      <string id="ForcedLocalMassDeleteDetection">要求使用者確認大型刪除作業</string>
+      <string id="ForcedLocalMassDeleteDetection_help">此設定會在使用者刪除大量已同步的檔案時要求使用者確認是否要刪除雲端中的檔案。
+
+如果啟用此設定，則將永遠在使用者刪除大量已同步的檔案時顯示警告。如果使用者未在 7 天內確認刪除作業，將不會刪除檔案。
+
+如果停用或不設定此設定，使用者可以選擇隱藏警告，一律刪除雲端中的檔案。</string>
+
+      <!-- Block B2BSync aka Cross Tenant Sync -->
+      <string id="BlockExternalSync">避免使用者同步處理從其他組織共用的文件庫與資料夾</string>
+      <string id="BlockExternalSync_help">此設定可控制是否允許組織中的使用者同步由不同組織中使用者共用的商務用 OneDrive 或 SharePoint 內容。這是名為 B2B 同步的共同作業功能。
+
+若您啟用此設定，使用者將無法開始同步從外部組織共用的商務用 OneDrive 或 SharePoint 文件庫或資料夾。任何已同步的共用文件庫或資料夾都將停止同步。
+
+如果停用或未設定此設定，使用者將能够同步商務用 OneDrive 和 SharePoint 文件庫以及從外部組織共用的資料夾。
+
+有關 B2B 同步的更多資訊，請參閱: https://learn.microsoft.com/en-us/sharepoint/b2b-sync</string>
+
+      <!-- Allow OneDrive to disable permission inheritance within read-only folders -->
+      <string id="PermitDisablePermissionInheritance">允許 OneDrive 停用以唯讀模式同步之資料夾中的 Windows 權限繼承</string>
+      <string id="PermitDisablePermissionInheritance_help">此設定可讓 OneDrive 同步處理應用程式移除使用者電腦上同步唯讀資料夾中的所有繼承權限。
+
+若啟用此設定，OneDrive 同步處理應用程式可在唯讀資料夾中停用權限繼承，以改善同步速度。
+
+若停用或未設定此設定，OneDrive 同步處理應用程式將在唯讀資料夾中保留權限繼承。同步速度可能會很慢。</string>
+
+      <!-- Automatically adjust the sync app upload rate based on bandwidth availability -->
+      <string id="EnableAutomaticUploadBandwidthManagement">啟用 OneDrive 自動上傳頻寬管理</string>
+      <string id="EnableAutomaticUploadBandwidthManagement_help">此設定可讓 OneDrive 同步處理應用程式 (OneDrive.exe) 僅在未使用的頻寬可用時，在背景上傳資料。它可防止同步處理應用程式干擾其他正在使用網路的應用程式。此設定由 Windows LEDBAT (低額外延遲背景傳輸) 通訊協定提供。當 LEDBAT 偵測到表示其他 TCP 連線消耗頻寬的延遲增加時，同步處理應用程式將會降低其自身的消耗以避免干擾。當網路延遲再次減少且頻寬已釋放時，同步處理應用程式將會提高上傳速率，並取用未使用的頻寬。
+
+若啟用此設定，同步處理應用程式上傳的速率將會根據頻寬的可用性而設定為 [自動調整]，而且使用者將無法變更。
+
+若停用或未設定此設定，使用者可以選擇將上傳速率限制為固定值 (KB/秒)，或將其設定為 [自動調整]。
+
+重要
+若啟用或停用此設定，然後將其變更回 [未設定]，則仍將使用上次的設定。我們建議您啟用此設定，而不是 [將同步處理應用程式的上傳速度限制為固定速率]。您不應該同時啟用這兩個設定。若同時在相同的裝置上啟用這兩個設定，此設定將會覆寫 [將同步處理應用程式的上傳速率限制為輸送量的百分比]。</string>
+
+      <!-- MinDiskSpaceLimitInMB -->
+      <!-- configurable limit where low disk space error will occur-->
+      <string id="MinDiskSpaceLimitInMB">當使用者的磁碟空間不足時，將會封鎖檔案下載</string>
+      <string id="MinDiskSpaceLimitInMB_help">此設定可讓您指定可用磁碟空間的最小值，並在使用者的磁碟空間量小於此數量時，防止 OneDrive 同步處理應用程式 (OneDrive.exe) 下載檔案。
+
+系統會以選項提示使用者釋放空間。</string>
+
+      <!-- WarningMinDiskSpaceLimitInMB -->
+      <!-- configurable limit where user will be notified they are approaching low disk space -->
+      <string id="WarningMinDiskSpaceLimitInMB">警告磁碟空間不足的使用者</string>
+      <string id="WarningMinDiskSpaceLimitInMB_help">此設定可讓您指定可用磁碟空間的最小值，並在 OneDrive 同步處理應用程式 (OneDrive) 下載的檔案造成磁碟空間量小於此數量時警告使用者。
+
+系統會以選項提示使用者釋放空間。</string>
+
+      <!-- EnableODIgnoreListFromGPO -->
+      <string id="EnableODIgnoreListFromGPO">排除要上傳的特定類型檔案</string>
+      <string id="EnableODIgnoreListFromGPO_help">此設定可讓您輸入關鍵字，以防止 OneDrive 同步處理應用程式 (OneDrive.exe)將特定檔案上傳到 OneDrive 或 SharePoint。您可以輸入完整的名稱，例如"setup.exe"或使用星號(*)為萬用字元來表示一系列字元。
+
+如果啟用此設定，同步處理應用程式不會上傳符合您指定關鍵字的新檔案。略過的檔案未顯示錯誤，且檔案會保留在本機 OneDrive 資料夾中。啟用此設定後，必須重新開機 OneDrive 同步處理應用程式，設定才會生效。
+
+如果停用或未設定此設定，同步處理應用程式會上傳所有已同步資料夾中所有支援檔案。</string>
+
+      <!-- Disable First Delete Dialog -->
+      <string id="DisableFirstDeleteDialog">隱藏「刪除的檔案會在所有位置移除」提醒</string>
+      <string id="DisableFirstDeleteDialog_help">當使用者從已同步的位置刪除本機檔案時，會顯示警告訊息，表示所有使用者的裝置和網頁上的檔案將無法再使用。此設定可讓您隱藏警告訊息。
+
+如果您啟用這個設定，當使用者刪除本機的檔案時，使用者將看不到 [從所有人都移除已刪除的檔案] 提醒。
+
+如果停用或未設定此設定，在使用者選取 [不要再顯示此提醒] 之前，提醒將會出現。</string>
+
+      <!-- IgnoreWebProxy -->
+      <string id="IgnoreWebProxy">導致同步處理用戶端忽略一般 web proxy 偵測邏輯</string>
+      <string id="IgnoreWebProxy_help">此設定控制 OneDrive 同步處理用戶端是否執行其預設 Web Proxy 偵測邏輯。
+
+如果您啟用這項設定，同步處理用戶端就不會執行一般的 Web Proxy 偵測，並將嘗試直接連線到必須與其直接通訊的的網際網路 Web 端點。這相當於沒有設定 Web Proxy 設定，也沒有自動 proxy 指令碼。
+
+如果停用或未設定此設定，同步處理用戶端將偵測網路上是否設定了 Web Proxy，如果已設定，則使用它。
+
+如需更多資訊，請參閲 https://learn.microsoft.com/en-us/troubleshoot/windows-server/networking/configure-proxy-server-settings</string>
+
+      <!-- EnableSyncAdminReports -->
+      <string id="EnableSyncAdminReports">啟用 OneDrive 的同步健康狀態報告</string>
+      <string id="EnableSyncAdminReports_help">OneDrive 同步處理健康情況儀表板提供同步處理應用程式裝置與健康情況的報告。此設定可讓 OneDrive 同步處理應用程式將同步裝置與健康情況資料編譯成系統管理報告。這些報告可讓您主動識別、調查和解决整個組織中的常見錯誤。
+
+如果啟用此設定，OneDrive 同步處理應用程式將在管理報告中報告裝置和健康情況資料。您必須在要從中取得報告的裝置上啟用此設定。
+
+如果停用或未設定此設定，OneDrive 同步處理應用程式裝置與健康情況資料不會顯示在 OneDrive 同步處理健康情況儀表板中。</string>
+
+      <!-- Disable Get Feedback -->
+      <string id="EnableFeedbackAndSupport"> 請讓使用者聯絡 Microsoft 以收到意見反應及支援</string>
+      <string id="EnableFeedbackAndSupport_help">此設定會指定貴組織中的使用者是否可以透過同步處理應用程式中的使用者體驗直接與 Microsoft 通訊。讓使用者分享他們的想法有助於我們改進 OneDrive。
+
+如果啟用或未設定此設定，使用者可以使用 Microsoft OneDrive 同步處理應用程式中的體驗直接與 Microsoft 連絡以取得意見反應和支援。
+
+如果停用此設定，使用者將無法連絡 Microsoft 以取得同步處理應用程式内的支援、意見反應或建議。使用者仍然可以存取協助內容和自助工具。</string>
+
+      <!-- Disable Nucleus List Sync -->
+      <string id="DisableListSync">防止清單同步在此裝置上執行</string>
+      <string id="DisableListSync_help">根據預設，系統會為Microsoft 清單的使用者開啟清單同步處理，這樣即使使用者離線也能存取和編輯他們的清單。如果啟用此原則，將禁止在裝置上執行清單同步處理。</string>
+
+      <!-- Block Nucleus External List Sync -->
+      <string id="BlockExternalListSync">避免使用者同步處理從其他組織共用的清單</string>
+      <string id="BlockExternalListSync_help">啟用此設定可防止您組織中的使用者同步來自其他組織的共用清單。啟用設定後，(電腦上的值 1)，從其他組織共用的清單將不會同步。停用設定 (值 0) 以允許您的使用者同步處理外部清單。      </string>
+
+      <!-- Disable Nucleus Silent Config -->
+      <string id="DisableNucleusSilentConfig">防止使用者在網路上以無訊息方式登入離線體驗</string>
+      <string id="DisableNucleusSilentConfig_help">Microsoft 清單和 OneDrive 網頁版的離線體驗設定為使用使用者的 Microsoft Entra ID 認證自動將使用者登入。若啟用此設定，先前在網路上使用 Microsoft 清單和 OneDrive 的離線體驗和已使用已加入 Microsoft Entra 裝置登入的人員，將無法在未輸入認證的情況下設定離線體驗。
+      </string>
+
+      <!-- Disable Nucleus Offline Mode for Files -->
+      <string id="DisableOfflineMode">防止貴組織中的使用者在 OneDrive 網頁版中啟用離線模式</string>
+      <string id="DisableOfflineMode_help">根據預設，會為網路上的 OneDrive 使用者開啟離線模式。如果啟用此原則，則會停用裝置上所有使用者在網路上 OneDrive 的離線模式。      </string>
+
+      <!-- Disable Nucleus Offline Mode for external libraries -->
+      <string id="DisableOfflineModeForExternalLibraries">防止貴組織中的使用者針對從其他組織共用的文件庫與資料夾，在網頁版 OneDrive 中啟用離線模式</string>
+      <string id="DisableOfflineModeForExternalLibraries_help">啟用此設定可防止貴組織的使用者為從其他組織共用的文件庫和資料夾啟用離線模式。在電腦上啟用設定 (值 1) 之後，當其他組織共用的文件庫和資料夾在 OneDrive 網頁中處理它們時，將不會有啟用離線模式的選項。停用設定 (值 0)，可允許您的使用者在使用來自其他組織的文件庫和資料夾時，在網路上啟用或停用 OneDrive 的離線模式。
+      </string>
+
+      <!-- Disable auto configuration -->
+      <string id="DisableAutoConfig">使用 Microsoft 應用程式可使用的現有認證，以無訊息方式將使用者登入OneDrive 同步處理應用程式</string>
+      <string id="DisableAutoConfig_help">此設定決定同步處理用戶端是否可以自動登入。
+
+如果系統管理員啟用此設定 (值 1)，則會防止同步處理自動簽署提供給 Microsoft 應用程式的現有 AAD 認證。
+
+如果系統管理員停用 (值 0) 或未設定此設定，同步處理將會自動登入。
+</string>
+
+      <!-- Disable New Account Detection -->
+      <string id="DisableNewAccountDetection">停用快顯通知和活動中心訊息，以鼓勵使用者使用 Microsoft 應用程式提供的現有認證登入 OneDrive</string>
+      <string id="DisableNewAccountDetection_help">如果系統管理員啟用此設定 (值 1)，則使用者將看不到關於可用於登入 OneDrive 之新帳戶的通知橫幅和活動中心訊息。
+
+如果系統管理員停用 (值 0) 或未設定此設定，當 OneDrive 在裝置上偵測到新帳戶時，使用者將看到快顯通知和活動中心訊息。
+      </string>
+        
+      <!-- Enable Added Folder Hard-delete On Unmount -->
+      <string id="AddedFolderHardDeleteOnUnmount">卸載時，實刪除新增資料夾的內容</string>
+      <string id="AddedFolderHardDeleteOnUnmount_help">此設定決定當發生卸載新增資料夾的要求時，同步處理用戶端的行為。
+
+如果系統管理員啟用此設定 (值 1)，當收到新增資料夾的卸載時，同步處理用戶端會實刪除資料夾的所有內容。
+
+如果系統管理員停用 (值 0) 或未設定此設定，同步預設會將卸載資料夾的內容移至回收站。      </string>
+
+      <!-- Enable Added Folder Hard-delete On Permissions Loss -->
+      <string id="AddedFolderUnmountOnPermissionsLoss">使用者失去資料夾的權限時，實刪除新增資料夾的內容</string>
+      <string id="AddedFolderUnmountOnPermissionsLoss_help">此設定可決定當使用者失去新增資料夾的許可權時，同步處理用戶端的行為。
+
+如果系統管理員啟用這個設定，(值 1)，當同步處理用戶端偵測到使用者失去新增資料夾的許可權時，同步處理用戶端會實刪除資料夾和資料夾本身的所有內容。
+
+如果系統管理員停用 (值 0) 或未設定此設定，同步預設會將資料夾標示為錯誤，並提示使用者將它移除。當使用者確認移除時，資料夾的內容會移至回收站。      </string>
+
+      <!-- Confirm shared file deletion prompt -->
+      <string id="SharedContentDeleteConfirmation">當使用者刪除共享的內容時，提示用戶確認</string>
+      <string id="SharedContentDeleteConfirmation_help">刪除多個使用者可存取的本機同步檔案時，會出現對話框通知使用者其他使用者將無法再存取該內容，並要求使用者在 OneDrive 在線傳播刪除之前確認動作。確認之後，短時間刪除其他共享內容不會造成其他確認。其他內容會繼續同步。
+
+啟用此設定可防止使用者隱藏確認對話方塊。每次使用者刪除共享內容時，都需要其確認，才能為所有在線使用者刪除專案。
+
+停用此設定以不顯示刪除確認訊息。會立即在雲端中進行刪除。
+
+不要設定這個設定，讓使用者可以選擇隱藏警告，其中包含上述效果。
+      </string>
+
+    </stringTable>
+    <presentationTable>
+      <presentation id="GPOSetUpdateRing_Pres">
+        <dropdownList refId="GPOSetUpdateRing_Dropdown" noSort="true" defaultItem="0">更新通道:</dropdownList>
+      </presentation>
+
+      <presentation id="AutomaticUploadBandwidthPercentage_Pres">
+        <text>選取上傳檔案時使用的最大頻寬百分比。</text>
+        <text>有效值為從 10 到 99。</text>
+        <decimalTextBox refId="BandwidthSpinBox" defaultValue="70" spinStep="1">頻寬:</decimalTextBox>
+      </presentation>
+
+      <presentation id="UploadBandwidthLimit_Pres">
+        <text>選取上傳檔案時使用的最大頻寬量。</text>
+        <text>有效值從 1 到 100000。</text>
+        <decimalTextBox refId="UploadRateValue" defaultValue="125">頻寬:</decimalTextBox>
+      </presentation>
+
+      <presentation id="DownloadBandwidthLimit_Pres">
+        <text>選取下載檔案時使用的最大頻寬量。</text>
+        <text>有效值從 1 到 100000。</text>
+        <decimalTextBox refId="DownloadRateValue" defaultValue="125">頻寬:</decimalTextBox>
+      </presentation>
+
+       <presentation id="DiskSpaceCheckThresholdMB_Pres">
+        <text>指定租用戶識別碼和使用者的 OneDrive 大小上限，將在達到此上限時提示使用者選擇要同步的資料夾。</text>
+        <text>在 [值名稱] 欄位中輸入租用戶識別碼。在 [值] 欄位中輸入大小。</text>
+        <text>有效值從 0 到 4294967295 MB (含)。</text>
+        <listBox refId="DiskSpaceCheckThresholdMBList">大小上限: </listBox>
+      </presentation>
+
+      <presentation id="DefaultRootDir_Pres">
+       <text>指定租用戶識別碼與預設路徑。</text>
+        <text>在 [值名稱] 欄位中輸入租用戶識別碼。在 [值] 欄位中輸入路徑。</text>
+        <listBox refId="DefaultRootDirList">路徑: </listBox>
+      </presentation>
+
+      <presentation id="DisableCustomRoot_Pres">
+        <text>指定租用戶識別碼與設定值。</text>
+        <text>在 [值名稱] 欄位中輸入租用戶識別碼。在 [值] 欄位中，輸入 1 以啟用設定，或輸入 0 以停用設定。</text>
+        <listBox refId="DisableCustomRootList">變更位置設定: </listBox>
+      </presentation>
+
+      <presentation id="AllowTenantList_Pres">
+        <text>指定租用戶識別碼</text>
+        <text>在 [值] 欄位中，輸入您要新增到此清單的租用戶識別碼。</text>
+        <text> </text>
+        <listBox refId="AllowTenantListBox">租用戶識別碼: </listBox>
+      </presentation>
+
+      <presentation id="BlockTenantList_Pres">
+        <text>指定租用戶識別碼</text>
+        <text>在 [值] 欄位中，輸入您要新增到此清單的租用戶識別碼。</text>
+        <text> </text>
+        <listBox refId="BlockTenantListBox">租用戶識別碼: </listBox>
+       </presentation>
+
+      <presentation id="SharePointOnPremFrontDoorUrl_Pres">
+        <text>提供託管使用者之商務用 OneDrive 的 SharePoint Server URL 與組織名稱。</text>
+        <textBox refId="SharePointOnPremFrontDoorUrlBox">
+          <label>SharePoint Server 2019 URL:</label>
+        </textBox>
+        <textBox refId="SharePointOnPremTenantNameBox">
+          <label>組織名稱:</label>
+        </textBox>
+      </presentation>
+
+      <presentation id="SharePointOnPremPrioritization_Pres">
+        <dropdownList refId="SharePointOnPremPrioritization_Dropdown" noSort="true" defaultItem="0">首先驗證:</dropdownList>
+      </presentation>
+
+      <presentation id="BlockKnownFolderMove_Pres">
+        <dropdownList refId="BlockKnownFolderMove_Dropdown" noSort="true" defaultItem="0">對於已移動其已知資料夾的使用者，您是否要將那些資料夾保留重新導向到 OneDrive:</dropdownList>
+      </presentation>
+
+      <presentation id="KFMOptInWithWizard_Pres">
+        <textBox refId="KFMOptInWithWizard_TextBox">
+          <label>租用戶識別碼:</label>
+        </textBox>
+      </presentation>
+
+      <presentation id="KFMOptInNoWizard_Pres">
+        <textBox refId="KFMOptInNoWizard_TextBox">
+          <label>租用戶識別碼:</label>
+        </textBox>
+        <dropdownList refId="KFMOptInNoWizard_Dropdown" noSort="true" defaultItem="0">在資料夾重新導向後向使用者顯示通知:</dropdownList>
+        <text>資料夾選項:</text>
+        <checkBox refId="KFMOptInNoWizard_Desktop_Checkbox" defaultChecked="true">桌面</checkBox>
+        <checkBox refId="KFMOptInNoWizard_Documents_Checkbox" defaultChecked="true">文件</checkBox>
+        <checkBox refId="KFMOptInNoWizard_Pictures_Checkbox" defaultChecked="true">圖片</checkBox>
+      </presentation>
+      <presentation id="AutoMountTeamSites_Pres">
+        <text>指定要同步的文件庫:
+
+開啟網頁瀏覽器，以貴組織全域管理員或 SharePoint 系統管理員身分登入 Office 365，然後瀏覽要同步的文件庫。
+
+在您想要自動同步的文件庫上按一下 [同步處理] 按鈕，然後按一下 [複製文件庫識別碼]。
+
+按一下 [顯示]，然後在 [值名稱] 欄位中輸入用來辨識文件庫的易記名稱，並在 [值] 欄位中輸入文件庫識別碼。
+        </text>
+        <listBox refId="AutoMountTeamSitesListBox">文件庫:</listBox>
+      </presentation>
+
+      <presentation id="MinDiskSpaceLimitInMB_Pres">
+        <text>在 [值] 欄位中，輸入您要保留的最小可用磁碟空間量。</text>
+        <text>有效值從 0 到 10240000 MB</text>
+        <decimalTextBox refId="minDiskSpaceMB" defaultValue="200">最小的可用磁碟空間:</decimalTextBox>
+      </presentation>
+
+      <presentation id="WarningMinDiskSpaceLimitInMB_Pres">
+        <text>在 [值] 欄位中，輸入使用者將接收警告的可用磁碟空間量。如果您將此原則與「使用者的磁碟空間不足時封鎖檔案下載」一起使用，此設定的值應該大於封鎖下載的值。</text>
+        <text>有效值從 0 到 10240000 MB</text>
+        <decimalTextBox refId="warningMinDiskSpaceMB" defaultValue="500">最小的可用磁碟空間:</decimalTextBox>
+      </presentation>
+
+      <presentation id="LocalMassDeleteFileDeleteThreshold_Pres">
+        <text>要求使用者確認操作之前，指定他們一次可以刪除的檔案數目上限。</text>
+        <text>有效值從 1 到 100000。</text>
+        <decimalTextBox refId="LMDFileDeleteThresholdBox" defaultValue="200">檔案數目:</decimalTextBox>
+      </presentation>
+
+      <presentation id="EnableODIgnoreListFromGPO_Pres">
+        <text>若要指定關鍵字，請選取 [顯示]，然後在 [值] 欄位中輸入關鍵字。</text>
+        <text>例如，輸入 "*.pst" 即可封鎖副檔名為 .pst 的所有檔案。輸入 "expense*"  以封鎖名稱以 "expense" 開頭的檔案。輸入 "*sales*" 以封鎖名稱中有 "sales" 的所有檔案。關鍵字不區分大小寫。例如，如果您輸入 "icons.JPEG"，也會封鎖 "icons.jpeg"。 </text>
+        <text> </text>
+        <listBox refId="EnableODIgnoreListFromGPOListBox">關鍵字: </listBox>
+      </presentation>
+
+      <presentation id="EnableODIgnoreFolderListFromGPO_Pres">
+        <text>若要指定關鍵字，請選取 [顯示]，然後在 [值] 欄位中輸入關鍵字。</text>
+        <text>例如，輸入 "foo" 即可封鎖名為 "foo" 的所有資料夾。輸入 "expense*"  以封鎖名稱以 "expense" 開頭的資料夾。輸入 "*sales*" 以封鎖名稱中有 "sales" 的所有資料夾。關鍵字不區分大小寫。例如，如果您輸入 "ICONS"，也會封鎖 "icons"。 </text>
+        <text> </text>
+        <listBox refId="EnableODIgnoreFolderListFromGPOListBox">關鍵字: </listBox>
+      </presentation>
+
+      <presentation id="EnableSyncAdminReports_Pres">
+      </presentation>
+      <presentation id="GranularFeedbackControl_Pres">
+        <text>允許使用者與 Microsoft 聯繫，以:</text>
+        <checkBox refId="GranularFeedbackControl_SendFeedback_Checkbox" defaultChecked="true">傳送意見反應</checkBox>
+        <checkBox refId="GranularFeedbackControl_ReceiveSurveys_Checkbox" defaultChecked="true">接收使用者滿意度問卷</checkBox>
+        <checkBox refId="GranularFeedbackControl_ContactSupport_Checkbox" defaultChecked="true">請連絡 OneDrive 支援​</checkBox>
+      </presentation>
+
+      <presentation id="DisableAutoConfig_Pres">
+        <text>選取停用自動同步的帳戶類型</text>
+        <text>AAD 的值：1</text>
+        <decimalTextBox refId="DisableAutoConfigTypes" defaultValue="0">停用的帳戶類型：</decimalTextBox>
+      </presentation>
+    </presentationTable>
+  </resources>
+</policyDefinitionResources>

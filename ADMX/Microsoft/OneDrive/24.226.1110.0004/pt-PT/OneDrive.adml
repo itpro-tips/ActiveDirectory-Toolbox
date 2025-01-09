@@ -1,0 +1,597 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- (c) 2016 Microsoft Corporation -->
+<policyDefinitionResources xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://www.microsoft.com/GroupPolicy/PolicyDefinitions">
+  <displayName>Definições de Políticas de Grupos do OneDrive</displayName>
+  <description>Várias definições de política de grupo para a aplicação de sincronização do OneDrive (OneDrive. exe), especialmente aquelas específicas para a funcionalidade empresarial na aplicação.</description>
+  <resources>
+    <stringTable>
+      <!-- general -->
+      <string id="OneDriveNGSCSettingCategory">OneDrive</string>
+      <string id="NucleusSettingCategory">Sincronização de Listas</string>
+
+      <!-- block syncing personal OneDrive -->
+      <string id="DisablePersonalSync">Impedir que os utilizadores sincronizem contas pessoais do OneDrive</string>
+      <string id="DisablePersonalSync_help">Esta definição permite-lhe impedir que os utilizadores iniciem sessão com uma conta Microsoft para sincronizarem ficheiros do OneDrive pessoal.
+
+Se ativar esta definição, os utilizadores serão impedidos de configurar uma relação de sincronização para a respetiva conta pessoal do OneDrive. Os utilizadores que já estiverem a sincronizar a respetiva conta pessoal do OneDrive quando ativar esta definição não poderão continuar a sincronização (será apresentada uma mensagem a indicar que a sincronização foi interrompida). No entanto, os ficheiros sincronizados com o computador permanecerão no mesmo.
+
+Se desativar ou não configurar esta definição, os utilizadores poderão sincronizar as respetivas contas pessoais do OneDrive.</string>
+
+      <!-- turn on GPOSetUpdateRing for app updates -->
+      <string id="GPOSetUpdateRing">Definir a cadência de atualizações da aplicação de sincronização</string>
+      <string id="GPOSetUpdateRing_help">As atualizações da aplicação de sincronização do OneDrive (OneDrive.exe) são lançadas para o público através de três cadências: primeiro para utilizadores do Insider, depois para a cadência Produção e, por fim, para a cadência Diferida. Esta definição permite-lhe especificar a versão da aplicação de sincronização para os utilizadores na sua organização. Ao ativar esta definição e selecionar uma cadência, os utilizadores não poderão alterá-la.
+
+Os utilizadores da cadência Insider obtêm compilações que lhes permitem pré-visualizar as novas funcionalidades do OneDrive.
+
+Os utilizadores da cadência Produção obtêm as funcionalidades mais recentes assim que estiverem disponíveis.
+
+Os utilizadores da cadência Diferida obtêm as novas funcionalidades, correções de erros e melhorias de desempenho por último. Esta cadência permite-lhe implementar atualizações a partir de uma localização de rede interna e controlar quando a implementação é feita (dentro de um período de 60 dias).
+
+Se desativar ou não configurar esta definição, os utilizadores irão obter as atualizações da aplicação de sincronização do OneDrive assim que estiverem disponíveis na cadência Produção. Os utilizadores podem aderir aos programas Office Insider ou Windows Insider para obterem as atualizações na cadência Insider.</string>
+
+      <string id="Enterprise">Diferida</string>
+      <string id="Production">Produção</string>
+      <string id="Insider">Utilizadores do Insider</string>
+
+      <!-- set default location of the OneDrive folder -->
+      <string id="DefaultRootDir">Definir a localização predefinida da pasta do OneDrive</string>
+      <string id="DefaultRootDir_help">Esta definição permite-lhe definir um caminho específico como a localização predefinida da pasta do OneDrive nos computadores dos utilizadores. Por predefinição, o caminho encontra-se em %userprofile%.
+
+Se ativar esta definição, a localização predefinida da pasta OneDrive - {organization name} será o caminho especificado no ficheiro OneDrive.admx. Para impedir que os utilizadores alterem a localização especificada, ative a definição "Impedir que os utilizadores alterem a localização da respetiva pasta do OneDrive".
+
+Se desativar ou não configurar esta definição, a localização predefinida da pasta OneDrive - {organization name} será %userprofile%.</string>
+
+      <!-- disable changing the default location of the OneDrive folder -->
+      <string id="DisableCustomRoot">Impedir que os utilizadores alterem a localização da respetiva pasta do OneDrive</string>
+      <string id="DisableCustomRoot_help">Esta definição permite-lhe impedir que os utilizadores alterem a localização da pasta do OneDrive {organization name} durante a configuração da aplicação de sincronização do OneDrive.
+
+Se ativar esta definição, a hiperligação "Alterar localização" está oculta na configuração do OneDrive. A pasta do OneDrive será criada na localização predefinida ou na localização personalizada que especificou se tiver ativado a definição "definir a localização predefinida para a pasta do OneDrive".
+
+Se desativar ou não configurar esta definição, os utilizadores podem clicar na hiperligação ' Alterar localização ' para alterar a localização da pasta do OneDrive na configuração do OneDrive.</string>
+
+      <!-- Enable Office Integration for coauthoring and in-app sharing -->
+      <string id="EnableAllOcsiClients">Cocriar e partilhar nas aplicações de ambiente de trabalho do Office</string>
+      <string id="EnableAllOcsiClients_help">Esta definição permite que múltiplos utilizadores utilizem as aplicações de computador do Office 2016, Office 2019 ou Office 365 ProPlus para editarem em simultâneo um ficheiro do Office armazenado no OneDrive. Também permite que os utilizadores partilhem ficheiros a partir das aplicações do Office de computador.
+
+Se ativar ou não configurar esta definição, a coautoria e a partilha nas aplicações de computador do Office serão ativadas.
+
+Se desativar esta definição, a coautoria e a partilha nas aplicações de computador do Office serão desativadas. A definição "Conflitos de ficheiros do Office" também será desativada e, em caso de conflito entre duas versões de um ficheiro, serão mantidas ambas as cópias.</string>
+
+      <!-- Enable hold the file for handling Office conflicts -->
+      <string id="EnableHoldTheFile">Processa conflitos de sincronização de ficheiros do Office</string>
+      <string id="EnableHoldTheFile_help">Esta definição especifica o que acontece quando existe um conflito entre as versões de ficheiros do Office durante a sincronização. Por predefinição, os utilizadores podem abrir o ficheiro no Office para intercalar as alterações. (Esta opção só está disponível para o Office 2016 ou posterior. Com versões anteriores do Office, ambas as cópias são sempre mantidas.)
+
+Se ativar ou não configurar esta definição, será dada aos utilizadores a opção de abrir no Office para intercalar alterações.
+
+Se desativar esta definição, ambas as cópias do ficheiro serão mantidas.</string>
+        
+      <!-- Enable auto start for OneDrive -->
+      <string id="EnableAutoStart">Iniciar automaticamente o OneDrive ao iniciar sessão no Windows</string>
+      <string id="EnableAutoStart_help">Esta definição substitui a escolha de um utilizador, garantindo que o OneDrive será iniciado automaticamente sempre que iniciar sessão no Windows. 
+      
+Se configurar esta definição, o OneDrive será iniciado automaticamente quando um utilizador iniciar sessão no Windows. A aplicação Sincronização do OneDrive tem de ser reiniciada depois de esta definição estar ativada para que a definição entre em vigor.
+
+Se não configurar esta definição ou a definir para um valor diferente de 1, o utilizador pode optar por iniciar automaticamente o OneDrive (opção predefinida) ou desativar o OneDrive de iniciar Sincronização do OneDrive definições da aplicação.</string>
+
+      <!-- Enable Automatic Upload Bandwidth Limiting -->
+      <string id="AutomaticUploadBandwidthPercentage">Limitar a taxa de carregamento da aplicação de sincronização para uma percentagem do débito</string>
+      <string id="AutomaticUploadBandwidthPercentage_help">Esta definição permite-lhe equilibrar o desempenho de diferentes tarefas de carregamento num computador ao especificar a percentagem do débito de carregamento do computador que a aplicação de sincronização do OneDrive (OneDrive.exe) pode utilizar para o carregamento de ficheiros. A definição de uma percentagem permite que a aplicação de sincronização dê resposta aos aumentos e diminuições de débito. Quanto menor for a percentagem, mais baixa será a velocidade do carregamento de ficheiros. Recomendamos um valor de 50% ou superior. Periodicamente, a aplicação de sincronização irá fazer carregamentos sem restrições durante um minuto e, em seguida, diminuir a velocidade para a percentagem de carregamento definida. Isto permite que os ficheiros pequenos sejam carregados rapidamente sem que os carregamentos maiores dominem o débito de carregamento do computador.
+
+Se ativar esta definição, os computadores utilizarão a percentagem de débito de carregamento especificada ao carregar ficheiros para o OneDrive e os utilizadores não poderão alterá-la.
+
+Se desativar ou não configurar esta definição, os utilizadores poderão optar por limitar a taxa de carregamento para um valor fixo (em KB/segundo) ou defini-la para "Ajustar automaticamente", o que utilizará 70% do débito de carregamento para dar resposta aos aumentos e diminuições do débito.
+
+Importante: se ativar ou desativar esta definição e, em seguida, voltar a alterá-la para Não Configurado, a última configuração permanecerá em vigor. Recomendamos que ative esta definição em vez de "Limitar a velocidade de carregamento da aplicação de sincronização para uma taxa fixa" para limitar a taxa de carregamento. Não deve ativar ambas as definições em simultâneo.</string>
+      <!-- Enable Upload Bandwidth Limiting -->
+      <string id="UploadBandwidthLimit">Limitar a velocidade de carregamento da aplicação de sincronização para uma taxa fixa</string>
+      <string id="UploadBandwidthLimit_help">Esta definição permite-lhe configurar a velocidade máxima a que a aplicação de sincronização do OneDrive (OneDrive.exe) pode carregar ficheiros. Esta taxa é um valor fixo em kilobytes por segundo. Quanto menor for a taxa, mais baixa será a velocidade a que o computador carrega ficheiros. A taxa mínima que pode ser definida é 1 KB/s e a taxa máxima é 100 000 KB/s. Qualquer entrada inferior a 50 KB/s irá definir o limite para 50 KB/s, mesmo que a IU apresente a taxa introduzida.
+
+Se ativar esta definição, os computadores utilizarão a taxa de carregamento máxima especificada e os utilizadores não poderão alterá-la nas definições do OneDrive.
+
+Se desativar ou não configurar esta definição, os utilizadores podem optar por limitar a taxa de carregamento para um valor fixo (em KB/segundo) ou defini-la para "Ajustar automaticamente", o que utilizará 70% do débito de carregamento para dar resposta aos aumentos e diminuições de débito.
+
+Em vez de utilizar esta definição para limitar a taxa de carregamento, recomendamos que ative a definição "Limitar a taxa de carregamento da aplicação de sincronização para uma percentagem do débito" para definir um limite que se ajuste a diferentes condições. Não deve ativar ambas as definições em simultâneo.</string>
+
+      <!-- Enable Download Bandwidth Limiting -->
+      <string id="DownloadBandwidthLimit">Limitar a velocidade de transferência da aplicação de sincronização para uma taxa fixa</string>
+      <string id="DownloadBandwidthLimit_help">Esta definição permite-lhe configurar a velocidade máxima a que a aplicação de sincronização do OneDrive (OneDrive.exe) pode transferir ficheiros. Esta taxa é um valor fixo em kilobytes por segundo e aplica-se apenas à sincronização (não se aplica à transferência de atualizações). Quanto menor for a taxa, mais baixa será a velocidade a que os ficheiros são transferidos. A taxa mínima que pode ser definida é 1 KB/s e a taxa máxima é 100 000 KB/s. Qualquer entrada inferior a 50 KB/s irá definir o limite para 50 KB/s, mesmo que a IU apresente a taxa introduzida.
+Se ativar esta definição, os computadores utilizarão a taxa de transferência máxima especificada e os utilizadores não conseguirão alterá-la.
+
+Se desativar ou não configurar esta definição, os utilizadores poderão optar por limitar a taxa de transferência nas definições da aplicação de sincronização do OneDrive.</string>
+
+      <!-- prevent OneDrive sync app (OneDrive.exe) from generating network traffic (checking for updates, etc.) until the user signs in to OneDrive -->
+      <string id="PreventNetworkTrafficPreUserSignIn">Impedir que a aplicação de sincronização gere tráfego de rede até que os utilizadores iniciem sessão</string>
+      <string id="PreventNetworkTrafficPreUserSignIn_help">Esta definição permite-lhe impedir a aplicação de sincronização do OneDrive (OneDrive.exe) de gerar tráfego de rede (procurar atualizações, etc.) até que os utilizadores iniciem sessão na aplicação de sincronização ou comecem a sincronizar ficheiros no computador.
+
+Se ativar esta definição, os utilizadores terão de iniciar sessão na aplicação de sincronização do OneDrive no computador ou selecionar ficheiros do OneDrive ou do SharePoint no computador para sincronizar, para que a aplicação de sincronização seja iniciada automaticamente.
+
+Se desativar ou não configurar esta definição, a aplicação de sincronização do OneDrive será iniciada automaticamente quando os utilizadores iniciarem sessão no Windows.
+
+Importante: se ativar ou desativar esta definição e, posteriormente, voltar a defini-la como Não Configurado, a última configuração permanecerá em vigor. </string>
+
+      <!-- Silent Account Config -->
+      <string id="SilentAccountConfig">Iniciar automaticamente a sessão dos utilizadores na aplicação de sincronização do OneDrive com as respetivas credenciais do Windows</string>
+      <string id="SilentAccountConfig_help">Esta definição permite-lhe iniciar automaticamente a sessão dos utilizadores na aplicação de sincronização do OneDrive (OneDrive.exe) com as respetivas credenciais do Windows.
+
+Se ativar esta definição, os utilizadores que tiverem sessão iniciada no PC com a conta principal do Windows (a conta utilizada para associar o PC ao domínio) poderão configurar a aplicação de sincronização sem introduzir as credenciais da conta. A Configuração do OneDrive continuará a ser apresentada aos utilizadores, para que possam selecionar as pastas que pretendem sincronizar e alterar a localização da respetiva pasta do OneDrive. Se um utilizador estiver a utilizar a aplicação de sincronização anterior do OneDrive para Empresas (Groove.exe), a nova aplicação de sincronização tentará controlar a sincronização do OneDrive da aplicação anterior e preservar as definições de sincronização do utilizador. Esta definição é muitas vezes utilizada em conjunto com a definição "Definir o tamanho máximo que o OneDrive de um utilizador pode ter para ser transferido automaticamente" em PCs que não tenham os Ficheiros a Pedido, assim como a definição "Definir a localização predefinida da pasta do OneDrive".
+
+Se desativar ou não configurar esta definição, os utilizadores terão de iniciar sessão com a respetiva conta escolar ou profissional para configurar a sincronização.
+
+</string>
+
+      <!-- DiskSpaceCheckThresholdMB -->
+      <string id="DiskSpaceCheckThresholdMB">Definir o tamanho máximo que o OneDrive de um utilizador pode ter para ser transferido automaticamente</string>
+      <string id="DiskSpaceCheckThresholdMB_help">Esta definição é utilizada em conjunto com a definição "Iniciar automaticamente a sessão dos utilizadores na aplicação de sincronização do OneDrive com as respetivas credenciais do Windows." Esta definição permite-lhe pedir aos utilizadores que excederem o limite especificado de conteúdos no OneDrive para escolherem as pastas que pretendem sincronizar durante a configuração da aplicação de sincronização do OneDrive (OneDrive.exe).
+
+Se ativar esta definição, os utilizadores que tiverem mais conteúdos do que o valor especificado verão, por predefinição, a caixa de diálogo Escolher Pastas durante a Configuração do OneDrive.
+
+Se desativar ou não configurar esta definição, serão selecionados todos os ficheiros para sincronização quando os utilizadores configurarem a aplicação de sincronização.</string>
+
+      <!-- Settings below control behavior of Files-On-Demand (Cloud Files) -->
+      <string id="FilesOnDemandEnabled">Utilizar os Ficheiros a Pedido do OneDrive</string>
+      <string id="FilesOnDemandEnabled_help">Esta definição permite-lhe controlar se os Ficheiros a Pedido do OneDrive estão ativados na sua organização.
+
+Se ativar esta definição, os Ficheiros a Pedido do OneDrive estarão ativados por predefinição.
+
+Se desativar esta definição, os Ficheiros a Pedido do OneDrive serão explicitamente desativados e os utilizadores não poderão ativá-los.
+
+Se não configurar esta definição, os utilizadores poderão ativar ou desativar os Ficheiros a Pedido do OneDrive.</string>
+
+      <string id="DehydrateSyncedTeamSites">Converter os ficheiros sincronizados do site de equipa em ficheiros apenas online</string>
+      <string id="DehydrateSyncedTeamSites_help">Esta definição é utilizada em conjunto com os Ficheiros a Pedido do OneDrive. Quando vários utilizadores sincronizam os mesmos sites de equipa, esta definição permite-lhe conservar a largura de banda e libertar espaço nos dispositivos ao transformar os ficheiros dos sites de equipa sincronizados em ficheiros apenas online.
+
+Se ativar esta definição, os ficheiros dos sites de equipa que estavam a ser sincronizados antes de os Ficheiros a Pedido serem ativados serão convertidos (como uma ação única) em ficheiros apenas online.
+
+Se desativar ou não configurar esta definição, os ficheiros dos sites de equipa permanecerão disponíveis localmente, a menos que os utilizadores optem por torná-los em ficheiros apenas online.</string>
+
+      <!-- Restrict syncing with other organizations -->
+      <string id="AllowTenantList">Permitir a sincronização de contas do OneDrive apenas para organizações específicas</string>
+      <string id="AllowTenantList_help">Esta definição permite-lhe impedir que os utilizadores carreguem os ficheiros facilmente para outras organizações ao especificar uma lista dos IDs dos inquilinos permitidos.
+
+Se ativar esta definição, será apresentado um erro aos utilizadores se tentarem adicionar uma conta de uma organização não permitida. Se um utilizador já tiver adicionado a conta, os ficheiros deixarão de ser sincronizados.
+
+Se desativar ou não configurar esta definição, os utilizadores poderão adicionar contas de qualquer organização.
+
+Para bloquear organizações específicas, utilize a opção "Bloquear a sincronização de contas do OneDrive para organizações específicas".
+
+Esta definição terá prioridade sobre a política "Bloquear a sincronização de contas do OneDrive para organizações específicas". Não ative ambas as políticas em simultâneo.</string>
+
+      <string id="BlockTenantList">Bloquear a sincronização de contas do OneDrive para organizações específicas</string>
+      <string id="BlockTenantList_help">Esta definição permite-lhe impedir que os utilizadores carreguem facilmente ficheiros para outra organização ao especificar uma lista dos IDs dos inquilinos bloqueados.
+
+Se ativar esta definição, será apresentado um erro aos utilizadores se tentarem adicionar uma conta de uma organização bloqueada. Se um utilizador já tiver adicionado a conta, os ficheiros deixarão de ser sincronizados.
+
+Se desativar ou não configurar esta definição, os utilizadores poderão adicionar contas de qualquer organização.
+
+Para especificar uma lista de organizações permitidas, utilize a opção "Permitir a sincronização de contas do OneDrive apenas para organizações específicas".
+
+Esta definição NÃO funcionará se tiver a política "Permitir a sincronização de contas do OneDrive apenas para organizações específicas" ativada. Não ative ambas as políticas em simultâneo.</string>
+
+      <!-- SharePoint Server 2019 settings -->
+      <string id="SharePointOnPremFrontDoorUrl">Especificar o nome da organização e o URL do SharePoint Server</string>
+      <string id="SharePointOnPremFrontDoorUrl_help">Esta definição permite aos utilizadores utilizarem a aplicação de sincronização do OneDrive (OneDrive.exe) para sincronizar ficheiros no SharePoint Server 2019. O URL define a localização do SharePoint Server e permite que a aplicação de sincronização autentique e configure a sincronização. O nome da organização permite-lhe especificar os nomes das pastas do OneDrive e do SharePoint que serão criadas no Explorador de Ficheiros. O nome da organização é opcional. Caso não o forneça, a aplicação de sincronização utilizará o primeiro segmento do URL como nome. Por exemplo, office.sharepoint.com originaria o nome "Office" e o nome da pasta do OneDrive seria "OneDrive - Office."
+
+Se ativar esta definição e fornecer o URL do SharePoint Server, os utilizadores poderão sincronizar ficheiros no SharePoint Server 2019.
+
+Se desativar ou não configurar esta definição, ou não fornecer o URL do SharePoint Server, os utilizadores não poderão sincronizar ficheiros no SharePoint Server 2019. </string>
+
+      <string id="SharePointOnPremPrioritization">Especificar a localização do OneDrive num ambiente híbrido</string>
+      <string id="SharePointOnPremPrioritization_help">Esta definição define se a aplicação de sincronização do OneDrive (OneDrive. exe) deve autenticar-se no SharePoint Online ou no SharePoint Server 2019 se a identidade existir em ambos os fornecedores de identidade. Para utilizar esta definição, tem de ativar também "especificar o URL e o nome da organização do SharePoint Server". Esta definição afeta apenas a funcionalidade de sincronização do OneDrive para empresas. Não afeta a sincronização de sites de equipa no SharePoint Online ou no SharePoint Server 2019.
+
+Se ativar esta definição, pode selecionar uma das duas opções:
+
+SharePoint Online: a aplicação de sincronização irá parecer primeiro no SharePoint Online para o OneDrive de um utilizador. Se a aplicação de sincronização já estiver configurada com o SharePoint Online para o utilizador, irá tentar configurar uma instância do OneDrive para empresas no SharePoint Server 2019 para esse utilizador.
+
+SharePoint Server 2019: a aplicação de sincronização irá parecer primeiro no SharePoint Server 2019 para o OneDrive para empresas de um utilizador. Se a aplicação de sincronização já estiver configurada com o SharePoint Server 2019 para o utilizador, irá tentar configurar uma instância do OneDrive no SharePoint Online para esse utilizador.
+
+Se desativar ou não configurar esta definição, a aplicação de sincronização irá parecer primeiro no SharePoint Online para o OneDrive do utilizador.</string>
+
+      <string id="PrioritizeSPO">SharePoint Online</string>
+      <string id="PrioritizeSharePointOnPrem">SharePoint Server 2019</string>
+
+      <!-- Disable tutorial in the FRE -->
+      <string id="DisableFRETutorial">Desativar o tutorial apresentado no final da Configuração do OneDrive</string>
+      <string id="DisableFRETutorial_help">Esta definição permite-lhe impedir que o tutorial seja iniciado num browser no final da Configuração do OneDrive.
+
+Se ativar esta definição, os utilizadores não verão o tutorial após concluírem a Configuração do OneDrive.
+
+Se desativar ou não configurar esta definição, o tutorial será apresentado no final da Configuração do OneDrive.</string>
+
+      <!-- Disable Animation in the FRE-->
+      <string id="DisableFREAnimation">Desativar a animação que é apresentada durante a configuração do OneDrive</string>
+      <string id="DisableFREAnimation_help">Esta definição permite-lhe impedir que a animação seja apresentada durante a configuração do OneDrive.</string>
+
+      <!-- Block KFM -->
+      <string id="BlockKnownFolderMove">Impedir que os utilizadores movam as respetivas pastas conhecidas do Windows para o OneDrive</string>
+      <string id="BlockKnownFolderMove_help">Esta definição impede que os utilizadores movam as respetivas pastas Documentos, Imagens e Ambiente de Trabalho para uma conta do OneDrive para Empresas.
+Nota: A ação de mover pastas conhecidas para contas pessoais do OneDrive já está bloqueada para PCs associados a um domínio.
+
+Se ativar esta definição, a janela "Configurar a proteção de pastas importantes" não será apresentada aos utilizadores e o comando "Iniciar proteção" será desativado. Se o utilizador já tiver movido as respetivas pastas conhecidas, os ficheiros nessas pastas permanecerão no OneDrive. Esta definição não terá efeito se ativar a opção "Pedir aos utilizadores para moverem as pastas conhecidas do Windows para o OneDrive" ou "Mover automaticamente as pastas conhecidas do Windows para o OneDrive".
+
+Se desativar ou não configurar esta definição, os utilizadores poderão optar por mover as respetivas pastas conhecidas.</string>
+
+      <string id="BlockKnownFolderMoveDefaultOption">Sim</string>
+      <string id="BlockKnownFolderMoveRestoreFolder">Não</string>
+
+      <!-- KFMOptInWithWizard -->
+      <string id="KFMOptInWithWizard">Pedir aos utilizadores para moverem as pastas conhecidas do Windows para o OneDrive </string>
+      <string id="KFMOptInWithWizard_help">Esta definição apresenta a janela "O seu departamento de TI quer que proteja as suas pastas importantes", que pede aos utilizadores para moverem as respetivas pastas Documentos, Imagens e Ambiente de Trabalho para o OneDrive. Esta funcionalidade não está ativada para o SharePoint no local.
+
+Se ativar esta definição e fornecer o seu ID de inquilino, os utilizadores que estiverem a sincronizar o respetivo OneDrive verão a janela "O seu departamento de TI quer que proteja as suas pastas importantes" quando tiverem sessão iniciada. Se fecharem a janela, será apresentada uma notificação de lembrete no centro de atividade até que movam as três pastas conhecidas. Se um utilizador já tiver redirecionado as respetivas pastas conhecidas para uma conta diferente do OneDrive, ser-lhe-á pedido para direcionar as pastas para a conta da sua organização (deixando os ficheiros existentes para trás).
+
+Se desativar ou não configurar esta definição, a janela "O seu departamento de TI quer que proteja as suas pastas importantes" não será apresentada automaticamente.</string>
+
+      <!-- KFMOptInNoWizard -->
+      <string id="KFMOptInNoWizard">Mover automaticamente as pastas conhecidas do Windows para o OneDrive</string>
+      <string id="KFMOptInNoWizard_help">Esta definição permite-lhe redirecionar as pastas conhecidas para o OneDrive sem interação do utilizador. Nas compilações da aplicação de sincronização anteriores à 18.171.0823.0001, esta definição só redireciona as pastas conhecidas vazias para o OneDrive (ou as pastas conhecidas já redirecionadas para uma conta do OneDrive diferente). Nas compilações posteriores, a definição redireciona as pastas conhecidas com conteúdos e move os mesmos para o OneDrive. Recomendamos que utilize esta definição em conjunto com a definição "Pedir aos utilizadores para moverem as pastas conhecidas do Windows para o OneDrive". Caso não seja possível mover automaticamente as pastas conhecidas, os utilizadores receberão um pedido para corrigir o erro e continuar.
+
+Se ativar esta definição e fornecer o ID do seu inquilino, pode optar por apresentar uma notificação aos utilizadores após as respetivas pastas serem redirecionadas.
+
+Pode mover todas as pastas ao mesmo tempo ou selecionar as pastas que pretende mover. Esta política não afeta as pastas depois de serem movidas, mesmo que desmarque as caixas de verificação das pastas. 
+
+Se desativar ou não configurar esta definição, as pastas conhecidas dos utilizadores não serão redirecionadas e/ou movidas automaticamente para o OneDrive.
+
+    </string>
+      <string id="KFMOptInNoWizardToast">Sim</string>
+      <string id="KFMOptInNoWizardNoToast">Não</string>
+
+      <!-- Block KFM Opt Out -->
+      <string id="KFMBlockOptOut">Impedir que os utilizadores redirecionem as respetivas pastas conhecidas do Windows para o PC</string>
+      <string id="KFMBlockOptOut_help">Esta definição força os utilizadores a manterem as respetivas pastas Documentos, Imagens e Ambiente de Trabalho direcionadas para o OneDrive.
+
+Se ativar esta definição, o botão "Parar a proteção" na janela "O seu departamento de TI quer que proteja as suas pastas importantes" será desativado. Além disso, será apresentado um erro se os utilizadores tentarem interromper a sincronização de uma pasta conhecida.
+
+Se desativar ou não configurar esta definição, os utilizadores poderão optar por redirecionar as respetivas pastas conhecidas novamente para o PC. </string>
+
+      <!-- KFMForceWindowsDisplayLanguage -->
+      <string id="KFMForceWindowsDisplayLanguage">Utilizar sempre o idioma de apresentação do Windows do utilizador ao aprovisionar pastas conhecidas no OneDrive</string>
+      <string id="KFMForceWindowsDisplayLanguage_help">Quando move pastas conhecidas do Windows para o OneDrive, estas serão aprovisionadas no idioma de apresentação do Windows do utilizador por predefinição, a menos que o utilizador defina um idioma preferencial diferente. Esta definição permite ignorar a definição de idioma preferencial do utilizador. Funciona com ambas as definições de Migração de Pasta Conhecida ("Mover automaticamente as pastas conhecidas do Windows para o OneDrive" e "Pedir aos utilizadores para moverem as pastas conhecidas do Windows para o OneDrive").
+
+Se ativar esta definição, as pastas conhecidas serão aprovisionadas utilizando o idioma de apresentação do Windows do utilizador, mesmo que o utilizador defina um idioma preferencial diferente.
+
+Se desativar ou não configurar esta definição e o utilizador definir um idioma preferencial, as tuas pastas conhecidas serão aprovisionadas no OneDrive através desse idioma. As pastas conhecidas no teu PC aparecerão no idioma preferencial.</string>
+
+      <!-- AutoMountTeamSites -->
+      <string id="AutoMountTeamSites">Configurar a sincronização automática de bibliotecas de sites de equipa</string>
+      <string id="AutoMountTeamSites_help">Esta definição permite-lhe especificar as bibliotecas de sites de equipa do SharePoint que pretende sincronizar automaticamente na próxima vez que os utilizadores iniciarem sessão na aplicação de sincronização do OneDrive (OneDrive.exe). Depois de um utilizador iniciar sessão, a sincronização da biblioteca poderá demorar até 8 horas a ser iniciada. Para utilizar esta definição, tem de ativar os Ficheiros a Pedido do OneDrive. A definição aplica-se apenas a utilizadores em computadores com o Windows 10 (1709) Fall Creators Update ou posterior. Não ative esta definição para a mesma biblioteca em mais de 1000 dispositivos. Para garantir uma boa experiência de sincronização, evite ativar esta funcionalidade em conjuntos de bibliotecas de grandes dimensões (consulte o seguinte artigo para ver as orientações de dados mais recentes: https://learn.microsoft.com/pt-pt/sharepoint/use-group-policy#AutoMountTeamSites). Esta funcionalidade não está disponível para sites do SharePoint no local.
+
+Se ativar esta definição, a aplicação de sincronização do OneDrive irá transferir automaticamente os conteúdos das bibliotecas especificadas como ficheiros apenas online na próxima vez que o utilizador iniciar sessão. O utilizador não poderá interromper a sincronização de bibliotecas.
+
+Se desativar esta definição, as bibliotecas de sites de equipa especificadas não serão sincronizadas automaticamente para novos utilizadores. Os utilizadores existentes podem optar por interromper a sincronização das bibliotecas, mas a sincronização das bibliotecas não será interrompida automaticamente.</string>
+
+      <!-- Disable Pause On Battery Saver  -->
+      <string id="DisablePauseOnBatterySaver">Continuar a sincronização quando os dispositivos tiverem o modo de poupança de bateria ativado</string>
+      <string id="DisablePauseOnBatterySaver_help">Esta definição permite-lhe desativar a funcionalidade de interrupção automática para os dispositivos que tenham o modo de poupança de bateria ativado.
+
+Se ativar esta definição, a sincronização irá continuar quando os utilizadores ativarem o modo de poupança de bateria. O OneDrive não irá interromper a sincronização automaticamente.
+
+Se desativar ou não configurar esta definição, a sincronização será interrompida automaticamente quando o modo de poupança de bateria for detetado e será apresentada uma notificação. Os utilizadores podem optar por não interromper a sincronização ao clicar em "Sincronizar Mesmo Assim" na notificação. Quando a sincronização estiver interrompida, os utilizadores poderão retomá-la ao clicar no ícone de nuvem do OneDrive na área de notificações da barra de tarefas e, em seguida, clicar no alerta na parte superior do centro de atividade.</string>
+
+      <!-- Disable Pause On Metered Network -->
+      <string id="DisablePauseOnMeteredNetwork">Continuar a sincronização em redes com tráfego limitado</string>
+      <string id="DisablePauseOnMeteredNetwork_help">Esta definição permite-lhe desativar a funcionalidade de interrupção automática quando os dispositivos se ligarem a redes com tráfego limitado.
+
+Se ativar esta definição, a sincronização irá continuar quando os dispositivos estiverem numa rede com tráfego limitado. O OneDrive não irá interromper automaticamente a sincronização.
+
+Se desativar ou não configurar esta definição, a sincronização será interrompida automaticamente quando for detetada uma rede com tráfego limitado e será apresentada uma notificação. Os utilizadores podem optar por não interromper a sincronização ao clicar em "Sincronizar Mesmo Assim" na notificação. Quando a sincronização estiver interrompida, os utilizadores poderão retomá-la ao clicar no ícone de nuvem do OneDrive na área de notificações da barra de tarefas e, em seguida, clicar no alerta na parte superior do centro de atividade.</string>
+
+      <!-- Local Mass Delete Threshold -->
+      <string id="LocalMassDeleteFileDeleteThreshold">Pedir confirmação aos utilizadores quando eliminarem múltiplos ficheiros do OneDrive no computador local</string>
+      <string id="LocalMassDeleteFileDeleteThreshold_help">Esta política define o limiar de quantos ficheiros um utilizador pode eliminar de uma pasta local do OneDrive antes de receber um aviso de que os ficheiros também serão eliminados da cloud.
+
+Se ativar esta política, os utilizadores verão uma notificação se eliminarem mais do que o número especificado de ficheiros do OneDrive no computador local. O utilizador terá a opção de continuar a remover os ficheiros na cloud ou restaurar os ficheiros locais.
+
+Nota: mesmo que ative esta política, os utilizadores não receberão notificações se tiverem selecionado a caixa de verificação "Remover sempre os ficheiros" numa notificação anterior ou se tiverem desselecionado a caixa de verificação "Notificar-me quando muitos ficheiros forem eliminados na cloud" nas definições da aplicação de sincronização do OneDrive.
+
+Se desativar esta política, os utilizadores não receberão uma notificação quando eliminarem muitos ficheiros do OneDrive no respetivo computador local.
+
+Se não configurar esta política, os utilizadores verão uma notificação quando eliminarem mais de 200 ficheiros num curto período de tempo.</string>
+
+
+      <!-- Forced local mass delete prompt -->
+      <string id="ForcedLocalMassDeleteDetection">Exigir que os utilizadores confirmem operações de eliminação de grandes dimensões</string>
+      <string id="ForcedLocalMassDeleteDetection_help">Esta definição faz com que os utilizadores a confirmar que pretende eliminar os ficheiros na nuvem quando eliminar um grande número de ficheiros sincronizados.
+
+Se activar esta definição, aparecerá um aviso sempre quando os utilizadores eliminam um grande número de ficheiros sincronizados. Se um utilizador não confirmar a uma operação de eliminação dentro de 7 dias, os ficheiros não serão eliminados.
+
+Se desactivar ou não configurar esta definição, os utilizadores podem escolher ocultar o aviso e eliminar sempre os ficheiros na nuvem.</string>
+
+      <!-- Block B2BSync aka Cross Tenant Sync -->
+      <string id="BlockExternalSync">Impedir que os utilizadores sincronizem bibliotecas e pastas partilhadas por outras organizações</string>
+      <string id="BlockExternalSync_help">Esta definição especifica se os utilizadores na sua organização têm permissão para sincronizar conteúdos do OneDrive para Empresas ou SharePoint que tenham sido partilhados por utilizadores de outra organização. Esta é uma funcionalidade de colaboração denominada Sincronização B2B.
+
+Se ativar esta definição, os utilizadores não conseguirão iniciar a sincronização de uma biblioteca ou pasta do OneDrive para Empresas ou SharePoint que tenha sido partilhada por uma organização externa. As sincronizações de bibliotecas e pastas partilhadas que já estejam em curso serão interrompidas.
+
+Se desativar ou não configurar esta definição, os utilizadores conseguirão sincronizar bibliotecas e pastas do OneDrive para Empresas e SharePoint que tenham sido partilhadas por organizações externas.
+
+Para mais informações sobre a Sincronização B2B, consulte: https://learn.microsoft.com/pt-pt/sharepoint/b2b-sync</string>
+
+      <!-- Allow OneDrive to disable permission inheritance within read-only folders -->
+      <string id="PermitDisablePermissionInheritance">Permitir que o OneDrive desative a herança de permissões do Windows em pastas sincronizadas só de leitura</string>
+      <string id="PermitDisablePermissionInheritance_help">Esta definição permite que a aplicação de sincronização do OneDrive remova todas as permissões herdadas dentro de pastas só de leitura no PC de um utilizador.
+
+Se ativar esta definição, a aplicação de sincronização do OneDrive pode desativar a herança de permissões em pastas só de leitura para melhorar a velocidade de sincronização.
+
+Se desativar ou não configurar esta definição, a aplicação de sincronização do OneDrive irá preservar a herança de permissões em pastas só de leitura. A velocidade de sincronização poderá ser significativamente mais lenta.</string>
+
+      <!-- Automatically adjust the sync app upload rate based on bandwidth availability -->
+      <string id="EnableAutomaticUploadBandwidthManagement">Ativar a gestão automática da largura de banda de carregamento para o OneDrive</string>
+      <string id="EnableAutomaticUploadBandwidthManagement_help">Esta definição permite que a aplicação de sincronização do OneDrive (OneDrive.exe) carregue dados em segundo plano apenas quando a largura de banda não utilizada estiver disponível. Impede que a aplicação de sincronização interfira com outras aplicações que estão a utilizar a rede. Esta definição é suportada pelo protocolo Windows LEDBAT (Low Extra Delay Background Transport). Quando o LEDBAT detetar uma latência maior que indica que outras ligações TCP estão a consumir largura de banda, a aplicação de sincronização irá reduzir o seu próprio consumo para impedir interferências. Quando a latência de rede diminuir novamente e a largura de banda for libertada, a aplicação de sincronização irá aumentar a taxa de carregamento e consumir a largura de banda não utilizada.
+
+Se ativar esta definição, a taxa de carregamento da aplicação de sincronização será definida como "Ajustar automaticamente" com base na disponibilidade de largura de banda e os utilizadores não poderão alterá-la.
+
+Se desativar ou não configurar esta definição, os utilizadores poderão optar por limitar a taxa de carregamento para um valor fixo (em KB/segundo) ou defini-la como "Ajustar automaticamente".
+
+Importante
+Se ativar ou desativar esta definição e, em seguida, alterar novamente para Não Configurado, a última configuração continuará a ser aplicada. Recomendamos que ative esta definição em vez de "Limitar a velocidade de carregamento da aplicação de sincronização para uma taxa fixa". Não deve ativar ambas as definições ao mesmo tempo. Esta definição irá substituir "Limitar a taxa de carregamento da aplicação de sincronização para uma percentagem de débito" se ambas estiverem ativadas no mesmo dispositivo.</string>
+
+      <!-- MinDiskSpaceLimitInMB -->
+      <!-- configurable limit where low disk space error will occur-->
+      <string id="MinDiskSpaceLimitInMB">Bloquear transferências de ficheiros quando os utilizadores estiverem com pouco espaço em disco</string>
+      <string id="MinDiskSpaceLimitInMB_help">Esta definição permite-lhe especificar uma quantidade mínima de espaço em disco disponível e impedir a aplicação de sincronização do OneDrive (OneDrive.exe) de transferir ficheiros quando os utilizadores tiverem menos do que esta quantidade.
+
+Serão apresentadas opções aos utilizadores para ajudar a libertar espaço.</string>
+
+      <!-- WarningMinDiskSpaceLimitInMB -->
+      <!-- configurable limit where user will be notified they are approaching low disk space -->
+      <string id="WarningMinDiskSpaceLimitInMB">Avisar os utilizadores com pouco espaço em disco</string>
+      <string id="WarningMinDiskSpaceLimitInMB_help">Esta definição permite-lhe especificar uma quantidade mínima de espaço em disco disponível e avisar os utilizadores quando a aplicação de sincronização do OneDrive (OneDrive.exe) transferir um ficheiro que faça com que tenham menos do que esta quantidade.
+
+Serão apresentadas opções aos utilizadores para ajudar a libertar espaço.</string>
+
+      <!-- EnableODIgnoreListFromGPO -->
+      <string id="EnableODIgnoreListFromGPO">Excluir tipos específicos de ficheiros de serem carregados</string>
+      <string id="EnableODIgnoreListFromGPO_help">Esta definição permite-lhe introduzir palavras-chave para impedir a aplicação de sincronização do OneDrive (OneDrive.exe) de carregar determinados ficheiros para o OneDrive ou para o SharePoint. Pode introduzir nomes completos, tais como "setup.exe" ou utilizar o asterisco (*) como um caráter universal para representar uma série de carateres.  
+
+Se ativar esta definição, a aplicação de sincronização não carrega novos ficheiros que correspondam às palavras-chave especificadas. Nenhum erro aparece para os arquivos ignorados e os arquivos permanecem na pasta local do OneDrive. A aplicação de sincronização do OneDrive tem de ser reiniciada após esta definição estar ativada para que esta entre em vigor. 
+
+Se desativar ou não configurar esta definição, a aplicação sincronização carrega todos os ficheiros suportados em todas as pastas sincronizadas.</string>
+
+      <!-- Disable First Delete Dialog -->
+      <string id="DisableFirstDeleteDialog">Omitir o lembrete "Os ficheiros apagados são removidos em toda a parte".</string>
+      <string id="DisableFirstDeleteDialog_help">Quando um utilizador elimina ficheiros locais de uma localização sincronizada, será apresentada uma mensagem de aviso de que os ficheiros deixarão de estar disponíveis em todos os dispositivos do utilizador e na Web. Esta definição permite ocultar a mensagem de aviso.
+
+Se ativar esta definição, os utilizadores não verão o lembrete "os ficheiros eliminados são removidos em qualquer lugar" quando forem eliminados ficheiros localmente.
+
+Se desativar ou não configurar esta definição, o lembrete será apresentado até os utilizadores selecionarem "não voltar a mostrar este lembrete."</string>
+
+      <!-- IgnoreWebProxy -->
+      <string id="IgnoreWebProxy">Fazer com que o cliente de sincronização ignore a lógica normal de deteção de proxy Web</string>
+      <string id="IgnoreWebProxy_help">Esta definição especifica se o cliente de sincronização do OneDrive executa ou não a respetiva lógica de deteção de proxy Web predefinida.
+
+Se ativar esta definição, o cliente de sincronização não executará a deteção normal de proxy Web e tentará ligações diretas aos pontos finais web da Internet com os quais tem de comunicar.  Isto equivale a não ter definições de proxy Web configuradas e não ter um script de proxy automático.
+
+Se desativar ou não configurar esta definição, o cliente de sincronização irá detetar se um proxy Web está configurado na rede e, se for esse o caso, irá usá-lo.
+
+Para mais informações, consulte https://learn.microsoft.com/pt-pt/troubleshoot/windows-server/networking/configure-proxy-server-settings</string>
+
+      <!-- EnableSyncAdminReports -->
+      <string id="EnableSyncAdminReports">Ativar relatório de integridade de sincronização do OneDrive</string>
+      <string id="EnableSyncAdminReports_help">O painel de estado de funcionamento da sincronização do OneDrive fornece relatórios sobre os dispositivos e o estado de funcionamento da aplicação de sincronização. Esta definição permite que a aplicação de sincronização do OneDrive compile dados dos dispositivos e do estado de funcionamento sob a forma de relatórios administrativos. Estes relatórios oferecem uma forma proativa de identificar, investigar e resolver erros comuns numa organização.
+
+Se ativar esta definição, a aplicação de sincronização do OneDrive irá incluir dados dos dispositivos e do estado de funcionamento nos relatórios administrativos. Tem de ativar esta definição nos dispositivos para os quais pretende obter relatórios.
+
+Se desativar ou não configurar esta definição, os dados dos dispositivos e do estado de funcionamento do OneDrive não serão apresentados no painel de estado de funcionamento da sincronização do OneDrive.</string>
+
+      <!-- Disable Get Feedback -->
+      <string id="EnableFeedbackAndSupport"> Permitir que os utilizadores contactem a Microsoft para feedback e suporte</string>
+      <string id="EnableFeedbackAndSupport_help">Esta definição especifica se os utilizadores na sua organização podem comunicar diretamente com a Microsoft através de experiências de utilizador na aplicação de sincronização. Permitir que os utilizadores partilhem as suas opiniões ajuda-nos a melhorar o OneDrive.
+
+Se ativar ou não configurar esta definição, os utilizadores podem utilizar as experiências na aplicação de sincronização do OneDrive para contactar diretamente a Microsoft para feedback e suporte.
+
+Se desativar esta definição, os utilizadores não poderão contactar a Microsoft para suporte, feedback ou sugestões na aplicação de sincronização. Os utilizadores continuarão a ter acesso a conteúdo de ajuda e a ferramentas de autoajuda.</string>
+
+      <!-- Disable Nucleus List Sync -->
+      <string id="DisableListSync">Impedir a execução da sincronização de Listas neste dispositivo</string>
+      <string id="DisableListSync_help">Por predefinição, a sincronização de Listas está ativada para utilizadores de Listas Microsoft que permite aos utilizadores aceder e editar as respetivas listas, mesmo quando offline. Se ativar esta política, a sincronização de Listas será impedida de ser executada no dispositivo.</string>
+
+      <!-- Block Nucleus External List Sync -->
+      <string id="BlockExternalListSync">Impedir que os utilizadores sincronizem listas partilhadas por outras organizações</string>
+      <string id="BlockExternalListSync_help">Ativar esta definição impede que os utilizadores na sua organização sincronizem listas partilhadas por outras organizações. Depois de ativar a definição (valor 1) num computador, as listas partilhadas por outras organizações não serão sincronizadas. Desative a definição (valor 0) para permitir que os seus utilizadores sincronizem listas externas.      </string>
+
+      <!-- Disable Nucleus Silent Config -->
+      <string id="DisableNucleusSilentConfig">Impedir os utilizadores de iniciarem sessão de forma silenciosa em experiências offline na Web</string>
+      <string id="DisableNucleusSilentConfig_help">As experiências offline no Listas Microsoft e no OneDrive na Web estão configuradas para iniciar sessão automaticamente dos utilizadores com as respetivas credenciais de ID de Microsoft Entra. Se ativar esta definição, as pessoas que utilizaram experiências offline em Listas Microsoft e OneDrive na Web anteriormente e que tenham sessão iniciada num dispositivo associado Microsoft Entra deixarão de poder configurar experiências offline sem introduzir as respetivas credenciais.</string>
+
+      <!-- Disable Nucleus Offline Mode for Files -->
+      <string id="DisableOfflineMode">Impedir que os utilizadores na sua organização ativem o modo offline no OneDrive na Web</string>
+      <string id="DisableOfflineMode_help">Por predefinição, o modo offline está ativado para utilizadores do OneDrive na Web. Se ativar esta política, o modo offline no OneDrive na Web será desativado para todos os utilizadores no dispositivo.      </string>
+
+      <!-- Disable Nucleus Offline Mode for external libraries -->
+      <string id="DisableOfflineModeForExternalLibraries">Impedir que os utilizadores na sua organização ativem o modo offline no OneDrive na Web para bibliotecas e pastas partilhadas de outras organizações</string>
+      <string id="DisableOfflineModeForExternalLibraries_help">Ativar esta definição impede que os utilizadores na sua organização ativem o modo offline para bibliotecas e pastas partilhadas por outras organizações. Depois de ativar a definição (valor 1) num computador, as bibliotecas e pastas partilhadas por outras organizações não terão a opção de ativar o modo offline quando trabalhar com elas no OneDrive na Web. Desative a definição (valor 0) para permitir que os seus utilizadores ativem ou desativem o modo offline no OneDrive na Web ao trabalhar com bibliotecas e pastas partilhadas por outras organizações.      </string>
+
+      <!-- Disable auto configuration -->
+      <string id="DisableAutoConfig">desativar o início de sessão automática de utilizadores na aplicação Sincronização do OneDrive com uma credencial existente disponibilizada para aplicações da Microsoft</string>
+      <string id="DisableAutoConfig_help">Esta definição determina se o cliente de Sincronização pode ou não iniciar sessão automaticamente.
+
+Se os administradores ativarem esta definição (valor 1), impede a Sincronização de iniciar sessão automaticamente com uma credencial do AAD existente que é disponibilizada para aplicações Microsoft.
+
+Se os administradores desativarem (valor 0) ou não configurarem esta definição, a Sincronização irá iniciar sessão automaticamente.
+      </string>
+
+      <!-- Disable New Account Detection -->
+      <string id="DisableNewAccountDetection">Desative um alerta e uma mensagem do centro de atividades para incentivar um utilizador a iniciar sessão no OneDrive com uma credencial existente disponibilizada às aplicações da Microsoft</string>
+      <string id="DisableNewAccountDetection_help">Se os administradores ativarem esta definição (valor 1), o utilizador não verá o alerta e a mensagem do centro de atividades sobre novas contas que podem ser utilizadas para iniciar sessão com o OneDrive.
+
+Se os administradores desativar (valor 0) ou não configurar esta definição, o utilizador verá o alerta e a mensagem do centro de atividades quando o OneDrive detetar uma nova conta no dispositivo.      </string>
+        
+      <!-- Enable Added Folder Hard-delete On Unmount -->
+      <string id="AddedFolderHardDeleteOnUnmount">Elimina definitivamente o conteúdo de uma pasta adicionada quando desmontada</string>
+      <string id="AddedFolderHardDeleteOnUnmount_help">Esta definição determina o comportamento do cliente de Sincronização quando encontra um pedido para desmontar uma pasta adicionada.
+
+Se os administradores ativarem esta definição (valor 1), quando for recebida uma desmontagem de uma Pasta Adicionada, o cliente de Sincronização eliminará duramente todo o conteúdo da pasta.
+
+Se os administradores desativarem (valor 0) ou não configurarem esta definição, a Sincronização irá, por predefinição, mover o conteúdo da pasta desmontada para a reciclagem.      </string>
+
+      <!-- Enable Added Folder Hard-delete On Permissions Loss -->
+      <string id="AddedFolderUnmountOnPermissionsLoss">Elimina duramente o conteúdo de uma pasta adicionada quando o utilizador perde permissões para a pasta</string>
+      <string id="AddedFolderUnmountOnPermissionsLoss_help">Esta definição determina o comportamento do cliente de Sincronização quando o utilizador perde permissões para uma pasta adicionada.
+
+Se os administradores ativarem esta definição (valor 1), quando o cliente de Sincronização detetar que o utilizador perdeu permissões para uma Pasta Adicionada, o cliente de Sincronização eliminará duramente todo o conteúdo da pasta e da própria pasta.
+
+Se os administradores desativar (valor 0) ou não configurar esta definição, a Sincronização marcará a pasta por predefinição como erro e pedirá ao utilizador que a remova. Quando o utilizador confirma as remoção, o conteúdo da pasta é movido para a reciclagem.      </string>
+
+      <!-- Confirm shared file deletion prompt -->
+      <string id="SharedContentDeleteConfirmation">Pedir ao utilizador que confirme quando elimina conteúdo partilhado</string>
+      <string id="SharedContentDeleteConfirmation_help">Quando os ficheiros sincronizados locais são eliminados, aos quais vários utilizadores têm acesso, aparece uma caixa de diálogo a informar o utilizador de que outros utilizadores deixarão de ter acesso a esse conteúdo e a pedir-lhes que confirmem a ação antes de o OneDrive propagar as eliminações online. Após a confirmação, as eliminações de outros conteúdos partilhados durante um curto período de tempo não causam confirmações adicionais. Outros conteúdos continuam a ser sincronizados.
+
+Ative esta definição para impedir que os utilizadores escondam a caixa de diálogo de confirmação. Sempre que o utilizador eliminar conteúdos partilhados, a confirmação é necessária antes de o item ser eliminado para todos os utilizadores online.
+
+Desative esta definição para não mostrar a mensagem de confirmação de eliminação. As eliminações serão imediatamente efetuadas na nuvem.
+
+Não configure esta definição para que os utilizadores possam optar por ocultar o aviso, com os efeitos mencionados acima.
+      </string>
+
+    </stringTable>
+    <presentationTable>
+      <presentation id="GPOSetUpdateRing_Pres">
+        <dropdownList refId="GPOSetUpdateRing_Dropdown" noSort="true" defaultItem="0">Cadência de atualizações:</dropdownList>
+      </presentation>
+
+      <presentation id="AutomaticUploadBandwidthPercentage_Pres">
+        <text>Selecione a percentagem máxima de largura de banda a utilizar no carregamento de ficheiros.</text>
+        <text>Os valores válidos são de 10 a 99.</text>
+        <decimalTextBox refId="BandwidthSpinBox" defaultValue="70" spinStep="1">Largura de banda:</decimalTextBox>
+      </presentation>
+
+      <presentation id="UploadBandwidthLimit_Pres">
+        <text>Selecione a velocidade máxima de largura de banda a utilizar no carregamento de ficheiros.</text>
+        <text>Os valores válidos são de 1 a 100 000.</text>
+        <decimalTextBox refId="UploadRateValue" defaultValue="125">Largura de banda:</decimalTextBox>
+      </presentation>
+
+      <presentation id="DownloadBandwidthLimit_Pres">
+        <text>Selecione a velocidade máxima de largura de banda a utilizar na transferência de ficheiros.</text>
+        <text>Os valores válidos são de 1 a 100 000.</text>
+        <decimalTextBox refId="DownloadRateValue" defaultValue="125">Largura de banda:</decimalTextBox>
+      </presentation>
+
+       <presentation id="DiskSpaceCheckThresholdMB_Pres">
+        <text>Especifique o ID do inquilino e o tamanho máximo que o OneDrive de um utilizador pode ter antes de lhe ser pedido que escolha as pastas que pretende sincronizar. </text>
+        <text>No campo Nome do valor, introduza o ID do inquilino. No campo Valor, introduza o tamanho.</text>
+        <text>Os valores válidos são de 0 a 4 294 967 295 MB (inclusive).</text>
+        <listBox refId="DiskSpaceCheckThresholdMBList">Tamanho máximo: </listBox>
+      </presentation>
+
+      <presentation id="DefaultRootDir_Pres">
+       <text>Especifique o ID do inquilino e o caminho predefinido. </text>
+        <text>No campo Nome do valor, introduza o ID do inquilino. No campo Valor, introduza o caminho.</text>
+        <listBox refId="DefaultRootDirList">Caminho: </listBox>
+      </presentation>
+
+      <presentation id="DisableCustomRoot_Pres">
+        <text>Especifique o ID do inquilino e o valor da definição. </text>
+        <text>No campo Nome do valor, introduza o ID do inquilino. No campo Valor, introduza 1 para ativar a definição ou 0 para a desativar.</text>
+        <listBox refId="DisableCustomRootList">Alterar a definição de localização: </listBox>
+      </presentation>
+
+      <presentation id="AllowTenantList_Pres">
+        <text>Especificar o ID do inquilino</text>
+        <text>No campo Valor, introduza o ID do inquilino que pretende adicionar a esta lista.</text>
+        <text> </text>
+        <listBox refId="AllowTenantListBox">ID do Inquilino: </listBox>
+      </presentation>
+
+      <presentation id="BlockTenantList_Pres">
+        <text>Especificar o ID do inquilino</text>
+        <text>No campo Valor, introduza o ID do inquilino que pretende adicionar a esta lista.</text>
+        <text> </text>
+        <listBox refId="BlockTenantListBox">ID do Inquilino: </listBox>
+       </presentation>
+
+      <presentation id="SharePointOnPremFrontDoorUrl_Pres">
+        <text>Forneça o URL do SharePoint Server que aloja o OneDrive para Empresas do utilizador e o nome da organização.</text>
+        <textBox refId="SharePointOnPremFrontDoorUrlBox">
+          <label>URL do SharePoint Server 2019:</label>
+        </textBox>
+        <textBox refId="SharePointOnPremTenantNameBox">
+          <label>Nome da organização:</label>
+        </textBox>
+      </presentation>
+
+      <presentation id="SharePointOnPremPrioritization_Pres">
+        <dropdownList refId="SharePointOnPremPrioritization_Dropdown" noSort="true" defaultItem="0">Autenticar primeiro através de:</dropdownList>
+      </presentation>
+
+      <presentation id="BlockKnownFolderMove_Pres">
+        <dropdownList refId="BlockKnownFolderMove_Dropdown" noSort="true" defaultItem="0">Para os utilizadores que já moveram as suas pastas conhecidas, gostaria de manter essas pastas redirecionadas para a OneDrive:</dropdownList>
+      </presentation>
+
+      <presentation id="KFMOptInWithWizard_Pres">
+        <textBox refId="KFMOptInWithWizard_TextBox">
+          <label>ID de Inquilino:</label>
+        </textBox>
+      </presentation>
+
+      <presentation id="KFMOptInNoWizard_Pres">
+        <textBox refId="KFMOptInNoWizard_TextBox">
+          <label>ID de Inquilino:</label>
+        </textBox>
+        <dropdownList refId="KFMOptInNoWizard_Dropdown" noSort="true" defaultItem="0">Apresentar uma notificação aos utilizadores após o redirecionamento de pastas:</dropdownList>
+        <text>Opções de Pastas:</text>
+        <checkBox refId="KFMOptInNoWizard_Desktop_Checkbox" defaultChecked="true">Ambiente de Trabalho</checkBox>
+        <checkBox refId="KFMOptInNoWizard_Documents_Checkbox" defaultChecked="true">Documentos</checkBox>
+        <checkBox refId="KFMOptInNoWizard_Pictures_Checkbox" defaultChecked="true">Imagens</checkBox>
+      </presentation>
+      <presentation id="AutoMountTeamSites_Pres">
+        <text>Para especificar uma biblioteca a sincronizar:
+
+Abra um browser, inicie sessão no Office 365 como administrador global ou do SharePoint da sua organização e aceda à biblioteca a sincronizar.
+
+Clique no botão "Sincronizar" na biblioteca que pretende sincronizar automaticamente e, em seguida, clique em "Copiar ID da biblioteca".
+
+Clique em "Mostrar" e, em seguida, introduza um nome reconhecível para identificar a biblioteca no campo Nome do Valor e, em seguida, introduza o ID da biblioteca no campo Valor.
+        </text>
+        <listBox refId="AutoMountTeamSitesListBox">Bibliotecas:</listBox>
+      </presentation>
+
+      <presentation id="MinDiskSpaceLimitInMB_Pres">
+        <text>No campo valor, introduza a quantidade mínima de espaço em disco que pretende manter disponível.</text>
+        <text>Os valores válidos são de 0 a 10 240 000 MB</text>
+        <decimalTextBox refId="minDiskSpaceMB" defaultValue="200">Espaço em disco mínimo disponível:</decimalTextBox>
+      </presentation>
+
+      <presentation id="WarningMinDiskSpaceLimitInMB_Pres">
+        <text>No campo valor, introduza a quantidade de espaço em disco disponível abaixo da qual os utilizadores irão receber um aviso. Se utilizar esta política juntamente com "bloquear downloads de ficheiros quando os utilizadores estiverem com pouco espaço em disco", o valor para esta definição deverá ser maior do que o valor de bloqueio de downloads.</text>
+        <text>Os valores válidos são de 0 a 10 240 000 MB</text>
+        <decimalTextBox refId="warningMinDiskSpaceMB" defaultValue="500">Espaço em disco mínimo disponível:</decimalTextBox>
+      </presentation>
+
+      <presentation id="LocalMassDeleteFileDeleteThreshold_Pres">
+        <text>Especifique o número máximo de ficheiros que os utilizadores podem eliminar de cada vez antes de necessitarem de confirmar a operação.</text>
+        <text>Os valores válidos são de 1 a 100000.</text>
+        <decimalTextBox refId="LMDFileDeleteThresholdBox" defaultValue="200">Número de ficheiros:</decimalTextBox>
+      </presentation>
+
+      <presentation id="EnableODIgnoreListFromGPO_Pres">
+        <text>Para especificar palavras-chave, selecione "Mostrar" e, em seguida, introduza as palavras-chave no campo do valor.</text>
+        <text>Por exemplo, introduza "*.pst" para bloquear todos os ficheiros com a extensão pst. Introduza o   "despesa*" para bloquear ficheiros com nomes começados com "despesa". Introduza "**vendas*" para bloquear todos os ficheiros que tenham "vendas" no seu nome. As palavras-chave não são sensíveis a letras maiúsculas e minúsculas. Por exemplo, se introduzir "ícones.JPEG, "também bloqueará "ícones.jpeg". </text>
+        <text> </text>
+        <listBox refId="EnableODIgnoreListFromGPOListBox">Palavras-chave: </listBox>
+      </presentation>
+
+      <presentation id="EnableODIgnoreFolderListFromGPO_Pres">
+        <text>Para especificar palavras-chave, selecione "Mostrar" e introduza as palavras-chave no campo Valor.</text>
+        <text>Por exemplo, introduza "foo" para bloquear todas as pastas com o nome "foo". Introduza "despesa*" para bloquear as pastas cujos nomes comecem por "despesa". Introduza "*vendas*" para bloquear todas as pastas que tenham "vendas" no nome. As palavras-chave não são sensíveis a maiúsculas/minúsculas. Por exemplo, se introduzir "ÍCONES", também irá bloquear "ícones". </text>
+        <text> </text>
+        <listBox refId="EnableODIgnoreFolderListFromGPOListBox">Palavras-chave: </listBox>
+      </presentation>
+
+      <presentation id="EnableSyncAdminReports_Pres">
+      </presentation>
+      <presentation id="GranularFeedbackControl_Pres">
+        <text>Permitir que os utilizadores contactem a Microsoft para:</text>
+        <checkBox refId="GranularFeedbackControl_SendFeedback_Checkbox" defaultChecked="true">Enviar Feedback</checkBox>
+        <checkBox refId="GranularFeedbackControl_ReceiveSurveys_Checkbox" defaultChecked="true">Receber inquéritos de satisfação do utilizador</checkBox>
+        <checkBox refId="GranularFeedbackControl_ContactSupport_Checkbox" defaultChecked="true">Contacte o Suporte do OneDrive​</checkBox>
+      </presentation>
+
+      <presentation id="DisableAutoConfig_Pres">
+        <text>Selecione o tipo de conta desativada para sincronizar automaticamente</text>
+        <text>Valor do AAD: 1</text>
+        <decimalTextBox refId="DisableAutoConfigTypes" defaultValue="0">Tipos de Conta Desativadas:</decimalTextBox>
+      </presentation>
+    </presentationTable>
+  </resources>
+</policyDefinitionResources>
