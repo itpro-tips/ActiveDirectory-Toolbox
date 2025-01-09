@@ -17,33 +17,46 @@ function Get-LocalGroupMembersWithWinNT {
     $group.psbase.invoke('members') | ForEach-Object {
         $path = $null
 
-        $path = $_.GetType().InvokeMember('ADsPath', "GetProperty", $null, $_, $null)
+        $path = $_.GetType().InvokeMember('ADsPath', 'GetProperty', $null, $_, $null)
 
-        if (($path -like "*/$computer/*") -Or ($path -like "WinNT://NT*")) {
+        if (($path -like "*/$computer/*") -Or ($path -like 'WinNT://NT*')) {
             $principalSource = 'Local'
         }
         elseif ($path -like 'WinNT://AzureAD/*') {
-            $principalSource = 'AzureAD'
+            $principalSource = 'EntraID'
         }
         elseif ($path -like 'WinNT://S-1*') {
-            $principalSource = 'Problably AzureAD'
+            $principalSource = 'EntraID (unable to resolve SID) or ActiveDirectory (former user)'
         }
         else {
             $principalSource = 'ActiveDirectory'
         }
 
+        $memberType = $null
+        $memberName = $null
+        $memberSID = $null
+        $memberStatus = 'UnknownOrNotApplicable'
+        
+        $memberType = $_.GetType().InvokeMember('Class', 'GetProperty', $null, $_, $null)
+        $memberName = $_.GetType().InvokeMember('Name', 'GetProperty', $null, $_, $null)
+        $memberSID = New-Object -TypeName System.Security.Principal.SecurityIdentifier -ArgumentList $_.GetType().InvokeMember('ObjectSID', 'GetProperty', $null, $_, $null), 0
+
+        if ($memberType -eq 'User' -and $principalSource -eq 'Local') {
+            # return $true if the account is disabled
+            $memberStatus = -not ($_.GetType().InvokeMember('AccountDisabled', 'GetProperty', $null, $_, $null))
+        }
+        
         $object = [PSCustomObject][ordered]@{
             Computername          = $Computer
             GroupName             = $groupName
-            #GroupDescription  = $($localGroup.Description)
-            MemberName            = $_.GetType().InvokeMember('Name', 'GetProperty', $null, $_, $null)
+            MemberName            = $memberName
+            MemberEnabled         = $memberStatus
             MemberPath            = $path
-            #MemberDisplayname = $_.GetType().InvokeMember("DisplayName", 'GetProperty', $null, $_, $null)
-            MemberSid             = New-Object -TypeName System.Security.Principal.SecurityIdentifier -ArgumentList $_.GetType().InvokeMember("ObjectSID", 'GetProperty', $null, $_, $null), 0
-            #MemberDescription        = $_.GetType().InvokeMember("Description", 'GetProperty', $null, $_, $null)
-            MemberType            = $_.GetType().InvokeMember('Class', 'GetProperty', $null, $_, $null)
+            MemberSid             = $memberSID
+            MemberType            = $memberType
             MemberPrincipalSource = $principalSource
         }
+
         $groupMembersArray.Add($object)
     }
  
