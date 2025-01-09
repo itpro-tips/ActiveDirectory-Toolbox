@@ -1,0 +1,600 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- (c) 2016 Microsoft Corporation -->
+<policyDefinitionResources xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://www.microsoft.com/GroupPolicy/PolicyDefinitions">
+  <displayName>OneDrive グループ ポリシーの設定</displayName>
+  <description>OneDrive 同期アプリ (OneDrive.exe) のさまざまなグループ ポリシー設定、特にアプリのエンタープライズ機能に固有の設定。</description>
+  <resources>
+    <stringTable>
+      <!-- general -->
+      <string id="OneDriveNGSCSettingCategory">OneDrive</string>
+      <string id="NucleusSettingCategory">リスト同期</string>
+
+      <!-- block syncing personal OneDrive -->
+      <string id="DisablePersonalSync">ユーザーが個人用の OneDrive アカウントを同期できないようにする</string>
+      <string id="DisablePersonalSync_help">この設定は、ユーザーが Microsoft アカウントにサインインして個人用の OneDrive ファイルを同期できないようブロックすることができます。
+
+この設定を有効にすると、ユーザーは個人用 OneDrive アカウントで同期リレーションシップを設定できなくなります。この設定を有効にしたときに既に個人用 OneDrive アカウントを同期しているユーザーは、引き続き同期することはできなくなりますが (また同期が停止したメッセージが表示されます)、コンピューターと同期されたファイルはコンピューター上に残ります。
+
+この設定を無効にするか構成しない場合、ユーザーは個人用 OneDrive アカウントを同期できます。</string>
+
+      <!-- turn on GPOSetUpdateRing for app updates -->
+      <string id="GPOSetUpdateRing">同期アプリの更新リングを設定する</string>
+      <string id="GPOSetUpdateRing_help">OneDrive 同期アプリ (OneDrive.exe) への更新プログラムが 3 つの更新リング (初めに Insider、次に Production、最終的に延期) の 3 つの更新リングより公開されます。この設定により、組織内のユーザーの同期アプリのバージョンを指定できます。この設定を有効にしてリングを選択すると、ユーザーは変更できません。
+
+Insider リングのユーザーは、OneDrive に予定されている新機能をプレビューできるビルドを受信します。
+
+Production リングのユーザーは、利用できるようになり次第、最新機能を受け取ります。
+
+リングのユーザーは、新しい機能、バグ修正、パフォーマンスの改善を受け取ります。このリングでは、社内のネットワークから更新プログラムを展開し、展開のタイミングを制御できます (60 日以内)。
+
+この設定を無効にするか構成しない場合、ユーザーは Production リングで利用できるようになり次第、OneDrive 同期アプリの更新プログラムを受信します。ユーザーは Office または Windows Insider プログラムに登録して、Insider リングで更新プログラムを受け取ることができます。</string>
+
+      <string id="Enterprise">延期</string>
+      <string id="Production">実稼働環境</string>
+      <string id="Insider">Insider</string>
+
+      <!-- set default location of the OneDrive folder -->
+      <string id="DefaultRootDir">OneDrive フォルダーの既定の場所を設定</string>
+      <string id="DefaultRootDir_help">この設定では、ユーザーのコンピューター上の OneDrive フォルダーの既定の場所として、特定のパスを設定できます。既定では、パスは %userprofile% の下になります。
+
+この設定を有効にすると、OneDrive - {organization name} フォルダーの既定の場所は、OneDrive.admx ファイルで指定したパスになります。指定した場所をユーザーが変更できないようにするには、“ユーザーが OneDrive フォルダーの場所を変更できないようにする” 設定を有効にしてください。
+
+この設定を無効にするか構成しない場合、OneDrive - {organization name} フォルダーの既定の場所は %userprofile% 内になります。</string>
+
+      <!-- disable changing the default location of the OneDrive folder -->
+      <string id="DisableCustomRoot">ユーザーが OneDrive フォルダーの場所を変更できないようにする</string>
+      <string id="DisableCustomRoot_help">この設定を使用すると、OneDrive 同期アプリのセットアップ中にユーザーが OneDrive - {organization name} フォルダの場所を変更するのをブロックできます。
+
+この設定を有効にすると、OneDrive セットアップで [場所の変更] リンクが非表示になります。[OneDrive フォルダの既定の場所を設定する] 設定を有効にすると、既定の場所または指定したカスタムの場所に OneDrive フォルダが作成されます。
+
+この設定を無効にするか構成しない場合、ユーザーは [場所の変更] リンクをクリックして、OneDrive セットアップで OneDrive フォルダの場所を変更できます。</string>
+
+      <!-- Enable Office Integration for coauthoring and in-app sharing -->
+      <string id="EnableAllOcsiClients">Office デスクトップ アプリで共同編集して共有</string>
+      <string id="EnableAllOcsiClients_help">この設定では、複数のユーザーが Office 365 ProPlus、Office 2019、または Office 2016 デスクトップ アプリを使用して、OneDrive に保存された Office ファイルを同時に編集することができるようになります。ユーザーは、Office デスクトップ アプリからのファイルを共有することもできます。
+
+この設定を有効にした場合、または構成しなかった場合、Office デスクトップ アプリの共同編集と共有の機能が有効になります。
+
+この設定を無効にすると、Office デスクトップ アプリの共同編集と共有は無効になります。[Office ファイルの競合] 設定も無効になり、1 つのファイルの 2 つのバージョン間で競合が発生すると、両方のコピーが保持されます。</string>
+
+      <!-- Enable hold the file for handling Office conflicts -->
+      <string id="EnableHoldTheFile">Office ファイル同期の競合を処理する</string>
+      <string id="EnableHoldTheFile_help">この設定では、同期中に Office ファイルのバージョン間で競合が発生した場合の動作を指定します。既定では、ユーザーは Office でファイルを開いて変更をマージできます。(このオプションは Office 2016 以降でのみ使用できます。以前のバージョンの Office では、両方のコピーが常に保持されます。)
+
+この設定を有効にした場合、または構成しなかった場合、ユーザーは Office で開いて変更を結合するオプションを選択できます。
+
+この設定を無効にした場合、ファイルのコピーは両方とも保持されます。</string>
+        
+      <!-- Enable auto start for OneDrive -->
+      <string id="EnableAutoStart">Windows にサインインしたときに OneDrive を自動的に開始する</string>
+      <string id="EnableAutoStart_help">この設定はユーザーの選択よりも優先され、Windows にサインインするたびに OneDrive が自動的に開始されます。
+      
+この設定を構成すると、ユーザーが Windows にサインインすると、OneDrive が自動的に開始されます。設定を有効にするには、この設定を有効にした後、OneDrive 同期 アプリを再起動する必要があります。
+
+この設定を構成しなかった場合、または 1 以外の値に設定した場合、ユーザーは OneDrive を自動的に起動するか (既定の選択肢)、または OneDrive をアプリの設定で開始OneDrive 同期無効にすることができます。</string>
+
+      <!-- Enable Automatic Upload Bandwidth Limiting -->
+      <string id="AutomaticUploadBandwidthPercentage">同期アプリのアップロード速度をスループットのパーセンテージまでに制限する</string>
+      <string id="AutomaticUploadBandwidthPercentage_help">この設定を使用すると、OneDrive 同期アプリ (OneDrive.exe) がファイルのアップロードに使用できるコンピューターのアップロード スループットの割合を指定することで、コンピューター上のさまざまなアップロード タスクのパフォーマンスのバランスを取ることができます。これを割合として設定すると、同期アプリはスループットの増加と減少の両方に応答できます。設定した割合が低いほど、ファイルのアップロード速度が遅くなります。50% 以上の値をお勧めします。同期アプリは、定期的に制限なしで 1 分間アップロードしてから、設定したアップロードの割合まで遅くなります。これにより、サイズの大きいアップロードがコンピューターのアップロード スループットを占めるのを防ぎながら、小さなファイルをすばやくアップロードできます。
+
+この設定を有効にした場合、コンピューターは OneDrive にファイルをアップロードするときに指定したアップロード スループットの割合を使用し、ユーザーはそれを変更できません。
+
+この設定を無効にした、または構成しなかった場合、ユーザーはアップロードレートを固定値 (KB/秒) に制限するか、アップロードスループットの 70% を使用してスループットの増減に対応する "自動的に調整" に設定するかを選択できます。
+
+重要: この設定を有効または無効にしてから、未構成に戻すと、最後の構成は有効のままになります。アップロード速度を制限するには、[同期アプリのアップロード速度を固定レートに制限する] の変わりに、この設定を有効にすることをお勧めします。両方の設定を同時に有効にしないでください。</string>
+      <!-- Enable Upload Bandwidth Limiting -->
+      <string id="UploadBandwidthLimit">同期アプリのアップロード速度を固定速度に制限する</string>
+      <string id="UploadBandwidthLimit_help">この設定では、OneDrive 同期アプリ (OneDrive.exe) がファイルをアップロードする最高速度を設定できます。この速度は固定値 (KB/秒) です。速度を低くすると、コンピューターがファイルをアップロードする速度は低下します。設定できる最低速度は 1 KB/秒で、最高速度は 100000 KB/秒です。50 KB/秒を下回る速度を入力して、UI に入力した速度が表示されていても、50 KB/秒に制限されます。
+
+この設定を有効にすると、コンピューターは指定した最高アップロード速度を使用します。ユーザーは OneDrive の設定でこれを変更することはできません。
+
+この設定を無効にするか構成しない場合、ユーザーはアップロード速度を固定値 ( KB/秒) に制限するか、または [自動で調整] に設定して 70% のアップロード スループットを使用してスループットの増減両方に対応できます。
+
+この設定をアップロード速度の制限に使用するのではなく、[同期アプリのアップロード速度をスループットのパーセンテージに制限する] を有効にして、条件の変化に応じて調整できるよう制限を設定することをお勧めします。両方の設定を同時に有効にすることはできません。</string>
+
+      <!-- Enable Download Bandwidth Limiting -->
+      <string id="DownloadBandwidthLimit">同期アプリのダウンロード速度を固定速度に制限する</string>
+      <string id="DownloadBandwidthLimit_help">この設定では、OneDrive 同期 アプリ (OneDrive.exe) がファイルをダウンロードできる最高速度を構成できます。このレートは固定値 (KB/秒) で、同期にのみ適用され、更新プログラムのダウンロードには適用されません。速度が低いほど、ダウンロードが遅くなります。設定できる最小レートは 1 KB/秒、最大レートは 100000 KB/秒です。50 KB/秒未満の入力では、UI に入力されたレートが表示されている場合でも、上限は 50 KB/秒に設定されます。
+
+この設定を有効にした場合、指定した最大ダウンロード速度がコンピューターで使用され、ユーザーはこの設定を変更できなくなります。
+
+この設定を無効にするか、未構成にした場合、ユーザーはアプリの設定でダウンロード速度OneDrive 同期制限できます。</string>
+
+      <!-- prevent OneDrive sync app (OneDrive.exe) from generating network traffic (checking for updates, etc.) until the user signs in to OneDrive -->
+      <string id="PreventNetworkTrafficPreUserSignIn">ユーザーがサインインするまで同期アプリがネットワーク トラフィックを生成できないようにする</string>
+      <string id="PreventNetworkTrafficPreUserSignIn_help">この設定では、ユーザーが同期アプリにサインインするか、コンピュータへのファイルの同期を開始するまで、OneDrive 同期アプリ (OneDrive.exe) がネットワーク トラフィックの生成 (更新の確認など) をブロックできます。
+
+この設定を有効にする場合、同期アプリを自動的に開始するには、ユーザーはコンピュータ上の OneDrive 同期アプリにサインインするか、コンピュータ上の OneDrive または SharePoint ファイルを同期することを選択する必要があります。
+
+この設定を無効にするか、構成しない場合、ユーザーが Windows にサインインすると OneDrive 同期アプリが自動的に起動します。
+
+重要: この設定を有効または無効にしてから[構成不可]に戻した場合、最後の構成は有効なままになります。 </string>
+
+      <!-- Silent Account Config -->
+      <string id="SilentAccountConfig">Windows 資格情報を使用して OneDrive 同期アプリにユーザーをサイレント モードでサインインする</string>
+      <string id="SilentAccountConfig_help">この設定では、ユーザーは Windows 資格情報を使用して OneDrive 同期アプリ (OneDrive.exe) にサイレント モードでサインインすることができます。
+
+この設定を有効にすると、プライマリ Windows アカウント (PC をドメインに参加させるときに使用したアカウント) で PC にサインインしたユーザーは、アカウントの資格情報を入力せずに同期アプリをセットアップできます。ユーザーは OneDrive セットアップに表示されるため、同期するフォルダーを選択して OneDrive フォルダーの場所を変更することができます。ユーザーが以前の OneDrive for Business の同期アプリ (Groove.exe) を使用している場合、新しい同期アプリがユーザーの OneDrive の同期を以前のアプリから引き継ぎ、ユーザーの同期設定を維持します。この設定は、ファイル オンデマンドを使用していない PC での [ユーザーが自動的にダウンロードできる OneDrive の最大サイズを設定する]、および [OneDrive フォルダーの既定の場所を設定する] と一緒によく使用されます。
+
+この設定を無効にするか構成しない場合、ユーザーは同期を設定するのに職場または学校アカウントを使用してサインインする必要があります。
+
+</string>
+
+      <!-- DiskSpaceCheckThresholdMB -->
+      <string id="DiskSpaceCheckThresholdMB">ユーザーの OneDrive が自動的にダウンロードできる最大サイズを設定する</string>
+      <string id="DiskSpaceCheckThresholdMB_help">この設定は、[Windows 資格情報を使用して OneDrive 同期アプリにユーザーをサイレント サインイン] と組み合わせて使用されます。この設定を使用すると、OneDrive で指定した量を超えるコンテンツを持つユーザーに、OneDrive 同期アプリ (OneDrive.exe) のセットアップ中に同期するフォルダーを選択するように求めることができます。
+
+この設定を有効にすると、指定した値を超えるコンテンツを持つユーザーは、OneDrive セットアップ時に既定で [フォルダーの選択] ダイアログ ボックスに表示されます。
+
+この設定を無効にするか構成しない場合、ユーザーが同期アプリを設定すると、すべてのファイルが同期されるように選択されます。</string>
+
+      <!-- Settings below control behavior of Files-On-Demand (Cloud Files) -->
+      <string id="FilesOnDemandEnabled">OneDrive ファイル オンデマンドを使用する</string>
+      <string id="FilesOnDemandEnabled_help">この設定を使用すると、OneDrive ファイル オンデマンドを組織で有効にするかどうかを制御できます。
+
+この設定を有効にすると、OneDrive ファイル オンデマンドは既定でオンになります。
+
+この設定を無効にした場合、ユーザーはオンにすることはできません。
+
+この設定を構成しない場合、ユーザーは OneDrive ファイル オンデマンドをオンまたはオフにすることができます。</string>
+
+      <string id="DehydrateSyncedTeamSites">同期済みチーム サイトのファイルをオンライン専用ファイルに変換する</string>
+      <string id="DehydrateSyncedTeamSites_help">この設定は、OneDrive ファイル オンデマンドと組み合わせて使用されます。多くのユーザーが同じチーム サイトを同期している場合、この設定により、同期済みチーム サイトのファイルをオンライン専用ファイルとしてマークすることで、帯域幅を節約し、デバイスの領域を解放することができます。
+
+この設定を有効にすると、OneDrive ファイル オンデマンドを有効にする前に同期していたチーム サイトのファイルは、オンライン専用ファイルに変換されます (1 回限りのアクション)。
+
+この設定を無効にするか構成しない場合、チーム サイトのファイルは、ユーザーがオンライン専用のファイルにしない限り、ローカルに残ります。</string>
+
+      <!-- Restrict syncing with other organizations -->
+      <string id="AllowTenantList">特定の組織にのみ OneDrive アカウントの同期を許可する</string>
+      <string id="AllowTenantList_help">この設定を使用すると、許可済みテナント ID を指定することで、ユーザーが簡単にほかの組織にファイルをアップロードできないようにすることができます。
+
+この設定を有効にすると、ユーザーが許可されていない組織からアカウントを追加しようとすると、エラーが表示されます。ユーザーがアカウントを追加済みの場合は、ファイルの同期は停止します。
+
+この設定を無効にするか構成しない場合、ユーザーはどの組織のアカウントでも追加できます。
+
+特定の組織をブロックするには、[特定の組織の OneDrive アカウントの同期をブロックする] を使用します。
+
+この設定は、[特定の組織の OneDrive アカウントの同期をブロックする] よりも優先されます。両方のポリシーを同時に有効にしないでください。</string>
+
+      <string id="BlockTenantList">特定の組織の OneDrive アカウントの同期をブロックする</string>
+      <string id="BlockTenantList_help">この設定を使用すると、ブロック済みテナント ID を指定することで、ユーザーが簡単にほかの組織にファイルをアップロードできないようにすることができます。
+
+この設定を有効にすると、ユーザーがブロックされている組織からアカウントを追加しようとすると、エラーが表示されます。ユーザーがアカウントを追加済みの場合は、ファイルの同期は停止します。
+
+この設定を無効にするか構成しない場合、ユーザーはどの組織のアカウントでも追加できます。
+
+許可済み組織のリストを指定するには、[特定の組織の OneDrive アカウントの同期のみを許可する] を使用します。
+
+この設定は、[特定の組織の OneDrive アカウントの同期のみを許可する] が有効になっている場合には、機能しません。両方のポリシーを同時に有効にしないでください。</string>
+
+      <!-- SharePoint Server 2019 settings -->
+      <string id="SharePointOnPremFrontDoorUrl">SharePoint Server URL と組織名を指定する</string>
+      <string id="SharePointOnPremFrontDoorUrl_help">この設定を使用すると、ユーザーが OneDrive 同期アプリ (OneDrive.exe) を使用して SharePoint Server 2019 でファイルを同期できるようにします。URL は SharePoint サーバーの場所を定義し、同期アプリが同期を認証および設定できるようにします。組織名では、ファイル エクスプローラで作成する OneDrive フォルダ名と SharePoint フォルダ名を指定できます。組織名はオプションです。指定しない場合、同期アプリは URL の最初のセグメントを名前として使用します。たとえば、office.sharepoint.comは "Office" になり、OneDrive フォルダ名は "OneDrive - Office" になります。
+
+この設定を有効にして SharePoint Server URL を指定すると、ユーザーは SharePoint Server 2019 でファイルを同期できます。
+
+この設定を無効にしたり、構成しなかったり、SharePoint Server URL を指定しない場合、ユーザーは SharePoint Server 2019 でファイルを同期できません。 </string>
+
+      <string id="SharePointOnPremPrioritization">ハイブリッド環境で OneDrive の場所を指定する</string>
+      <string id="SharePointOnPremPrioritization_help">この設定では、OneDrive 同期アプリ (OneDrive.exe) が SharePoint Online または SharePoint Server 2019 に対して、その両方の ID プロバイダーに ID が存在する場合に、認証するかどうかを定義します。この設定を使用するには、[SharePoint Server URL と組織名を指定する] も有効にする必要があります。この設定は、OneDrive for Business 同期機能にのみ影響します。SharePoint Online または SharePoint Server 2019 のチーム サイトの同期には影響を与えません。
+
+この設定を有効にすると、次の 2 つのオプションから選択できます:
+
+SharePoint Online: 同期アプリは最初に SharePoint Online でユーザーの OneDrive を探します。同期アプリが既にそのユーザーの SharePoint Online で構成されている場合は、そのユーザーの SharePoint Server 2019 の OneDrive for Business インスタンスの構成を試みます。
+
+SharePoint Server 2019: 同期アプリは最初に SharePoint Server 2019 でユーザーの OneDrive for Business を探します。同期アプリがそのユーザーの SharePoint Server 2019 で既に構成済みの場合、そのユーザーの SharePoint Online で OneDrive インスタンスの構成を試みます。
+
+この設定を無効にするか構成しない場合、同期アプリは最初に SharePoint Online でユーザーの OneDrive を探します。</string>
+
+      <string id="PrioritizeSPO">SharePoint Online</string>
+      <string id="PrioritizeSharePointOnPrem">SharePoint Server 2019</string>
+
+      <!-- Disable tutorial in the FRE -->
+      <string id="DisableFRETutorial">OneDrive セットアップの最後に表示されるチュートリアルを無効にする</string>
+      <string id="DisableFRETutorial_help">この設定では、OneDrive のセットアップの最後に Web ブラウザーにチュートリアルが表示されないようにすることができます。
+
+この設定を有効にすると、ユーザーには OneDrive のセットアップが完了した後にチュートリアルが表示されなくなります。
+
+この設定を無効にするか構成しない場合、OneDrive セットアップの最後にチュートリアルが表示されます。</string>
+
+      <!-- Disable Animation in the FRE-->
+      <string id="DisableFREAnimation">OneDrive のセットアップ中に表示されるアニメーションを無効にする</string>
+      <string id="DisableFREAnimation_help">この設定を使用すると、OneDrive のセットアップ中にアニメーションが表示されないようにすることができます。</string>
+
+      <!-- Block KFM -->
+      <string id="BlockKnownFolderMove">ユーザーが Windows の既知のフォルダーから OneDrive に移動できないようにする</string>
+      <string id="BlockKnownFolderMove_help">この設定を有効にすると、ユーザーはドキュメント、ピクチャ、デスクトップフォルダーをOneDrive for Businessアカウントに移動できなくなります。
+
+注: 既知のフォルダーを個人用の OneDrive アカウントに移動することは、ドメインに参加している PC で既にブロックされています。
+
+この設定を有効にした場合、[重要なフォルダーの保護を設定する] ウィンドウでユーザーに確認メッセージが表示されず、[保護の開始] コマンドが無効になります。ユーザーが既に既知のフォルダーを移動している場合、それらのフォルダー内のファイルは OneDrive に残ります。既知のフォルダーをユーザーのデバイスにリダイレクトするには、[いいえ] を選択してください。この設定は、[Windows の既知のフォルダーを OneDrive に移動するようユーザーに確認する] または [Windows の既知のフォルダーを OneDrive にサイレントに移動する] を有効にした場合は有効になりません。
+
+この設定を無効にするか、未構成にした場合、ユーザーは既知のフォルダーを移動できます。</string>
+
+      <string id="BlockKnownFolderMoveDefaultOption">はい</string>
+      <string id="BlockKnownFolderMoveRestoreFolder">いいえ</string>
+
+      <!-- KFMOptInWithWizard -->
+      <string id="KFMOptInWithWizard">Windows の既知のフォルダーを OneDrive に移動するメッセージをユーザーに表示する</string>
+      <string id="KFMOptInWithWizard_help">これは、[IT 部門はあなたに重要なフォルダーの保護を要求しています] ウィンドウが表示されるようにするための設定です。このウィンドウでは、ユーザーが自分の [ドキュメント]、[ピクチャ]、[デスクトップ] のフォルダーを OneDrive に移動できます。この設定はオンプレミスの SharePoint では有効になりません。
+
+この設定を有効にしてテナント ID を入力すると、現在自分の OneDrive を同期しているユーザーがサインインしたときに [IT 部門はあなたに重要なフォルダーの保護を要求しています] ウィンドウが表示されます。このウィンドウを閉じるとアクティビティ センターにアラーム通知が表示され、これはそのユーザーが 3 つの既知のフォルダーすべてを移動するまで続きます。ユーザーが既に既知のフォルダーを別の OneDrive アカウントにリダイレクトしている場合は、フォルダーのリダイレクト先を組織のアカウントにするよう指示する画面が表示されます (既存のファイルはそのまま残ります)。
+
+この設定を無効にした場合や構成しない場合は、[IT 部門はあなたに重要なフォルダーの保護を要求しています] ィンドウが自動的に表示されることはありません。</string>
+
+      <!-- KFMOptInNoWizard -->
+      <string id="KFMOptInNoWizard">サイレント モードで Windows の既知のフォルダーを OneDrive に移動する</string>
+      <string id="KFMOptInNoWizard_help">この設定では、ユーザーが操作することなく、既知のフォルダーから OneDrive にリダイレクトすることができます。同期アプリのビルド 18.171.0823.0001 より前の場合、この設定により空の既知のフォルダーから OneDrive (または別の別の OneDrive アカウントに既にリダイレクトしていた既知のフォルダー) へのリダイレクトのみが行われます。それ以降のビルドでは、コンテンツを含む既知のフォルダーにリダイレクトし、コンテンツが OneDrive に移動されます。この設定は、[Windows の既知のフォルダーを OneDrive に移動するメッセージをユーザーに表示する] と一緒に使用することをおすすめします。既知のフォルダーをサイレント モードで移動することに失敗すると、ユーザーにはエラーを修正して続行するよう示すメッセージが表示されます。
+
+この設定を有効にしてテナント ID を指定すると、フォルダーがリダイレクトされた後に通知を表示するかどうかを選択できます。
+
+すべてのフォルダーを一度に移動することも、移動するフォルダーを選択することもできます。フォルダーを移動した後は、フォルダーのチェックボックスをオフにしても、このポリシーはそのフォルダーに再度影響しません。
+
+この設定を無効にするか構成しない場合、ユーザーの既知のフォルダーはサイレント モードで OneDrive にリダイレクトまたは移動されません。
+
+    </string>
+      <string id="KFMOptInNoWizardToast">はい</string>
+      <string id="KFMOptInNoWizardNoToast">いいえ</string>
+
+      <!-- Block KFM Opt Out -->
+      <string id="KFMBlockOptOut">ユーザーが Windows の既知のフォルダーから PC にリダイレクトできないようにする</string>
+      <string id="KFMBlockOptOut_help">これは、ユーザーの [ドキュメント]、[ピクチャー]、[デスクトップ] の各フォルダーを OneDrive にリダイレクトすることを強制的に継続するための設定です。
+
+この設定を有効にすると、[IT 部門はあなたに重要なフォルダーの保護を要求しています] ウィンドウの [保護の停止] ボタンが無効になり、ユーザーが既知のフォルダーの同期を停止しようとすると、エラーが表示されます。
+
+この設定を無効にした場合や構成しない場合は、ユーザーが既知のフォルダーを自分の PC に戻すことができます。 </string>
+
+      <!-- KFMForceWindowsDisplayLanguage -->
+      <string id="KFMForceWindowsDisplayLanguage">OneDrive で既知のフォルダーをプロビジョニングするときは、常にユーザーの Windows 表示言語を使用してください</string>
+      <string id="KFMForceWindowsDisplayLanguage_help">Windows の既知のフォルダーを OneDrive に移動すると、ユーザーが別の優先言語を設定しない限り、既定でユーザーの Windows の表示言語でプロビジョニングされます。この設定を使用すると、ユーザーの優先言語設定をオーバーライドできます。これは、既知のフォルダーの移動の設定 (「Windows の既知のフォルダーを OneDrive にサイレントに移動する」と「Windows の既知のフォルダーを OneDrive に移動するようユーザーに確認する」) の両方で動作します。
+
+この設定を有効にした場合、ユーザーが別の優先言語を設定した場合でも、既知のフォルダーはユーザーの Windows 表示言語を使用してプロビジョニングされます。
+
+この設定を無効にするか、構成しなかった場合、ユーザーが優先言語を設定すると、その既知のフォルダーがその言語を使用して OneDrive にプロビジョニングされます。自分の PC 上の既知のフォルダーは、優先言語で表示されます。</string>
+
+      <!-- AutoMountTeamSites -->
+      <string id="AutoMountTeamSites">チーム サイト ライブラリを自動的に同期するように構成する</string>
+      <string id="AutoMountTeamSites_help">この設定を使用すると、ユーザーが次回 OneDrive 同期アプリ (OneDrive.exe) にサインインするときに自動的に同期する SharePoint チーム サイト ライブラリを指定できます。ユーザーがサインインしてからライブラリの同期が開始されるまでに、最大 8 時間かかる場合があります。この設定を使用するには、OneDrive ファイル オンデマンドを有効にする必要があります。この設定は、Windows 10 (1709) Fall Creators Update 以降を実行しているコンピューター上のユーザーにのみ適用されます。同じライブラリに 1,000 台を超えるデバイスに対してこの設定を有効にしないでください。良い同期エクスペリエンスを確保するには、大規模なライブラリ セットでこの機能を有効にしないでください (最新のガイダンスについては https://learn.microsoft.com/en-us/sharepoint/use-group-policy#AutoMountTeamSites を参照してください)。この機能は、オンプレミスの SharePoint サイトでは有効になっていません。
+
+この設定を有効にした場合、OneDrive 同期アプリは、次回ユーザーがサインインするときにオンライン専用ファイルとして指定したライブラリの内容を自動的にダウンロードします。ユーザーはライブラリの同期を停止できません。
+
+この設定を無効にした場合、指定したチーム サイト ライブラリは、新しいユーザーに対して自動的に同期されません。既存のユーザーはライブラリの同期を停止できますが、ライブラリは自動的に同期を停止しません。</string>
+
+      <!-- Disable Pause On Battery Saver  -->
+      <string id="DisablePauseOnBatterySaver">デバイスのバッテリー節約機能モードがオンのときに同期を続ける</string>
+      <string id="DisablePauseOnBatterySaver_help">この設定は、バッテリー節約機能モードがオンになっているデバイスの自動一時停止機能をオフにすることができます。
+この設定を有効にすると、ユーザーがバッテリー節約機能モードをオンにしたときに同期が継続されます。OneDrive は自動的に同期を一時停止することはありません。
+この設定を無効にするか設定しない場合、バッテリー節約機能モードが検出されたときに同期が自動的に一時停止し、通知が表示されます。
+ユーザーは、通知で [同期を続ける] をクリックすることで、同期を一時停止しないように選択できます。
+同期が一時停止すると、ユーザーは、タスク バーの通知領域にある OneDrive クラウド アイコンをクリックして、次にアクティビティ センターの上部にあるアラートをクリックすることで、同期を再開できます。</string>
+
+      <!-- Disable Pause On Metered Network -->
+      <string id="DisablePauseOnMeteredNetwork">従量制課金ネットワークのときにも同期を続ける</string>
+      <string id="DisablePauseOnMeteredNetwork_help">この設定を使用すると、デバイスが従量制課金ネットワークに接続されているときに自動一時停止機能をオフにすることができます。
+
+この設定を有効にすると、デバイスが従量制課金ネットワークに接続されているときにも同期は継続されます。OneDrive は同期を自動的に一時停止することはありません。
+
+この設定を無効にするか設定しない場合、従量制課金ネットワークが検出されたときに同期が自動的に一時停止し、通知が表示されます。ユーザーは、通知で [同期を続ける] をクリックすることで、同期を一時停止しないよう選択することができます。同期が一時停止されている場合、ユーザーはタスク バーの通知領域にある OneDrive クラウド アイコンをクリックして、次にアクティビティ センターの上部にあるアラートをクリックすることで、同期を再開できます。</string>
+
+      <!-- Local Mass Delete Threshold -->
+      <string id="LocalMassDeleteFileDeleteThreshold">ローカル コンピュータ上の複数の OneDrive ファイルを削除するときにユーザーにメッセージを表示する</string>
+      <string id="LocalMassDeleteFileDeleteThreshold_help">このポリシーは、ユーザーがファイルはクラウドからも削除されることを通知されるまで、ローカル OneDrive フォルダーから削除できるファイルの数のしきい値を設定します。
+
+このポリシーを有効にすると、ユーザーがローカル コンピューター上の OneDrive から指定した数を超えるファイルを削除すると、通知が表示されます。ユーザーには、引き続きクラウド ファイルを削除するか、ローカル ファイルを復元するかを選択できます。
+
+注: このポリシーを有効にした場合でも、ユーザーが以前の通知で [常にファイルを削除する] チェック ボックスをオンにした場合、または OneDrive 同期アプリの設定で [クラウドで多数のファイルが削除されたときに通知を受け取る] チェック ボックスをオフにした場合、ユーザーは通知を受け取ることがありません。
+
+このポリシーを無効にした場合、ユーザーはローカル コンピューター上の多数の OneDrive ファイルを削除しても通知を受け取りません。
+
+このポリシーを構成しない場合、ユーザーが短時間で 200 個を超えるファイルを削除すると、通知が表示されます。</string>
+
+
+      <!-- Forced local mass delete prompt -->
+      <string id="ForcedLocalMassDeleteDetection">大規模な削除操作ではユーザーの確認が必要</string>
+      <string id="ForcedLocalMassDeleteDetection_help">この設定により、ユーザーは多数の同期したファイルを削除したときに、クラウド内のファイルを削除することを確認します。
+
+この設定を有効にした場合、ユーザーは、多数の同期したファイルを削除するとき警告が表示常にします。ユーザーが 7 日以内の削除操作を確認しない場合、ファイルは削除されません。
+
+無効にした場合、またはこの設定を構成しなかった場合は、ユーザーは、警告を非表示にし、常に、クラウド内のファイルを削除できます。</string>
+
+      <!-- Block B2BSync aka Cross Tenant Sync -->
+      <string id="BlockExternalSync">ユーザーが他の組織から共有されたライブラリとフォルダーを同期できないようにする</string>
+      <string id="BlockExternalSync_help">この設定では、組織のユーザーが、別の組織のユーザーが共有した OneDrive for Business または SharePoint コンテンツの同期を許可するかどうかを制御します。これは、B2B 同期と呼ばれるコラボレーション機能です。
+
+この設定を有効にすると、ユーザーは外部組織から共有されたOneDrive for Business または SharePoint ライブラリまたはフォルダーの同期を開始できません。既に同期されている共有ライブラリまたはフォルダーは同期を停止します。
+
+この設定を無効にした、または構成しなかった場合、ユーザーは外部組織から共有された OneDrive for Business と SharePoint ライブラリとフォルダーを同期できます。
+
+B2B 同期の詳細については、https://learn.microsoft.com/en-us/sharepoint/b2b-sync を参照してください。</string>
+
+      <!-- Allow OneDrive to disable permission inheritance within read-only folders -->
+      <string id="PermitDisablePermissionInheritance">読み取り専用で同期されたフォルダーで Windows アクセス許可の継承の無効化を OneDrive に許可する</string>
+      <string id="PermitDisablePermissionInheritance_help">この設定では、OneDrive 同期アプリは、ユーザーの PC 上で同期する読み取り専用フォルダ内のすべての継承されたアクセス許可を削除できます。
+
+この設定を有効にすると、OneDrive 同期アプリは読み取り専用フォルダのアクセス許可の継承を無効にして、同期速度を向上させることができます。
+
+この設定を無効にするか構成しない場合、OneDrive 同期アプリは読み取り専用フォルダでアクセス許可の継承を保持します。同期速度が大幅に遅くなる場合があります。</string>
+
+      <!-- Automatically adjust the sync app upload rate based on bandwidth availability -->
+      <string id="EnableAutomaticUploadBandwidthManagement">OneDrive の自動アップロード帯域幅管理を有効にする</string>
+      <string id="EnableAutomaticUploadBandwidthManagement_help">この設定は、未使用の帯域幅がある場合にのみ、OneDrive 同期アプリ (OneDrive.exe) がバックグラウンドでアップロードできるようにします。これにより、同期アプリが、ネットワークを使用している他のアプリに干渉するのを防ぎます。この設定は Windows LEDBAT (Low Extra Delay Background Transport) プロトコルを利用しています。レイテンシーの増加が LEDBAT で検出されると (他の TCP 接続が帯域幅を消費していることを示す)、同期アプリは干渉を防ぐために自身の消費を減らします。ネットワーク レイテンシーが減り、帯域幅が解放されると、同期アプリはアップロード速度を上げ、未使用の帯域幅を使用します。
+
+この設定を有効にすると、同期アプリのアップロード速度は利用できる帯域幅に応じて [自動調整] に設定されます。ユーザーは変更することができません。
+
+この設定を無効にするか構成しない場合、ユーザーはアップロード速度を固定値 (KB/秒) に制限することができます。または "自動調整" に設定することができます。
+
+重要
+この設定を有効または無効にした後、[未構成] に戻した場合、最後の構成が有効になったままになります。[同期アプリのアップロード速度を固定速度に制限する] ではなく、この設定を有効にすることをおすすめします。両方の設定を同時に有効にすることはできません。この設定は、[同期アプリのアップロード速度をスループットのパーセンテージまでに制限する] よりも優先されます (同じデバイス上で両方が有効になっている場合)。</string>
+
+      <!-- MinDiskSpaceLimitInMB -->
+      <!-- configurable limit where low disk space error will occur-->
+      <string id="MinDiskSpaceLimitInMB">ユーザーのディスクの空き領域が少ない場合にファイルのダウンロードをブロックする</string>
+      <string id="MinDiskSpaceLimitInMB_help">この設定では、ディスクの空き領域の最小量を指定し、ユーザーの領域がこの量未満になるときに、OneDrive 同期アプリ (OneDrive.exe) がファイルをダウンロードしないようにすることができます。
+
+ユーザーには、領域を解放するためのオプションが表示されます。</string>
+
+      <!-- WarningMinDiskSpaceLimitInMB -->
+      <!-- configurable limit where user will be notified they are approaching low disk space -->
+      <string id="WarningMinDiskSpaceLimitInMB">ディスク領域が不足しているユーザーに警告する</string>
+      <string id="WarningMinDiskSpaceLimitInMB_help">この設定では、ディスクの空き領域の最小量を指定し、OneDrive 同期アプリ　(OneDrive.exe) がファイルをダウンロードすると領域がこの量未満になるときに、ユーザーに通知することができます。
+
+ユーザーには、領域を解放するためのオプションが表示されます。</string>
+
+      <!-- EnableODIgnoreListFromGPO -->
+      <string id="EnableODIgnoreListFromGPO">特定の種類のファイルをアップロードから除外</string>
+      <string id="EnableODIgnoreListFromGPO_help">この設定では、OneDrive 同期アプリ (OneDrive.exe) が特定のファイルを OneDrive または SharePoint にアップロードできないようにするキーワードを入力できます。"setup.exe"などの完全な名前を入力するか、ワイルドカード文字としてアスタリスク (*) を使用して一連の文字を表すことができます。
+
+この設定を有効にした場合、同期アプリは、指定したキーワードに一致する新しいファイルをアップロードしません。スキップされたファイルにエラーは表示されません。ファイルはローカルの OneDrive フォルダーに残ります。設定を有効にするには、この設定を有効にした後、OneDrive 同期アプリを再起動する必要があります。
+
+この設定を無効にするか、未構成にした場合、同期アプリは、すべての同期フォルダー内のすべてのサポートされているファイルをアップロードします。</string>
+
+      <!-- Disable First Delete Dialog -->
+      <string id="DisableFirstDeleteDialog">「削除されたファイルはどこでも削除されます」というリマインダーを非表示にします</string>
+      <string id="DisableFirstDeleteDialog_help">ユーザーが同期された場所からローカル ファイルを削除すると、そのファイルがすべてのユーザーのデバイスと Web 上で使用できなくなるという警告メッセージが表示されます。この設定を使用すると、警告メッセージを非表示にできます。
+
+この設定を有効にした場合、ユーザーはファイルをローカルで削除したときに"削除されたファイルは、すべての場所から削除されます" というメッセージが表示されません。
+
+この設定を無効にするか、構成しなかった場合、ユーザーが [今後このアラームを表示しない] を選択するまで、アラームが表示されます。</string>
+
+      <!-- IgnoreWebProxy -->
+      <string id="IgnoreWebProxy">同期クライアントが通常の Web プロキシ検出ロジックを無視する</string>
+      <string id="IgnoreWebProxy_help">この設定は、OneDrive 同期クライアントが既定の Web プロキシ検出ロジックを実行するかどうかを制御します。
+
+この設定を有効にすると、同期クライアントは通常の Web プロキシ検出を実行せず、通信が必要なインターネット Web エンドポイントに直接接続しようとします。これは、Web プロキシ設定を構成せず、自動プロキシ スクリプトを使用しないのと同じです。
+
+この設定を無効にした、または構成しなかった場合、同期クライアントは Web プロキシがネットワーク上で構成されているかどうかを検出し、されている場合はそれを使用します。
+
+詳細については、https://learn.microsoft.com/en-us/troubleshoot/windows-server/networking/configure-proxy-server-settings を参照してください</string>
+
+      <!-- EnableSyncAdminReports -->
+      <string id="EnableSyncAdminReports">OneDrive の同期正常性レポートを有効にする</string>
+      <string id="EnableSyncAdminReports_help">Microsoft OneDrive 同期正常性ダッシュボードは、同期アプリのデバイスと正常性に関するレポートを提供します。この設定により、Microsoft OneDrive 同期アプリは同期デバイスと正常性データを管理レポートにコンパイルできます。これらのレポートを使用すると、組織全体の一般的なエラーを予防的に特定、調査、解決できます。
+
+この設定を有効にした場合、OneDrive 同期アプリはデバイスと正常性のデータを管理レポートに報告します。レポートを取得するデバイスでこの設定を有効にする必要があります。
+
+この設定を無効にした、または構成しなかった場合は、Microsoft OneDrive 同期アプリのデバイスと正常性データは、Microsoft OneDrive 同期正常性ダッシュボードに表示されません。</string>
+
+      <!-- Disable Get Feedback -->
+      <string id="EnableFeedbackAndSupport"> ユーザーがフィードバックとサポートのために Microsoft に連絡することを許可する</string>
+      <string id="EnableFeedbackAndSupport_help">この設定では、同期アプリのユーザー エクスペリエンスを通じて組織内のユーザーが Microsoft に直接連絡することができるかどうかを指定します。ユーザーが自分の考えを共有できるようにすると、OneDrive の改善に役立ちます。
+
+この設定を有効にするか、構成しなかった場合、ユーザーは OneDrive 同期アプリのエクスペリエンスを使用して、フィードバックとサポートのために Microsoft に直接連絡することができます。
+
+この設定を無効にした場合、ユーザーは同期アプリ内でサポート、フィードバック、または提案のために Microsoft に連絡することはできません。ただし、ユーザーはヘルプ コンテンツやセルフヘルプ ツールにアクセスできます。</string>
+
+      <!-- Disable Nucleus List Sync -->
+      <string id="DisableListSync">このデバイスでリストの同期が実行されないようにする</string>
+      <string id="DisableListSync_help">既定では、ユーザーがオフラインでもリストにアクセスして編集できるMicrosoft Listsのユーザーに対してリストの同期が有効になっています。このポリシーを有効にした場合、リストの同期はデバイス上でブロックされます。</string>
+
+      <!-- Block Nucleus External List Sync -->
+      <string id="BlockExternalListSync">ユーザーが他の組織から共有されたリストを同期できないようにする</string>
+      <string id="BlockExternalListSync_help">この設定を有効にすると、organizationのユーザーは、他の組織と共有されているリストを同期できなくなります。コンピューターで設定を有効にすると (値 1)、他の組織から共有されているリストは同期されません。ユーザーが外部リストを同期できるようにするには、設定 (値 0) を無効にします。</string>
+
+      <!-- Disable Nucleus Silent Config -->
+      <string id="DisableNucleusSilentConfig">ユーザーが Web 上のオフライン エクスペリエンスにサイレント サインインできないようにする</string>
+      <string id="DisableNucleusSilentConfig_help">Microsoft Lists および Web 上の OneDrive のオフライン エクスペリエンスは、ユーザーが Microsoft Entra ID 資格情報を使用して自動的にサインインするように設定されています。この設定を有効にすると、以前に Web 上の Microsoft Lists と OneDrive でオフライン エクスペリエンスを使用したことがあり、Microsoft Entra 参加デバイスでサインインしているユーザーは、資格情報を入力せずにオフライン エクスペリエンスを設定できなくなります。
+      </string>
+
+      <!-- Disable Nucleus Offline Mode for Files -->
+      <string id="DisableOfflineMode">組織内のユーザーが Web 上の OneDrive でオフライン モードを有効にできないようにする</string>
+      <string id="DisableOfflineMode_help">既定では、OneDrive on the web のユーザーに対してオフライン モードが有効になっています。このポリシーを有効にした場合、OneDrive on the web のオフライン モードは、デバイス上のすべてのユーザーに対して無効になります。      </string>
+
+      <!-- Disable Nucleus Offline Mode for external libraries -->
+      <string id="DisableOfflineModeForExternalLibraries">組織内のユーザーが、他の組織から共有されているライブラリやフォルダーに対して Web 上の OneDrive でオフライン モードを有効にできないようにする</string>
+      <string id="DisableOfflineModeForExternalLibraries_help">この設定を有効にすると、organizationのユーザーは、他の組織と共有されているライブラリやフォルダーのオフライン モードを有効にできなくなります。コンピューターで設定を有効にした後 (値 1)、他の組織で共有されているライブラリとフォルダーは、OneDrive on the web でオフライン モードを有効にすることはできません。他の組織から共有されているライブラリやフォルダーを操作するときに、ユーザーが Web 上の OneDrive でオフライン モードを有効または無効にできるようにする設定 (値 0) を無効にします。</string>
+
+      <!-- Disable auto configuration -->
+      <string id="DisableAutoConfig">Microsoft アプリケーションで使用できる既存の資格情報を使用して、OneDrive 同期 アプリへのユーザーのサイレント サインインを無効にする</string>
+      <string id="DisableAutoConfig_help">この設定は、同期クライアントが自動的にサインインできるかどうかを決定します。
+
+管理者がこの設定を有効にした場合 (値 1)、Microsoft アプリケーションで利用できる既存の AAD 資格情報を使用して同期クライアントが自動的にサインインできなくなります。
+
+管理者がこの設定を無効にする (値 0) か構成しない場合、同期クライアントは自動的にサインインします。
+      </string>
+
+      <!-- Disable New Account Detection -->
+      <string id="DisableNewAccountDetection">トースト通知とアクティビティ センターのメッセージを無効にして、ユーザーにMicrosoft アプリケーションで利用できる既存の資格情報を使用して OneDrive にサインインするように勧める</string>
+      <string id="DisableNewAccountDetection_help">管理者がこの設定 (値 1) を有効にした場合、OneDrive でのサインインに使用できる新しいアカウントに関するトーストとアクティビティ センターのメッセージはユーザーに表示されません。
+
+管理者がこの設定を無効にした場合 (値 0)、または構成しなかった場合、OneDrive がデバイスで新しいアカウントを検出すると、トーストとアクティビティ センターのメッセージがユーザーに表示されます。      </string>
+        
+      <!-- Enable Added Folder Hard-delete On Unmount -->
+      <string id="AddedFolderHardDeleteOnUnmount">マウント解除時に追加されたフォルダーの内容を物理的に削除します</string>
+      <string id="AddedFolderHardDeleteOnUnmount_help">この設定は、追加されたフォルダーのマウント解除要求が発生した場合の同期クライアントの動作を決定します。
+
+管理者がこの設定 (値 1) を有効にした場合、追加されたフォルダーのマウント解除を受信すると、同期クライアントはフォルダーのすべての内容を物理的に削除します。
+
+管理者がこの設定を無効 (値 0) にした場合、または構成しなかった場合、既定では、マウントされていないフォルダーの内容がごみ箱に移動されます。      </string>
+
+      <!-- Enable Added Folder Hard-delete On Permissions Loss -->
+      <string id="AddedFolderUnmountOnPermissionsLoss">ユーザーがフォルダーに対するアクセス許可を失ったときに、追加されたフォルダーの内容を物理的に削除します</string>
+      <string id="AddedFolderUnmountOnPermissionsLoss_help">この設定は、ユーザーが追加されたフォルダーへのアクセス許可を失った場合の同期クライアントの動作を決定します。
+
+管理者がこの設定 (値 1) を有効にした場合、ユーザーが追加フォルダーへのアクセス許可を失ったことが同期クライアントによって検出されると、同期クライアントはフォルダーおよびフォルダー自体のすべての内容を物理的に削除します。
+
+管理者がこの設定を無効にした場合 (値 0)、または構成しなかった場合は、既定で同期によってフォルダーがエラーとしてマークされ、削除を求めるメッセージがユーザーに表示されます。ユーザーが削除を確認すると、フォルダーの内容がごみ箱に移動されます。      </string>
+
+      <!-- Confirm shared file deletion prompt -->
+      <string id="SharedContentDeleteConfirmation">ユーザーに共有コンテンツの削除の確認を求めるメッセージを表示する</string>
+      <string id="SharedContentDeleteConfirmation_help">ローカルで同期されたファイルが削除され、複数のユーザーがアクセスできる場合は、他のユーザーがそのコンテンツにアクセスできなくなることをユーザーに通知するダイアログが表示され、OneDrive がオンラインで削除を伝達する前に操作を確認するように求められます。確認後、他の共有コンテンツを短期間削除しても、追加の確認は発生しません。他のコンテンツは同期を継続しています。
+
+ユーザーが確認ダイアログを非表示にできないようにするには、この設定を有効にします。ユーザーが共有コンテンツを削除するたびに、アイテムがオンラインのすべてのユーザーに対して削除される前に確認が必要です。
+
+削除の確認メッセージを表示しないようにするには、この設定を無効にします。削除はすぐにクラウドで行われます。
+
+ユーザーが警告 (上記の効果を含む) を非表示にすることを選択できるように、この設定を構成しないでください。
+      </string>
+
+    </stringTable>
+    <presentationTable>
+      <presentation id="GPOSetUpdateRing_Pres">
+        <dropdownList refId="GPOSetUpdateRing_Dropdown" noSort="true" defaultItem="0">更新リング:</dropdownList>
+      </presentation>
+
+      <presentation id="AutomaticUploadBandwidthPercentage_Pres">
+        <text>ファイルをアップロードするときに使用する帯域幅の最大パーセンテージを選択します。</text>
+        <text>有効な値は 10 から 99 です。</text>
+        <decimalTextBox refId="BandwidthSpinBox" defaultValue="70" spinStep="1">帯域幅:</decimalTextBox>
+      </presentation>
+
+      <presentation id="UploadBandwidthLimit_Pres">
+        <text>ファイルをアップロードするときに使用する帯域幅の最大量を選択します。</text>
+        <text>有効な値は 1 から 100000 です。</text>
+        <decimalTextBox refId="UploadRateValue" defaultValue="125">帯域幅:</decimalTextBox>
+      </presentation>
+
+      <presentation id="DownloadBandwidthLimit_Pres">
+        <text>ファイルをダウンロードするときに使用する帯域幅の最大量を選択します。</text>
+        <text>有効な値は 1 から 100000 です。</text>
+        <decimalTextBox refId="DownloadRateValue" defaultValue="125">帯域幅:</decimalTextBox>
+      </presentation>
+
+       <presentation id="DiskSpaceCheckThresholdMB_Pres">
+        <text>ユーザーに同期するフォルダーを選択するメッセージを表示する前に、テナント ID と ユーザーの OneDrive の最大サイズを指定する</text>
+        <text>[値名] フィールドにテナント ID を入力します。[値] フィールドにサイズを入力します。</text>
+        <text>有効な値は 0 から 4294967295 MB (4294967295 を含む) です。</text>
+        <listBox refId="DiskSpaceCheckThresholdMBList">最大サイズ:</listBox>
+      </presentation>
+
+      <presentation id="DefaultRootDir_Pres">
+       <text>テナントの ID と既定のパスを指定します。</text>
+        <text>[値名] フィールドにテナント ID を入力します。[値] フィールドにパスを入力します。</text>
+        <listBox refId="DefaultRootDirList">パス: </listBox>
+      </presentation>
+
+      <presentation id="DisableCustomRoot_Pres">
+        <text>テナント ID と、設定の値を指定します。</text>
+        <text>[値名] フィールドにテナント ID を入力します。[値] フィールドに 1 を入力して設定を有効にする、または 0 を入力して設定を無効にします。</text>
+        <listBox refId="DisableCustomRootList">場所の設定を変更:</listBox>
+      </presentation>
+
+      <presentation id="AllowTenantList_Pres">
+        <text>テナント ID を指定</text>
+        <text>[値] フィールドに、このリストに追加するテナント ID を入力します</text>
+        <text> </text>
+        <listBox refId="AllowTenantListBox">テナント ID:</listBox>
+      </presentation>
+
+      <presentation id="BlockTenantList_Pres">
+        <text>テナント ID を指定</text>
+        <text>[値] フィールドに、このリストに追加するテナント ID を入力します。</text>
+        <text> </text>
+        <listBox refId="BlockTenantListBox">テナント ID:</listBox>
+       </presentation>
+
+      <presentation id="SharePointOnPremFrontDoorUrl_Pres">
+        <text>ユーザーの OneDrive for Business をホストしている SharePoint Server への URL と、組織名を指定してください。</text>
+        <textBox refId="SharePointOnPremFrontDoorUrlBox">
+          <label>SharePoint Server 2019 の URL:</label>
+        </textBox>
+        <textBox refId="SharePointOnPremTenantNameBox">
+          <label>組織名:</label>
+        </textBox>
+      </presentation>
+
+      <presentation id="SharePointOnPremPrioritization_Pres">
+        <dropdownList refId="SharePointOnPremPrioritization_Dropdown" noSort="true" defaultItem="0">初めて認証を行う対象:</dropdownList>
+      </presentation>
+
+      <presentation id="BlockKnownFolderMove_Pres">
+        <dropdownList refId="BlockKnownFolderMove_Dropdown" noSort="true" defaultItem="0">既知のフォルダーを既に移動しているユーザーの場合は、それらのフォルダーの OneDrive へのリダイレクトを維持しますか:</dropdownList>
+      </presentation>
+
+      <presentation id="KFMOptInWithWizard_Pres">
+        <textBox refId="KFMOptInWithWizard_TextBox">
+          <label>テナント ID:</label>
+        </textBox>
+      </presentation>
+
+      <presentation id="KFMOptInNoWizard_Pres">
+        <textBox refId="KFMOptInNoWizard_TextBox">
+          <label>テナント ID:</label>
+        </textBox>
+        <dropdownList refId="KFMOptInNoWizard_Dropdown" noSort="true" defaultItem="0">フォルダーがリダイレクトされた後にユーザーに通知を表示:</dropdownList>
+        <text>フォルダー オプション:</text>
+        <checkBox refId="KFMOptInNoWizard_Desktop_Checkbox" defaultChecked="true">デスクトップ</checkBox>
+        <checkBox refId="KFMOptInNoWizard_Documents_Checkbox" defaultChecked="true">ドキュメント</checkBox>
+        <checkBox refId="KFMOptInNoWizard_Pictures_Checkbox" defaultChecked="true">画像</checkBox>
+      </presentation>
+      <presentation id="AutoMountTeamSites_Pres">
+        <text>同期するライブラリを指定します。
+
+Web ブラウザーを開き、同期するグローバルとして Office 365 または組織、およびライブラリへの参照用の SharePoint の管理者にサインインします。
+
+自動的に同期するライブラリの [同期] ボタンをクリックし、「コピー」ライブラリの id。
+
+表示する]、をクリックし、値の名前] フィールドでは、ライブラリを識別し、[値] フィールドには、ライブラリの ID を入力するためのフレンドリ名を入力します。
+        </text>
+        <listBox refId="AutoMountTeamSitesListBox">ライブラリ:</listBox>
+      </presentation>
+
+      <presentation id="MinDiskSpaceLimitInMB_Pres">
+        <text>[値] フィールドで、最小限のディスク領域が利用可能なままにするを入力します。</text>
+        <text>有効な値は、0 から 10240000 MB です</text>
+        <decimalTextBox refId="minDiskSpaceMB" defaultValue="200">最小の空きディスク領域:</decimalTextBox>
+      </presentation>
+
+      <presentation id="WarningMinDiskSpaceLimitInMB_Pres">
+        <text>[値] フィールドに、その値を下回る容量になったときにユーザーに通知するディスク容量を入力します。このポリシーと [ユーザーのディスクの空き領域が少ない場合にファイルのダウンロードをブロックする] を一緒に使用する場合、この設定の値はブロックしているダウンロードの値よりも大きくする必要があります。</text>
+        <text>有効な値は、0 から 10240000 MB です</text>
+        <decimalTextBox refId="warningMinDiskSpaceMB" defaultValue="500">最小の空きディスク領域:</decimalTextBox>
+      </presentation>
+
+      <presentation id="LocalMassDeleteFileDeleteThreshold_Pres">
+        <text>操作を確定する前に、ユーザーが一度に削除できるファイルの最大数を指定します。</text>
+        <text>有効な値は 1 から 100000 です。</text>
+        <decimalTextBox refId="LMDFileDeleteThresholdBox" defaultValue="200">ファイル数:</decimalTextBox>
+      </presentation>
+
+      <presentation id="EnableODIgnoreListFromGPO_Pres">
+        <text>キーワードを指定するには、[表示] を選択し、[値] フィールドにキーワードを入力します。</text>
+        <text>たとえば、*.pst」と入力すると、.pst 拡張子を持つすべてのファイルがブロックされます。「expense*」 と入力して、「expense」で始まる名前のファイルをブロックします。「*sales*」と入力して、名前に「sales」が含まれるすべてのファイルをブロックします。キーワードでは大文字と小文字が区別されません。たとえば、「icons.JPEG」と入力すると、「icons.jpeg」もブロックされます。</text>
+        <text> </text>
+        <listBox refId="EnableODIgnoreListFromGPOListBox">キーワード: </listBox>
+      </presentation>
+
+      <presentation id="EnableODIgnoreFolderListFromGPO_Pres">
+        <text>キーワードを指定するには、[表示] を選択し、[値] フィールドにキーワードを入力します。</text>
+        <text>たとえば、「foo」と入力すると、"foo" という名前のフォルダーがすべてブロックされます。「expense*」と入力すると、"expense" で始まる名前のフォルダーがブロックされます。「*sales*」と入力すると、名前に "sales" が含まれるすべてのフォルダーがブロックされます。キーワードでは大文字と小文字が区別されません。たとえば、「ICONS」と入力すると、"icons" もブロックされます。</text>
+        <text> </text>
+        <listBox refId="EnableODIgnoreFolderListFromGPOListBox">キーワード: </listBox>
+      </presentation>
+
+      <presentation id="EnableSyncAdminReports_Pres">
+      </presentation>
+      <presentation id="GranularFeedbackControl_Pres">
+        <text>ユーザーが Microsoft へ連絡できるようにします。</text>
+        <checkBox refId="GranularFeedbackControl_SendFeedback_Checkbox" defaultChecked="true">フィードバックを送る</checkBox>
+        <checkBox refId="GranularFeedbackControl_ReceiveSurveys_Checkbox" defaultChecked="true">ユーザーの満足度に関するアンケートを受ける</checkBox>
+        <checkBox refId="GranularFeedbackControl_ContactSupport_Checkbox" defaultChecked="true">OneDrive のサポートに問い合わせる​</checkBox>
+      </presentation>
+
+      <presentation id="DisableAutoConfig_Pres">
+        <text>自動的な同期を無効にするアカウントの種類を選択します</text>
+        <text>AAD の値: 1</text>
+        <decimalTextBox refId="DisableAutoConfigTypes" defaultValue="0">無効にするアカウントの種類:</decimalTextBox>
+      </presentation>
+    </presentationTable>
+  </resources>
+</policyDefinitionResources>
