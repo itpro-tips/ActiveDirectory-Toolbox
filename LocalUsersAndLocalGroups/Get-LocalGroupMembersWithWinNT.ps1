@@ -25,8 +25,11 @@ function Get-LocalGroupMembersWithWinNT {
         elseif ($path -like 'WinNT://AzureAD/*') {
             $principalSource = 'EntraID'
         }
-        elseif ($path -like 'WinNT://S-1*') {
-            $principalSource = 'EntraID (unable to resolve SID) or ActiveDirectory (former user)'
+        elseif ($path -like 'WinNT://S-1-5-21-*') {
+            $principalSource = 'ActiveDirectory (unable to resolve SID because former user/group)'
+        }
+        elseif ($path -like 'WinNT://S-1-12-1-*') {
+            $principalSource = 'EntraID (unable to resolve SID)'
         }
         else {
             $principalSource = 'ActiveDirectory'
