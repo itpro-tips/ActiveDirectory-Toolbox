@@ -1,25 +1,55 @@
+<#
+.CHANGELOG
+# Changelog
+
+[2.0.0] - 2025-02-18  
+# Added
+- Add a ShouldProcess to confirm the removal of the attribute from the property set
+
+# Changes
+- Update the -ADxxx CMDlets to use `-Server $schemamaster`
+- Change the `-Simulaton`to include error message 
+- Change `Check-rights` function name to `Test-ADSchemaPermission` to make it more explicit
+
+[1.0.0] - 2023-09-06
+# Changes
+- Initial version
+
+
 #Requires -Modules ActiveDirectory
 
-$currentPrincipal = New-Object Security.Principal.WindowsPrincipal([Security.Principal.WindowsIdentity]::GetCurrent())
+<# https://itpro-tips.com/property-set-personal-information-and-active-directory-security-and-governance/
+Examples
+# run the simulation before any modification
+Get-ADPropertySet -PropertySetName Personal-Information | ForEach-Object {Remove-ADAttributeFromPropertySet -ADProperties $_.AttributeLDAPDisplayName -Simulation}
+
+# Once you are sure of what you are doing, you can remove the `-Simulation` parameter.
+# Note: For each property, you need to confirm the removal. If know what are doing and don't want to confirm, you can use parameter `-Confirm:$false` to bypass confirmation.
+Get-ADPropertySet -PropertySetName Personal-Information | ForEach-Object {Remove-ADAttributeFromPropertySet -ADProperties $_.AttributeLDAPDisplayName }
+#>
+
 
 <#
+#useless
+$currentPrincipal = New-Object Security.Principal.WindowsPrincipal([Security.Principal.WindowsIdentity]::GetCurrent())
 if (-not $currentPrincipal.IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
     Write-Warning "Please launch the script in admin mode. Exiting..."
     return 1
 }
 #>
 
-$schema = (Get-ADRootDSE).schemaNamingContext
 $schemaMaster = ([System.DirectoryServices.ActiveDirectory.Forest]::GetCurrentForest()).SchemaRoleOwner
-$config = (Get-ADRootDSE).configurationNamingContext
+$rootDSE = Get-ADRootDSE -Server $schemaMaster
+$schemaNC = $rootDSE.schemaNamingContext
+$configNC = $rootDSE.configurationNamingContext
 
-function Check-ADRights {
+function Test-ADSchemaPermission {
     Param (
         [string[]]$AttributeDN
     )
     
-    $netBIOSName = (Get-ADDomain).NetBIOSName
-    $identities = (Get-ACL -Path "AD:$attributeDN" | Select-Object -ExpandProperty access | Where-Object { $_.ActiveDirectoryRights -like '*WriteProperty*' }).IdentityReference
+    $netBIOSName = (Get-ADDomain -Server $schemaMaster).NetBIOSName
+    $identities = (Get-Acl -Path "AD:$attributeDN" | Select-Object -ExpandProperty access | Where-Object { $_.ActiveDirectoryRights -like '*WriteProperty*' }).IdentityReference
 
     $hasRights = $false
 
@@ -72,7 +102,7 @@ function Get-ADPropertySet {
     }
     
     # extendedRight is a controlAccessRight with validAccesses = 0x30 (48)
-    $propertySets = @(Get-ADObject -Filter $filter -SearchBase "CN=Extended-Rights,$config" -Properties rightsGuid, validAccesses | Where-Object { $_.validAccesses -eq 48 })
+    $propertySets = @(Get-ADObject -Filter $filter -SearchBase "CN=Extended-Rights,$configNC" -Properties rightsGuid, validAccesses -Server $schemaMaster | Where-Object { $_.validAccesses -eq 48 })
 
     if ($DoNoIncludeAttributes) {
         foreach ($propertySet in $propertySets) {
@@ -97,7 +127,7 @@ function Get-ADPropertySet {
                 $guid = [guid]$propertySet.rightsGuid
                 $guidByteArray = $guid.ToByteArray()
 
-                $properties = Get-ADObject -Filter { attributeSecurityGUID -eq $guidByteArray } -SearchBase $schema -Properties *
+                $properties = Get-ADObject -Filter { attributeSecurityGUID -eq $guidByteArray } -SearchBase $schemaNC -Properties * -Server $schemaMaster
 
                 if ($properties.Count -eq '0') {
                     $object = [PSCustomObject][ordered]@{
@@ -144,35 +174,32 @@ function Get-ADPropertySetForAttribute {
     )
 
     $property = $null
-    $propertySetName = $null
 
     try {
-        $property = Get-ADObject -Filter { Name -eq $Attribute -or lDAPDisplayName -eq $Attribute } -SearchBase $schema -Properties * -ErrorAction Stop
+        $property = Get-ADObject -Filter { Name -eq $Attribute -or lDAPDisplayName -eq $Attribute } -SearchBase $schemaNC -Properties * -Server $schemaMaster -ErrorAction Stop
     }
     catch {
         Write-Warning $_.Exception.Message
+
     }
+
     if ($property) {
         if ($property.attributeSecurityGUID) {
-            if (Check-ADRights -AttributeDN $property.DistinguishedName) {
-                $propertySetGUID = New-Object Guid @(, $property.attributeSecurityGUID)
 
-                # The Property Set are in "CN=Extended-Rights,CN=configuration,DC=domain,DC=com"
-                $propertySet = Get-ADObject -filter { rightsGuid -eq $propertySetGUID } -SearchBase "CN=Extended-Rights,$config"
+            $propertySetGUID = New-Object Guid @(, $property.attributeSecurityGUID)
+
+            # The Property Set are in "CN=Extended-Rights,CN=configuration,DC=domain,DC=com"
+            $propertySet = Get-ADObject -Filter { rightsGuid -eq $propertySetGUID } -SearchBase "CN=Extended-Rights,$configNC" -Server $schemaMaster
                 
-                $object = [PSCustomObject]@{
-                    AttributeName             = $property.Name
-                    AttributeLDAPDisplayName  = $property.lDAPDisplayName
-                    AttributeAdminDescription = $property.adminDescription
-                    AttributeAdminDisplayName = $property.adminDisplayName
-                    AttributeDN               = $property.DistinguishedName
-                    PropertySetDN             = $propertySet.DistinguishedName
-                    PropertySetName           = $propertySet.Name
-                    PropertySetGUID           = $propertySet.ObjectGUID
-                }
-            }
-            else {
-                Write-Warning "Current user $env:UserName has not the ModifyProperty Rights to modify $property. Please add rights to this attribute, by example by adding him to Schema Admins group and refresh the Kerberos ticket by logoff/login."
+            $object = [PSCustomObject]@{
+                AttributeName             = $property.Name
+                AttributeLDAPDisplayName  = $property.lDAPDisplayName
+                AttributeAdminDescription = $property.adminDescription
+                AttributeAdminDisplayName = $property.adminDisplayName
+                AttributeDN               = $property.DistinguishedName
+                PropertySetDN             = $propertySet.DistinguishedName
+                PropertySetName           = $propertySet.Name
+                PropertySetGUID           = $propertySet.ObjectGUID
             }
         }
         else {
@@ -188,6 +215,7 @@ function Get-ADPropertySetForAttribute {
 }
 
 function Remove-ADAttributeFromPropertySet {
+    [CmdletBinding(SupportsShouldProcess, ConfirmImpact = 'High')]
     Param(
         [Parameter(Mandatory = $true)]
         [string[]]$ADProperties,
@@ -199,17 +227,25 @@ function Remove-ADAttributeFromPropertySet {
         $attribute = Get-ADPropertySetForAttribute -Attribute $ADProperty
 
         if ($null -ne $attribute) {
-            if ($Simulation) {
-                Write-Host -ForegroundColor Green "SIMULATION: Remove attribute '$($attribute.AttributeName)' from $($attribute.PropertySetDN) ($($attribute.PropertySetGuid))"
+            if (Test-ADSchemaPermission -AttributeDN $attribute.AttributeDN) {
+                if ($Simulation) {
+                    Write-Host -ForegroundColor Cyan "SIMULATION: Remove attribute '$($attribute.AttributeName)' from $($attribute.PropertySetDN) ($($attribute.PropertySetGuid))"
+                }
+                else {
+                    $message = "Are you sure you want to remove attribute '$($attribute.AttributeName)' from property set '$($attribute.PropertySetName)'?"
+                    if ($PSCmdlet.ShouldProcess($attribute.AttributeName, $message)) {
+                        try {
+                            Set-ADObject -Identity $attribute.AttributeDN -Clear attributeSecurityGUID -ErrorAction Stop -Server $schemaMaster
+                            Write-Host -ForegroundColor Green "Attribute '$($attribute.AttributeName)' removed from $($attribute.PropertySetDN) ($($attribute.PropertySetGuid))"
+                        }
+                        catch {
+                            Write-Warning $_.Exception.Message
+                        }
+                    }
+                }
             }
             else {
-                try {
-                    Set-ADObject -Identity $attribute.AttributeDN -Clear attributeSecurityGUID -ErrorAction Stop
-                    Write-Host -ForegroundColor Green "Attribute '$($attribute.AttributeName)' removed from $($attribute.PropertySetDN) ($($attribute.PropertySetGuid))"
-                }
-                catch {
-                    Write-Warning $_.Exception.Message
-                }
+                Write-Warning "You don't have the rights on the schema to remove the attribute $($attribute.AttributeName) from $($attribute.PropertySetDN)"
             }
         }
     }
