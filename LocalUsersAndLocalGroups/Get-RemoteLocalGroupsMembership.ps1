@@ -9,7 +9,7 @@ function Get-RemoteLocalGroupsMembership {
 
     foreach ($computer in $computerName) {
 
-        if($computer -eq 'localhost') {
+        if ($computer -eq 'localhost') {
             $computer = $env:COMPUTERNAME
         }
         
@@ -50,7 +50,7 @@ function Get-RemoteLocalGroupsMembership {
             }
         }
         
-        $adsi.psbase.children |  Where-Object { $_.psbase.schemaClassName -eq 'group' } | ForEach-Object {
+        $adsi.psbase.children | Where-Object { $_.psbase.schemaClassName -eq 'group' } | ForEach-Object {
             $group = $_.name
             $groupName = $group.Tostring()
             $localGroup = [ADSI]"WinNT://$computer/$group,group"

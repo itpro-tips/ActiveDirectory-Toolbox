@@ -9,7 +9,7 @@ function Get-RemoteLocalUsers {
 
     foreach ($computer in $computerName) {
         
-        if ($computer = 'localhost') {
+        if ($computer -eq 'localhost') {
             $computer = $env:COMPUTERNAME
         }
 
