@@ -1,15 +1,19 @@
 function Get-RemoteLocalUsers {
     [CmdletBinding()]
     param (
-        [Parameter()]
+        [Parameter(Mandatory = $false)]
         [String[]]$ComputerName
     )
     
     [System.Collections.Generic.List[PSObject]]$remoteLocalUsersArray = @()
 
     foreach ($computer in $computerName) {
-    
-        $adsi = [ADSI]"WinNT://$Computer,computer"
+        
+        if ($computer = 'localhost') {
+            $computer = $env:COMPUTERNAME
+        }
+
+        $adsi = [ADSI]"WinNT://$computer,computer"
 
         try {
             # Test ADSI
@@ -17,7 +21,7 @@ function Get-RemoteLocalUsers {
         }
         catch {
             $object = [PSCustomObject][ordered]@{
-                Computername               = $Computer
+                Computername               = $computer
                 Name                       = $_.Exception.Message
                 AutoUnlockInterval         = $_.Exception.Message
                 BadPasswordAttempts        = $_.Exception.Message
@@ -54,7 +58,7 @@ function Get-RemoteLocalUsers {
 
         foreach ($localUser in $localUsers) {
             $object = [PSCustomObject][ordered]@{
-                Computer                   = $Computer
+                Computer                   = $computer
                 Name                       = $($localUser.Name)
                 AutoUnlockInterval         = $($localUser.AutoUnlockIntervalToString)
                 BadPasswordAttempts        = $($localUser.BadPasswordAttempts)
