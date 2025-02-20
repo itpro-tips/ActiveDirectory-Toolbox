@@ -53,8 +53,9 @@ function Get-RemoteLocalGroupsMembership {
         $adsi.psbase.children | Where-Object { $_.psbase.schemaClassName -eq 'group' } | ForEach-Object {
             $group = $_.name
             $groupName = $group.Tostring()
-            $localGroup = [ADSI]"WinNT://$computer/$group,group"
-            $members = @($localgroup.psbase.Invoke('Members'))
+            #$localGroup = [ADSI]"WinNT://$computer/$group,group"
+            $group = $adsi.psbase.children.find("$GroupName", 'Group')
+            $members = $group.psbase.invoke('members')
                                     
             if ($members) {
                 foreach ($member In $members) {
@@ -68,10 +69,13 @@ function Get-RemoteLocalGroupsMembership {
                         $principalSource = 'Local'
                     }
                     elseif ($path -like 'WinNT://AzureAD/*') {
-                        $principalSource = 'AzureAD'
+                        $principalSource = 'EntraID'
                     }
-                    elseif ($path -like 'WinNT://S-1*') {
-                        $principalSource = 'Problably AzureAD'
+                    elseif ($path -like 'WinNT://S-1-5-21-*') {
+                        $principalSource = 'ActiveDirectory (unable to resolve SID because former user/group)'
+                    }
+                    elseif ($path -like 'WinNT://S-1-12-1-*') {
+                        $principalSource = 'EntraID (unable to resolve SID)'
                     }
                     else {
                         $principalSource = 'ActiveDirectory'
