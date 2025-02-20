@@ -7,7 +7,7 @@ function Get-RemoteLocalGroupsMembership {
 
     [System.Collections.Generic.List[PSObject]]$remoteLocalGroupsMembershipArray = @()
 
-    foreach ($computer in $computerName) {
+    foreach ($computer in $ComputerName) {
 
         if ($computer -eq 'localhost') {
             $computer = $env:COMPUTERNAME
