@@ -1,18 +1,29 @@
 function Get-WindowsFirewallStatus {
     [CmdletBinding()]
     param(
-        [String]$ComputerName = $env:COMPUTERNAME
+        [String]$ComputerName
     )
 
-    $netConnectionProfile = Get-NetConnectionProfile -CimSession $ComputerName
+    if ($ComputerName -and $ComputerName -ne 'localhost') {
+        $firewallService = Invoke-Command -ComputerName $ComputerName -ScriptBlock { Get-Service mpssvc }
+        $CimData = [ordered] @{
+            CimSession = $ComputerName
+        }
+        
+        $netConnectionProfile = Get-NetConnectionProfile @CimData
 
-    $firewallService = Get-Service mpssvc -ComputerName $ComputerName
+        $firewallProfiles = Get-NetFirewallProfile @CimData
+    }
+    else {
+        $firewallService = Get-Service mpssvc
+        $netConnectionProfile = Get-NetConnectionProfile
 
-    $firewallProfiles = Get-NetFirewallProfile -CimSession $ComputerName
+        $firewallProfiles = Get-NetFirewallProfile
+    }    
     
     $object = [PSCustomObject][ordered] @{
         ComputerName         = $ComputerName
-        NetConnectionProfile = ($netConnectionProfile  | ForEach-Object { "$($_.InterfaceAlias) = $($_.NetworkCategory)" }) -join '|'
+        NetConnectionProfile = ($netConnectionProfile | ForEach-Object { "$($_.InterfaceAlias) = $($_.NetworkCategory)" }) -join '|'
         FWStatus             = $firewallService.Status
         FWStartType          = $firewallService.StartType
         DomainProfile        = ($firewallProfiles | Where-Object { $_.Name -eq 'Domain' }).Enabled
