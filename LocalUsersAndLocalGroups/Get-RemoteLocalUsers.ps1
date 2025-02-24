@@ -7,6 +7,10 @@ function Get-RemoteLocalUsers {
     
     [System.Collections.Generic.List[PSObject]]$remoteLocalUsersArray = @()
 
+    if ([string]::IsNullOrWhitespace($ComputerName)) {
+        $ComputerName = @('localhost')
+    }
+    
     foreach ($computer in $computerName) {
         
         if ($computer -eq 'localhost') {
