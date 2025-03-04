@@ -27,6 +27,7 @@ function Get-RemoteLocalUsers {
             $object = [PSCustomObject][ordered]@{
                 Computername               = $computer
                 Name                       = $_.Exception.Message
+                Enabled                    = $_.Exception.Message
                 AutoUnlockInterval         = $_.Exception.Message
                 BadPasswordAttempts        = $_.Exception.Message
                 Description                = $_.Exception.Message
@@ -64,6 +65,8 @@ function Get-RemoteLocalUsers {
             $object = [PSCustomObject][ordered]@{
                 Computer                   = $computer
                 Name                       = $($localUser.Name)
+                # use the UserFlags property to determine if the account is enabled
+                Enabled                    = -not ($($localUser.UserFlags) -band 2)
                 AutoUnlockInterval         = $($localUser.AutoUnlockIntervalToString)
                 BadPasswordAttempts        = $($localUser.BadPasswordAttempts)
                 Description                = $($localUser.Description)
