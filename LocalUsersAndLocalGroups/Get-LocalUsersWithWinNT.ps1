@@ -1,13 +1,30 @@
-function Get-RemoteLocalUsers {
+<#
+.CHANGELOG
+
+[2.0.0] - 2025-03-05 
+# Changed
+- Change function name from `Get-RemoteLocalUser` to `Get-LocalUsersWithWinNT`.
+- Add `Computer` as alias for `ComputerName` to backward compatibility.
+- Add `ComputerName` parameter to be able to specify multiple computers.
+- Return all group membership by default (previous version imposed to specify a group name).
+- Merge the two scripts `Get-LocalGroupMembersWithWinNT` and `Get-RemoteLocalGroupsMembership` into this script.
+- Enhance `PrincipalSource` detection to be able to distinguish between local, EntraID and Active Directory users/groups.
+
+[1.0.0] - 2023-xx-xx
+# Initial Version
+#>
+
+function Get-LocalUsersWithWinNT {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory = $false)]
+        [Alias('Computer')]
         [String[]]$ComputerName
     )
     
     [System.Collections.Generic.List[PSObject]]$remoteLocalUsersArray = @()
 
-    if ([string]::IsNullOrWhitespace($ComputerName)) {
+    if ([String]::IsNullOrWhitespace($ComputerName)) {
         $ComputerName = @('localhost')
     }
     
