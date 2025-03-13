@@ -2,6 +2,13 @@
 .CHANGELOG
 # Changelog
 
+[2.1.0] - 2025-03-13  
+# Added
+- Add exclusion of some attributes that are often used for some usage (PKI, S/MIME, Windows Autopilot Intune, etc.) or other functionality. It is recommended to not remove it from any property set.
+
+# Changes
+- Change Set-ADObject to use ADSI to remove the attribute from the property set because Set-ADObject seems to not work properly on some AD version
+
 [2.0.0] - 2025-02-18  
 # Added
 - Add a ShouldProcess to confirm the removal of the attribute from the property set
@@ -25,7 +32,7 @@ Get-ADPropertySet -PropertySetName Personal-Information | ForEach-Object {Remove
 
 # Once you are sure of what you are doing, you can remove the `-Simulation` parameter.
 # Note: For each property, you need to confirm the removal. If know what are doing and don't want to confirm, you can use parameter `-Confirm:$false` to bypass confirmation.
-Get-ADPropertySet -PropertySetName Personal-Information | ForEach-Object {Remove-ADAttributeFromPropertySet -ADProperties $_.AttributeLDAPDisplayName }
+Get-ADPropertySet -PropertySetName Personal-Information | ForEach-Object { Remove-ADAttributeFromPropertySet -ADProperties $_.AttributeLDAPDisplayName }
 #>
 
 
@@ -224,9 +231,30 @@ function Remove-ADAttributeFromPropertySet {
     )
 
     foreach ($ADProperty in $ADProperties) {
+                
         $attribute = Get-ADPropertySetForAttribute -Attribute $ADProperty
 
-        if ($null -ne $attribute) {
+        $attributesToExclude = @(
+            'mSMQSignCertificates'
+            'msDS-HostServiceAccount'
+            'msDS-ExternalDirectoryObjectId'
+            'msDS-SupportedEncryptionTypes'
+            'msDS-LastSuccessfulInteractiveLogonTime'
+            'msDS-LastFailedInteractiveLogonTime'
+            'msDS-FailedInteractiveLogonCount'
+            'msDS-FailedInteractiveLogonCountAtLastSuccessfulLogon'
+            'userCert'
+            'userSMIMECertificate'
+            'userCertificate'
+            'mSMQDigests'
+        )
+
+        if ($attribute.AttributeLDAPDisplayName -in $attributesToExclude) {
+            Write-Host -ForegroundColor Yellow "The attribute $ADProperty is often used for some usage (PKI, S/MIME, Windows Autopilot Intune, etc.) or any functionality. It is recommended to not remove it from any property set."
+            continue
+        }
+
+        elseif ($null -ne $attribute) {
             if (Test-ADSchemaPermission -AttributeDN $attribute.AttributeDN) {
                 if ($Simulation) {
                     Write-Host -ForegroundColor Cyan "SIMULATION: Remove attribute '$($attribute.AttributeName)' from $($attribute.PropertySetDN) ($($attribute.PropertySetGuid))"
@@ -235,8 +263,11 @@ function Remove-ADAttributeFromPropertySet {
                     $message = "Are you sure you want to remove attribute '$($attribute.AttributeName)' from property set '$($attribute.PropertySetName)'?"
                     if ($PSCmdlet.ShouldProcess($attribute.AttributeName, $message)) {
                         try {
-                            Set-ADObject -Identity $attribute.AttributeDN -Clear attributeSecurityGUID -ErrorAction Stop -Server $schemaMaster
-                            Write-Host -ForegroundColor Green "Attribute '$($attribute.AttributeName)' removed from $($attribute.PropertySetDN) ($($attribute.PropertySetGuid))"
+                            #Set-ADObject -Identity $attribute.AttributeDN -Clear attributeSecurityGUID -ErrorAction Stop -Server $schemaMaster
+                            $adObject = [ADSI]"LDAP://$($schemaMaster)/$($attribute.AttributeDN)"
+                            $adObject.PutEx(1, 'attributeSecurityGUID', @())
+                            $adObject.SetInfo()
+                            Write-Host -ForegroundColor Green "Attribute '$($attribute.AttributeName)' removed from $($attribute.PropertySetDN) ($($attribute.PropertySetGuid))"                        
                         }
                         catch {
                             Write-Warning $_.Exception.Message
