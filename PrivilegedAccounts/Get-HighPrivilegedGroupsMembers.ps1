@@ -1,3 +1,17 @@
+<#
+.CHANGELOG
+# Changelog
+
+[1.1.0] - 2025-03-14
+# Added
+- Add support for MSAs and gMSAs
+
+[1.0.0] - 2023-xx-xx
+# Changes
+- Initial version
+#>
+
+
 function Get-HighPrivilegedGroupsMembers {
     [CmdletBinding()]
     param (
@@ -12,7 +26,7 @@ function Get-HighPrivilegedGroupsMembers {
         Import-Module ActiveDirectory -ErrorAction Stop
     }
     catch {
-        Write-Warning "ActiveDirectory module not found. Please install it and try again."
+        Write-Warning 'ActiveDirectory module not found. Please install it and try again.'
         return
     }
 
@@ -43,8 +57,11 @@ function Get-HighPrivilegedGroupsMembers {
             elseif ($member.ObjectClass -eq 'User') {
                 $member = Get-ADUser -Identity $member.distinguishedName -Properties * -Server $DomainController
             }
+            elseif ($member.ObjectClass -eq 'msDS-ManagedServiceAccount' -or $member.ObjectClass -eq 'msDS-GroupManagedServiceAccount') {
+                $member = Get-ADServiceAccount -Identity $member.distinguishedName -Properties * -Server $DomainController
+            }
             else {
-                Write-Warning "$($member.Objectclass) not known by this script"
+                Write-Warning "$($member.SamAccountName) with objectclass $($member.Objectclass) not known by this script"
             }
 
             $object = [PSCustomObject][ordered]@{
