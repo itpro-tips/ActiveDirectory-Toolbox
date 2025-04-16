@@ -66,6 +66,7 @@ function Get-HighPrivilegedGroupsMembers {
 
             $object = [PSCustomObject][ordered]@{
                 GroupName                          = $group.Name
+                GroupSID                           = [string]$group.SID
                 SamAccountName                     = $member.SamAccountName
                 Enabled                            = if ($member.Enabled) { $true } else { $false }
                 'Active[Last90Days]'               = if ($(Get-Date).AddDays(-90) -lt $member.lastLogonDate ) { $true } else { $false }
